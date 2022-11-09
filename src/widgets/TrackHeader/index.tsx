@@ -5,9 +5,9 @@ const TrackHeader = (props: any) => {
   return (
     <Wrapper>
       <Container>
-        <MdOutlineRefresh size={18} />
+        <MdOutlineRefresh size={18} className="refresh-button" />
         <Title>#CopaDoBrasil</Title>
-        <BsThreeDotsVertical size={17} />
+        <BsThreeDotsVertical size={17} className="options-button" />
       </Container>
     </Wrapper>
   );

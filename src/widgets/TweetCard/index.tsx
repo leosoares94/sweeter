@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Container,
   Row,
@@ -10,14 +12,18 @@ import {
   EngagementButton,
   EngagementNumber,
 } from "./styles";
-import { Avatar, Tooltip } from "evergreen-ui";
+
+import { Avatar, Button } from "evergreen-ui";
 import { formatDate } from "../../utils/dateUtils";
 import { toTitleCase } from "../../utils/stringUtils";
 import { BsTwitter } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
+import { BiAddToQueue } from "react-icons/bi";
 import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
 
 const TweetCard = (props: any) => {
+  const [added, setAdded] = useState(false);
+
   return (
     <Container>
       <Column>
@@ -59,6 +65,16 @@ const TweetCard = (props: any) => {
           <EngagementButton>
             <AiOutlineHeart size={18} />
             <EngagementNumber>206</EngagementNumber>
+            <Button
+              intent="success"
+              size="small"
+              iconBefore={<BiAddToQueue size={15} />}
+              className="add-button"
+              appearance={added ? "primary" : undefined}
+              onClick={() => setAdded(!added)}
+            >
+              {added ? "Added to playlist" : "Add to playlist"}
+            </Button>
           </EngagementButton>
         </Row>
       </Column>

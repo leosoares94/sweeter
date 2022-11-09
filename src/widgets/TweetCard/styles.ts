@@ -39,7 +39,6 @@ export const Column = styled.div`
 
   .engagement {
     justify-content: space-between;
-    padding-right: 8rem;
   }
 
   .tweet-icon {
@@ -49,11 +48,15 @@ export const Column = styled.div`
       transform: scale(1.2);
     }
   }
+
+  .add-button {
+    margin-left: 1rem;
+  }
 `;
 
 export const Name = styled.span`
   font-size: 0.9rem;
-  font-weight: bold;
+  font-weight: 500;
   margin-top: 0.3rem;
 `;
 
@@ -98,7 +101,7 @@ export const EngagementButton = styled.div`
 
 export const EngagementNumber = styled.span`
   font-size: 0.7rem;
-  padding-left: 0.5rem;
+  padding-left: 0.3rem;
   padding-top: 0.05rem;
   box-sizing: border-box;
 `;
