@@ -1,7 +1,13 @@
-import { Container } from './styles';
+import TrackHeader from "../TrackHeader";
+import { Container, Wrapper } from "./styles";
 
 const Track = (props: any) => {
-    return <Container>{props.children}</Container>
-}
+  return (
+    <Wrapper>
+      <TrackHeader />
+      <Container>{props.children}</Container>
+    </Wrapper>
+  );
+};
 
 export default Track;
