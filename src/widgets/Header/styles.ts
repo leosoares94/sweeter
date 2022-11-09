@@ -6,9 +6,22 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
   box-sizing: border-box;
   padding: 0rem 2rem;
+
+  .add-button {
+    background-color: #ff4784 !important;
+    border: none;
+    &:hover {
+      background-color: #c23262 !important;
+    }
+
+    &:active {
+      background-color: #ff4784 !important;
+    }
+  }
 `;
 
 export const Logo = styled.div`
