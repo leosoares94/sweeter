@@ -39,7 +39,7 @@ const TweetCard = (props: any) => {
               <Username>@ethanhardy</Username>
             </Column>
           </Row>
-          <BsTwitter size={25} color="#4ba1ea" className="tweet-icon" />
+          <BsTwitter size={25} color="#ff4784" className="tweet-icon" />
         </Row>
         <Column className="tweet-container">
           <Tweet>

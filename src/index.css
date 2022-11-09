@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans&family=Montserrat&family=Poppins:wght@300&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&family=Pacifico&display=swap");
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -27,6 +27,8 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+
+  overflow-y: hidden;
 }
 
 h1 {
@@ -59,4 +61,18 @@ button:hover {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(241, 243, 245, 0) !important;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ff478480;
+  border-radius: 10px;
+  border: none;
 }

@@ -85,7 +85,7 @@ export const Time = styled.span`
 export const Source = styled.span`
   font-size: 0.8rem;
   padding-top: 1rem;
-  color: #50a3e8;
+  color: #ff4784;
 `;
 
 export const EngagementButton = styled.div`
