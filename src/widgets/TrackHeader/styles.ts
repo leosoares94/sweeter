@@ -8,8 +8,6 @@ export const Wrapper = styled.div`
     padding: 0rem 1.5rem;
     padding-top: 1rem;
     box-sizing: border-box;
-
-
 `;
 
 export const Container = styled.div`
@@ -18,7 +16,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: solid 1px #ff47847d;
+    box-shadow: 0px 3px 10px rgba(255, 137, 137, 0.112);
     border-radius: 2rem;
     font-size: 0.8rem;
     font-weight: 600;
