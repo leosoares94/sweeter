@@ -13,14 +13,14 @@ export const Container = styled.div`
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: #ffb8bf9a !important;
+    scrollbar-color: #ffb8bf23 !important;
   }
   /* Chrome, Edge, and Safari */
   ::-webkit-scrollbar {
     width: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #ff47840e !important;
+    background: #ff478404 !important;
   }
   ::-webkit-scrollbar-thumb {
     background-color: #ff478414;
