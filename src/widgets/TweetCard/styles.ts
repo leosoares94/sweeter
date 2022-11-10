@@ -13,7 +13,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   border-radius: 0.3rem;
   margin-top: 1rem;
-  box-shadow: 0px 3px 10px rgba(255, 137, 137, 0.205);
+  box-shadow: 0px 3px 10px rgba(255, 137, 137, 0.112);
 `;
 
 export const Row = styled.div`
