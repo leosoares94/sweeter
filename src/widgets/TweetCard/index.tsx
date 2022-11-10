@@ -43,7 +43,7 @@ const TweetCard = (props: any) => {
         </Row>
         <Column className="tweet-container">
           <Tweet>
-            {`-Em março também foram zerados os impostos de importação sobre o café, margarina, macarrão, óleo de soja, açúcar e do álcool que vai na mistura da gasolina. \n\n-Os impostos federais sobre o diesel e o gás de cozinha também foram zerados, além de muitos outros desde 2019.`}
+          Twitter APIs handle enormous amounts of data. The way we ensure this data is secured for developers and users alike is through authentication. There are a few methods for authentication, each listed below.
           </Tweet>
         </Column>
         <Row>
