@@ -43,9 +43,7 @@ const TweetCard = (props: any) => {
         </Row>
         <Column className="tweet-container">
           <Tweet>
-            In some cases user avatars are displayed without knowing the name of
-            the user. It's possible in those cases to use a id as the hashValue
-            property to automatically determine the color.
+            {`-Em março também foram zerados os impostos de importação sobre o café, margarina, macarrão, óleo de soja, açúcar e do álcool que vai na mistura da gasolina. \n\n-Os impostos federais sobre o diesel e o gás de cozinha também foram zerados, além de muitos outros desde 2019.`}
           </Tweet>
         </Column>
         <Row>

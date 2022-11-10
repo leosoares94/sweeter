@@ -74,6 +74,7 @@ export const Username = styled.span`
 export const Tweet = styled.span`
   font-size: 1rem;
   padding-top: 1rem;
+  white-space: pre-line;
 `;
 
 export const Time = styled.span`
