@@ -16,7 +16,7 @@ import {
 import { Avatar, Button } from "evergreen-ui";
 import { formatDate } from "../../utils/dateUtils";
 import { toTitleCase } from "../../utils/stringUtils";
-import { BsTwitter } from "react-icons/bs";
+import { BsTwitter, BsCheckLg } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import { BiAddToQueue } from "react-icons/bi";
 import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
@@ -66,7 +66,7 @@ const TweetCard = (props: any) => {
             <Button
               intent="success"
               size="small"
-              iconBefore={<BiAddToQueue size={15} />}
+              iconBefore={added ? <BsCheckLg size={10}/> : <BiAddToQueue size={15} />}
               className="add-button"
               appearance={added ? "primary" : undefined}
               onClick={() => setAdded(!added)}
