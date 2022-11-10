@@ -51,6 +51,7 @@ export const Column = styled.div`
 
   .add-button {
     margin-left: 1rem;
+    border-radius: 2rem ;
   }
 `;
 
