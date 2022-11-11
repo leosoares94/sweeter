@@ -23,6 +23,11 @@ export const Row = styled.div`
   justify-content: flex-start;
   align-items: center;
   box-sizing: border-box;
+
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 `;
 
 export const Column = styled.div`
@@ -51,14 +56,14 @@ export const Column = styled.div`
 
   .add-button {
     margin-left: 1rem;
-    border-radius: 2rem ;
+    border-radius: 2rem;
   }
 `;
 
 export const Name = styled.span`
   font-size: 0.9rem;
   font-weight: 500;
-  margin-top: 0.3rem;
+  margin-top: 0.1rem;
 `;
 
 export const Username = styled.span`
@@ -97,7 +102,7 @@ export const EngagementButton = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 0.2rem;
+  margin-top: 0.8rem;
   color: #000000ab;
 `;
 

@@ -8,12 +8,16 @@ import Header from "./widgets/Header";
 import BuildTrackModal from "./widgets/BuildTrackModal";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [openBuildTrackModal, setOpenBuildTrackModal] =
+    useState<Boolean>(false);
 
   return (
     <Wrapper>
-      <Header />
-      <BuildTrackModal />
+      <Header onNewTrackClick={() => setOpenBuildTrackModal(true)} />
+      <BuildTrackModal
+        open={openBuildTrackModal}
+        onClose={() => setOpenBuildTrackModal(false)}
+      />
       <Container>
         <Track>
           <TweetCard />
