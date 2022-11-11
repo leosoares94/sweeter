@@ -76,3 +76,8 @@ button:hover {
   border-radius: 10px;
   border: none;
 }
+
+.chakra-modal__body {
+  -webkit-flex: 0 !important;
+  flex: 0 !important;
+}
