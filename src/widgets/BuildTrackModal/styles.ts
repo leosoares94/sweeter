@@ -29,11 +29,11 @@ export const Row = styled.div`
 
 export const Column = styled.div`
   width: 100%;
-  height: 19rem;
+  height: 19.5rem;
   display: flex;
   flex-direction: column;
   padding-right: 0.4rem;
-  padding-bottom: 0.5rem;
+
   overflow-y: scroll;
   box-sizing: border-box;
   ::-webkit-scrollbar {

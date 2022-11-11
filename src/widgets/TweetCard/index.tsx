@@ -22,7 +22,6 @@ import { BiAddToQueue } from "react-icons/bi";
 import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
 
 import { ChakraProvider, Avatar, Button } from "@chakra-ui/react";
-
 const TweetCard = (props: any) => {
   const [added, setAdded] = useState(false);
 
@@ -42,7 +41,7 @@ const TweetCard = (props: any) => {
                 <Username>@ethanhardy</Username>
               </Column>
             </Row>
-            <BsTwitter size={25} color="#ff4784" className="tweet-icon" />
+            <BsTwitter size={25} color="#ed64a6" className="tweet-icon" />
           </Row>
           <Column className="tweet-container">
             <Tweet>

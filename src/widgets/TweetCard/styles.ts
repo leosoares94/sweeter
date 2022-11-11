@@ -13,7 +13,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   border-radius: 0.3rem;
   margin-top: 1rem;
-  box-shadow: 0px 3px 10px rgba(255, 137, 137, 0.112);
+  box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151);
 `;
 
 export const Row = styled.div`
@@ -61,13 +61,13 @@ export const Column = styled.div`
 `;
 
 export const Name = styled.span`
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   margin-top: 0.1rem;
 `;
 
 export const Username = styled.span`
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.5);
   margin-top: -0.3rem;
 
@@ -84,15 +84,15 @@ export const Tweet = styled.span`
 `;
 
 export const Time = styled.span`
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   padding-top: 1rem;
   color: rgba(0, 0, 0, 0.5);
 `;
 
 export const Source = styled.span`
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   padding-top: 1rem;
-  color: #ff4784;
+  color: #d53f8c;
 `;
 
 export const EngagementButton = styled.div`

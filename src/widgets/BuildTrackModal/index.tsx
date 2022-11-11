@@ -17,7 +17,7 @@ import { GoMention } from "react-icons/go";
 import { BiTime, BiWorld, BiImages } from "react-icons/bi";
 import { BsChatSquareText } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
-import { MdImportantDevices, MdOutlineVerified, MdDone } from "react-icons/md";
+import { MdImportantDevices, MdOutlineVerified } from "react-icons/md";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { IoIosRocket } from "react-icons/io";
 
@@ -45,18 +45,34 @@ const BuildTrackModal = (props: any) => {
   return (
     <ChakraProvider>
       <Modal isOpen={props.open} onClose={props.onClose} isCentered size="lg">
-        <ModalOverlay backgroundColor="#29020278" overflowY="hidden" />
-        <ModalContent height="35rem">
-          <ModalHeader fontSize={15}>Let's build your track!</ModalHeader>
+        <ModalOverlay overflowY="hidden" />
+        <ModalContent
+          height="35rem"
+          sx={{
+            transform: "scale(1.2) !important",
+            aspectRatio: "",
+          }}
+        >
+          <ModalHeader fontSize={15}>
+            Let's build your track!
+            <br />
+            <span
+              style={{
+                fontSize: 13,
+                fontWeight: "normal",
+              }}
+            >
+              Add some filters below to customize your results:
+            </span>
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody fontSize={15}>
-            Add some filters below to customize your results:
-          </ModalBody>
+
           <ModalBody className="buttons-container">
             <Button
               size="xs"
               variant={isEnabled("hashtag") ? "solid" : "outline"}
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<CgHashtag size={15} />}
               onClick={() => toggleFilter("hashtag")}
             >
@@ -67,6 +83,7 @@ const BuildTrackModal = (props: any) => {
               size="xs"
               variant={isEnabled("mentions") ? "solid" : "outline"}
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<GoMention size={14} />}
               onClick={() => toggleFilter("mentions")}
             >
@@ -77,6 +94,7 @@ const BuildTrackModal = (props: any) => {
               size="xs"
               variant={isEnabled("words") ? "solid" : "outline"}
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<BsChatSquareText size={14} />}
               onClick={() => toggleFilter("words")}
             >
@@ -87,6 +105,7 @@ const BuildTrackModal = (props: any) => {
               size="xs"
               variant="outline"
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<BiTime size={14} />}
             >
               Period
@@ -96,6 +115,7 @@ const BuildTrackModal = (props: any) => {
               size="xs"
               variant="outline"
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<FiUser size={14} />}
             >
               User
@@ -105,6 +125,7 @@ const BuildTrackModal = (props: any) => {
               size="xs"
               variant="outline"
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<BiWorld size={14} />}
               marginTop={2}
             >
@@ -115,6 +136,7 @@ const BuildTrackModal = (props: any) => {
               size="xs"
               variant="outline"
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<MdImportantDevices size={14} />}
               marginTop={2}
             >
@@ -125,6 +147,7 @@ const BuildTrackModal = (props: any) => {
               size="xs"
               variant="outline"
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<MdOutlineVerified size={14} />}
               marginTop={2}
             >
@@ -135,6 +158,7 @@ const BuildTrackModal = (props: any) => {
               size="xs"
               variant="outline"
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<AiOutlineRetweet size={14} />}
               marginTop={2}
             >
@@ -145,6 +169,7 @@ const BuildTrackModal = (props: any) => {
               size="xs"
               variant="outline"
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<BiImages size={14} />}
               marginTop={2}
             >
@@ -165,7 +190,9 @@ const BuildTrackModal = (props: any) => {
               width="100%"
               variant="solid"
               colorScheme="pink"
+              borderRadius={50}
               leftIcon={<IoIosRocket size={18} />}
+              disabled={!enabledFilters.length}
             >
               LIFT OFF!
             </Button>

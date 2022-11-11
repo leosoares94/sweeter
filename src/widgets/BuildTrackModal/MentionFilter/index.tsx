@@ -10,9 +10,9 @@ const MentionFilter = (props: any) => {
   return (
     <FadeIn>
       <Row>
-        <Table width="100%" padding=".5rem" borderColor="#a647ff86">
+        <Table width="100%" padding=".5rem" backgroundColor="#e66bff2a">
           <Table.Head
-            backgroundColor="#ff478411"
+            backgroundColor="#e66bff00"
             marginBottom={10}
             paddingTop={3}
             borderBottom="none"
@@ -20,11 +20,17 @@ const MentionFilter = (props: any) => {
           >
             <Table.TextHeaderCell fontSize=".7rem">
               @Mentions
-            </Table.TextHeaderCell>
-            <Table.TextHeaderCell fontSize=".7rem">
-              <Row style={{ width: "100%", justifyContent: "flex-end" }}>
-                <Switch size="sm" colorScheme="purple" />
-              </Row>
+              <span style={{ fontWeight: "normal" }}> - Q</span>
+              <span
+                style={{
+                  fontFamily: "arial",
+                  textTransform: "lowercase",
+                  fontSize: 12,
+                  fontWeight: "normal",
+                }}
+              >
+                uais menções cada tweet deve incluir obrigatoriamente
+              </span>
             </Table.TextHeaderCell>
           </Table.Head>
           <Table.Body width="100%">

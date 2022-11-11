@@ -17,6 +17,10 @@ export const Row = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
+
+  .tags {
+    font-size: 0.7rem;
+  }
 `;
 
 export const Column = styled.div`

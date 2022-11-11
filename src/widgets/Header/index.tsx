@@ -22,22 +22,34 @@ const Header = ({ onNewTrackClick }: HeaderProps) => {
         </Row>
         <Row>
           <Button
-            className="add-button"
             variant="solid"
             leftIcon={<CgAddR size={16} fontWeight={600} />}
             size="sm"
             color="#fff"
             onClick={onNewTrackClick}
+            sx={{
+              bgColor: "pink.400",
+              _hover: {
+                bgColor: "pink.500",
+              },
+            }}
+            borderRadius={50}
           >
             New Track
           </Button>
           &nbsp;&nbsp;
           <Button
-            className="add-button"
             variant="solid"
             leftIcon={<BsFillPlayFill size={16} fontWeight={600} />}
             size="sm"
+            borderRadius={50}
             color="#fff"
+            sx={{
+              bgColor: "pink.400",
+              _hover: {
+                bgColor: "pink.500",
+              },
+            }}
           >
             Play
           </Button>

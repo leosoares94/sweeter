@@ -10,7 +10,7 @@ const Badge = ({ type, value }: BadgeTypes) => {
   return (
     <ChakraProvider>
       <Tag
-        size="sm"
+        size="md"
         colorScheme={type === "mention" ? "purple" : "red"}
         borderRadius="full"
       >

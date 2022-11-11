@@ -10,9 +10,9 @@ const WordFilter = (props: any) => {
   return (
     <FadeIn>
       <Row>
-        <Table width="100%" padding=".5rem" borderColor="#47ff9abe">
+        <Table width="100%" padding=".5rem" backgroundColor="#6bff972a">
           <Table.Head
-            backgroundColor="#ff478411"
+            backgroundColor="#e66bff00"
             marginBottom={10}
             paddingTop={3}
             borderBottom="none"

@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding: 0rem 1.7rem;
   overflow-y: scroll;
   box-sizing: border-box;
-  background-color: #f7f7f741;
+  background-color: #f3aeae10;
   padding-bottom: 1rem;
 
   * {
