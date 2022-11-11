@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import { Overlay } from "evergreen-ui";
-
-import { Wrapper, Container, Row, Column } from "./styles";
+import { useState } from "react";
 
 import {
   ChakraProvider,
@@ -56,7 +53,9 @@ const BuildTrackModal = (props: any) => {
               variant={isEnabled("hashtag") ? "solid" : "outline"}
               colorScheme="pink"
               leftIcon={<CgHashtag size={15} />}
-              rightIcon={isEnabled("hashtag") ? <MdDone size={15} /> : null}
+              rightIcon={
+                isEnabled("hashtag") ? <MdDone size={15} /> : undefined
+              }
               onClick={() => toggleFilter("hashtag")}
             >
               Hashtags
