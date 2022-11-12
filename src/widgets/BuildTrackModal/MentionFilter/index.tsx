@@ -1,6 +1,6 @@
 import React from "react";
 import { TagInput, Table } from "evergreen-ui";
-import { Switch } from "@chakra-ui/react";
+import { CloseButton, Switch } from "@chakra-ui/react";
 import { Row } from "./styles";
 import FadeIn from "react-fade-in";
 
@@ -10,17 +10,18 @@ const MentionFilter = (props: any) => {
   return (
     <FadeIn>
       <Row>
-        <Table width="100%" padding=".5rem" backgroundColor="#e66bff2a">
+        <Table width="100%" padding=".5rem" backgroundColor="#ebcdff" borderRadius={9}>
           <Table.Head
             backgroundColor="#e66bff00"
             marginBottom={10}
             paddingTop={3}
             borderBottom="none"
+
             height="1.8rem"
           >
             <Table.TextHeaderCell fontSize=".7rem">
               @Mentions
-              <span style={{ fontWeight: "normal" }}> - Q</span>
+        
               <span
                 style={{
                   fontFamily: "arial",
@@ -29,18 +30,21 @@ const MentionFilter = (props: any) => {
                   fontWeight: "normal",
                 }}
               >
-                uais menções cada tweet deve incluir obrigatoriamente
+                que os resultados podem conter
               </span>
             </Table.TextHeaderCell>
+            <CloseButton size='sm' />
           </Table.Head>
           <Table.Body width="100%">
             <TagInput
+              paddingLeft={10}
               inputProps={{
-                placeholder: "Adicione hashtags...",
-                whiteSpace: "pre-line",
+                placeholder: "Adicione menções...",
+                paddingLeft: -7,
               }}
               tagProps={{
-                backgroundColor: "#eddaf9",
+                backgroundColor: "#ebcdff",
+                marginLeft: '-.2rem'
               }}
               width="100%"
               addOnBlur

@@ -20,11 +20,11 @@ export const Container = styled.div`
 
 export const Row = styled.div`
   width: 100%;
-  height: max-content;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
+  flex-wrap:wrap ;
 `;
 
 export const Column = styled.div`

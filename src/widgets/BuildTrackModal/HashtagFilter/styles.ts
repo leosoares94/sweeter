@@ -20,6 +20,15 @@ export const Row = styled.div`
 
   .tags {
     font-size: 0.7rem;
+    background-color: #F9DADA ;
+    display: flex !important;
+    justify-content:center !important;
+    align-items: center !important ;
+    padding: 0rem ;
+  }
+
+  .tag-input {
+    font-size: .8rem;
   }
 `;
 
