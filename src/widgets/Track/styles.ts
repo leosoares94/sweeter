@@ -9,7 +9,7 @@ export const Container = styled.div`
   overflow-y: scroll;
   box-sizing: border-box;
   background-color: #f3aeae10;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 
   * {
     scrollbar-width: thin;

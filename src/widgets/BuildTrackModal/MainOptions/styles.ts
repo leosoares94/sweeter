@@ -20,15 +20,44 @@ export const Row = styled.div`
 
   .tags {
     font-size: 0.7rem;
-    background-color: #F9DADA ;
+    background-color: #f9dada;
     display: flex !important;
-    justify-content:center !important;
+    justify-content: center !important;
     align-items: center !important ;
-    padding: 0rem ;
+    padding: 0rem;
   }
 
   .tag-input {
-    font-size: .8rem;
+    font-size: 0.8rem;
+  }
+
+  .option-button {
+    border-color: #c66b99;
+    color: #b75988;
+
+    &:hover {
+      background-color: #f4d1e3;
+    }
+  }
+
+  .field-container {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #ff5a5a14;
+  }
+
+  .or-and-btn {
+    padding: 0.1rem;
+    border-radius: 0.5rem;
+
+    button {
+      border: none;
+      border-radius: 0.3rem;
+      font-size: 0.6rem;
+      &:hover {
+        background-color: #ffdae6
+      }
+    }
   }
 `;
 

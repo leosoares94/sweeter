@@ -33,7 +33,6 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   padding-right: 0.4rem;
-
   overflow-y: scroll;
   box-sizing: border-box;
   ::-webkit-scrollbar {
