@@ -11,16 +11,17 @@ import { Row } from "./styles";
 
 import TagInput from "../TagInput";
 
-import { DataFilter } from "../../../store/Builder";
+import { Filter } from "../../../store/Builder";
 
 export interface MainOptionProps {
-  data: DataFilter[];
+  data: Filter[];
   onInputChange: (id: string, field: string, values: string[] | boolean | string) => void;
   onInputDelete: (id: string) => void;
-  onInputAdd: (input: DataFilter) => void;
+  onInputAdd: (input: Filter) => void;
+  onRemove: () => void;
 }
 
-const MainOptions = ({ data, onInputChange, onInputDelete, onInputAdd }: MainOptionProps) => {
+const MainOptions = ({ data, onInputChange, onInputDelete, onInputAdd, onRemove }: MainOptionProps) => {
 
   const MAX_SAME_FIELD_COUNT = 2;
 
@@ -39,9 +40,9 @@ const MainOptions = ({ data, onInputChange, onInputDelete, onInputAdd }: MainOpt
     }
   ]);
 
-  const createField = (type: string): DataFilter => ({
+  const createField = (tagName: string): Filter => ({
     id: uuid.v4(),
-    type,
+    tagName,
     values: [],
     includes: true,
     condition: "or",
@@ -52,10 +53,10 @@ const MainOptions = ({ data, onInputChange, onInputDelete, onInputAdd }: MainOpt
     enabledFilters.find((element: string) => element === filter);
 
 
-  const hasMaxCount = (type: string, data: DataFilter[]): boolean => {
+  const hasMaxCount = (tagName: string, data: Filter[]): boolean => {
     let counter = 0;
     data.forEach((item) => {
-      item.type === type && counter++
+      item.tagName === tagName && counter++
     })
 
     return counter === MAX_SAME_FIELD_COUNT;
@@ -64,7 +65,7 @@ const MainOptions = ({ data, onInputChange, onInputDelete, onInputAdd }: MainOpt
   const handleAddField = (type: string): void => {
     hasMaxCount(type, data) ? toast({
       title: 'Ação não permitida',
-      description: "Apenas 2 campos deste tipo",
+      description: `Apenas ${MAX_SAME_FIELD_COUNT} campos deste tipo`,
       status: 'error',
       duration: 2000,
       isClosable: true,
@@ -92,7 +93,7 @@ const MainOptions = ({ data, onInputChange, onInputDelete, onInputAdd }: MainOpt
                   fontWeight: "normal",
                 }}
               >- F</span>
-               <span
+              <span
                 style={{
                   fontFamily: "arial",
                   textTransform: "lowercase",
@@ -103,7 +104,7 @@ const MainOptions = ({ data, onInputChange, onInputDelete, onInputAdd }: MainOpt
                 iltrar tweets por:
               </span>
             </Table.TextHeaderCell>
-            <CloseButton size='sm' />
+            <CloseButton size="sm" onClick={onRemove}/>
           </Table.Head>
 
           <Table.Body width="100%" paddingLeft={10} >
@@ -179,12 +180,12 @@ const MainOptions = ({ data, onInputChange, onInputDelete, onInputAdd }: MainOpt
             </Button>
             &nbsp;
           </Table.Body>
-          <Table.Body width="100%" marginTop={10} >
-            {data.map((item: DataFilter, index, array) => <TagInput key={item.id} id={item.id} type={item.type} values={item.values} includes={item.includes} condition={item.condition} onChange={onInputChange} onDelete={onInputDelete} index={index} optionsLength={array.length} />)}
+          <Table.Body width="100%" marginTop={10} overflowY="hidden">
+            {data.map((item: Filter, index, array) => <TagInput key={item.id} id={item.id} type={item.tagName} values={item.values!} includes={item.includes} condition={item.condition} onChange={onInputChange} onDelete={onInputDelete} index={index} optionsLength={array.length} />)}
           </Table.Body>
         </Table>
       </Row>
-    </FadeIn >
+    </FadeIn>
   )
 }
 

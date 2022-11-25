@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Row = styled.div`
+interface RowProps {
+  includes?: boolean;
+}
+
+export const Row = styled.div<RowProps>`
   width: 100%;
   height: max-content;
   display: flex;
@@ -33,27 +37,39 @@ export const Row = styled.div`
   .field-container {
     padding: 0.5rem;
     border-radius: 0.5rem;
-    background-color: #ff5a5a14;
+    background-color: #ff5a5aff;
   }
 
   .or-and-btn {
     padding: 0.1rem;
     border-radius: 0.5rem;
-
+    font-size: 0.2rem;
     button {
       border: none;
       border-radius: 0.3rem;
-      font-size: 0.6rem;
+
       &:hover {
-        background-color: #ffdae6
+        background-color: #00000000;
       }
     }
   }
 
   .filter-text {
-    font-size: .75rem;
-    justify-content:center;
-    color: #000000a5;
+    padding: 1rem;
+    font-size: 0.75rem;
+    justify-content: center;
+    color: #000000b7;
+  }
+
+  .filter-text-white-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: .5rem;
+    border-radius: 1.5rem ;
+    outline: solid 1px #00000022 ;
   }
 `;
 
@@ -62,4 +78,16 @@ export const Column = styled.div`
   height: max-content;
   display: flex;
   flex-direction: column;
+  background-color: #00000004;
+  border-radius: 0.3rem;
+
+  button {
+    font-size: 0.6rem;
+    padding-top: 0.2rem;
+    color: #4d9a85eb;
+    border: none;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.063);
+    }
+  }
 `;

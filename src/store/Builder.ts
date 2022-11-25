@@ -2,68 +2,73 @@ import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { mountStoreDevtool } from "simple-zustand-devtools";
 
-export interface DataFilter {
+export interface Filter {
   id: string;
-  type: string;
-  values: string[];
+  tagName: string;
+  values?: string[];
   includes: boolean;
   condition: string;
 }
 
-export interface BooleanFilter {
-  id: string;
-  type: string;
-  include: boolean;
-  condition: string;
-}
-
 export interface BuilderState {
-  dataFilters: DataFilter[];
-  booleanFilters: BooleanFilter[];
-  addDataFilter: (dataFilter: DataFilter) => void;
-  updateDataFilter: (
+  dataFilters: Filter[];
+  booleanFilters: Filter[];
+  contentFilters: Filter[];
+  addFilter: (data: Filter, filterName: string) => void;
+  updateFilter: (
     id: string,
     field: string,
-    data: string[] | boolean | string
+    data: string[] | boolean | string,
+    filterName: string
   ) => void;
-  removeDataFilter: (id: string) => void;
-  addBooleanFilter: (booleanFilter: BooleanFilter) => void;
+  removeFilter: (id: string, filterName: string) => void;
+  resetBuilder: () => void;
 }
 
 export const useBuilder = create<BuilderState>()(
   devtools((set) => ({
     dataFilters: [],
     booleanFilters: [],
-    addDataFilter: (dataFilter) => {
+    contentFilters: [],
+    addFilter: (data, filterName) => {
       set((state) => ({
         ...state,
-        dataFilters: [...state.dataFilters, dataFilter],
+        [filterName]: [
+          ...(state[filterName as keyof BuilderState] as any),
+          data,
+        ],
       }));
     },
-    updateDataFilter: (id, field, data) => {
+    updateFilter: (id, field, data, filterName) => {
       set((state) => ({
         ...state,
-        dataFilters: state.dataFilters.map((item) => {
-          if (item.id === id) {
-            return { ...item, [field]: data };
-          } else {
-            return item;
+        [filterName]: (state[filterName as keyof BuilderState] as Filter[]).map(
+          (item) => {
+            if (item.id === id) {
+              return { ...item, [field]: data };
+            } else {
+              return item;
+            }
           }
-        }),
+        ),
       }));
     },
-    removeDataFilter: (id) => {
+    removeFilter: (id, filterName) => {
       set((state) => ({
         ...state,
-        dataFilters: state.dataFilters.filter((item) => item.id !== id),
+        [filterName]: (
+          state[filterName as keyof BuilderState] as Filter[]
+        ).filter((item: Filter) => item.id !== id),
       }));
     },
-    addBooleanFilter: (booleanFilter) => {
+    resetBuilder: () => {
       set((state) => ({
         ...state,
-        booleanFilters: [...state.booleanFilters, booleanFilter],
-      }));
-    },
+        dataFilters: [],
+        booleanFilters: [],
+        contentFilters: []
+      }))
+    }
   }))
 );
 

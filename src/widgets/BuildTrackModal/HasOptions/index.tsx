@@ -1,42 +1,61 @@
-import React from "react";
+import * as uuid from 'uuid';
 
-import { TiUserOutline, TiUser } from 'react-icons/ti';
-import { TbKey } from 'react-icons/tb';
-import { BiBlock, BiDollar } from "react-icons/bi";
+import { BiDollar } from "react-icons/bi";
 import { GoFileMedia } from "react-icons/go";
 import { IoMdLink, IoMdImages } from 'react-icons/io';
-import { MdOutlineVerified, MdOutlineSlowMotionVideo } from 'react-icons/md';
-import { AiOutlineRetweet } from 'react-icons/ai';
-import { RiChatQuoteLine } from 'react-icons/ri';
-import { BsReply, BsChatLeftQuote } from 'react-icons/bs'
-import { SiAdblock } from 'react-icons/si'
-import { Table, TagInput } from "evergreen-ui";
-import { CloseButton, Button, Tooltip } from "@chakra-ui/react";
+import { MdOutlineSlowMotionVideo } from 'react-icons/md';
+
+import { Table } from "evergreen-ui";
+import { Button, CloseButton, useToast } from "@chakra-ui/react";
 
 import { Row } from "./styles";
 
 import FadeIn from "react-fade-in";
+import { Filter } from "../../../store/Builder";
+import BooleanInput from '../BooleanInput';
 
-const HasOptions = (props: any) => {
+export interface HasOptionProps {
+  data: Filter[];
+  onInputChange: (id: string, field: string, values: string[] | boolean | string) => void;
+  onInputDelete: (id: string) => void;
+  onInputAdd: (input: Filter) => void;
+  onRemove: () => void;
+}
 
-  const [enabledFilters, setEnabledFilters] = React.useState<string[]>([
-    "hashtag",
-    "mentions",
-  ]);
 
-  const [hashtags, setHashtags] = React.useState<string[]>([]);
-  const [mentions, setMentions] = React.useState<string[]>([]);
-  const [keywords, setKeywords] = React.useState<string[]>([]);
+const HasOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }: HasOptionProps) => {
 
-  const isEnabled = (filter: string) =>
-    enabledFilters.find((element: string) => element === filter);
+  const MAX_SAME_FIELD_COUNT = 1;
 
-  const toggleFilter = (filter: string) =>
-    isEnabled(filter)
-      ? setEnabledFilters(
-        enabledFilters.filter((element: string) => element !== filter)
-      )
-      : setEnabledFilters([...enabledFilters, filter]);
+  const toast = useToast();
+
+  const newField = (tagName: string): Filter => ({
+    id: uuid.v4(),
+    tagName,
+    values: [],
+    includes: true,
+    condition: "or",
+  })
+
+  const hasMaxCount = (tagName: string, data: Filter[]): boolean => {
+    let counter = 0;
+    data.forEach((item) => {
+      item.tagName === tagName && counter++
+    })
+
+    return counter === MAX_SAME_FIELD_COUNT;
+  }
+
+  const handleAddField = (type: string): void => {
+    hasMaxCount(type, data) ? toast({
+      title: 'Ação não permitida',
+      description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
+      status: 'error',
+      duration: 2000,
+      isClosable: true,
+    }) : onInputAdd(newField(type))
+  }
+
 
   return (
     <FadeIn>
@@ -50,7 +69,7 @@ const HasOptions = (props: any) => {
             backgroundColor="#ff6bb500"
           >
             <Table.TextHeaderCell fontSize=".7rem">
-            HAS / HASN'T&nbsp;
+              HAS / HASN'T&nbsp;
               <span
                 style={{
                   fontFamily: "arial",
@@ -59,7 +78,7 @@ const HasOptions = (props: any) => {
                   fontWeight: "normal",
                 }}
               >- B</span>
-               <span
+              <span
                 style={{
                   fontFamily: "arial",
                   textTransform: "lowercase",
@@ -70,7 +89,7 @@ const HasOptions = (props: any) => {
                 uscar tweets que tenham (ou não):
               </span>
             </Table.TextHeaderCell>
-            <CloseButton size='sm' />
+            <CloseButton size="sm" onClick={onRemove}/>
           </Table.Head>
 
           <Table.Body width="100%" paddingLeft={10} >
@@ -82,7 +101,7 @@ const HasOptions = (props: any) => {
               borderRadius={50}
               leftIcon={<IoMdLink size={15} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("hashtag")}
+              onClick={() => handleAddField("links")}
             >
               Links
             </Button>
@@ -95,7 +114,7 @@ const HasOptions = (props: any) => {
               borderRadius={50}
               leftIcon={<GoFileMedia size={12} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("mention")}
+              onClick={() => handleAddField("media")}
             >
               Media
             </Button>
@@ -106,9 +125,9 @@ const HasOptions = (props: any) => {
               variant="outline"
               colorScheme="pink"
               borderRadius={50}
-              leftIcon={<MdOutlineSlowMotionVideo size={14 } />}
+              leftIcon={<MdOutlineSlowMotionVideo size={14} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("mention")}
+              onClick={() => handleAddField("videos")}
             >
               Videos
             </Button>
@@ -121,7 +140,7 @@ const HasOptions = (props: any) => {
               borderRadius={50}
               leftIcon={<IoMdImages size={16} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("mention")}
+              onClick={() => handleAddField("images")}
             >
               Images
             </Button>
@@ -134,26 +153,14 @@ const HasOptions = (props: any) => {
               borderRadius={50}
               leftIcon={<BiDollar size={13} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("mention")}
+              onClick={() => handleAddField("cashtags")}
             >
               Cashtags
             </Button>
 
           </Table.Body>
-          <Table.Body width="100%" marginTop={10} >
-            <Row>
-              <Tooltip label="Remover tweets com estes atributos" aria-label='A tooltip'>
-                <Button
-                  size="xs"
-                  variant="ghost"
-                  colorScheme="pink"
-                  borderRadius={100}
-                  iconSpacing={0}
-                  leftIcon={<BiBlock size={15} />}
-                  onClick={() => toggleFilter("mention")}
-                />
-              </Tooltip>
-            </Row>
+          <Table.Body width="100%" marginTop={10} overflowY="hidden">
+            {data.map((item: Filter, index, array) => <BooleanInput inputName="has/hanst" key={item.id} id={item.id} type={item.tagName} condition={item.condition} onDelete={onInputDelete} index={index} optionsLength={array.length} includes={item.includes} onChange={onInputChange} />)}
           </Table.Body>
         </Table>
       </Row>

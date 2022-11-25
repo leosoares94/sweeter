@@ -44,8 +44,9 @@ export const Row = styled.div`
       border: none;
       border-radius: 0.3rem;
       font-size: 0.6rem;
-      padding: 0;
-
+      box-sizing: border-box ;
+      
+      padding-right: 2rem;
       &:hover {
         background-color: #de0449
       }

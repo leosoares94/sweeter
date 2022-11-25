@@ -1,35 +1,58 @@
-import React from "react";
-
-import { BiBlock } from "react-icons/bi";
+import * as uuid from 'uuid';
 import { MdOutlineVerified } from 'react-icons/md';
 import { AiOutlineRetweet } from 'react-icons/ai';
 import { RiChatQuoteLine } from 'react-icons/ri';
 import { BsReply } from 'react-icons/bs'
 import { SiAdblock } from 'react-icons/si'
 import { Table } from "evergreen-ui";
-import { CloseButton, Button, Tooltip } from "@chakra-ui/react";
+import { Button, CloseButton, useToast } from "@chakra-ui/react";
 
 import { Row } from "./styles";
 
 import FadeIn from "react-fade-in";
 import BooleanInput from "../BooleanInput";
+import { Filter } from "../../../store/Builder";
 
-const BooleanOptions = (props: any) => {
+export interface IsOptionProps {
+  data: Filter[];
+  onInputChange: (id: string, field: string, values: string[] | boolean | string) => void;
+  onInputDelete: (id: string) => void;
+  onInputAdd: (input: Filter) => void;
+  onRemove: () => void;
+}
 
-  const [enabledFilters, setEnabledFilters] = React.useState<string[]>([
-    "hashtag",
-    "mentions",
-  ]);
+const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }: IsOptionProps) => {
 
-  const isEnabled = (filter: string) =>
-    enabledFilters.find((element: string) => element === filter);
+  const MAX_SAME_FIELD_COUNT = 1;
 
-  const toggleFilter = (filter: string) =>
-    isEnabled(filter)
-      ? setEnabledFilters(
-        enabledFilters.filter((element: string) => element !== filter)
-      )
-      : setEnabledFilters([...enabledFilters, filter]);
+  const toast = useToast();
+
+  const newField = (tagName: string): Filter => ({
+    id: uuid.v4(),
+    tagName,
+    values: [],
+    includes: true,
+    condition: "or",
+  })
+
+  const hasMaxCount = (tagName: string, data: Filter[]): boolean => {
+    let counter = 0;
+    data.forEach((item) => {
+      item.tagName === tagName && counter++
+    })
+
+    return counter === MAX_SAME_FIELD_COUNT;
+  }
+
+  const handleAddField = (type: string): void => {
+    hasMaxCount(type, data) ? toast({
+      title: 'Ação não permitida',
+      description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
+      status: 'error',
+      duration: 2000,
+      isClosable: true,
+    }) : onInputAdd(newField(type))
+  }
 
   return (
     <FadeIn>
@@ -43,7 +66,7 @@ const BooleanOptions = (props: any) => {
             backgroundColor="#ff6bb500"
           >
             <Table.TextHeaderCell fontSize=".7rem">
-            IS / ISN'T&nbsp;
+              IS / ISN'T&nbsp;
               <span
                 style={{
                   fontFamily: "arial",
@@ -52,7 +75,7 @@ const BooleanOptions = (props: any) => {
                   fontWeight: "normal",
                 }}
               >- B</span>
-               <span
+              <span
                 style={{
                   fontFamily: "arial",
                   textTransform: "lowercase",
@@ -63,7 +86,7 @@ const BooleanOptions = (props: any) => {
                 uscar tweets que sejam (ou não):
               </span>
             </Table.TextHeaderCell>
-            <CloseButton size='sm' />
+            <CloseButton size="sm" onClick={onRemove}/>
           </Table.Head>
 
           <Table.Body width="100%" paddingLeft={10} >
@@ -75,7 +98,7 @@ const BooleanOptions = (props: any) => {
               borderRadius={50}
               leftIcon={<AiOutlineRetweet size={15} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("hashtag")}
+              onClick={() => handleAddField("retweet")}
             >
               Retweet
             </Button>
@@ -88,7 +111,7 @@ const BooleanOptions = (props: any) => {
               borderRadius={50}
               leftIcon={<BsReply size={15} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("mention")}
+              onClick={() => handleAddField("reply")}
             >
               Reply
             </Button>
@@ -101,7 +124,7 @@ const BooleanOptions = (props: any) => {
               borderRadius={50}
               leftIcon={<RiChatQuoteLine size={14} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("mention")}
+              onClick={() => handleAddField("quote")}
             >
               Quote
             </Button>
@@ -114,7 +137,7 @@ const BooleanOptions = (props: any) => {
               borderRadius={50}
               leftIcon={<MdOutlineVerified size={16} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("mention")}
+              onClick={() => handleAddField("verified")}
             >
               Verified
             </Button>
@@ -127,15 +150,13 @@ const BooleanOptions = (props: any) => {
               borderRadius={50}
               leftIcon={<SiAdblock size={14} />}
               iconSpacing={.5}
-              onClick={() => toggleFilter("mention")}
+              onClick={() => handleAddField("nullcast")}
             >
               Nullcast
             </Button>
-
           </Table.Body>
-          <Table.Body width="100%" marginTop={10} >
-         
-         <BooleanInput />
+          <Table.Body width="100%" marginTop={10} overflowY="hidden">
+            {data.map((item: Filter, index, array) => <BooleanInput inputName="is/isnt" key={item.id} id={item.id} type={item.tagName} condition={item.condition} onDelete={onInputDelete} index={index} optionsLength={array.length} includes={item.includes} onChange={onInputChange} />)}
           </Table.Body>
         </Table>
       </Row>
@@ -143,4 +164,4 @@ const BooleanOptions = (props: any) => {
   )
 }
 
-export default BooleanOptions;
+export default IsOptions;
