@@ -23,6 +23,8 @@ import HasOptions from "./HasOptions";
 
 import { useBuilder } from "../../store/Builder";
 import { convertBuilderToQueryString2 } from "../../utils/builderToQueryString";
+import RecentTweetsRepository from "../../api/modules/SearchTweets/RecentSearch/repository/implementation/RecentTweetsRepository";
+import RequestConfig from "../../api/modules/SearchTweets/RecentSearch/RequestConfig";
 
 const BuildTrackModal = (props: any) => {
   const {
@@ -68,14 +70,34 @@ const BuildTrackModal = (props: any) => {
   };
 
   useEffect(() => {
-    console.log(
-      convertBuilderToQueryString2({
-        dataFilters,
-        booleanFilters,
-        contentFilters,
-      })
-    );
+
+    const queryString = convertBuilderToQueryString2({
+      dataFilters,
+      booleanFilters,
+      contentFilters,
+    });
+
+    // console.log(encodeURIComponent(queryString));
+    console.log(encodeURIComponent('source,public_metrics,attachments,created_at,lang,geo'));
+
+
   }, [dataFilters, booleanFilters, contentFilters]);
+
+  async function handleFetch() {
+
+    const { VITE_BEARER_TOKEN } = import.meta.env;
+    const string = convertBuilderToQueryString2({
+      dataFilters,
+      booleanFilters,
+      contentFilters,
+    });
+    const config = new RequestConfig(string, "recency", "10", `Bearer ${VITE_BEARER_TOKEN}`)
+    const repository = new RecentTweetsRepository();
+
+    const response = await repository.fetch(config);
+
+    console.log(response)
+  }
 
   return (
     <ChakraProvider>
@@ -178,6 +200,7 @@ const BuildTrackModal = (props: any) => {
               leftIcon={<IoIosRocket size={18} />}
               marginTop={-2}
               disabled={isDisabledByRequired()}
+              onClick={() => handleFetch()}
             >
               LIFT OFF!
             </Button>
