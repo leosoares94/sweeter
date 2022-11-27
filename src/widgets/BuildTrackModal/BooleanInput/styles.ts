@@ -34,10 +34,10 @@ export const Row = styled.div<RowProps>`
     }
   }
 
-  .field-container {
+  .is-field-container {
     padding: 0.5rem;
     border-radius: 0.5rem;
-    background-color: #ff5a5aff;
+    background-color: #000000c3 !important;
   }
 
   .or-and-btn {
@@ -55,10 +55,11 @@ export const Row = styled.div<RowProps>`
   }
 
   .filter-text {
-    padding: 1rem;
+
     font-size: 0.75rem;
     justify-content: center;
     color: #000000b7;
+
   }
 
   .filter-text-white-box {

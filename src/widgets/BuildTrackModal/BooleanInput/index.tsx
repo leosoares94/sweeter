@@ -12,11 +12,12 @@ interface BooleanInputProps {
   type: string,
   includes: boolean,
   condition: string,
+  hasNext: boolean,
   onChange: (id: string, field: string, values: string[] | boolean | string) => void;
   onDelete: (id: string) => void;
 }
 
-const BooleanInput = ({ id, optionsLength, inputName, type, condition, includes, onChange, onDelete }: BooleanInputProps) => {
+const BooleanInput = ({ id, index, inputName, optionsLength, type, condition, includes, hasNext, onChange, onDelete }: BooleanInputProps) => {
 
   function handleCondition() {
     return condition === "or" ? "and" : "or";
@@ -25,7 +26,11 @@ const BooleanInput = ({ id, optionsLength, inputName, type, condition, includes,
   return (
     <FadeIn>
       <Column>
-        <Row className="field-container">
+        <Row className="is-field-container" style={{
+          backgroundColor: "rgba(0, 0, 0, 0.05)",
+          borderRadius: ".6rem",
+          padding: ".5rem"
+        }}>
           <Tooltip label={includes ? "Incluir" : "Excluir"} aria-label='A tooltip'>
             <Button
               size="xs"
@@ -56,7 +61,7 @@ const BooleanInput = ({ id, optionsLength, inputName, type, condition, includes,
             />
           </Tooltip>
         </Row>
-        {optionsLength > 1 && <Toggler condition={condition} onClick={() => onChange(id, "condition", handleCondition())} className="or-and-btn" />}
+        {index !== (optionsLength - 1)  && <Toggler condition={condition} onClick={() => onChange(id, "condition", handleCondition())} className="or-and-btn" />}
       </Column>
     </FadeIn>
   )

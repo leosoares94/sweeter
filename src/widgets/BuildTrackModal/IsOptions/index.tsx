@@ -1,9 +1,9 @@
-import * as uuid from 'uuid';
-import { MdOutlineVerified } from 'react-icons/md';
-import { AiOutlineRetweet } from 'react-icons/ai';
-import { RiChatQuoteLine } from 'react-icons/ri';
-import { BsReply } from 'react-icons/bs'
-import { SiAdblock } from 'react-icons/si'
+import * as uuid from "uuid";
+import { MdOutlineVerified } from "react-icons/md";
+import { AiOutlineRetweet } from "react-icons/ai";
+import { RiChatQuoteLine } from "react-icons/ri";
+import { BsReply } from "react-icons/bs";
+import { SiAdblock } from "react-icons/si";
 import { Table } from "evergreen-ui";
 import { Button, CloseButton, useToast } from "@chakra-ui/react";
 
@@ -15,14 +15,23 @@ import { Filter } from "../../../store/Builder";
 
 export interface IsOptionProps {
   data: Filter[];
-  onInputChange: (id: string, field: string, values: string[] | boolean | string) => void;
+  hasNext: boolean;
+  onInputChange: (
+    id: string,
+    field: string,
+    values: string[] | boolean | string
+  ) => void;
   onInputDelete: (id: string) => void;
   onInputAdd: (input: Filter) => void;
-  onRemove: () => void;
 }
 
-const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }: IsOptionProps) => {
-
+const IsOptions = ({
+  data,
+  onInputChange,
+  onInputAdd,
+  onInputDelete,
+  hasNext,
+}: IsOptionProps) => {
   const MAX_SAME_FIELD_COUNT = 1;
 
   const toast = useToast();
@@ -32,32 +41,39 @@ const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }:
     tagName,
     values: [],
     includes: true,
-    condition: "or",
-  })
+    condition: "and",
+  });
 
   const hasMaxCount = (tagName: string, data: Filter[]): boolean => {
     let counter = 0;
     data.forEach((item) => {
-      item.tagName === tagName && counter++
-    })
+      item.tagName === tagName && counter++;
+    });
 
     return counter === MAX_SAME_FIELD_COUNT;
-  }
+  };
 
   const handleAddField = (type: string): void => {
-    hasMaxCount(type, data) ? toast({
-      title: 'Ação não permitida',
-      description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
-      status: 'error',
-      duration: 2000,
-      isClosable: true,
-    }) : onInputAdd(newField(type))
-  }
+    hasMaxCount(type, data)
+      ? toast({
+          title: "Ação não permitida",
+          description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        })
+      : onInputAdd(newField(type));
+  };
 
   return (
     <FadeIn>
       <Row>
-        <Table width="100%" padding=".5rem" backgroundColor="#6bffd32c" borderRadius={9}>
+        <Table
+          width="100%"
+          padding=".5rem"
+          backgroundColor="#6bffd32c"
+          borderRadius={9}
+        >
           <Table.Head
             marginBottom={5}
             paddingTop={3}
@@ -74,7 +90,9 @@ const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }:
                   fontSize: 12,
                   fontWeight: "normal",
                 }}
-              >- B</span>
+              >
+                - B
+              </span>
               <span
                 style={{
                   fontFamily: "arial",
@@ -86,10 +104,9 @@ const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }:
                 uscar tweets que sejam (ou não):
               </span>
             </Table.TextHeaderCell>
-            <CloseButton size="sm" onClick={onRemove}/>
           </Table.Head>
 
-          <Table.Body width="100%" paddingLeft={10} >
+          <Table.Body width="100%" paddingLeft={10}>
             <Button
               size="xs"
               className="option-button"
@@ -97,7 +114,7 @@ const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }:
               colorScheme="pink"
               borderRadius={50}
               leftIcon={<AiOutlineRetweet size={15} />}
-              iconSpacing={.5}
+              iconSpacing={0.5}
               onClick={() => handleAddField("retweet")}
             >
               Retweet
@@ -110,7 +127,7 @@ const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }:
               colorScheme="pink"
               borderRadius={50}
               leftIcon={<BsReply size={15} />}
-              iconSpacing={.5}
+              iconSpacing={0.5}
               onClick={() => handleAddField("reply")}
             >
               Reply
@@ -123,7 +140,7 @@ const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }:
               colorScheme="pink"
               borderRadius={50}
               leftIcon={<RiChatQuoteLine size={14} />}
-              iconSpacing={.5}
+              iconSpacing={0.5}
               onClick={() => handleAddField("quote")}
             >
               Quote
@@ -136,7 +153,7 @@ const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }:
               colorScheme="pink"
               borderRadius={50}
               leftIcon={<MdOutlineVerified size={16} />}
-              iconSpacing={.5}
+              iconSpacing={0.5}
               onClick={() => handleAddField("verified")}
             >
               Verified
@@ -149,19 +166,33 @@ const IsOptions = ({ data, onInputChange, onInputAdd, onInputDelete, onRemove }:
               colorScheme="pink"
               borderRadius={50}
               leftIcon={<SiAdblock size={14} />}
-              iconSpacing={.5}
+              iconSpacing={0.5}
               onClick={() => handleAddField("nullcast")}
             >
               Nullcast
             </Button>
           </Table.Body>
           <Table.Body width="100%" marginTop={10} overflowY="hidden">
-            {data.map((item: Filter, index, array) => <BooleanInput inputName="is/isnt" key={item.id} id={item.id} type={item.tagName} condition={item.condition} onDelete={onInputDelete} index={index} optionsLength={array.length} includes={item.includes} onChange={onInputChange} />)}
+            {data.map((item: Filter, index, array) => (
+              <BooleanInput
+                hasNext={hasNext}
+                inputName="is/isnt"
+                key={item.id}
+                id={item.id}
+                type={item.tagName}
+                condition={item.condition!}
+                onDelete={onInputDelete}
+                index={index}
+                optionsLength={array.length}
+                includes={item.includes}
+                onChange={onInputChange}
+              />
+            ))}
           </Table.Body>
         </Table>
       </Row>
     </FadeIn>
-  )
-}
+  );
+};
 
 export default IsOptions;

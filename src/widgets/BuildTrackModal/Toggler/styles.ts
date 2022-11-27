@@ -4,9 +4,12 @@ export const Row = styled.div`
   width: 100%;
   height: max-content;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
+  font-size: .6rem;
+  font-weight: bold;
+  color: #00000060;
 
   .tags {
     font-size: 0.7rem;

@@ -15,11 +15,12 @@ interface TagInputProps {
   values: string[],
   includes: boolean,
   condition: string,
+  hasNext: boolean,
   onChange: (id: string, field: string, values: string[] | boolean | string) => void;
   onDelete: (id: string) => void;
 }
 
-const TagInput = ({ id, optionsLength, type, values, condition, includes, onChange, onDelete }: TagInputProps) => {
+const TagInput = ({ id, index, optionsLength, type, values, condition, includes, hasNext, onChange, onDelete }: TagInputProps) => {
 
   function switchPrefix(type: string) {
     switch (type) {
@@ -109,7 +110,7 @@ const TagInput = ({ id, optionsLength, type, values, condition, includes, onChan
             />
           </Tooltip>
         </Row>
-        {optionsLength > 1 && <Toggler condition={condition} onClick={() => onChange(id, "condition", handleCondition())} />}
+        {index !== (optionsLength - 1) &&  <Toggler condition={condition} onClick={() => onChange(id, "condition", handleCondition())} />}
       </Column>
     </FadeIn>
   )
