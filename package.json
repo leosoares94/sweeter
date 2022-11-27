@@ -36,6 +36,7 @@
     "react-tag-input-component": "^2.0.2",
     "simple-zustand-devtools": "^1.1.0",
     "styled-components": "^5.3.6",
+    "uuid": "^9.0.0",
     "zustand": "^4.1.4"
   },
   "devDependencies": {
