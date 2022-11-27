@@ -72,6 +72,6 @@ export const useBuilder = create<BuilderState>()(
   }))
 );
 
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.NODE_ENV === "development") {
   mountStoreDevtool("Builder", useBuilder);
 }
