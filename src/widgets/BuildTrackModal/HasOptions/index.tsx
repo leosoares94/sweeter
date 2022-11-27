@@ -1,4 +1,4 @@
-import * as uuid from "uuid";
+import uuid from "react-uuid";
 
 import { GoFileMedia, GoMention } from "react-icons/go";
 import { IoMdLink, IoMdImages } from "react-icons/io";
@@ -37,7 +37,7 @@ const HasOptions = ({
   const toast = useToast();
 
   const newField = (tagName: string): Filter => ({
-    id: uuid.v4(),
+    id: uuid(),
     tagName,
     values: [],
     includes: true,

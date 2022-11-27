@@ -1,4 +1,4 @@
-import * as uuid from "uuid";
+import uuid from "react-uuid";
 import { MdOutlineVerified } from "react-icons/md";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { RiChatQuoteLine } from "react-icons/ri";
@@ -37,7 +37,7 @@ const IsOptions = ({
   const toast = useToast();
 
   const newField = (tagName: string): Filter => ({
-    id: uuid.v4(),
+    id: uuid(),
     tagName,
     values: [],
     includes: true,

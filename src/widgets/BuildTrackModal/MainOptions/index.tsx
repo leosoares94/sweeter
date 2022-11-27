@@ -1,5 +1,5 @@
 import React from "react";
-import * as uuid from "uuid";
+import uuid from "react-uuid";
 import FadeIn from "react-fade-in";
 
 import { AiOutlinePlus } from "react-icons/ai";
@@ -37,7 +37,7 @@ const MainOptions = ({
   const toast = useToast();
 
   const createField = (tagName: string): Filter => ({
-    id: uuid.v4(),
+    id: uuid(),
     tagName,
     values: [],
     includes: true,
