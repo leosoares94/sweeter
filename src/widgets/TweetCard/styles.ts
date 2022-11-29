@@ -14,6 +14,17 @@ export const Container = styled.div`
   border-radius: 0.3rem;
   margin-top: 1rem;
   box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151);
+
+  .retweet-flag {
+    font-size: 0.9rem !important;
+    margin-top: 0.8rem;
+    color: #000000bd;
+    z-index: 1000;
+  }
+
+  .retweet-flag-icon {
+    margin-top: -0.3rem;
+  }
 `;
 
 export const Row = styled.div`
@@ -78,7 +89,7 @@ export const Username = styled.span`
 `;
 
 export const Tweet = styled.span`
-  font-size: .99rem;
+  font-size: 0.96rem;
   padding-top: 1rem;
   white-space: pre-line;
 `;
@@ -112,3 +123,66 @@ export const EngagementNumber = styled.span`
   padding-top: 0.05rem;
   box-sizing: border-box;
 `;
+
+export const MediaContainer = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  justify-content: space-between;
+
+  video {
+    border-radius: 5px ;
+  }
+`;
+
+interface ImageProps {
+  src: string;
+  count: number;
+}
+
+export const Image = styled.div<ImageProps>`
+  width: ${({ count }) => (count > 1 ? "49.5%" : "100%")};
+  height: ${({ count }) => (count > 1 ? "6rem" : "11rem")};
+  background-image: url(${({ src }) => src});
+  background-size: cover;
+  background-position: center;
+
+  ${({ count }) =>
+    count === 1
+      ? `border-radius: 5px;`
+      : count > 1 && count < 3
+      ? `
+    &:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+  
+    &:last-child {
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+    }`
+      : `  &:first-child {
+      border-top-left-radius: 5px;
+    }
+  
+    &:nth-child(2) {
+      border-top-right-radius: 5px;
+    }
+  
+    &:nth-child(3) {
+      border-bottom-left-radius: 5px;
+      margin-top: 0.18rem;
+    }
+  
+    &:last-child {
+      border-bottom-right-radius: 5px;
+      margin-top: 0.18rem;
+    }`}
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+

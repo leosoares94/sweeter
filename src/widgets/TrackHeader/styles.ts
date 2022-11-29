@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
     padding: 0rem 1.5rem;
     padding-top: 1rem;
     box-sizing: border-box;
-
 `;
 
 export const Container = styled.div`

@@ -5,11 +5,11 @@ import { Container, Wrapper } from "./styles";
 const Track = (props: any) => {
   return (
     <Wrapper>
-      <TrackHeader />
+      <TrackHeader tag={props.tag}/>
       <Container>
         {props.children}
-        <TrackFooter />
       </Container>
+      <TrackFooter />
     </Wrapper>
   );
 };

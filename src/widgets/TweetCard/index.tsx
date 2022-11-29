@@ -1,4 +1,12 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+
+import { BsTwitter, BsCheckLg } from "react-icons/bs";
+import { FaRegComment } from "react-icons/fa";
+import { BiAddToQueue } from "react-icons/bi";
+import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
+import { MdVerified } from 'react-icons/md';
+import { ChakraProvider, Avatar, Button } from "@chakra-ui/react";
+import ImageViewer from 'react-simple-image-viewer';
 
 import {
   Container,
@@ -11,63 +19,125 @@ import {
   Source,
   EngagementButton,
   EngagementNumber,
+  MediaContainer,
+  Image,
 } from "./styles";
 
 import { formatDate } from "../../utils/dateUtils";
 import { toTitleCase } from "../../utils/stringUtils";
 
-import { BsTwitter, BsCheckLg } from "react-icons/bs";
-import { FaRegComment } from "react-icons/fa";
-import { BiAddToQueue } from "react-icons/bi";
-import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
+import { Tweet as TweetProps } from "../../store/Tracks";
 
-import { ChakraProvider, Avatar, Button } from "@chakra-ui/react";
-const TweetCard = (props: any) => {
+const TweetCard = ({ id, author, text, created_at, source, metrics, images, videos, retweet }: TweetProps) => {
   const [added, setAdded] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+  const openImageViewer = useCallback((index: number) => {
+    setCurrentImage(index);
+    setIsViewerOpen(true);
+  }, []);
+
+  const closeImageViewer = () => {
+    setCurrentImage(0);
+    setIsViewerOpen(false);
+  };
+
+  function redirectToProfile() {
+    window.open(`https://twitter.com/${author.username}`)
+  }
+
+  function redirectToTweet(tweet_id: string | null) {
+    window.open(`https://twitter.com/${author.username}/status/${tweet_id}`)
+  }
+
+  function redirectToTweetPic(index: number) {
+    window.open(`https://twitter.com/${author.username}/status/${id}/photo/${index + 1}`)
+  }
 
   return (
     <ChakraProvider>
       <Container>
+        {isViewerOpen && (
+          <ImageViewer
+            src={images}
+            currentIndex={currentImage}
+            disableScroll={false}
+            closeOnClickOutside={true}
+            onClose={closeImageViewer}
+            backgroundStyle={{
+              zIndex: 10000,
+              backgroundColor: 'rgba(0, 0, 0,.85)'
+            }}
+          />
+        )}
         <Column>
           <Row className="user-info">
             <Row>
               <Avatar
-                src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-                name="Alan Turing"
+                src={author.avatar}
+                name={author.name}
                 className="avatar"
+                _hover={{
+                  opacity: .5,
+                  cursor: 'pointer'
+                }}
+                onClick={() => redirectToProfile()}
               />
               <Column className="username">
-                <Name>Ethan Hardy</Name>
-                <Username>@ethanhardy</Username>
+                <Row>
+                  <Name>{author.name}</Name>
+                  &nbsp;
+                  {author.verified && <MdVerified size={15} color="#1d9af1" />}
+                </Row>
+                <Username onClick={() => redirectToProfile()}>@{author.username}</Username>
               </Column>
             </Row>
-            <BsTwitter size={25} color="#ed64a6" className="tweet-icon" />
+            <BsTwitter size={25} color="#ed64a6" className="tweet-icon" onClick={() => redirectToTweet(id)} />
           </Row>
           <Column className="tweet-container">
-            <Tweet>
-              Twitter APIs handle enormous amounts of data. The way we ensure
-              this data is secured for developers and users alike is through
-              authentication. There are a few methods for authentication, each
-              listed below.
+            {retweet.id &&
+              <Row className="retweet-flag">
+                <AiOutlineRetweet size={16} className="retweet-flag-icon" />&nbsp;<span>Retweet</span>
+              </Row>}
+            <Tweet style={{
+              marginTop: `${retweet.id && '-1rem'}`,
+            }}>
+              {retweet.id &&
+                <Avatar
+                  src={retweet.author_avatar || ""}
+                  name={author.name}
+                  size="xs"
+                />} {text.replace("RT", "")}
             </Tweet>
+            {images.length > 0 && <MediaContainer>
+              {images.map((image, index) => (
+                <Image src={image} count={images.length} onClick={() => openImageViewer(index)} />
+              ))}
+            </MediaContainer>}
+            {videos.length > 0 && <MediaContainer>
+              {videos.map((video, index) => (
+                <video src={video} controls={true} />
+              ))}
+            </MediaContainer>}
           </Column>
           <Row>
-            <Time>{toTitleCase(formatDate(new Date()))}</Time>
-            <Source>&nbsp;· Twitter for iPhone</Source>
+            <Time>{toTitleCase(formatDate(new Date(created_at)))}</Time>
+            <Source>&nbsp;· {source}</Source>
           </Row>
 
           <Row className="engagement">
             <EngagementButton>
               <FaRegComment size={15} />
-              <EngagementNumber>206</EngagementNumber>
+              <EngagementNumber>{metrics.replies.toLocaleString()}</EngagementNumber>
             </EngagementButton>
             <EngagementButton>
               <AiOutlineRetweet size={18} />
-              <EngagementNumber>206</EngagementNumber>
+              <EngagementNumber>{metrics.retweets.toLocaleString()}</EngagementNumber>
             </EngagementButton>
             <EngagementButton>
               <AiOutlineHeart size={18} />
-              <EngagementNumber>206</EngagementNumber>
+              <EngagementNumber>{metrics.likes.toLocaleString()}</EngagementNumber>
 
               <Button
                 colorScheme="teal"

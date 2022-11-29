@@ -6,6 +6,8 @@ import { CiSettings } from "react-icons/ci";
 
 import { ChakraProvider, Button } from "@chakra-ui/react";
 
+import LogoIcon from '/twitter.svg';
+
 interface HeaderProps {
   onNewTrackClick: () => void;
 }
@@ -15,6 +17,7 @@ const Header = ({ onNewTrackClick }: HeaderProps) => {
     <ChakraProvider>
       <Container>
         <Row>
+          {/* <img src={LogoIcon} style={{width: '2rem', marginTop: '-.2rem'}}/> */}
           <Logo>
             <span>Sweeter</span>
           </Logo>

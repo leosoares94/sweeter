@@ -1,5 +1,3 @@
-import { useAccordionItemState } from "@chakra-ui/react";
-
 interface Filter {
   id: string;
   tagName: string;

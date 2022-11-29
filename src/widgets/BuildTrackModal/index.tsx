@@ -22,6 +22,7 @@ import IsOptions from "./IsOptions";
 import HasOptions from "./HasOptions";
 
 import { useBuilder } from "../../store/Builder";
+
 import { convertBuilderToQueryString2 } from "../../utils/builderToQueryString";
 import RecentTweetsRepository from "../../api/modules/SearchTweets/RecentSearch/repository/implementation/RecentTweetsRepository";
 import RequestConfig from "../../api/modules/SearchTweets/RecentSearch/RequestConfig";
@@ -68,20 +69,6 @@ const BuildTrackModal = (props: any) => {
 
     return isDataFiltersEmpty && isBooleanFiltersEmpty && isContentFiltersEmpty;
   };
-
-  useEffect(() => {
-
-    const queryString = convertBuilderToQueryString2({
-      dataFilters,
-      booleanFilters,
-      contentFilters,
-    });
-
-    // console.log(encodeURIComponent(queryString));
-    console.log(encodeURIComponent('source,public_metrics,attachments,created_at,lang,geo'));
-
-
-  }, [dataFilters, booleanFilters, contentFilters]);
 
   async function handleFetch() {
 

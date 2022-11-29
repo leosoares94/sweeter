@@ -105,7 +105,6 @@ const MainOptions = ({
               </span>
             </Table.TextHeaderCell>
           </Table.Head>
-
           <Table.Body width="100%" paddingLeft={10}>
             <Tooltip
               label="Incluir ou bloquear hashtags na busca"

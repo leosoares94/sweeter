@@ -10,7 +10,7 @@ export interface Filter {
   condition: string;
 }
 
-export interface BuilderState {
+interface BuilderState {
   dataFilters: Filter[];
   booleanFilters: Filter[];
   contentFilters: Filter[];

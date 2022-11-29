@@ -1,0 +1,432 @@
+{
+  "data": [
+    {
+      "id": "1595839811218247684",
+      "lang": "en",
+      "text": "Happy Thanksgiving! \n\nThanks to the Tesla team, owners and fans for helping us accelerate the world’s transition to sustainable energy 🌎❤️",
+      "created_at": "2022-11-24T18:00:34.000Z",
+      "edit_history_tweet_ids": [
+        "1595839811218247684"
+      ],
+      "public_metrics": {
+        "retweet_count": 4250,
+        "reply_count": 3211,
+        "like_count": 55355,
+        "quote_count": 219
+      },
+      "author_id": "13298072",
+      "source": "Twitter for iPhone"
+    },
+    {
+      "referenced_tweets": [
+        {
+          "type": "retweeted",
+          "id": "1595682322707267584"
+        }
+      ],
+      "id": "1595839733153816576",
+      "lang": "en",
+      "text": "RT @elonmusk: Tesla Full Self-Driving Beta is now available to anyone in North America who requests it from the car screen, assuming you ha…",
+      "created_at": "2022-11-24T18:00:16.000Z",
+      "edit_history_tweet_ids": [
+        "1595839733153816576"
+      ],
+      "public_metrics": {
+        "retweet_count": 13102,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "author_id": "13298072",
+      "source": "Twitter for iPhone"
+    },
+    {
+      "referenced_tweets": [
+        {
+          "type": "retweeted",
+          "id": "1595114899595591681"
+        }
+      ],
+      "id": "1595148649163460609",
+      "attachments": {
+        "media_keys": [
+          "3_1595111888408309761",
+          "3_1595111888538324992",
+          "3_1595111888433557504",
+          "3_1595111888437661698"
+        ]
+      },
+      "lang": "en",
+      "text": "RT @TeslaCharging: 40k Superchargers around the world — and counting https://t.co/w6tShTkwPA",
+      "created_at": "2022-11-22T20:14:09.000Z",
+      "edit_history_tweet_ids": [
+        "1595148649163460609"
+      ],
+      "public_metrics": {
+        "retweet_count": 2915,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "author_id": "13298072",
+      "source": "Twitter for Mac"
+    },
+    {
+      "referenced_tweets": [
+        {
+          "type": "retweeted",
+          "id": "1594828625232113664"
+        }
+      ],
+      "id": "1594830738549088261",
+      "lang": "en",
+      "text": "RT @elonmusk: Tesla Megapacks are highly effective in addressing electricity demand spikes that cause power outages",
+      "created_at": "2022-11-21T23:10:53.000Z",
+      "edit_history_tweet_ids": [
+        "1594830738549088261"
+      ],
+      "public_metrics": {
+        "retweet_count": 3493,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "author_id": "13298072",
+      "source": "Twitter for iPhone"
+    },
+    {
+      "id": "1594149676818657280",
+      "attachments": {
+        "media_keys": [
+          "7_1594149582497144833"
+        ]
+      },
+      "lang": "en",
+      "text": "Inside Tesla exhibit at Petersen Automotive Museum opens tomorrow https://t.co/qU3IickfBw",
+      "created_at": "2022-11-20T02:04:35.000Z",
+      "geo": {
+        "place_id": "07d9db0c02482007"
+      },
+      "edit_history_tweet_ids": [
+        "1594149676818657280"
+      ],
+      "public_metrics": {
+        "retweet_count": 5896,
+        "reply_count": 2729,
+        "like_count": 56194,
+        "quote_count": 413
+      },
+      "author_id": "13298072",
+      "source": "Twitter for iPhone"
+    },
+    {
+      "id": "1592962221050855424",
+      "attachments": {
+        "media_keys": [
+          "7_1592962198095114240"
+        ]
+      },
+      "lang": "en",
+      "text": "Model S received the highest overall score from Euro NCAP among any vehicle tested under the current protocol → https://t.co/dTdpQH6pCg https://t.co/tnm4msFjDC",
+      "created_at": "2022-11-16T19:26:03.000Z",
+      "edit_history_tweet_ids": [
+        "1592962221050855424"
+      ],
+      "public_metrics": {
+        "retweet_count": 4124,
+        "reply_count": 3351,
+        "like_count": 43385,
+        "quote_count": 380
+      },
+      "author_id": "13298072",
+      "source": "Twitter for iPhone"
+    },
+    {
+      "id": "1592725355328311300",
+      "attachments": {
+        "media_keys": [
+          "3_1592725352568086528"
+        ]
+      },
+      "lang": "zxx",
+      "text": "https://t.co/2Ylnmh97Oz",
+      "created_at": "2022-11-16T03:44:50.000Z",
+      "edit_history_tweet_ids": [
+        "1592725355328311300"
+      ],
+      "public_metrics": {
+        "retweet_count": 9811,
+        "reply_count": 4162,
+        "like_count": 113193,
+        "quote_count": 1367
+      },
+      "author_id": "13298072",
+      "source": "Twitter for iPhone"
+    },
+    {
+      "id": "1592302762335014912",
+      "lang": "en",
+      "text": "Our vehicles are designed for hardcore energy efficiency → https://t.co/BbR4wRlk38",
+      "created_at": "2022-11-14T23:45:36.000Z",
+      "edit_history_tweet_ids": [
+        "1592302762335014912"
+      ],
+      "public_metrics": {
+        "retweet_count": 796,
+        "reply_count": 478,
+        "like_count": 7053,
+        "quote_count": 73
+      },
+      "author_id": "13298072",
+      "source": "Twitter for iPhone"
+    },
+    {
+      "id": "1591204080286064641",
+      "attachments": {
+        "media_keys": [
+          "3_1591204069510635520"
+        ]
+      },
+      "lang": "en",
+      "text": "Join our growing team installing Solar + Powerwall across the US → https://t.co/BMlhHBbAJn https://t.co/mVupmqcjiK",
+      "created_at": "2022-11-11T22:59:50.000Z",
+      "edit_history_tweet_ids": [
+        "1591204080286064641"
+      ],
+      "public_metrics": {
+        "retweet_count": 3273,
+        "reply_count": 2717,
+        "like_count": 34344,
+        "quote_count": 266
+      },
+      "author_id": "13298072",
+      "source": "Twitter for iPhone"
+    },
+    {
+      "referenced_tweets": [
+        {
+          "type": "retweeted",
+          "id": "1591169137447153664"
+        }
+      ],
+      "id": "1591174263599353856",
+      "lang": "en",
+      "text": "RT @TeslaSolar: Tesla solar and Powerwall can power your home &amp; reduce your dependence on the grid – at the lowest price in the US →\nhttps:…",
+      "created_at": "2022-11-11T21:01:21.000Z",
+      "edit_history_tweet_ids": [
+        "1591174263599353856"
+      ],
+      "public_metrics": {
+        "retweet_count": 2937,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "author_id": "13298072",
+      "source": "Twitter for iPhone"
+    }
+  ],
+  "includes": {
+    "users": [
+      {
+        "id": "13298072",
+        "url": "https://t.co/EJC6qVEJnC",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1337607516008501250/6Ggc4S5n_normal.png",
+        "username": "Tesla",
+        "verified": true,
+        "name": "Tesla",
+        "description": "electric vehicles, giant batteries and solar"
+      }
+    ],
+    "tweets": [
+      {
+        "id": "1595682322707267584",
+        "lang": "en",
+        "text": "Tesla Full Self-Driving Beta is now available to anyone in North America who requests it from the car screen, assuming you have bought this option. \n\nCongrats to Tesla Autopilot/AI team on achieving a major milestone!",
+        "created_at": "2022-11-24T07:34:46.000Z",
+        "edit_history_tweet_ids": [
+          "1595682322707267584"
+        ],
+        "public_metrics": {
+          "retweet_count": 13102,
+          "reply_count": 11598,
+          "like_count": 174344,
+          "quote_count": 2572
+        },
+        "author_id": "44196397",
+        "source": "Twitter for iPhone"
+      },
+      {
+        "id": "1595114899595591681",
+        "attachments": {
+          "media_keys": [
+            "3_1595111888408309761",
+            "3_1595111888538324992",
+            "3_1595111888433557504",
+            "3_1595111888437661698"
+          ]
+        },
+        "lang": "en",
+        "text": "40k Superchargers around the world — and counting https://t.co/w6tShTkwPA",
+        "created_at": "2022-11-22T18:00:02.000Z",
+        "edit_history_tweet_ids": [
+          "1595114899595591681"
+        ],
+        "public_metrics": {
+          "retweet_count": 2915,
+          "reply_count": 2422,
+          "like_count": 31099,
+          "quote_count": 227
+        },
+        "author_id": "1346535293449428992",
+        "source": "Twitter Web App"
+      },
+      {
+        "referenced_tweets": [
+          {
+            "type": "quoted",
+            "id": "1594745232276557829"
+          }
+        ],
+        "id": "1594828625232113664",
+        "lang": "en",
+        "text": "Tesla Megapacks are highly effective in addressing electricity demand spikes that cause power outages https://t.co/V4n5c4ZvNH",
+        "created_at": "2022-11-21T23:02:29.000Z",
+        "edit_history_tweet_ids": [
+          "1594828625232113664"
+        ],
+        "public_metrics": {
+          "retweet_count": 3493,
+          "reply_count": 3490,
+          "like_count": 43500,
+          "quote_count": 282
+        },
+        "author_id": "44196397",
+        "source": "Twitter for iPhone"
+      },
+      {
+        "id": "1591169137447153664",
+        "lang": "en",
+        "text": "Tesla solar and Powerwall can power your home &amp; reduce your dependence on the grid – at the lowest price in the US →\nhttps://t.co/aPxn1NjonJ",
+        "created_at": "2022-11-11T20:40:59.000Z",
+        "edit_history_tweet_ids": [
+          "1591169137447153664"
+        ],
+        "public_metrics": {
+          "retweet_count": 2937,
+          "reply_count": 1817,
+          "like_count": 27806,
+          "quote_count": 210
+        },
+        "author_id": "1405917556318392324",
+        "source": "Twitter Web App"
+      }
+    ],
+    "media": [
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/FiL5z62UcAE77b1.jpg",
+        "media_key": "3_1595111888408309761",
+        "height": 900
+      },
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/FiL5z7VUUAAqOQv.jpg",
+        "media_key": "3_1595111888538324992",
+        "height": 877
+      },
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/FiL5z68VsAAOzz_.jpg",
+        "media_key": "3_1595111888433557504",
+        "height": 712
+      },
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/FiL5z69UUAIYov5.jpg",
+        "media_key": "3_1595111888437661698",
+        "height": 634
+      },
+      {
+        "variants": [
+          {
+            "bit_rate": 2176000,
+            "content_type": "video/mp4",
+            "url": "https://video.twimg.com/ext_tw_video/1594149582497144833/pu/vid/1280x720/y6GAiFwF212VBZX5.mp4?tag=14"
+          },
+          {
+            "bit_rate": 832000,
+            "content_type": "video/mp4",
+            "url": "https://video.twimg.com/ext_tw_video/1594149582497144833/pu/vid/640x360/7gGXNYfkgjvXZRxW.mp4?tag=14"
+          },
+          {
+            "bit_rate": 256000,
+            "content_type": "video/mp4",
+            "url": "https://video.twimg.com/ext_tw_video/1594149582497144833/pu/vid/480x270/vTbP8HGZoP-0oZyt.mp4?tag=14"
+          },
+          {
+            "content_type": "application/x-mpegURL",
+            "url": "https://video.twimg.com/ext_tw_video/1594149582497144833/pu/pl/ix5_SuBvvxeU1Php.m3u8?tag=14&container=fmp4"
+          }
+        ],
+        "type": "video",
+        "preview_image_url": "https://pbs.twimg.com/ext_tw_video_thumb/1594149582497144833/pu/img/gPkFBJuFK6pem1br.jpg",
+        "duration_ms": 50591,
+        "media_key": "7_1594149582497144833",
+        "height": 720
+      },
+      {
+        "variants": [
+          {
+            "bit_rate": 832000,
+            "content_type": "video/mp4",
+            "url": "https://video.twimg.com/ext_tw_video/1592962198095114240/pu/vid/640x360/SoBqbnPNT9iKYMJC.mp4?tag=14"
+          },
+          {
+            "content_type": "application/x-mpegURL",
+            "url": "https://video.twimg.com/ext_tw_video/1592962198095114240/pu/pl/Ekzw0Qe9Lpfgbrbc.m3u8?tag=14&container=fmp4"
+          },
+          {
+            "bit_rate": 256000,
+            "content_type": "video/mp4",
+            "url": "https://video.twimg.com/ext_tw_video/1592962198095114240/pu/vid/480x270/XUZ_MrVK3FX4gxDh.mp4?tag=14"
+          },
+          {
+            "bit_rate": 2176000,
+            "content_type": "video/mp4",
+            "url": "https://video.twimg.com/ext_tw_video/1592962198095114240/pu/vid/1280x720/TH8jnn4rHSIBqUyw.mp4?tag=14"
+          }
+        ],
+        "type": "video",
+        "preview_image_url": "https://pbs.twimg.com/ext_tw_video_thumb/1592962198095114240/pu/img/HtPNnElYI6mEjtNC.jpg",
+        "duration_ms": 13700,
+        "media_key": "7_1592962198095114240",
+        "height": 720
+      },
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/Fhp_RQCUYAAaQzy.jpg",
+        "media_key": "3_1592725352568086528",
+        "height": 1350
+      },
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/FhUXq7BWYAApPN0.jpg",
+        "media_key": "3_1591204069510635520",
+        "height": 2729
+      }
+    ],
+    "places": [
+      {
+        "full_name": "Petersen Automotive Museum",
+        "id": "07d9db0c02482007"
+      }
+    ]
+  },
+  "meta": {
+    "next_token": "7140dibdnow9c7btw424c02k008yf7noik3f5wpqp1s1i",
+    "result_count": 10,
+    "newest_id": "1595839811218247684",
+    "oldest_id": "1591174263599353856"
+  }
+}

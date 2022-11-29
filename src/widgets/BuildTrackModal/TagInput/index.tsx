@@ -52,9 +52,9 @@ const TagInput = ({ id, index, optionsLength, type, values, condition, includes,
     }
   }
 
-  function handleCondition() {
-    return condition === "or" ? "and" : "or";
-  }
+  // function handleCondition() {
+  //   return condition === "or" ? "and" : "or";
+  // }
 
   return (
     <FadeIn>
@@ -110,7 +110,7 @@ const TagInput = ({ id, index, optionsLength, type, values, condition, includes,
             />
           </Tooltip>
         </Row>
-        {index !== (optionsLength - 1) &&  <Toggler condition={condition} onClick={() => onChange(id, "condition", handleCondition())} />}
+        {index !== (optionsLength - 1) &&  <Toggler condition={condition} />}
       </Column>
     </FadeIn>
   )
