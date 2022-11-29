@@ -61,7 +61,7 @@ const BooleanInput = ({ id, index, inputName, optionsLength, type, condition, in
             />
           </Tooltip>
         </Row>
-        {index !== (optionsLength - 1)  && <Toggler condition={condition} onClick={() => onChange(id, "condition", handleCondition())} className="or-and-btn" />}
+        {index !== (optionsLength - 1)  && <Toggler condition={condition}  className="or-and-btn" />}
       </Column>
     </FadeIn>
   )
