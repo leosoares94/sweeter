@@ -21,4 +21,5 @@ export const Container = styled.div`
     display: flex;
     padding-top: 3rem;
     opacity: 1 !important;
+    overflow-x: scroll;
 `;

@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef } from "react";
+import {useState } from "react";
 
 import { BsTwitter, BsCheckLg } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
@@ -6,7 +6,6 @@ import { BiAddToQueue } from "react-icons/bi";
 import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
 import { MdVerified } from "react-icons/md";
 import { ChakraProvider, Avatar, Button, Link } from "@chakra-ui/react";
-import ImageViewer from "react-simple-image-viewer";
 import Linkify from "linkify-react";
 import "linkify-plugin-hashtag";
 import "linkify-plugin-mention";
@@ -30,6 +29,10 @@ import { toTitleCase } from "../../utils/stringUtils";
 
 import { Tweet as TweetProps } from "../../store/Tracks";
 
+interface TweetCardProps {
+  onImageClick: (images: string[], index: number) => void;
+}
+
 const TweetCard = ({
   id,
   author,
@@ -40,22 +43,10 @@ const TweetCard = ({
   images,
   videos,
   retweet,
-}: TweetProps) => {
+  onImageClick
+}: (TweetProps & TweetCardProps)) => {
   const [added, setAdded] = useState(false);
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
 
-  const tweetBody = useRef<HTMLDivElement>(null);
-
-  const openImageViewer = useCallback((index: number) => {
-    setCurrentImage(index);
-    setIsViewerOpen(true);
-  }, []);
-
-  const closeImageViewer = () => {
-    setCurrentImage(0);
-    setIsViewerOpen(false);
-  };
 
   function redirectToProfile() {
     window.open(`https://twitter.com/${author.username}`);
@@ -82,19 +73,7 @@ const TweetCard = ({
   return (
     <ChakraProvider>
       <Container>
-        {isViewerOpen && (
-          <ImageViewer
-            src={images}
-            currentIndex={currentImage}
-            disableScroll={false}
-            closeOnClickOutside={true}
-            onClose={closeImageViewer}
-            backgroundStyle={{
-              zIndex: 10000,
-              backgroundColor: "rgba(0, 0, 0,.85)",
-            }}
-          />
-        )}
+     
         <Column>
           <Row className="user-info">
             <Row>
@@ -135,7 +114,6 @@ const TweetCard = ({
             )}
             <Tweet
               key={id}
-              ref={tweetBody}
               style={{
                 marginTop: `${retweet.id && "-1rem"}`,
               }}
@@ -157,7 +135,7 @@ const TweetCard = ({
                   <Image
                     src={image}
                     count={images.length}
-                    onClick={() => openImageViewer(index)}
+                    onClick={() => onImageClick(images, index)}
                   />
                 ))}
               </MediaContainer>

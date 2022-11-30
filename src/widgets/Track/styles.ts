@@ -30,8 +30,6 @@ export const Container = styled.div`
 
   @media (max-width: 1368px) {
     zoom: 0.8;
-    height: calc(100vh + .5rem);
-    padding-bottom: 0rem; 
-
+    height:calc(100vh + .8rem) ;
   }
 `;

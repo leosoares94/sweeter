@@ -7,11 +7,11 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0rem 1.5rem;
-  padding-top: 1rem;
-  box-sizing: border-box;
-  @media (max-width: 1368px) {
-    zoom: 0.8;
 
+  box-sizing: border-box;
+  background-color: #f3aeae10;
+  @media (max-width: 1368px) {
+    zoom: 0.7;
   }
 `;
 
@@ -23,21 +23,17 @@ export const Container = styled.div`
   align-items: center;
   box-shadow: 0px 3px 10px rgba(255, 137, 137, 0.112);
   border-radius: 2rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 600;
   padding: 0rem 1rem;
-    background-color: #fff;
-    .refresh-button {
-        cursor: pointer;
-    }
+  background-color: #fff;
+  .refresh-button {
+    cursor: pointer;
+  }
 
   .options-button {
     cursor: pointer;
   }
-  @media (max-width: 1368px) {
-    height: fit-content;
-  }
-  
 `;
 
 export const Title = styled.span``;

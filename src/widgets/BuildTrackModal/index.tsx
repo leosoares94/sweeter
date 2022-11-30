@@ -82,8 +82,6 @@ const BuildTrackModal = (props: any) => {
     const repository = new RecentTweetsRepository();
 
     const response = await repository.fetch(config);
-
-    console.log(response)
   }
 
   return (
@@ -94,9 +92,7 @@ const BuildTrackModal = (props: any) => {
           maxHeight="35rem"
           minHeight="fit-content"
           sx={{
-            transform: window.matchMedia('(max-width: 1368)') ? "scale(1) !important" : "scale(1.2) !important",
-            position: 'fixed',
-            aspectRatio: "",
+            position: 'fixed',  
           }}
         >
           <ModalHeader fontSize={15}>
