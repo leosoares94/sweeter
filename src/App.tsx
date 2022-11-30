@@ -11,7 +11,6 @@ import BuildTrackModal from "./widgets/BuildTrackModal";
 
 import { useBuilder } from "./store/Builder";
 import { useTracks } from "./store/Tracks";
-import { MdOutlineAssignmentReturn } from "react-icons/md";
 
 function App() {
   const [openBuildTrackModal, setOpenBuildTrackModal] =
@@ -40,10 +39,10 @@ function App() {
     return (
       <ImageViewer
         src={images}
-        currentIndex={currentImage}
+        currentIndex={current}
         disableScroll={false}
         closeOnClickOutside={true}
-        onClose={closeImageViewer}
+        onClose={onClose}
         backgroundStyle={{
           zIndex: 10000,
           backgroundColor: "rgba(0, 0, 0,.85)",
