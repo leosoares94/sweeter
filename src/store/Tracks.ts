@@ -165,6 +165,109 @@ export const useTracks = create<TracksState>()(
         next: null,
       },
       {
+        id: "741258936",
+        tweets: [
+          {
+            id: "1597678808898977792",
+            author: {
+              id: "11348282",
+              avatar:
+                "https://pbs.twimg.com/profile_images/1321163587679784960/0ZxKlEKB_normal.jpg",
+              name: "NASA",
+              username: "NASA",
+              verified: true,
+            },
+            source: "Sprinklr",
+            created_at: "2022-11-29T19:48:06.000Z",
+            metrics: {
+              retweets: 972,
+              replies: 150,
+              likes: 5583,
+              quotes: 94,
+            },
+            retweet: {
+              id: null,
+              author_id: null,
+              author_avatar: null,
+              verified: null,
+            },
+            text: "Regulators, mount up! 🌟\n\nData from @ChandraXray and @SOFIAtelescope reveal a star cluster that regulates itself—allowing only a limited set of stars to grow before expelling most of the gas from the system. This process likely slows new star creation: https://t.co/T97kdYJlHk https://t.co/Xa5LyOPxdF",
+            images: ["https://pbs.twimg.com/media/FiwYZ8dXwAELR1a.jpg"],
+            videos: [],
+          },
+          {
+            id: "1597637548033064963",
+            author: {
+              id: "11348282",
+              avatar:
+                "https://pbs.twimg.com/profile_images/1321163587679784960/0ZxKlEKB_normal.jpg",
+              name: "NASA",
+              username: "NASA",
+              verified: true,
+            },
+            source: "Sprinklr",
+            created_at: "2022-11-29T17:04:08.000Z",
+            metrics: {
+              retweets: 972,
+              replies: 150,
+              likes: 5583,
+              quotes: 94,
+            },
+            retweet: {
+              id: null,
+              author_id: null,
+              author_avatar: null,
+              verified: null,
+            },
+            text: "On flight day 13 of the #Artemis I mission, @NASA_Orion reached its maximum distance from Earth, 268,563 miles away from home. \n\nOrion has now traveled farther than any other spacecraft designed to carry humans to deep space &amp; safely return them to Earth. https://t.co/tt0x4YDkxZ https://t.co/cKBuGIWZma",
+            images: ["https://pbs.twimg.com/media/Fivy4VjWIAI9_e6.jpg"],
+            videos: [],
+          },
+          {
+            id: "1597350616912666626",
+            author: {
+              id: "11348282",
+              avatar:
+                "https://pbs.twimg.com/profile_images/1321163587679784960/0ZxKlEKB_normal.jpg",
+              name: "NASA",
+              username: "NASA",
+              verified: true,
+            },
+            source: "Twitter Media Studio",
+            created_at: "2022-11-28T22:03:59.000Z",
+            metrics: {
+              retweets: 519,
+              replies: 120,
+              likes: 3227,
+              quotes: 23,
+            },
+            retweet: {
+              id: null,
+              author_id: null,
+              author_avatar: null,
+              verified: null,
+            },
+            text: "LIVE NOW: The @NASA_Orion spacecraft is about halfway through the #Artemis I mission around the Moon. Hear from NASA leaders on the upcoming milestones leading up to splashdown on Dec. 11. https://t.co/j3pl4zJlBk",
+            images: [],
+            videos: [],
+          },
+        ],
+        builder: {
+          dataFilters: [
+            {
+              id: "854342248-f1e9-c78b-287c-e80c5561e272",
+              tagName: "from",
+              values: ["from: spacex"],
+              includes: true,
+              condition: "and",
+            },
+          ],
+          booleanFilters: [],
+          contentFilters: [],
+        },
+        next: null,
+      },
+      {
         id: "789654221",
         tweets: [
           {
@@ -261,6 +364,118 @@ export const useTracks = create<TracksState>()(
               id: "854342248-f1e9-c78b-287c-e80c5561e272",
               tagName: "from",
               values: ["from: spacex"],
+              includes: true,
+              condition: "and",
+            },
+          ],
+          booleanFilters: [],
+          contentFilters: [],
+        },
+        next: null,
+      },
+      {
+        id: "45697412",
+        tweets: [
+          {
+            id: "1597717509595344896",
+            author: {
+              id: "895261812370939907",
+              avatar:
+                "https://pbs.twimg.com/profile_images/1583481125040754692/Zp6wsJUv_normal.jpg",
+              name: "Prime Video Brasil",
+              username: "PrimeVideoBR",
+              verified: true,
+            },
+            source: "Twitter Web App",
+            created_at: "2022-11-29T22:21:53.000Z",
+            metrics: {
+              retweets: 24,
+              replies: 14,
+              likes: 284,
+              quotes: 10,
+            },
+            retweet: {
+              id: null,
+              author_id: null,
+              author_avatar: null,
+              verified: null,
+            },
+            text: "🩸Blood Mary??🩸 Achei que os irmãos Winchester já tinham resolvido isso 🤔 https://t.co/iJzwC9BNuC",
+            images: [
+              "https://pbs.twimg.com/media/Fiw7gymXwAAwAz6.jpg",
+              "https://pbs.twimg.com/media/Fiw7i4GWIAAAJ49.jpg",
+            ],
+            videos: [],
+          },
+          {
+            id: "1597690165996457984",
+            author: {
+              id: "895261812370939907",
+              avatar:
+                "https://pbs.twimg.com/profile_images/1583481125040754692/Zp6wsJUv_normal.jpg",
+              name: "Prime Video Brasil",
+              username: "PrimeVideoBR",
+              verified: true,
+            },
+            source: "Twitter Web App",
+            created_at: "2022-11-29T20:33:13.000Z",
+            metrics: {
+              retweets: 4,
+              replies: 5,
+              likes: 84,
+              quotes: 2,
+            },
+            retweet: {
+              id: null,
+              author_id: null,
+              author_avatar: null,
+              verified: null,
+            },
+            text: "Rafael Infante: lenda do futebol brasileiro q também vai estar na próxima temporada de LOL: Se Rir, Já Era 🗣 o homem faz TUDO mesmo https://t.co/Coec8eqvGv",
+            images: [
+              "https://pbs.twimg.com/media/FiwijbVWQAAsCTT.jpg",
+              "https://pbs.twimg.com/media/FiwimIXWIAADs07.jpg",
+            ],
+            videos: [],
+          },
+          {
+            id: "1597362198199738368",
+            author: {
+              id: "895261812370939907",
+              avatar:
+                "https://pbs.twimg.com/profile_images/1583481125040754692/Zp6wsJUv_normal.jpg",
+              name: "Prime Video Brasil",
+              username: "PrimeVideoBR",
+              verified: true,
+            },
+            source: "Twitter Web App",
+            created_at: "2022-11-28T22:50:00.000Z",
+            metrics: {
+              retweets: 110,
+              replies: 51,
+              likes: 494,
+              quotes: 13,
+            },
+            retweet: {
+              id: null,
+              author_id: null,
+              author_avatar: null,
+              verified: null,
+            },
+            text: "bday do meu cristal @Carladiaz  🦋 hoje o mundo é todinho dela, nós só vivemos nele ✨ https://t.co/G2F5kiBWgU",
+            images: [
+              "https://pbs.twimg.com/media/Firwbl6WYAgGGm-.jpg",
+              "https://pbs.twimg.com/media/Firwek1XwAAH2mu.jpg",
+            ],
+            videos: [],
+          },
+        ],
+        builder: {
+          dataFilters: [
+            {
+              id: "992885a8-f1e9-c78b-287c-e80c5561e272",
+              tagName: "from",
+              values: ["from: tesla"],
               includes: true,
               condition: "and",
             },

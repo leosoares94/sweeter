@@ -1,13 +1,15 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef } from "react";
 
 import { BsTwitter, BsCheckLg } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import { BiAddToQueue } from "react-icons/bi";
 import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
-import { MdVerified } from 'react-icons/md';
-import { ChakraProvider, Avatar, Button } from "@chakra-ui/react";
-import ImageViewer from 'react-simple-image-viewer';
-
+import { MdVerified } from "react-icons/md";
+import { ChakraProvider, Avatar, Button, Link } from "@chakra-ui/react";
+import ImageViewer from "react-simple-image-viewer";
+import Linkify from "linkify-react";
+import "linkify-plugin-hashtag";
+import "linkify-plugin-mention";
 import {
   Container,
   Row,
@@ -28,10 +30,22 @@ import { toTitleCase } from "../../utils/stringUtils";
 
 import { Tweet as TweetProps } from "../../store/Tracks";
 
-const TweetCard = ({ id, author, text, created_at, source, metrics, images, videos, retweet }: TweetProps) => {
+const TweetCard = ({
+  id,
+  author,
+  text,
+  created_at,
+  source,
+  metrics,
+  images,
+  videos,
+  retweet,
+}: TweetProps) => {
   const [added, setAdded] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+  const tweetBody = useRef<HTMLDivElement>(null);
 
   const openImageViewer = useCallback((index: number) => {
     setCurrentImage(index);
@@ -44,16 +58,26 @@ const TweetCard = ({ id, author, text, created_at, source, metrics, images, vide
   };
 
   function redirectToProfile() {
-    window.open(`https://twitter.com/${author.username}`)
+    window.open(`https://twitter.com/${author.username}`);
   }
 
   function redirectToTweet(tweet_id: string | null) {
-    window.open(`https://twitter.com/${author.username}/status/${tweet_id}`)
+    window.open(`https://twitter.com/${author.username}/status/${tweet_id}`);
   }
 
   function redirectToTweetPic(index: number) {
-    window.open(`https://twitter.com/${author.username}/status/${id}/photo/${index + 1}`)
+    window.open(
+      `https://twitter.com/${author.username}/status/${id}/photo/${index + 1}`
+    );
   }
+
+  const options = {
+    formatHref: {
+      hashtag: (href: string) =>
+        "https://twitter.com/hashtag/" + href.substr(1),
+      mention: (href: string) => "https://twitter.com/" + href.substr(1),
+    },
+  };
 
   return (
     <ChakraProvider>
@@ -67,7 +91,7 @@ const TweetCard = ({ id, author, text, created_at, source, metrics, images, vide
             onClose={closeImageViewer}
             backgroundStyle={{
               zIndex: 10000,
-              backgroundColor: 'rgba(0, 0, 0,.85)'
+              backgroundColor: "rgba(0, 0, 0,.85)",
             }}
           />
         )}
@@ -79,8 +103,8 @@ const TweetCard = ({ id, author, text, created_at, source, metrics, images, vide
                 name={author.name}
                 className="avatar"
                 _hover={{
-                  opacity: .5,
-                  cursor: 'pointer'
+                  opacity: 0.5,
+                  cursor: "pointer",
                 }}
                 onClick={() => redirectToProfile()}
               />
@@ -90,36 +114,61 @@ const TweetCard = ({ id, author, text, created_at, source, metrics, images, vide
                   &nbsp;
                   {author.verified && <MdVerified size={15} color="#1d9af1" />}
                 </Row>
-                <Username onClick={() => redirectToProfile()}>@{author.username}</Username>
+                <Username onClick={() => redirectToProfile()}>
+                  @{author.username}
+                </Username>
               </Column>
             </Row>
-            <BsTwitter size={25} color="#ed64a6" className="tweet-icon" onClick={() => redirectToTweet(id)} />
+            <BsTwitter
+              size={25}
+              color="#ed64a6"
+              className="tweet-icon"
+              onClick={() => redirectToTweet(id)}
+            />
           </Row>
           <Column className="tweet-container">
-            {retweet.id &&
+            {retweet.id && (
               <Row className="retweet-flag">
-                <AiOutlineRetweet size={16} className="retweet-flag-icon" />&nbsp;<span>Retweet</span>
-              </Row>}
-            <Tweet style={{
-              marginTop: `${retweet.id && '-1rem'}`,
-            }}>
-              {retweet.id &&
+                <AiOutlineRetweet size={16} className="retweet-flag-icon" />
+                &nbsp;<span>Retweet</span>
+              </Row>
+            )}
+            <Tweet
+              key={id}
+              ref={tweetBody}
+              style={{
+                marginTop: `${retweet.id && "-1rem"}`,
+              }}
+            >
+              {retweet.id && (
                 <Avatar
                   src={retweet.author_avatar || ""}
                   name={author.name}
                   size="xs"
-                />} {text.replace("RT", "")}
+                />
+              )}{" "}
+              <Linkify options={{ ...options, target:"_blank" }}>
+                {text.replace("RT", "")}
+              </Linkify>
             </Tweet>
-            {images.length > 0 && <MediaContainer>
-              {images.map((image, index) => (
-                <Image src={image} count={images.length} onClick={() => openImageViewer(index)} />
-              ))}
-            </MediaContainer>}
-            {videos.length > 0 && <MediaContainer>
-              {videos.map((video, index) => (
-                <video src={video} controls={true} />
-              ))}
-            </MediaContainer>}
+            {images.length > 0 && (
+              <MediaContainer>
+                {images.map((image, index) => (
+                  <Image
+                    src={image}
+                    count={images.length}
+                    onClick={() => openImageViewer(index)}
+                  />
+                ))}
+              </MediaContainer>
+            )}
+            {videos.length > 0 && (
+              <MediaContainer>
+                {videos.map((video, index) => (
+                  <video src={video} controls={true} />
+                ))}
+              </MediaContainer>
+            )}
           </Column>
           <Row>
             <Time>{toTitleCase(formatDate(new Date(created_at)))}</Time>
@@ -129,15 +178,21 @@ const TweetCard = ({ id, author, text, created_at, source, metrics, images, vide
           <Row className="engagement">
             <EngagementButton>
               <FaRegComment size={15} />
-              <EngagementNumber>{metrics.replies.toLocaleString()}</EngagementNumber>
+              <EngagementNumber>
+                {metrics.replies.toLocaleString()}
+              </EngagementNumber>
             </EngagementButton>
             <EngagementButton>
               <AiOutlineRetweet size={18} />
-              <EngagementNumber>{metrics.retweets.toLocaleString()}</EngagementNumber>
+              <EngagementNumber>
+                {metrics.retweets.toLocaleString()}
+              </EngagementNumber>
             </EngagementButton>
             <EngagementButton>
               <AiOutlineHeart size={18} />
-              <EngagementNumber>{metrics.likes.toLocaleString()}</EngagementNumber>
+              <EngagementNumber>
+                {metrics.likes.toLocaleString()}
+              </EngagementNumber>
 
               <Button
                 colorScheme="teal"

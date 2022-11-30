@@ -4,7 +4,7 @@ import { CgAddR } from "react-icons/cg";
 import { BsFillPlayFill } from "react-icons/bs";
 import { CiSettings } from "react-icons/ci";
 
-import { ChakraProvider, Button } from "@chakra-ui/react";
+import { ChakraProvider, Button, Badge } from "@chakra-ui/react";
 
 import LogoIcon from '/twitter.svg';
 
@@ -21,6 +21,8 @@ const Header = ({ onNewTrackClick }: HeaderProps) => {
           <Logo>
             <span>Sweeter</span>
           </Logo>
+          &nbsp;&nbsp;
+          <Badge size="xs" fontSize={10} colorScheme="green" marginTop={1} paddingTop={1}>Em desenvolvimento</Badge>
           &nbsp;&nbsp;
         </Row>
         <Row>

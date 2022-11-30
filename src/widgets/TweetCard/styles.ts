@@ -92,6 +92,13 @@ export const Tweet = styled.span`
   font-size: 0.96rem;
   padding-top: 1rem;
   white-space: pre-line;
+
+  a {
+    color: #d45994;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const Time = styled.span`
@@ -133,7 +140,7 @@ export const MediaContainer = styled.div`
   justify-content: space-between;
 
   video {
-    border-radius: 5px ;
+    border-radius: 5px;
   }
 `;
 
@@ -157,12 +164,22 @@ export const Image = styled.div<ImageProps>`
     &:first-child {
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
+      height: 10rem;
     }
   
     &:last-child {
       border-bottom-right-radius: 5px;
       border-top-right-radius: 5px;
+      height: 10rem;
     }`
+      : count === 3
+      ? `&:nth-child(3) {
+        width: 100%;     
+        margin-top: 0.18rem;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background-position: bottom;
+      }`
       : `  &:first-child {
       border-top-left-radius: 5px;
     }
@@ -185,4 +202,3 @@ export const Image = styled.div<ImageProps>`
     cursor: pointer;
   }
 `;
-
