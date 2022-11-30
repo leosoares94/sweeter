@@ -1,15 +1,7 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const Container = styled.div`
-  width: fit-content;
+  width: 100%;
   height: max-content;
   background-color: #fff;
   padding: 2rem;
@@ -25,6 +17,30 @@ export const Row = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
+  margin-top: 0.7rem;
+  border: .10rem dashed #8bc3af;
+  border-radius: .6rem;
+  .tags {
+    font-size: 0.7rem;
+    background-color: #daf9ee;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important ;
+    padding: 0rem;
+  }
+
+  .tag-input {
+    font-size: 0.8rem;
+  }
+
+  .option-button {
+    border-color: #6bc69a;
+    color: #44947f;
+
+    &:hover {
+      background-color: #d1f4ee;
+    }
+  }
 `;
 
 export const Column = styled.div`
@@ -32,21 +48,4 @@ export const Column = styled.div`
   height: max-content;
   display: flex;
   flex-direction: column;
-`;
-
-export const IconContainer = styled.div`
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${(props: any) => props.color};
-  padding: 0.1rem;
-  border-radius: 0.3rem;
-  color: #fff;
-`;
-
-export const Title = styled.span`
-  font-weight: 550;
-  color: #272727f8;
 `;

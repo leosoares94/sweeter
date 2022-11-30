@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Wrapper = styled.div``;
 
 export const Container = styled.div`
-  width: 27rem;
-  height: calc(100vh - 5.5rem);
-  padding: 0rem 1.7rem;
+  width: 28rem;
+  height: calc(100vh - 9.5rem);
+  padding: 0rem 1.3rem;
   overflow-y: scroll;
   box-sizing: border-box;
   background-color: #f3aeae10;

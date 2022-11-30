@@ -12,43 +12,87 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import { CgHashtag } from "react-icons/cg";
-import { GoMention } from "react-icons/go";
-import { BiTime, BiWorld, BiImages } from "react-icons/bi";
-import { BsChatSquareText } from "react-icons/bs";
-import { FiUser } from "react-icons/fi";
-import { MdImportantDevices, MdOutlineVerified, MdBlockFlipped } from "react-icons/md";
-import { AiOutlineRetweet } from "react-icons/ai";
+import Select from "react-select";
+
 import { IoIosRocket } from "react-icons/io";
 
-import HashtagFilter from "./HashtagFilter";
-import MentionFilter from "./MentionFilter";
-import WordFilter from "./WordsFilter";
 import { Column, Row } from "./styles";
-import FadeIn from "react-fade-in";
+import MainOptions from "./MainOptions";
+import IsOptions from "./IsOptions";
+import HasOptions from "./HasOptions";
+
+import { useBuilder } from "../../store/Builder";
+
+import { convertBuilderToQueryString2 } from "../../utils/builderToQueryString";
+import RecentTweetsRepository from "../../api/modules/SearchTweets/RecentSearch/repository/implementation/RecentTweetsRepository";
+import RequestConfig from "../../api/modules/SearchTweets/RecentSearch/RequestConfig";
 
 const BuildTrackModal = (props: any) => {
+  const {
+    dataFilters,
+    booleanFilters,
+    contentFilters,
+    addFilter,
+    updateFilter,
+    removeFilter,
+    resetBuilder,
+  } = useBuilder((state) => state);
+
   const [enabledFilters, setEnabledFilters] = useState<string[]>([
-    "hashtag",
-    "mentions",
+    "main",
+    "boolean",
+    "has",
   ]);
 
   const isEnabled = (filter: string) =>
     enabledFilters.find((element: string) => element === filter);
 
-  const toggleFilter = (filter: string) =>
-    isEnabled(filter)
-      ? setEnabledFilters(
-        enabledFilters.filter((element: string) => element !== filter)
-      )
-      : setEnabledFilters([...enabledFilters, filter]);
+  const resultCountOptions = [
+    { value: "10", label: "Até 10 resultados" },
+    { value: "20", label: "Até 20 resultados" },
+    { value: "30", label: "Até 30 resultados" },
+  ];
+
+  const searchByOptions = [
+    { value: "recency", label: "Filtrar por atualidade" },
+    { value: "relevancy", label: "Filtrar por relevância" },
+  ];
+
+  const isDisabledByRequired = (): boolean => {
+    let isDataFiltersEmpty = true;
+    let isBooleanFiltersEmpty = booleanFilters.length === 0;
+    let isContentFiltersEmpty = contentFilters.length === 0;
+
+    dataFilters.map((item) => {
+      isDataFiltersEmpty = item.values!.length === 0 ? true : false;
+    });
+
+    return isDataFiltersEmpty && isBooleanFiltersEmpty && isContentFiltersEmpty;
+  };
+
+  async function handleFetch() {
+
+    const { VITE_BEARER_TOKEN } = import.meta.env;
+    const string = convertBuilderToQueryString2({
+      dataFilters,
+      booleanFilters,
+      contentFilters,
+    });
+    const config = new RequestConfig(string, "recency", "10", `Bearer ${VITE_BEARER_TOKEN}`)
+    const repository = new RecentTweetsRepository();
+
+    const response = await repository.fetch(config);
+
+    console.log(response)
+  }
 
   return (
     <ChakraProvider>
       <Modal isOpen={props.open} onClose={props.onClose} isCentered size="lg">
         <ModalOverlay overflowY="hidden" />
         <ModalContent
-          height="35rem"
+          maxHeight="35rem"
+          minHeight="fit-content"
           sx={{
             transform: "scale(1.2) !important",
             aspectRatio: "",
@@ -61,132 +105,78 @@ const BuildTrackModal = (props: any) => {
               style={{
                 fontSize: 13,
                 fontWeight: "normal",
+                color: "rgba(0,0,0,0.5)",
               }}
             >
-              Add some filters below to customize your results:
+              Select some options and add some filters below to customize your
+              results:
             </span>
           </ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton onClick={() => resetBuilder()} />
 
-          <ModalBody className="buttons-container">
-            <FadeIn wrapperTag={Row} transitionDuration={300}>
-              <Button
-                size="xs"
-                variant={isEnabled("hashtag") ? "solid" : "outline"}
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<CgHashtag size={15} />}
-                onClick={() => toggleFilter("hashtag")}
-              >
-                Hashtags
-              </Button>
-              &nbsp;
-              <Button
-                size="xs"
-                variant={isEnabled("mentions") ? "solid" : "outline"}
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<GoMention size={14} />}
-                onClick={() => toggleFilter("mentions")}
-              >
-                Mentions
-              </Button>
-              &nbsp;
-              <Button
-                size="xs"
-                variant={isEnabled("words") ? "solid" : "outline"}
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<BsChatSquareText size={14} />}
-                onClick={() => toggleFilter("words")}
-              >
-                Words
-              </Button>
-              &nbsp;
-              <Button
-                size="xs"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<BiTime size={14} />}
-              >
-                Period
-              </Button>
-              &nbsp;
-              <Button
-                size="xs"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<FiUser size={14} />}
-              >
-                User
-              </Button>
-              &nbsp;
-              <Button
-                size="xs"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<BiWorld size={14} />}
-                marginTop={2}
-              >
-                Language
-              </Button>
-              &nbsp;
-              <Button
-                size="xs"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<MdImportantDevices size={14} />}
-                marginTop={2}
-              >
-                Device
-              </Button>
-              &nbsp;
-              <Button
-                size="xs"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<MdOutlineVerified size={14} />}
-                marginTop={2}
-              >
-                Verified
-              </Button>
-              &nbsp;
-              <Button
-                size="xs"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<MdBlockFlipped size={14} />}
-                marginTop={2}
-              >
-                Blacklist
-              </Button>
-              &nbsp;
-              <Button
-                size="xs"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<BiImages size={14} />}
-                marginTop={2}
-              >
-                Media
-              </Button>
-            </FadeIn>
-          </ModalBody>
-          <ModalBody>
+          <ModalBody
+            marginTop={0}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
             <Column>
-              {isEnabled("hashtag") && <HashtagFilter />}
-              {isEnabled("mentions") && <MentionFilter />}
-              {isEnabled("words") && <WordFilter />}
+              {isEnabled("main") && (
+                <MainOptions
+                  hasNext={
+                    booleanFilters.length > 0 || contentFilters.length > 0
+                  }
+                  data={dataFilters}
+                  onInputChange={(id, field, values) =>
+                    updateFilter(id, field, values, "dataFilters")
+                  }
+                  onInputDelete={(id) => removeFilter(id, "dataFilters")}
+                  onInputAdd={(input) => addFilter(input, "dataFilters")}
+                />
+              )}
+              {isEnabled("boolean") && (
+                <IsOptions
+                  hasNext={contentFilters.length > 0}
+                  data={booleanFilters}
+                  onInputChange={(id, field, values) =>
+                    updateFilter(id, field, values, "booleanFilters")
+                  }
+                  onInputDelete={(id) => removeFilter(id, "booleanFilters")}
+                  onInputAdd={(input) => addFilter(input, "booleanFilters")}
+                />
+              )}
+              {isEnabled("has") && (
+                <HasOptions
+                  hasNext={false}
+                  data={contentFilters}
+                  onInputChange={(id, field, values) =>
+                    updateFilter(id, field, values, "contentFilters")
+                  }
+                  onInputDelete={(id) => removeFilter(id, "contentFilters")}
+                  onInputAdd={(input) => addFilter(input, "contentFilters")}
+                />
+              )}
             </Column>
           </ModalBody>
-
+          <ModalBody marginTop={0}>
+            <Row>
+              <Select
+                options={resultCountOptions}
+                defaultValue={resultCountOptions[0]}
+                pageSize={5}
+                className="select"
+                isClearable={false}
+              />
+              <Select
+                options={searchByOptions}
+                defaultValue={searchByOptions[0]}
+                pageSize={5}
+                className="select"
+                isClearable={false}
+              />
+            </Row>
+          </ModalBody>
           <ModalFooter justifyContent="center">
             <Button
               size="sm"
@@ -195,7 +185,9 @@ const BuildTrackModal = (props: any) => {
               colorScheme="pink"
               borderRadius={50}
               leftIcon={<IoIosRocket size={18} />}
-              disabled={!enabledFilters.length}
+              marginTop={-2}
+              disabled={isDisabledByRequired()}
+              onClick={() => handleFetch()}
             >
               LIFT OFF!
             </Button>

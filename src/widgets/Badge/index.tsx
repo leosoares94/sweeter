@@ -1,5 +1,4 @@
-import React from "react";
-import { Avatar, ChakraProvider, Tag, TagLabel } from "@chakra-ui/react";
+import { ChakraProvider, Tag, TagLabel } from "@chakra-ui/react";
 
 interface BadgeTypes {
   type: string;

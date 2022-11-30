@@ -21,21 +21,37 @@ export const Container = styled.div`
 export const Row = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
+  padding-right: 1rem;
   align-items: center;
   flex-direction: row;
-  flex-wrap:wrap ;
+  flex-wrap: wrap;
+
+  span {
+    font-size: 0.5rem;
+  }
+
+  .select {
+    width: 13.7rem;
+    font-size: .7rem;
+  }
+
+  input{
+    height: .5rem
+  }
+
 `;
 
 export const Column = styled.div`
   width: 100%;
-  height: 19.5rem;
+  height: 19rem;
   display: flex;
   flex-direction: column;
   padding-right: 0.4rem;
-
+  padding-bottom: 0.8rem;
   overflow-y: scroll;
   box-sizing: border-box;
+
   ::-webkit-scrollbar {
     width: 3px;
     height: 5px;
