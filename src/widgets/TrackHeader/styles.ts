@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
     padding: 0rem 1.5rem;
     padding-top: 1rem;
     box-sizing: border-box;
+    @media (max-width: 1368px) {
+    zoom: 0.7;
+margin-top: -1rem ;
+  }
 `;
 
 export const Container = styled.div`
@@ -30,6 +34,8 @@ export const Container = styled.div`
     .options-button {
         cursor: pointer;
     }
+
+   
 `;
 
 export const Title = styled.span``;

@@ -27,4 +27,11 @@ export const Container = styled.div`
     border-radius: 10px;
     border: none;
   }
+
+  @media (max-width: 1368px) {
+    zoom: 0.8;
+    height: calc(100vh + .5rem);
+    padding-bottom: 0rem; 
+
+  }
 `;

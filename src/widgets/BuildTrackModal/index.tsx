@@ -94,7 +94,8 @@ const BuildTrackModal = (props: any) => {
           maxHeight="35rem"
           minHeight="fit-content"
           sx={{
-            transform: "scale(1.2) !important",
+            transform: window.matchMedia('(max-width: 1368)') ? "scale(1) !important" : "scale(1.2) !important",
+            position: 'fixed',
             aspectRatio: "",
           }}
         >

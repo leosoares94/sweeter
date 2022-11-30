@@ -29,6 +29,11 @@ export const Container = styled.div`
       background-color: #ff4784 !important;
     }
   }
+
+  @media (max-width: 1368px) {
+    zoom: 0.8;
+
+  }
 `;
 
 export const Row = styled.div`
