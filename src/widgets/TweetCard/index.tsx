@@ -114,7 +114,7 @@ const TweetCard = ({
               <Row className="retweet-flag" style={{
                 paddingBottom: isHd ? '.2rem' : '0'
               }}>
-                <AiOutlineRetweet size={isHd ? 14 : 16} style={{marginTop: isHd ? '.02rem' : 0}} className="retweet-flag-icon" />
+                <AiOutlineRetweet size={isHd ? 14 : 16} style={{marginTop: isHd ? '.02rem' : '-.15rem'}} className="retweet-flag-icon" />
                 &nbsp;<span>Retweet</span>
               </Row>
             )}
