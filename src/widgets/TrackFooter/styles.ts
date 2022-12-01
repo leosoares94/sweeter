@@ -7,12 +7,8 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0rem 1.5rem;
-
   box-sizing: border-box;
   background-color: #f3aeae10;
-  @media (max-width: 1368px) {
-    zoom: 0.7;
-  }
 `;
 
 export const Container = styled.div`
@@ -33,6 +29,11 @@ export const Container = styled.div`
 
   .options-button {
     cursor: pointer;
+  }
+
+  @media (max-width: 1368px) {
+    height: 1.5rem !important;
+    font-size: 0.7rem;
   }
 `;
 

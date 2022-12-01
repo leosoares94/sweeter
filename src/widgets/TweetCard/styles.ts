@@ -25,6 +25,10 @@ export const Container = styled.div`
   .retweet-flag-icon {
     margin-top: -0.3rem;
   }
+
+  @media (max-width: 1368px) {
+     margin-top: .6rem;
+    }
 `;
 
 export const Row = styled.div`
@@ -38,6 +42,11 @@ export const Row = styled.div`
   .avatar {
     width: 2.5rem;
     height: 2.5rem;
+
+    @media (max-width: 1368px) {
+      width: 2.1rem;
+      height: 2.1rem;
+    }
   }
 `;
 
@@ -63,6 +72,14 @@ export const Column = styled.div`
     &:hover {
       transform: scale(1.2);
     }
+
+    @media (max-width: 1368px) {
+      transform: scale(0.9);
+
+      &:hover {
+        transform: scale(1);
+      }
+    }
   }
 
   .add-button {
@@ -75,6 +92,10 @@ export const Name = styled.span`
   font-size: 1rem;
   font-weight: 600;
   margin-top: 0.1rem;
+
+  @media (max-width: 1368px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Username = styled.span`
@@ -85,6 +106,10 @@ export const Username = styled.span`
   &:hover {
     cursor: pointer;
     text-decoration: underline;
+  }
+
+  @media (max-width: 1368px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -99,18 +124,30 @@ export const Tweet = styled.span`
       text-decoration: underline;
     }
   }
+
+  @media (max-width: 1368px) {
+    font-size: 0.85rem;
+  }
 `;
 
 export const Time = styled.span`
   font-size: 0.92rem;
   padding-top: 1rem;
   color: rgba(0, 0, 0, 0.5);
+
+  @media(max-width: 1368px){
+    font-size: 0.80rem;
+  }
 `;
 
 export const Source = styled.span`
   font-size: 0.92rem;
   padding-top: 1rem;
   color: #d53f8c;
+
+  @media(max-width: 1368px){
+    font-size: 0.80rem;
+  }
 `;
 
 export const EngagementButton = styled.div`

@@ -30,10 +30,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (max-width: 1368px) {
-    zoom: 0.8;
 
-  }
 `;
 
 export const Row = styled.div`

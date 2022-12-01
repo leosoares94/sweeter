@@ -10,9 +10,10 @@ export const Wrapper = styled.div`
   padding-top: 1rem;
   box-sizing: border-box;
   background-color: #f3aeae10;
+
   @media (max-width: 1368px) {
-    zoom: 0.7;
-    margin-top: -1rem;
+    padding-left: 1.2rem;
+    padding-right: 1.4rem;
   }
 `;
 
@@ -28,12 +29,21 @@ export const Container = styled.div`
   font-weight: 600;
   padding: 0rem 1rem;
   background-color: #fff;
+
   .refresh-button {
     cursor: pointer;
   }
 
   .options-button {
     cursor: pointer;
+  }
+
+  @media (max-width: 1368px) {
+    height: 1.5rem !important;
+    .badge {
+      height: 0.2rem !important;
+      font-size: 0.7rem;
+    }
   }
 `;
 

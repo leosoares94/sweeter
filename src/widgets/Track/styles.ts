@@ -10,6 +10,12 @@ export const Container = styled.div`
   box-sizing: border-box;
   background-color: #f3aeae10;
   padding-bottom: 1rem;
+  
+  @media(max-width: 1368px){
+    width: 25rem;
+    height: calc(100vh - 7.2rem);
+    padding-bottom: .7rem;
+  }
 
   * {
     scrollbar-width: thin;
@@ -28,8 +34,5 @@ export const Container = styled.div`
     border: none;
   }
 
-  @media (max-width: 1368px) {
-    zoom: 0.8;
-    height:calc(100vh + .8rem) ;
-  }
+
 `;
