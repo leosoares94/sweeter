@@ -38,6 +38,7 @@
     "react-fade-in": "^2.0.1",
     "react-icons": "^4.6.0",
     "react-linkify": "^1.0.0-alpha",
+    "react-responsive": "^9.0.2",
     "react-select": "^5.6.1",
     "react-simple-image-viewer": "^1.2.2",
     "react-tag-input-component": "^2.0.2",

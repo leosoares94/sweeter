@@ -1,5 +1,5 @@
 import {useState } from "react";
-
+import { useMediaQuery } from 'react-responsive'
 import { BsTwitter, BsCheckLg } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import { BiAddToQueue } from "react-icons/bi";
@@ -70,6 +70,10 @@ const TweetCard = ({
     },
   };
 
+  const isHd = useMediaQuery({
+    query: '(max-width: 1368px)'
+  })
+
   return (
     <ChakraProvider>
       <Container>
@@ -105,10 +109,12 @@ const TweetCard = ({
               onClick={() => redirectToTweet(id)}
             />
           </Row>
-          <Column className="tweet-container">
+          <Column className="tweet-container" >
             {retweet.id && (
-              <Row className="retweet-flag">
-                <AiOutlineRetweet size={16} className="retweet-flag-icon" />
+              <Row className="retweet-flag" style={{
+                paddingBottom: isHd ? '.2rem' : '0'
+              }}>
+                <AiOutlineRetweet size={isHd ? 14 : 16} style={{marginTop: isHd ? '.02rem' : 0}} className="retweet-flag-icon" />
                 &nbsp;<span>Retweet</span>
               </Row>
             )}
@@ -123,6 +129,7 @@ const TweetCard = ({
                   src={retweet.author_avatar || ""}
                   name={author.name}
                   size="xs"
+                  marginTop={isHd ? '-.2rem' : '0'}
                 />
               )}{" "}
               <Linkify options={{ ...options, target:"_blank" }}>

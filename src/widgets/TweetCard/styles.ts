@@ -20,6 +20,10 @@ export const Container = styled.div`
     margin-top: 0.8rem;
     color: #000000bd;
     z-index: 1000;
+
+    @media (max-width: 1368px) {
+      font-size: 0.8rem !important;
+    }
   }
 
   .retweet-flag-icon {
@@ -27,8 +31,8 @@ export const Container = styled.div`
   }
 
   @media (max-width: 1368px) {
-     margin-top: .6rem;
-    }
+    margin-top: 0.6rem;
+  }
 `;
 
 export const Row = styled.div`
@@ -135,8 +139,8 @@ export const Time = styled.span`
   padding-top: 1rem;
   color: rgba(0, 0, 0, 0.5);
 
-  @media(max-width: 1368px){
-    font-size: 0.80rem;
+  @media (max-width: 1368px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -145,8 +149,8 @@ export const Source = styled.span`
   padding-top: 1rem;
   color: #d53f8c;
 
-  @media(max-width: 1368px){
-    font-size: 0.80rem;
+  @media (max-width: 1368px) {
+    font-size: 0.8rem;
   }
 `;
 
