@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { useMediaQuery } from 'react-responsive'
+
 import {
   ChakraProvider,
   Modal,
@@ -28,6 +30,7 @@ import RecentTweetsRepository from "../../api/modules/SearchTweets/RecentSearch/
 import RequestConfig from "../../api/modules/SearchTweets/RecentSearch/RequestConfig";
 
 const BuildTrackModal = (props: any) => {
+
   const {
     dataFilters,
     booleanFilters,
@@ -84,6 +87,10 @@ const BuildTrackModal = (props: any) => {
     const response = await repository.fetch(config);
   }
 
+  const isHd = useMediaQuery({
+    query: '(max-width: 1368px)'
+  });
+
   return (
     <ChakraProvider>
       <Modal isOpen={props.open} onClose={props.onClose} isCentered size="lg">
@@ -92,7 +99,8 @@ const BuildTrackModal = (props: any) => {
           maxHeight="35rem"
           minHeight="fit-content"
           sx={{
-            position: 'fixed',  
+            position: 'fixed',
+            zoom: isHd ? '1' : '1.3',
           }}
         >
           <ModalHeader fontSize={15}>

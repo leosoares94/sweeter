@@ -41,6 +41,10 @@ export const Row = styled.div`
       background-color: #d1e3f4;
     }
   }
+
+  @media(min-width: 1919px){
+    border: .1rem dashed #8bc3af;
+  }
 `;
 
 export const Column = styled.div`
