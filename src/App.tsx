@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { ReactElement, useState } from "react";
 
 import ImageViewer from "react-simple-image-viewer";
 
@@ -7,23 +7,24 @@ import TweetCard from "./widgets/TweetCard";
 
 import { Container, Wrapper } from "./styles";
 import Header from "./widgets/Header";
-import BuildTrackModal from "./widgets/BuildTrackModal";
+import BuildTrack from "./widgets/BuildTrack";
 
 import { useBuilder } from "./store/Builder";
 import { useTracks } from "./store/Tracks";
+import Drawer from "./widgets/Drawer";
+import Playlist from "./widgets/PlayList";
+import Modal from "./widgets/Modal";
 
 function App() {
-  const [openBuildTrackModal, setOpenBuildTrackModal] =
-    useState<Boolean>(false);
-
+  const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
   const [currentImage, setCurrentImage] = useState<number>(0);
-  const [isViewerOpen, setIsViewerOpen] = useState<Boolean>(false);
+  const [isViewerOpen, setIsViewerOpen] = useState<boolean>(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [imagesForViewer, setImagesForViewer] = useState<string[]>([]);
 
-  const openImageViewer = useCallback((index: number) => {
-    setCurrentImage(index);
-    setIsViewerOpen(true);
-  }, []);
+  const [currentModalView, setCurrentModalView] = useState<ReactElement | null>(
+    null
+  );
 
   const closeImageViewer = () => {
     setCurrentImage(0);
@@ -52,21 +53,39 @@ function App() {
     );
   }
 
+  function renderBuildTrackModal() {
+    setCurrentModalView(<BuildTrack />);
+    setIsModalOpen(true);
+  }
+
+  function renderPlaylistModal() {
+    setCurrentModalView(<Playlist />);
+    setIsModalOpen(true);
+  }
+
   const { resetBuilder } = useBuilder((state) => state);
   const { tracks } = useTracks((state) => state);
 
   return (
     <Wrapper>
-      <Header onNewTrackClick={() => setOpenBuildTrackModal(true)} />
+      <Header
+        onNewTrackClick={() => renderBuildTrackModal()}
+        onPlayButtonClick={() => renderPlaylistModal()}
+      />
       {isViewerOpen &&
         renderImageViewer(imagesForViewer, currentImage, closeImageViewer)}
-      <BuildTrackModal
-        open={openBuildTrackModal}
+      <Modal
+        open={isModalOpen}
         onClose={() => {
-          setOpenBuildTrackModal(false);
+          setIsModalOpen(false);
           resetBuilder();
         }}
-      />
+      >
+        {currentModalView}
+      </Modal>
+      <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+        <Playlist />
+      </Drawer>
       <Container>
         {tracks.map((track) => (
           <Track key={track.id} tag={track.tweets[0].author.name}>

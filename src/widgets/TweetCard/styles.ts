@@ -183,6 +183,11 @@ export const MediaContainer = styled.div`
   video {
     border-radius: 5px;
   }
+
+  .has-more-indicator {
+    color: #fff;
+    font-size: 0.9rem;
+  }
 `;
 
 interface ImageProps {
@@ -196,7 +201,11 @@ export const Image = styled.div<ImageProps>`
   background-image: url(${({ src }) => src});
   background-size: cover;
   background-position: center;
-
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  box-sizing: border-box;
+  padding-right: 0.5rem;
   ${({ count }) =>
     count === 1
       ? `border-radius: 5px;`

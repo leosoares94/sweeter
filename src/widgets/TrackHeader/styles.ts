@@ -38,6 +38,18 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
+  .menu-item {
+    padding: 0.3rem 0.5rem;
+    border: none;
+    border-radius: 0;
+    background-color: #fff;
+
+    z-index: 80000;
+    &:hover {
+      background-color: #ed64a618;
+    }
+  }
+
   @media (max-width: 1368px) {
     height: 1.5rem !important;
     .badge {

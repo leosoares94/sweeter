@@ -1,5 +1,5 @@
-import {useState } from "react";
-import { useMediaQuery } from 'react-responsive'
+import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import { BsTwitter, BsCheckLg } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import { BiAddToQueue } from "react-icons/bi";
@@ -43,10 +43,9 @@ const TweetCard = ({
   images,
   videos,
   retweet,
-  onImageClick
-}: (TweetProps & TweetCardProps)) => {
+  onImageClick,
+}: TweetProps & TweetCardProps) => {
   const [added, setAdded] = useState(false);
-
 
   function redirectToProfile() {
     window.open(`https://twitter.com/${author.username}`);
@@ -71,13 +70,12 @@ const TweetCard = ({
   };
 
   const isHd = useMediaQuery({
-    query: '(max-width: 1368px)'
-  })
+    query: "(max-width: 1368px)",
+  });
 
   return (
     <ChakraProvider>
       <Container>
-     
         <Column>
           <Row className="user-info">
             <Row>
@@ -109,12 +107,19 @@ const TweetCard = ({
               onClick={() => redirectToTweet(id)}
             />
           </Row>
-          <Column className="tweet-container" >
+          <Column className="tweet-container">
             {retweet.id && (
-              <Row className="retweet-flag" style={{
-                paddingBottom: isHd ? '.2rem' : '0'
-              }}>
-                <AiOutlineRetweet size={isHd ? 14 : 16} style={{marginTop: isHd ? '.02rem' : '-.15rem'}} className="retweet-flag-icon" />
+              <Row
+                className="retweet-flag"
+                style={{
+                  paddingBottom: isHd ? ".2rem" : "0",
+                }}
+              >
+                <AiOutlineRetweet
+                  size={isHd ? 14 : 16}
+                  style={{ marginTop: isHd ? ".02rem" : "-.15rem" }}
+                  className="retweet-flag-icon"
+                />
                 &nbsp;<span>Retweet</span>
               </Row>
             )}
@@ -129,22 +134,32 @@ const TweetCard = ({
                   src={retweet.author_avatar || ""}
                   name={author.name}
                   size="xs"
-                  marginTop={isHd ? '-.2rem' : '0'}
+                  marginTop={isHd ? "-.2rem" : "0"}
                 />
               )}{" "}
-              <Linkify options={{ ...options, target:"_blank" }}>
+              <Linkify options={{ ...options, target: "_blank" }}>
                 {text.replace("RT", "")}
               </Linkify>
             </Tweet>
             {images.length > 0 && (
               <MediaContainer>
-                {images.map((image, index) => (
-                  <Image
-                    src={image}
-                    count={images.length}
-                    onClick={() => onImageClick(images, index)}
-                  />
-                ))}
+                {images.map(
+                  (image, index) =>
+                    index < 4 && (
+                      <Image
+                        src={image}
+                        count={images.length}
+                        onClick={() => onImageClick(images, index)}
+                      >
+                        {" "}
+                        {images.length > 4 && index === 3 && (
+                          <span className="has-more-indicator">
+                            {images.length - 4}+
+                          </span>
+                        )}
+                      </Image>
+                    )
+                )}
               </MediaContainer>
             )}
             {videos.length > 0 && (

@@ -145,6 +145,7 @@ export const useTracks = create<TracksState>()(
               "https://pbs.twimg.com/media/FiL5z7VUUAAqOQv.jpg",
               "https://pbs.twimg.com/media/FiL5z68VsAAOzz_.jpg",
               "https://pbs.twimg.com/media/FiL5z69UUAIYov5.jpg",
+              "https://img-cdn.inc.com/image/upload/w_1920,h_1080,c_fill/images/panoramic/GettyImages-1130678533_473619_xj1qdn.jpg",
             ],
             videos: [],
           },

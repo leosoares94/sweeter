@@ -17,8 +17,8 @@ export const Row = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
-  border: .10rem dashed #b75988b1;
-  border-radius: .6rem;
+  border: 0.1rem dashed #b75988b1;
+  border-radius: 0.6rem;
 
   .tags {
     font-size: 0.7rem;
@@ -57,7 +57,7 @@ export const Row = styled.div`
       border-radius: 0.3rem;
       font-size: 0.6rem;
       &:hover {
-        background-color: #ffdae6
+        background-color: #ffdae6;
       }
     }
   }

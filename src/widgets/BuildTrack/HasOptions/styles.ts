@@ -18,8 +18,8 @@ export const Row = styled.div`
   align-items: center;
   flex-direction: row;
   margin-top: 0.7rem;
-  border: .10rem dashed #8bc3af;
-  border-radius: .6rem;
+  border: 0.1rem dashed #8bc3af;
+  border-radius: 0.6rem;
   .tags {
     font-size: 0.7rem;
     background-color: #daf9ee;
@@ -42,8 +42,8 @@ export const Row = styled.div`
     }
   }
 
-  @media(min-width: 1919px){
-    border: .1rem dashed #8bc3af;
+  @media (min-width: 1919px) {
+    border: 0.1rem dashed #8bc3af;
   }
 `;
 

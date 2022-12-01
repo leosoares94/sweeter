@@ -6,13 +6,12 @@ import { CiSettings } from "react-icons/ci";
 
 import { ChakraProvider, Button, Badge } from "@chakra-ui/react";
 
-import LogoIcon from '/twitter.svg';
-
 interface HeaderProps {
   onNewTrackClick: () => void;
+  onPlayButtonClick: () => void;
 }
 
-const Header = ({ onNewTrackClick }: HeaderProps) => {
+const Header = ({ onNewTrackClick, onPlayButtonClick }: HeaderProps) => {
   return (
     <ChakraProvider>
       <Container>
@@ -22,7 +21,15 @@ const Header = ({ onNewTrackClick }: HeaderProps) => {
             <span>Sweeter</span>
           </Logo>
           &nbsp;&nbsp;
-          <Badge size="xs" fontSize={10} colorScheme="green" marginTop={1} paddingTop={1}>Em desenvolvimento</Badge>
+          <Badge
+            size="xs"
+            fontSize={10}
+            colorScheme="green"
+            marginTop={1}
+            paddingTop={1}
+          >
+            Em desenvolvimento
+          </Badge>
           &nbsp;&nbsp;
         </Row>
         <Row>
@@ -45,10 +52,12 @@ const Header = ({ onNewTrackClick }: HeaderProps) => {
           &nbsp;&nbsp;
           <Button
             variant="solid"
-            leftIcon={<BsFillPlayFill size={16} fontWeight={600} />}
+            // leftIcon={<BsFillPlayFill size={16} fontWeight={600} />}
             size="sm"
+            padding={0}
             borderRadius={50}
             color="#fff"
+            onClick={onPlayButtonClick}
             sx={{
               bgColor: "pink.400",
               _hover: {
@@ -56,7 +65,8 @@ const Header = ({ onNewTrackClick }: HeaderProps) => {
               },
             }}
           >
-            Play
+            <BsFillPlayFill size={16} fontWeight={600} />
+            {/* Play */}
           </Button>
           &nbsp;&nbsp;
           <CiSettings size={28} color="#0000008f" />

@@ -22,7 +22,7 @@ export const Row = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  padding-right: 1rem;
+  padding-right: 0.2rem;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
@@ -33,13 +33,12 @@ export const Row = styled.div`
 
   .select {
     width: 13.7rem;
-    font-size: .7rem;
+    font-size: 0.7rem;
   }
 
-  input{
-    height: .5rem
+  input {
+    height: 0.5rem;
   }
-
 `;
 
 export const Column = styled.div`
