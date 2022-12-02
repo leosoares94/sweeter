@@ -23,7 +23,7 @@ const TrackHeader = (props: any) => {
       <Container>
         <MdOutlineRefresh size={isHd ? 14 : 18} className="refresh-button" />
         <Title>
-          <Badge className="badge" type="mention" value={props.tag} />{" "}
+          <Badge className="badge" type="mention" value={props.tag} />
           {/* <Badge type="hashtag" value="CopaDoMundo" />
           &nbsp;+ 2 */}
         </Title>
@@ -38,7 +38,7 @@ const TrackHeader = (props: any) => {
           <MenuList
             bgColor="#fff"
             boxShadow="0px 3px 10px rgba(43, 0, 0, 0.123)"
-            fontSize={16.2}
+            fontSize={17.2}
             zIndex={10000}
           >
             <MenuItem className="menu-item">Edit track</MenuItem>

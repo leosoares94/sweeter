@@ -71,7 +71,7 @@ const MainOptions = ({
         <Table
           width="100%"
           padding=".5rem"
-          backgroundColor="#ff6bb52c"
+          backgroundColor="#ffd4e4c9"
           borderRadius={9}
         >
           <Table.Head

@@ -42,9 +42,9 @@ export const Row = styled.div`
     }
   }
 
-  @media (min-width: 1919px) {
+  /* @media (min-width: 1919px) {
     border: 0.1rem dashed #8bc3af;
-  }
+  } */
 `;
 
 export const Column = styled.div`

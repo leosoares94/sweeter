@@ -39,7 +39,7 @@ export const Container = styled.div`
   }
 
   .menu-item {
-    padding: 0.3rem 0.5rem;
+    padding: 0.3rem 0.8rem;
     border: none;
     border-radius: 0;
     background-color: #fff;

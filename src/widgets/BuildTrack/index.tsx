@@ -86,7 +86,7 @@ const BuildTrack = (props: any) => {
 
   return (
     <div>
-      <ModalHeader fontSize={15}>
+      <ModalHeader fontSize={15} paddingBottom={1}>
         Let's build your track!
         <br />
         <span

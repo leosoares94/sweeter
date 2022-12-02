@@ -71,7 +71,7 @@ const HasOptions = ({
         <Table
           width="100%"
           padding=".5rem"
-          backgroundColor="#1989f82f"
+          backgroundColor="#c7f2ffbb"
           borderRadius={9}
         >
           <Table.Head

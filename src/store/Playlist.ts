@@ -9,6 +9,7 @@ interface Item {
   showSource: boolean;
   showAvatar: boolean;
   showEngagement: boolean;
+  updated_at?: string;
 }
 
 interface Playlist {
@@ -36,9 +37,11 @@ export const usePlaylists = create<PlaylistState>()(
       {
         id: "123456789456",
         name: "Tweets from Tesla i like",
-        description: "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
+        description:
+          "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
         textColor: "white",
-        backgroundImage: "https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
+        backgroundImage:
+          "https://www.picmaker.com/assets/images/Twitterpost/twitter_post_ogimage.png",
         backgroundColor: "#ed64a6",
         animation: true,
         tweets: [
@@ -82,9 +85,11 @@ export const usePlaylists = create<PlaylistState>()(
       {
         id: "123456789456",
         name: "Tweets from Tesla i like",
-        description: "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
+        description:
+          "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
         textColor: "white",
-        backgroundImage: "https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
+        backgroundImage:
+          "https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
         backgroundColor: "#ed64a6",
         animation: true,
         tweets: [
@@ -128,9 +133,11 @@ export const usePlaylists = create<PlaylistState>()(
       {
         id: "123456789456",
         name: "Tweets from Tesla i like",
-        description: "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
+        description:
+          "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
         textColor: "white",
-        backgroundImage: "https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
+        backgroundImage:
+          "https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
         backgroundColor: "#ed64a6",
         animation: true,
         tweets: [
@@ -174,9 +181,11 @@ export const usePlaylists = create<PlaylistState>()(
       {
         id: "123456789456",
         name: "Tweets from Tesla i like",
-        description: "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
+        description:
+          "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
         textColor: "white",
-        backgroundImage: "https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
+        backgroundImage:
+          "https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
         backgroundColor: "#ed64a6",
         animation: true,
         tweets: [
@@ -220,9 +229,11 @@ export const usePlaylists = create<PlaylistState>()(
       {
         id: "123456789456",
         name: "Tweets from Tesla i like",
-        description: "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
+        description:
+          "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
         textColor: "white",
-        backgroundImage: "https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
+        backgroundImage:
+          "https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
         backgroundColor: "#ed64a6",
         animation: true,
         tweets: [

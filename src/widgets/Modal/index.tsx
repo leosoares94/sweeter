@@ -1,5 +1,6 @@
 import {
   ChakraProvider,
+  CloseButton,
   Modal as Container,
   ModalContent,
   ModalOverlay,

@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
   overflow-y: hidden;
   overflow-x: hidden;
-} 
+}
 
 h1 {
   font-size: 3.2em;
@@ -139,4 +139,12 @@ button:hover {
 
 .react-datepicker__tab-loop {
   display: none;
+}
+
+.chakra-menu__menu-list {
+  padding: 0 !important;
+}
+
+.css-pe8wo1 {
+  min-width: 0.6rem !important;
 }

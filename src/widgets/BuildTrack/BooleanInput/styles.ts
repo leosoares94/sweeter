@@ -55,11 +55,9 @@ export const Row = styled.div<RowProps>`
   }
 
   .filter-text {
-
     font-size: 0.75rem;
     justify-content: center;
     color: #000000b7;
-
   }
 
   .filter-text-white-box {
@@ -68,9 +66,9 @@ export const Row = styled.div<RowProps>`
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    padding: .5rem;
-    border-radius: 1.5rem ;
-    outline: solid 1px #00000022 ;
+    padding: 0.5rem;
+    border-radius: 1.5rem;
+    outline: solid 1px #00000022;
   }
 `;
 
@@ -79,7 +77,7 @@ export const Column = styled.div`
   height: max-content;
   display: flex;
   flex-direction: column;
-  background-color: #00000004;
+  background-color: #00000000;
   border-radius: 0.3rem;
 
   button {

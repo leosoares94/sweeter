@@ -27,9 +27,33 @@ interface BuilderState {
 
 export const useBuilder = create<BuilderState>()(
   devtools((set) => ({
-    dataFilters: [],
-    booleanFilters: [],
-    contentFilters: [],
+    dataFilters: [
+      {
+        id: "123456789",
+        tagName: "hashtags",
+        values: ["#sweeter", "#twitter", "frontend", "react"],
+        includes: true,
+        condition: "and",
+      },
+    ],
+    booleanFilters: [
+      {
+        id: "123456789",
+        tagName: "retweet",
+        values: [],
+        includes: false,
+        condition: "and",
+      },
+    ],
+    contentFilters: [
+      {
+        id: "123456789",
+        tagName: "images",
+        values: [],
+        includes: true,
+        condition: "and",
+      },
+    ],
     addFilter: (data, filterName) => {
       set((state) => ({
         ...state,
@@ -66,9 +90,9 @@ export const useBuilder = create<BuilderState>()(
         ...state,
         dataFilters: [],
         booleanFilters: [],
-        contentFilters: []
-      }))
-    }
+        contentFilters: [],
+      }));
+    },
   }))
 );
 
