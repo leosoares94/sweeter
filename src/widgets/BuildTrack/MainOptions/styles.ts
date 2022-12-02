@@ -17,9 +17,8 @@ export const Row = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
-  border: 0.1rem dashed #b75988b1;
   border-radius: 0.6rem;
-
+  box-shadow: 0px 2px 2px rgba(255, 137, 137, 0.105);
   .tags {
     font-size: 0.7rem;
     background-color: #f9dada;

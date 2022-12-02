@@ -18,7 +18,7 @@ export const Row = styled.div`
   align-items: center;
   flex-direction: row;
   margin-top: 0.7rem;
-  border: .10rem dashed #8bc3af;
+  box-shadow: 0px 2px 2px rgba(137, 255, 224, 0.234);
   border-radius: .6rem;
   .tags {
     font-size: 0.7rem;

@@ -55,6 +55,8 @@ export const Column = styled.div`
     width: 3px;
     height: 5px;
   }
+
+  
 `;
 
 export const IconContainer = styled.div`
