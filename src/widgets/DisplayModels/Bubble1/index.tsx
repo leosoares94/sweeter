@@ -25,18 +25,15 @@ import { useEffect, useRef, useState } from "react";
 import { Tweet } from "../../../store/Tracks";
 import { Item } from "../../../store/Playlist";
 
-
-
 type BubbleProps = {
   data: Tweet & Item;
   onStartTimer: (duration: number) => void;
-}
+};
 
 const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
   const [contentOpacity, setBoxOpacity] = useState(0);
   const [containerOpacity, setContainerOpacity] = useState(1);
   const [stoppedTweetIcon, setStoppedTweetIcon] = useState(true);
-
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -54,23 +51,23 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
       setStoppedTweetIcon(false);
     }, 200);
     setTimeout(() => {
-      onStartTimer(data.duration)
-    }, 400)
+      onStartTimer(data.duration);
+    }, 400);
   }
 
   function hide() {
-    setContainerOpacity(0)
-    setBoxOpacity(0)
-    setTimeout(() => {
-    }, 200);
+    setContainerOpacity(0);
+    setBoxOpacity(0);
+    setTimeout(() => {}, 200);
   }
 
   useEffect(() => {
     setTimeout(() => {
       reveal();
-      setTimeout(() => {
-        hide()
-      }, data.duration * 1000 + 600)
+      data.duration > 0 &&
+        setTimeout(() => {
+          hide();
+        }, data.duration * 1000 + 600);
     }, 600);
   }, []);
 
@@ -94,7 +91,6 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
           stiffness: 260,
           damping: 41,
         }}
-        onClick={() => hide()}
       >
         <Column className="first-column">
           <Row className="bubble-header">
@@ -120,7 +116,8 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
               </Linkify>
             </Text>
             <Time>
-              {formatHour(new Date(data.created_at))} - {formatDate(new Date(data.created_at))}
+              {formatHour(new Date(data.created_at))} -{" "}
+              {formatDate(new Date(data.created_at))}
             </Time>
           </Column>
           <Row className="engagement-container">

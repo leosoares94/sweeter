@@ -22,7 +22,18 @@ export const Logo = styled.div`
   height: max-content;
   font-family: "Pacifico", cursive;
   font-size: 1.5rem;
-  color: #ed64a6;
+  color: #ffffffbe;
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 1.7rem;
+`;
+
+export const Website = styled.div`
+  color: #ffffffbe;
+  font-size: .9rem;
+  position: absolute;
+  bottom: 0;
+  padding-bottom: .5rem;
 `;
 
 const progress = keyframes`
@@ -47,3 +58,4 @@ export const Time = styled.div<TimeProps>`
   left:0 ;
   animation: ${progress} ${({duration}) => duration + 's'} linear;
 `;
+

@@ -103,7 +103,7 @@ export const usePlaylists = create<PlaylistState>()(
               username: "Tesla",
               verified: true,
             },
-            duration: 2,
+            duration: 5,
             showAvatar: true,
             showMedia: true,
             showTime: true,
