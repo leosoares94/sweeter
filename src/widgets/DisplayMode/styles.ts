@@ -1,0 +1,49 @@
+import styled, { keyframes } from "styled-components";
+
+type ContainerProps = {
+  background: string;
+
+};
+
+export const Container = styled.div<ContainerProps>`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background: ${({ background }) => background};
+  z-index: 10000000;
+`;
+
+export const Logo = styled.div`
+  width: max-content;
+  height: max-content;
+  font-family: "Pacifico", cursive;
+  font-size: 1.5rem;
+  color: #ed64a6;
+`;
+
+const progress = keyframes`
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+`;
+
+type TimeProps = {
+  duration?: number;
+}
+
+export const Time = styled.div<TimeProps>`
+  width: 100%;
+  height: 0.2rem;
+  background-color: #ffffffc6;
+  position: absolute;
+  top: 0;
+  left:0 ;
+  animation: ${progress} ${({duration}) => duration + 's'} linear;
+`;

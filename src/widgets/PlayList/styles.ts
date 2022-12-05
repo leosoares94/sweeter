@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: 26rem;
+  height: 27rem;
   padding: 0.5rem;
   padding-bottom: 3rem;
 
@@ -13,12 +13,31 @@ export const Wrapper = styled.div`
     padding-left: 0.2rem;
   }
 
-  .modal-body {
-    scrollbar-width: 0.05rem !important;
+  .chakra-modal__body {
+    scrollbar-width: thin !important;
+    scrollbar-color: #ffb8bf23 !important;
   }
 
   .modal-title {
     font-size: 0.85rem;
+  }
+
+  .add-button {
+    color: #fff;
+    background-color: #ff4784 !important;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    padding: 0;
+
+    &:hover {
+      background-color: #c23262 !important;
+    }
+
+    &:active {
+      background-color: #ff4784 !important;
+    }
   }
 `;
 
@@ -77,6 +96,16 @@ export const Row = styled.div`
     font-size: 0.6rem;
     margin-left: 0.1rem;
   }
+
+  .item-number {
+    font-size: 0.7rem;
+    position: absolute;
+    left: 0.2rem;
+    bottom: 0.2rem;
+    padding: 0rem 0.35rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.2rem;
+  }
 `;
 
 export const Column = styled.div`
@@ -98,7 +127,7 @@ export const Title = styled.span`
   font-weight: 600;
   font-size: 0.75rem;
 
-  color: #000000c4;
+  color: #00000090;
 `;
 
 export const Description = styled.span`

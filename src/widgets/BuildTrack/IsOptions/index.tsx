@@ -71,7 +71,7 @@ const IsOptions = ({
         <Table
           width="100%"
           padding=".5rem"
-          backgroundColor="#d1fff3bb"
+          backgroundColor="#e8e4ffd3"
           borderRadius={9}
         >
           <Table.Head

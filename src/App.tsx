@@ -11,9 +11,11 @@ import BuildTrack from "./widgets/BuildTrack";
 
 import { useBuilder } from "./store/Builder";
 import { useTracks } from "./store/Tracks";
+import { usePlaylists } from "./store/Playlist";
 import Drawer from "./widgets/Drawer";
 import Playlist from "./widgets/PlayList";
 import Modal from "./widgets/Modal";
+import DisplayMode from "./widgets/DisplayMode";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
@@ -65,9 +67,11 @@ function App() {
 
   const { resetBuilder } = useBuilder((state) => state);
   const { tracks } = useTracks((state) => state);
+  const { playlists } = usePlaylists((state) => state);
 
   return (
     <Wrapper>
+      <DisplayMode playlist={playlists[1]}/>
       <Header
         onNewTrackClick={() => renderBuildTrackModal()}
         onPlayButtonClick={() => renderPlaylistModal()}

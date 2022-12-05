@@ -18,8 +18,9 @@ export const Row = styled.div`
   align-items: center;
   flex-direction: row;
   margin-top: 0.7rem;
-  box-shadow: 0px 2px 2px rgba(137, 218, 255, 0.44);
+  box-shadow: 2px 2px 2px rgba(137, 218, 255, 0.44);
   border-radius: 0.6rem;
+  border: 1px solid #00ffdd27 ;
   .tags {
     font-size: 0.7rem;
     background-color: #daf9ee;
@@ -35,10 +36,10 @@ export const Row = styled.div`
 
   .option-button {
     border-color: #6b9dc6;
-    color: #445b94;
+    color: #347b89;
 
     &:hover {
-      background-color: #d1e3f4;
+      background-color: #ade8e8d3;
     }
   }
 

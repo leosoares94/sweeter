@@ -2,7 +2,7 @@ import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { Tweet } from "./Tracks";
 
-interface Item {
+export interface Item {
   duration: number;
   showMedia: boolean;
   showTime: boolean;
@@ -12,7 +12,7 @@ interface Item {
   updated_at?: string;
 }
 
-interface Playlist {
+export interface Playlist {
   id: string;
   name: string;
   description: string;
@@ -36,9 +36,9 @@ export const usePlaylists = create<PlaylistState>()(
     playlists: [
       {
         id: "123456789456",
-        name: "Tweets from Tesla i like",
+        name: "Como usar o sweeter",
         description:
-          "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
+          "Passo a passo de como buscar, selecionar e exibir os seus tweets favoritos.",
         textColor: "white",
         backgroundImage:
           "https://www.picmaker.com/assets/images/Twitterpost/twitter_post_ogimage.png",
@@ -55,7 +55,7 @@ export const usePlaylists = create<PlaylistState>()(
               username: "Tesla",
               verified: true,
             },
-            duration: 5000,
+            duration: 5,
             showAvatar: true,
             showMedia: true,
             showTime: true,
@@ -103,7 +103,7 @@ export const usePlaylists = create<PlaylistState>()(
               username: "Tesla",
               verified: true,
             },
-            duration: 5000,
+            duration: 2,
             showAvatar: true,
             showMedia: true,
             showTime: true,

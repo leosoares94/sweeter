@@ -88,7 +88,15 @@ export const useBuilder = create<BuilderState>()(
     resetBuilder: () => {
       set((state) => ({
         ...state,
-        dataFilters: [],
+        dataFilters: [
+          {
+            id: "123456789",
+            tagName: "hashtags",
+            values: [],
+            includes: true,
+            condition: "and",
+          },
+        ],
         booleanFilters: [],
         contentFilters: [],
       }));
