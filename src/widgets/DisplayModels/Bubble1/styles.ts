@@ -83,7 +83,7 @@ export const Name = styled.span`
 
 export const Text = styled.span`
   font-size: 1.4rem;
-
+  white-space: pre-line;
   a {
     color: #d45994;
     &:hover {

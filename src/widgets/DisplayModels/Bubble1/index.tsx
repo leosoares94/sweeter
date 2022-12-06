@@ -125,13 +125,12 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
             )}
             <Text>
               <Linkify options={{ ...options, target: "_blank" }}>
-                {data.retweet && (
+                {data.retweet.id && (
                   <Avatar src={data.retweet.author_avatar ?? ""} size="sm" />
                 )}
                 {data.text.replace("RT", "")}
               </Linkify>
             </Text>
-
             <Time>
               {/* {formatHour(new Date(data.created_at))} -{" "} */}
               {formatDate(new Date(data.created_at))} -{" "}
