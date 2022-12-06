@@ -85,7 +85,10 @@ const BuildTrack = (props: any) => {
   }
 
   return (
-    <div>
+    <div className="wrapper" style={{
+      paddingTop: '1rem',
+      paddingBottom: '1rem'
+    }}>
       <ModalHeader fontSize={15} paddingBottom={1}>
         Let's build your track!
         <br />

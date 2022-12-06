@@ -2,20 +2,20 @@ import { ReactElement, useState } from "react";
 
 import ImageViewer from "react-simple-image-viewer";
 
+import { Container, Wrapper } from "./styles";
+
 import Track from "./widgets/Track";
 import TweetCard from "./widgets/TweetCard";
-
-import { Container, Wrapper } from "./styles";
 import Header from "./widgets/Header";
 import BuildTrack from "./widgets/BuildTrack";
-
-import { useBuilder } from "./store/Builder";
-import { useTracks } from "./store/Tracks";
-import { usePlaylists } from "./store/Playlist";
 import Drawer from "./widgets/Drawer";
 import Playlist from "./widgets/PlayList";
 import Modal from "./widgets/Modal";
 import DisplayMode from "./widgets/DisplayMode";
+
+import { useBuilder } from "./store/Builder";
+import { useTracks } from "./store/Tracks";
+import { usePlaylists } from "./store/Playlist";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);

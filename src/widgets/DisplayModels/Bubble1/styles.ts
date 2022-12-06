@@ -114,6 +114,5 @@ export const Source = styled.span`
   font-size: 0.92rem;
   padding-top: 1rem;
   color: #d53f8c;
-
-  
+  display: inline;
 `;

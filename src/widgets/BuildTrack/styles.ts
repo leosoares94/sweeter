@@ -4,15 +4,17 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction:column ;
   justify-content: center;
   align-items: center;
+  padding-top: -10rem !important;
 `;
 
 export const Container = styled.div`
   width: fit-content;
   height: max-content;
   background-color: #fff;
-  padding: 2rem;
+  padding: 3rem;
   box-sizing: border-box;
   border-radius: 0.5rem;
   z-index: 10000;

@@ -12,6 +12,7 @@ import {
   Text,
   Time,
   Engagement,
+  Source,
 } from "./styles";
 import { Avatar, ChakraProvider } from "@chakra-ui/react";
 import { MdVerified } from "react-icons/md";
@@ -64,10 +65,10 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
   useEffect(() => {
     setTimeout(() => {
       reveal();
-      data.duration > 0 &&
-        setTimeout(() => {
-          hide();
-        }, data.duration * 1000 + 600);
+      // data.duration > 0 &&
+      //   setTimeout(() => {
+      //     hide();
+      //   }, data.duration * 1000 + 600);
     }, 600);
   }, []);
 
@@ -110,14 +111,31 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
             />
           </Row>
           <Column className="bubble-tweet" ref={contentRef}>
+            {data.retweet.id && (
+              <Row style={{ paddingBottom: ".2rem", opacity: 0.8 }}>
+                <AiOutlineRetweet
+                  className="retweet-flag-icon"
+                  style={{ marginTop: "-.1rem" }}
+                  size={19}
+                />
+                <Text style={{ fontSize: "1.1rem", paddingLeft: ".2rem" }}>
+                  Retweet
+                </Text>
+              </Row>
+            )}
             <Text>
               <Linkify options={{ ...options, target: "_blank" }}>
+                {data.retweet && (
+                  <Avatar src={data.retweet.author_avatar ?? ""} size="sm" />
+                )}
                 {data.text.replace("RT", "")}
               </Linkify>
             </Text>
+
             <Time>
-              {formatHour(new Date(data.created_at))} -{" "}
-              {formatDate(new Date(data.created_at))}
+              {/* {formatHour(new Date(data.created_at))} -{" "} */}
+              {formatDate(new Date(data.created_at))} -{" "}
+              <Source>{data.source}</Source>
             </Time>
           </Column>
           <Row className="engagement-container">
