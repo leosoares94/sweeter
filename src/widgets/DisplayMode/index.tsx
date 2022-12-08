@@ -12,8 +12,8 @@ interface DisplayModeProps {
 
 const DisplayMode = ({ background, playlist }: DisplayModeProps) => {
 
-  const [duration, setDuration] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [duration, setDuration] = useState(2);
+  const [currentIndex, setCurrentIndex] = useState(3);
 
   return (
     <Container background="linear-gradient(to right, #00d2ff, #3a7bd5);">

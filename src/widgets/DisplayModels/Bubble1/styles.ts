@@ -7,7 +7,7 @@ type BubbleContainerProps = {
 }
 
 export const Container = styled(motion.div)<BubbleContainerProps>`
-  width: 60rem;
+  width: 59rem;
   height: fit-content;
   display: flex;
   background-color: #fff;

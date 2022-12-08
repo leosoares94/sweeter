@@ -154,9 +154,9 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
             </Engagement>
           </Row>
         </Column>
-        {data.images.length && (
+        {data.images.length > 0 && (
           <MediaContainer style={{ height: contentRef.current?.getBoundingClientRect().height}}>
-            <Image  src={data.images[0]} />
+            <Image src={data.images[0]} />
           </MediaContainer>
         )}
       </Container>
