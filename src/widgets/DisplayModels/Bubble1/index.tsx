@@ -13,8 +13,10 @@ import {
   Time,
   Engagement,
   Source,
+  MediaContainer,
+  Image
 } from "./styles";
-import { Avatar, ChakraProvider } from "@chakra-ui/react";
+import { Avatar, ChakraProvider, Divider } from "@chakra-ui/react";
 import { MdVerified } from "react-icons/md";
 
 import animationData from "../../../assets/animations/twitter/sweeter_bubble_icon.json";
@@ -59,7 +61,7 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
   function hide() {
     setContainerOpacity(0);
     setBoxOpacity(0);
-    setTimeout(() => {}, 200);
+    setTimeout(() => { }, 200);
   }
 
   useEffect(() => {
@@ -93,8 +95,8 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
           damping: 41,
         }}
       >
-        <Column className="first-column">
-          <Row className="bubble-header">
+        <Column className="first-column" >
+          <Row className="bubble-header" >
             <Avatar name={data.author.name} src={data.author.avatar} />
             <Column className="username">
               <Row>
@@ -140,18 +142,23 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
           <Row className="engagement-container">
             <Engagement>
               <FaRegComment size={15} />
-              <span>&nbsp;5</span>
+              <span>&nbsp;{data.metrics.replies}</span>
             </Engagement>
             <Engagement>
               <AiOutlineRetweet size={18} />
-              <span>&nbsp;5</span>
+              <span>&nbsp;{data.metrics.retweets}</span>
             </Engagement>
             <Engagement>
               <AiOutlineHeart size={18} />
-              <span>&nbsp;5</span>
+              <span>&nbsp;{data.metrics.likes}</span>
             </Engagement>
           </Row>
         </Column>
+        {data.images.length && (
+          <MediaContainer style={{ height: contentRef.current?.getBoundingClientRect().height}}>
+            <Image  src={data.images[0]} />
+          </MediaContainer>
+        )}
       </Container>
     </ChakraProvider>
   );
