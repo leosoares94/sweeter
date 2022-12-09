@@ -26,6 +26,7 @@ export const Logo = styled.div`
   position: absolute;
   bottom: 0;
   padding-bottom: 1.7rem;
+  text-shadow: 1px 1px 1px #0000003e;
 `;
 
 export const Website = styled.div`
@@ -34,6 +35,7 @@ export const Website = styled.div`
   position: absolute;
   bottom: 0;
   padding-bottom: .5rem;
+  text-shadow: 1px 1px 1px #0000003e;
 `;
 
 const progress = keyframes`

@@ -25,6 +25,7 @@
     "axios": "^1.2.0",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.6",
+    "delay": "^5.0.0",
     "evergreen-ui": "^6.12.0",
     "framer-motion": "^7.6.18",
     "linkify-plugin-hashtag": "^4.0.2",

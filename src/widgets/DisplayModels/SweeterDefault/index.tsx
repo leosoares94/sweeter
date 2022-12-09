@@ -3,6 +3,8 @@ import Linkify from "linkify-react";
 import "linkify-plugin-hashtag";
 import "linkify-plugin-mention";
 
+import delay from 'delay';
+
 import {
   Column,
   Container,
@@ -16,7 +18,7 @@ import {
   MediaContainer,
   Image
 } from "./styles";
-import { Avatar, ChakraProvider, Divider } from "@chakra-ui/react";
+import { Avatar, ChakraProvider } from "@chakra-ui/react";
 import { MdVerified } from "react-icons/md";
 
 import animationData from "../../../assets/animations/twitter/sweeter_bubble_icon.json";
@@ -33,46 +35,51 @@ type BubbleProps = {
   onStartTimer: (duration: number) => void;
 };
 
-const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
+const SweeterDefault = ({ data, onStartTimer }: BubbleProps) => {
+
+  const [content, setContent] = useState<BubbleProps['data']>(data);
+  const [visible, setVisible]  = useState<Boolean>(true);
   const [contentOpacity, setBoxOpacity] = useState(0);
-  const [containerOpacity, setContainerOpacity] = useState(1);
+  const [containerOpacity, setContainerOpacity] = useState(0);
   const [stoppedTweetIcon, setStoppedTweetIcon] = useState(true);
 
   const contentRef = useRef<HTMLDivElement>(null);
 
   const defaultOptions = {
     loop: false,
-    animationData: animationData,
+    animationData,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
 
-  function reveal() {
+  async function reveal() {
+    setContainerOpacity(1);
     setBoxOpacity(1);
-    setTimeout(() => {
-      setStoppedTweetIcon(false);
-    }, 200);
-    setTimeout(() => {
-      onStartTimer(data.duration);
-    }, 400);
+    await delay(200)
+    setStoppedTweetIcon(false);
+    await delay(200)
+    onStartTimer(data.duration);
   }
 
   function hide() {
     setContainerOpacity(0);
     setBoxOpacity(0);
-    setTimeout(() => { }, 200);
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      reveal();
-      // data.duration > 0 &&
-      //   setTimeout(() => {
-      //     hide();
-      //   }, data.duration * 1000 + 600);
-    }, 600);
-  }, []);
+    (async () => {
+      hide()
+      await delay(50);
+      setVisible(false)
+      setContent(data);
+      onStartTimer(0);
+      await delay(50);
+      setVisible(true)
+      await delay(50);
+      reveal()
+    })()
+  }, [data.id]);
 
   const options = {
     formatHref: {
@@ -84,7 +91,7 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
 
   return (
     <ChakraProvider>
-      <Container
+    { visible &&  <Container
         opacity={contentOpacity}
         containerOpacity={containerOpacity}
         initial={{ height: "0rem" }}
@@ -97,13 +104,13 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
       >
         <Column className="first-column" >
           <Row className="bubble-header" >
-            <Avatar name={data.author.name} src={data.author.avatar} />
+            <Avatar name={content.author.name} src={content.author.avatar} />
             <Column className="username">
               <Row>
-                <Name>{data.author.name}&nbsp;</Name>
+                <Name>{content.author.name}&nbsp;</Name>
                 <MdVerified size={18} color="#1d9af1" />
               </Row>
-              <Username>@{data.author.username}</Username>
+              <Username>@{content.author.username}</Username>
             </Column>
             <Lottie
               options={defaultOptions}
@@ -113,7 +120,7 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
             />
           </Row>
           <Column className="bubble-tweet" ref={contentRef}>
-            {data.retweet.id && (
+            {content.retweet.id && (
               <Row style={{ paddingBottom: ".2rem", opacity: 0.8 }}>
                 <AiOutlineRetweet
                   className="retweet-flag-icon"
@@ -127,41 +134,41 @@ const Bubble1 = ({ data, onStartTimer }: BubbleProps) => {
             )}
             <Text>
               <Linkify options={{ ...options, target: "_blank" }}>
-                {data.retweet.id && (
-                  <Avatar src={data.retweet.author_avatar ?? ""} size="sm" />
+                {content.retweet.id && (
+                  <Avatar src={content.retweet.author_avatar ?? ""} size="sm" />
                 )}
-                {data.text.replace("RT", "")}
+                {content.text.replace("RT", "")}
               </Linkify>
             </Text>
             <Time>
-              {/* {formatHour(new Date(data.created_at))} -{" "} */}
-              {formatDate(new Date(data.created_at))} -{" "}
-              <Source>{data.source}</Source>
+              {/* {formatHour(new Date(content.created_at))} -{" "} */}
+              {formatDate(new Date(content.created_at))} -{" "}
+              <Source>{content.source}</Source>
             </Time>
           </Column>
           <Row className="engagement-container">
             <Engagement>
               <FaRegComment size={15} />
-              <span>&nbsp;{data.metrics.replies}</span>
+              <span>&nbsp;{content.metrics.replies}</span>
             </Engagement>
             <Engagement>
               <AiOutlineRetweet size={18} />
-              <span>&nbsp;{data.metrics.retweets}</span>
+              <span>&nbsp;{content.metrics.retweets}</span>
             </Engagement>
             <Engagement>
               <AiOutlineHeart size={18} />
-              <span>&nbsp;{data.metrics.likes}</span>
+              <span>&nbsp;{content.metrics.likes}</span>
             </Engagement>
           </Row>
         </Column>
-        {data.images.length > 0 && (
-          <MediaContainer style={{ height: contentRef.current?.getBoundingClientRect().height}}>
-            <Image src={data.images[0]} />
+        {content.images.length > 0 && (
+          <MediaContainer style={{ height: contentRef.current?.getBoundingClientRect().height }}>
+            <Image src={content.images[0]} />
           </MediaContainer>
         )}
-      </Container>
+      </Container>}
     </ChakraProvider>
   );
 };
 
-export default Bubble1;
+export default SweeterDefault;
