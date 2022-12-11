@@ -28,6 +28,8 @@ function App() {
     null
   );
 
+  const [displayMode, setDisplayMode] = useState(true);
+
   const closeImageViewer = () => {
     setCurrentImage(0);
     setIsViewerOpen(false);
@@ -71,7 +73,7 @@ function App() {
 
   return (
     <Wrapper>
-      <DisplayMode playlist={playlists[1]}/>
+      {displayMode && <DisplayMode playlist={playlists[1]}/>}
       <Header
         onNewTrackClick={() => renderBuildTrackModal()}
         onPlayButtonClick={() => renderPlaylistModal()}
@@ -88,7 +90,7 @@ function App() {
         {currentModalView}
       </Modal>
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <Playlist />
+        <Playlist onItemSelect={() => setDisplayMode(true)}/>
       </Drawer>
       <Container>
         {tracks.map((track) => (

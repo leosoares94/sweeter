@@ -1,5 +1,4 @@
-import delay from 'delay';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container, Logo, Time, Website } from "./styles";
 
 import SweeterDefault from "../DisplayModels/SweeterDefault";
@@ -15,31 +14,46 @@ const DisplayMode = ({ background, playlist }: DisplayModeProps) => {
   const [duration, setDuration] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  addEventListener("keydown", (event) => {
-    if (event.key === "ArrowRight" && currentIndex < (playlist.tweets.length - 1)) {
-      setCurrentIndex(currentIndex + 1 );
-    } else if (event.key === "ArrowLeft" && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  });
+  const displayRef = useRef<HTMLDivElement>(null);
 
   function switchDisplayModels(modelName: string): JSX.Element | undefined {
     switch (modelName) {
-      case 'sweeter-default':
-        return <SweeterDefault data={playlist.tweets[currentIndex]}
-          onStartTimer={setDuration}
-        />
+      case "sweeter-default":
+        return (
+          <SweeterDefault
+            data={playlist.tweets[currentIndex]}
+            onStartTimer={setDuration}
+          />
+        );
     }
   }
+
+  function handleTweet(e: any) {
+   return e.code === "ArrowLeft" && currentIndex > 0
+      ? setCurrentIndex(currentIndex - 1)
+      : (e.code === "ArrowRight" || e.code === "Space") && currentIndex < playlist.tweets.length - 1
+      ? setCurrentIndex(currentIndex + 1)
+      : null;
+  }
+
+  useEffect(() => {
+    displayRef.current?.focus();
+  }, [])
+
   return (
-    <Container background="linear-gradient(to right, #00d2ff, #3a7bd5);">
+    <Container
+      ref={displayRef}
+      background="linear-gradient(to right, #00d2ff, #3a7bd5);"
+      tabIndex={0}
+      onKeyDown={handleTweet}
+    >
       {duration > 0 && <Time duration={duration} />}
-      {switchDisplayModels('sweeter-default')}
+      {switchDisplayModels("sweeter-default")}
       <Logo>
         <span>Sweeter</span>
       </Logo>
       <Website>getsweeter.vercel.app</Website>
-    </Container >
+    </Container>
   );
 };
 

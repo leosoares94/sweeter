@@ -29,7 +29,11 @@ import { usePlaylists } from "../../store/Playlist";
 import { colors } from "../../utils/colorUtils";
 import { formatDate, formatHour } from "../../utils/dateUtils";
 
-const Playlist = (props: any) => {
+type mProps = {
+  onItemSelect?: () => void;
+}
+
+const Playlist = ({onItemSelect}: mProps) => {
   const { playlists } = usePlaylists((state) => state);
 
   return (
@@ -46,8 +50,9 @@ const Playlist = (props: any) => {
       >
         {playlists.map((playlist, index) => (
           <Container
-            key={playlist.id}
+            key={index}
             containerColor={colors[index % colors.length]}
+            onClick={onItemSelect}
           >
             <Column>
               <Row>

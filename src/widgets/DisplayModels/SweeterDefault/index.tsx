@@ -22,7 +22,7 @@ import { Avatar, ChakraProvider } from "@chakra-ui/react";
 import { MdVerified } from "react-icons/md";
 
 import animationData from "../../../assets/animations/twitter/sweeter_bubble_icon.json";
-import { formatDate, formatHour } from "../../../utils/dateUtils";
+import { formatDate } from "../../../utils/dateUtils";
 import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
@@ -35,10 +35,10 @@ type BubbleProps = {
   onStartTimer: (duration: number) => void;
 };
 
-const SweeterDefault = ({ data, onStartTimer }: BubbleProps) => {
+const SweeterDefault =({ data, onStartTimer }: BubbleProps) => {
 
   const [content, setContent] = useState<BubbleProps['data']>(data);
-  const [visible, setVisible]  = useState<Boolean>(true);
+  const [visible, setVisible] = useState<Boolean>(true);
   const [contentOpacity, setBoxOpacity] = useState(0);
   const [containerOpacity, setContainerOpacity] = useState(0);
   const [stoppedTweetIcon, setStoppedTweetIcon] = useState(true);
@@ -65,12 +65,13 @@ const SweeterDefault = ({ data, onStartTimer }: BubbleProps) => {
   function hide() {
     setContainerOpacity(0);
     setBoxOpacity(0);
+    onStartTimer(0);
   }
 
   useEffect(() => {
     (async () => {
       hide()
-      await delay(50);
+      await delay(120);
       setVisible(false)
       setContent(data);
       onStartTimer(0);
@@ -79,7 +80,7 @@ const SweeterDefault = ({ data, onStartTimer }: BubbleProps) => {
       await delay(50);
       reveal()
     })()
-  }, [data.id]);
+  }, [data]);
 
   const options = {
     formatHref: {
@@ -90,8 +91,9 @@ const SweeterDefault = ({ data, onStartTimer }: BubbleProps) => {
   };
 
   return (
+
     <ChakraProvider>
-    { visible &&  <Container
+      {visible && <Container
         opacity={contentOpacity}
         containerOpacity={containerOpacity}
         initial={{ height: "0rem" }}
@@ -168,7 +170,8 @@ const SweeterDefault = ({ data, onStartTimer }: BubbleProps) => {
         )}
       </Container>}
     </ChakraProvider>
-  );
-};
+  )
+
+}
 
 export default SweeterDefault;
