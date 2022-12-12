@@ -26,7 +26,7 @@ import {
   EngagementButton,
   EngagementNumber,
   MediaContainer,
-  Image
+  Image,
 } from './styles'
 
 import { formatDate } from '../../utils/dateUtils'
@@ -48,15 +48,15 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
   images,
   videos,
   retweet,
-  onImageClick
+  onImageClick,
 }) => {
   const [added, setAdded] = useState(false)
 
-  function redirectToProfile (): void {
+  function redirectToProfile(): void {
     window.open(`https://twitter.com/${author.username}`)
   }
 
-  function redirectToTweet (tweet_id: string | null): void {
+  function redirectToTweet(tweet_id: string | null): void {
     window.open(`https://twitter.com/${author.username}/status/${tweet_id}`)
   }
 
@@ -70,12 +70,12 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
     formatHref: {
       hashtag: (href: string) =>
         'https://twitter.com/hashtag/' + href.substr(1),
-      mention: (href: string) => 'https://twitter.com/' + href.substr(1)
-    }
+      mention: (href: string) => 'https://twitter.com/' + href.substr(1),
+    },
   }
 
   const isHd = useMediaQuery({
-    query: '(max-width: 1368px)'
+    query: '(max-width: 1368px)',
   })
 
   return (
@@ -90,7 +90,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
                 className="avatar"
                 _hover={{
                   opacity: 0.5,
-                  cursor: 'pointer'
+                  cursor: 'pointer',
                 }}
                 onClick={() => redirectToProfile()}
               />
@@ -117,7 +117,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
               <Row
                 className="retweet-flag"
                 style={{
-                  paddingBottom: isHd ? '.2rem' : '0'
+                  paddingBottom: isHd ? '.2rem' : '0',
                 }}
               >
                 <AiOutlineRetweet
@@ -131,7 +131,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
             <Tweet
               key={id}
               style={{
-                marginTop: `${Boolean(retweet.id) && '-1rem'}`
+                marginTop: `${Boolean(retweet.id) && '-1rem'}`,
               }}
             >
               {Boolean(retweet.id) && (

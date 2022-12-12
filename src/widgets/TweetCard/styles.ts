@@ -121,6 +121,7 @@ export const Tweet = styled.span`
   font-size: 0.96rem;
   padding-top: 1rem;
   white-space: pre-line;
+  color: #000000be;
 
   a {
     color: #d45994;
@@ -130,7 +131,7 @@ export const Tweet = styled.span`
   }
 
   @media (max-width: 1368px) {
-    font-size: 0.85rem;
+    font-size: 0.87rem;
   }
 `
 

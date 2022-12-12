@@ -10,11 +10,11 @@ export const Container = styled.div`
   box-sizing: border-box;
   background-color: #f3aeae10;
   padding-bottom: 1rem;
-  
-  @media(max-width: 1368px){
-    width: 25rem;
+
+  @media (max-width: 1368px) {
+    width: 26rem;
     height: calc(100vh - 7.2rem);
-    padding-bottom: .7rem;
+    padding-bottom: 0.7rem;
   }
 
   * {
@@ -33,6 +33,4 @@ export const Container = styled.div`
     border-radius: 10px;
     border: none;
   }
-
-
 `
