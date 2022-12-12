@@ -85,7 +85,7 @@ const App: React.FC = () => {
 
   return (
     <Wrapper>
-      {/* {displayMode && <DisplayMode playlist={playlists[1]} />} */}
+      {displayMode && <DisplayMode playlist={playlists[1]} />}
       <Header
         onNewTrackClick={() => renderBuildTrackModal()}
         onPlayButtonClick={() => renderPlaylistModal()}
