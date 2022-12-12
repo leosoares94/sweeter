@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   border-radius: 0.5rem;
   z-index: 10000;
-`;
+`
 
 export const Row = styled.div`
   width: 100%;
@@ -42,11 +42,11 @@ export const Row = styled.div`
       background-color: #cfc9eee2;
     }
   }
-`;
+`
 
 export const Column = styled.div`
   width: 100%;
   height: max-content;
   display: flex;
   flex-direction: column;
-`;
+`

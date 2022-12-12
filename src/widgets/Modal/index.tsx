@@ -1,22 +1,30 @@
+import React from 'react'
+
 import {
   ChakraProvider,
-  CloseButton,
   Modal as Container,
   ModalContent,
-  ModalOverlay,
-} from "@chakra-ui/react";
-import { useMediaQuery } from "react-responsive";
+  ModalOverlay
+} from '@chakra-ui/react'
 
-const Modal = (props: any) => {
+import { useMediaQuery } from 'react-responsive'
+
+interface ModalProps {
+  open: boolean
+  onClose: () => void
+  children: React.ReactNode
+}
+
+const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
   const isHd = useMediaQuery({
-    query: "(max-width: 1368px)",
-  });
+    query: '(max-width: 1368px)'
+  })
 
   return (
     <ChakraProvider>
       <Container
-        isOpen={props.open}
-        onClose={props.onClose}
+        isOpen={open}
+        onClose={onClose}
         isCentered
         size="lg"
       >
@@ -25,15 +33,15 @@ const Modal = (props: any) => {
           maxHeight="35rem"
           minHeight="fit-content"
           sx={{
-            position: "fixed",
-            zoom: isHd ? "1" : "1.3",
+            position: 'fixed',
+            zoom: isHd ? '1' : '1.3'
           }}
         >
-          {props.children}
+          {children}
         </ModalContent>
       </Container>
     </ChakraProvider>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal

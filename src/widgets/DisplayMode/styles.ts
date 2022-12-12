@@ -1,9 +1,8 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components'
 
-type ContainerProps = {
-  background: string;
-
-};
+interface ContainerProps {
+  background: string
+}
 
 export const Container = styled.div<ContainerProps>`
   width: 100%;
@@ -15,7 +14,7 @@ export const Container = styled.div<ContainerProps>`
   position: fixed;
   background: ${({ background }) => background};
   z-index: 10000000;
-`;
+`
 
 export const Logo = styled.div`
   width: max-content;
@@ -27,7 +26,7 @@ export const Logo = styled.div`
   bottom: 0;
   padding-bottom: 1.7rem;
   text-shadow: 1px 1px 1px #0000003e;
-`;
+`
 
 export const Website = styled.div`
   color: #ffffffbe;
@@ -36,7 +35,7 @@ export const Website = styled.div`
   bottom: 0;
   padding-bottom: .5rem;
   text-shadow: 1px 1px 1px #0000003e;
-`;
+`
 
 const progress = keyframes`
   from {
@@ -45,10 +44,10 @@ const progress = keyframes`
   to {
     width: 100%;
   }
-`;
+`
 
-type TimeProps = {
-  duration?: number;
+interface TimeProps {
+  duration?: number
 }
 
 export const Time = styled.div<TimeProps>`
@@ -58,6 +57,5 @@ export const Time = styled.div<TimeProps>`
   position: absolute;
   top: 0;
   left:0 ;
-  animation: ${progress} ${({duration}) => duration + 's'} linear;
-`;
-
+  animation: ${progress} ${({ duration }) => `${duration!}s`} linear;
+`

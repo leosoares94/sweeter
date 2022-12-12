@@ -1,69 +1,70 @@
-import uuid from "react-uuid";
-import { MdOutlineVerified } from "react-icons/md";
-import { AiOutlineRetweet } from "react-icons/ai";
-import { RiChatQuoteLine } from "react-icons/ri";
-import { BsReply } from "react-icons/bs";
-import { SiAdblock } from "react-icons/si";
-import { Table } from "evergreen-ui";
-import { Button, CloseButton, useToast } from "@chakra-ui/react";
+import React from 'react'
+import uuid from 'react-uuid'
+import { MdOutlineVerified } from 'react-icons/md'
+import { AiOutlineRetweet } from 'react-icons/ai'
+import { RiChatQuoteLine } from 'react-icons/ri'
+import { BsReply } from 'react-icons/bs'
+import { SiAdblock } from 'react-icons/si'
+import { Table } from 'evergreen-ui'
+import { Button, CloseButton, useToast } from '@chakra-ui/react'
 
-import { Row } from "./styles";
+import { Row } from './styles'
 
-import FadeIn from "react-fade-in";
-import BooleanInput from "../BooleanInput";
-import { Filter } from "../../../store/Builder";
+import FadeIn from 'react-fade-in'
+import BooleanInput from '../BooleanInput'
+import { Filter } from '../../../store/Builder'
 
 export interface IsOptionProps {
-  data: Filter[];
-  hasNext: boolean;
+  data: Filter[]
+  hasNext: boolean
   onInputChange: (
     id: string,
     field: string,
     values: string[] | boolean | string
-  ) => void;
-  onInputDelete: (id: string) => void;
-  onInputAdd: (input: Filter) => void;
+  ) => void
+  onInputDelete: (id: string) => void
+  onInputAdd: (input: Filter) => void
 }
 
-const IsOptions = ({
+const IsOptions: React.FC<IsOptionProps> = ({
   data,
   onInputChange,
   onInputAdd,
   onInputDelete,
-  hasNext,
-}: IsOptionProps) => {
-  const MAX_SAME_FIELD_COUNT = 1;
+  hasNext
+}) => {
+  const MAX_SAME_FIELD_COUNT = 1
 
-  const toast = useToast();
+  const toast = useToast()
 
   const newField = (tagName: string): Filter => ({
     id: uuid(),
     tagName,
     values: [],
     includes: true,
-    condition: "and",
-  });
+    condition: 'and'
+  })
 
   const hasMaxCount = (tagName: string, data: Filter[]): boolean => {
-    let counter = 0;
+    let counter = 0
     data.forEach((item) => {
-      item.tagName === tagName && counter++;
-    });
+      item.tagName === tagName && counter++
+    })
 
-    return counter === MAX_SAME_FIELD_COUNT;
-  };
+    return counter === MAX_SAME_FIELD_COUNT
+  }
 
   const handleAddField = (type: string): void => {
     hasMaxCount(type, data)
       ? toast({
-          title: "Ação não permitida",
-          description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
-          status: "error",
-          duration: 2000,
-          isClosable: true,
-        })
-      : onInputAdd(newField(type));
-  };
+        title: 'Ação não permitida',
+        description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
+        status: 'error',
+        duration: 2000,
+        isClosable: true
+      })
+      : onInputAdd(newField(type))
+  }
 
   return (
     <FadeIn>
@@ -82,23 +83,23 @@ const IsOptions = ({
             backgroundColor="#ff6bb500"
           >
             <Table.TextHeaderCell fontSize=".7rem">
-              IS / ISN'T&nbsp;
+              IS / ISN&apos;T&nbsp;
               <span
                 style={{
-                  fontFamily: "arial",
-                  textTransform: "uppercase",
+                  fontFamily: 'arial',
+                  textTransform: 'uppercase',
                   fontSize: 12,
-                  fontWeight: "normal",
+                  fontWeight: 'normal'
                 }}
               >
                 - B
               </span>
               <span
                 style={{
-                  fontFamily: "arial",
-                  textTransform: "lowercase",
+                  fontFamily: 'arial',
+                  textTransform: 'lowercase',
                   fontSize: 12,
-                  fontWeight: "normal",
+                  fontWeight: 'normal'
                 }}
               >
                 uscar tweets que sejam (ou não):
@@ -115,7 +116,7 @@ const IsOptions = ({
               borderRadius={50}
               leftIcon={<AiOutlineRetweet size={15} />}
               iconSpacing={0.5}
-              onClick={() => handleAddField("retweet")}
+              onClick={() => handleAddField('retweet')}
             >
               Retweet
             </Button>
@@ -128,7 +129,7 @@ const IsOptions = ({
               borderRadius={50}
               leftIcon={<BsReply size={15} />}
               iconSpacing={0.5}
-              onClick={() => handleAddField("reply")}
+              onClick={() => handleAddField('reply')}
             >
               Reply
             </Button>
@@ -141,7 +142,7 @@ const IsOptions = ({
               borderRadius={50}
               leftIcon={<RiChatQuoteLine size={14} />}
               iconSpacing={0.5}
-              onClick={() => handleAddField("quote")}
+              onClick={() => handleAddField('quote')}
             >
               Quote
             </Button>
@@ -154,7 +155,7 @@ const IsOptions = ({
               borderRadius={50}
               leftIcon={<MdOutlineVerified size={16} />}
               iconSpacing={0.5}
-              onClick={() => handleAddField("verified")}
+              onClick={() => handleAddField('verified')}
             >
               Verified
             </Button>
@@ -167,7 +168,7 @@ const IsOptions = ({
               borderRadius={50}
               leftIcon={<SiAdblock size={14} />}
               iconSpacing={0.5}
-              onClick={() => handleAddField("nullcast")}
+              onClick={() => handleAddField('nullcast')}
             >
               Nullcast
             </Button>
@@ -180,7 +181,7 @@ const IsOptions = ({
                 key={item.id}
                 id={item.id}
                 type={item.tagName}
-                condition={item.condition!}
+                condition={item.condition}
                 onDelete={onInputDelete}
                 index={index}
                 optionsLength={array.length}
@@ -192,7 +193,7 @@ const IsOptions = ({
         </Table>
       </Row>
     </FadeIn>
-  );
-};
+  )
+}
 
-export default IsOptions;
+export default IsOptions

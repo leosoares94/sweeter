@@ -1,11 +1,12 @@
-import { Row } from './styles';
+import React from 'react'
+import { Row } from './styles'
 
 export interface TogglerProps {
-  className?: string;
-  condition: string;
+  className?: string
+  condition: string
 }
 
-const Toggler = ({ condition }: TogglerProps) => {
+const Toggler: React.FC<TogglerProps> = ({ condition }) => {
   return (
     <Row className="or-and-btn">
           - {condition.toUpperCase()} -
@@ -14,4 +15,4 @@ const Toggler = ({ condition }: TogglerProps) => {
   )
 }
 
-export default Toggler;
+export default Toggler

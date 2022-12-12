@@ -1,29 +1,29 @@
-import { useState } from "react";
+import React, { useState } from 'react'
 
 import {
   ModalHeader,
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
-} from "@chakra-ui/react";
+  Button
+} from '@chakra-ui/react'
 
-import Select from "react-select";
+import Select from 'react-select'
 
-import { IoIosRocket } from "react-icons/io";
+import { IoIosRocket } from 'react-icons/io'
 
-import { Column, Row } from "./styles";
-import MainOptions from "./MainOptions";
-import IsOptions from "./IsOptions";
-import HasOptions from "./HasOptions";
+import { Column, Row } from './styles'
+import MainOptions from './MainOptions'
+import IsOptions from './IsOptions'
+import HasOptions from './HasOptions'
 
-import { useBuilder } from "../../store/Builder";
+import { useBuilder } from '../../store/Builder'
 
-import { convertBuilderToQueryString2 } from "../../utils/builderToQueryString";
-import RecentTweetsRepository from "../../api/modules/SearchTweets/RecentSearch/repository/implementation/RecentTweetsRepository";
-import RequestConfig from "../../api/modules/SearchTweets/RecentSearch/RequestConfig";
+// import { convertBuilderToQueryString2 } from '../../utils/builderToQueryString'
+// import RecentTweetsRepository from '../../api/modules/SearchTweets/RecentSearch/repository/implementation/RecentTweetsRepository'
+// import RequestConfig from '../../api/modules/SearchTweets/RecentSearch/RequestConfig'
 
-const BuildTrack = (props: any) => {
+const BuildTrack: React.FC = () => {
   const {
     dataFilters,
     booleanFilters,
@@ -31,72 +31,73 @@ const BuildTrack = (props: any) => {
     addFilter,
     updateFilter,
     removeFilter,
-    resetBuilder,
-  } = useBuilder((state) => state);
+    resetBuilder
+  } = useBuilder((state) => state)
 
-  const [enabledFilters, setEnabledFilters] = useState<string[]>([
-    "main",
-    "boolean",
-    "has",
-  ]);
+  const [enabledFilters] = useState<string[]>([
+    'main',
+    'boolean',
+    'has'
+  ])
 
-  const isEnabled = (filter: string) =>
-    enabledFilters.find((element: string) => element === filter);
+  const isEnabled = (filter: string): string | undefined =>
+    enabledFilters.find((element: string) => element === filter)
 
   const resultCountOptions = [
-    { value: "10", label: "Até 10 resultados" },
-    { value: "20", label: "Até 20 resultados" },
-    { value: "30", label: "Até 30 resultados" },
-  ];
+    { value: '10', label: 'Até 10 resultados' },
+    { value: '20', label: 'Até 20 resultados' },
+    { value: '30', label: 'Até 30 resultados' }
+  ]
 
   const searchByOptions = [
-    { value: "recency", label: "Filtrar por atualidade" },
-    { value: "relevancy", label: "Filtrar por relevância" },
-  ];
+    { value: 'recency', label: 'Filtrar por atualidade' },
+    { value: 'relevancy', label: 'Filtrar por relevância' }
+  ]
 
   const isDisabledByRequired = (): boolean => {
-    let isDataFiltersEmpty = true;
-    let isBooleanFiltersEmpty = booleanFilters.length === 0;
-    let isContentFiltersEmpty = contentFilters.length === 0;
+    let isDataFiltersEmpty = true
+    const isBooleanFiltersEmpty = booleanFilters.length === 0
+    const isContentFiltersEmpty = contentFilters.length === 0
 
-    dataFilters.map((item) => {
-      isDataFiltersEmpty = item.values!.length === 0 ? true : false;
-    });
+    dataFilters.map((item) => (isDataFiltersEmpty = item.values?.length === 0))
 
-    return isDataFiltersEmpty && isBooleanFiltersEmpty && isContentFiltersEmpty;
-  };
-
-  async function handleFetch() {
-    const { VITE_BEARER_TOKEN } = import.meta.env;
-    const string = convertBuilderToQueryString2({
-      dataFilters,
-      booleanFilters,
-      contentFilters,
-    });
-    const config = new RequestConfig(
-      string,
-      "recency",
-      "10",
-      `Bearer ${VITE_BEARER_TOKEN}`
-    );
-    const repository = new RecentTweetsRepository();
-
-    const response = await repository.fetch(config);
+    return isDataFiltersEmpty && isBooleanFiltersEmpty && isContentFiltersEmpty
   }
 
+  // async function handleFetch () {
+  //   const { VITE_BEARER_TOKEN } = import.meta.env
+  //   const string = convertBuilderToQueryString2({
+  //     dataFilters,
+  //     booleanFilters,
+  //     contentFilters
+  //   })
+  //   const config = new RequestConfig(
+  //     string,
+  //     'recency',
+  //     '10',
+  //     `Bearer ${VITE_BEARER_TOKEN}`
+  //   )
+  //   const repository = new RecentTweetsRepository()
+
+  //   const response = await repository.fetch(config)
+  // }
+
   return (
-    <div className="wrapper" style={{
-      paddingTop: '1rem',
-      paddingBottom: '1rem'
-    }}>
+    <div
+      className="wrapper"
+      style={{
+        paddingTop: '1rem',
+        paddingBottom: '1rem'
+      }}
+    >
       <ModalHeader fontSize={15} paddingBottom={1}>
-        Let's build your track!
+        Let&apos;s build your track!
         <br />
         <span
           style={{
             fontSize: 13,
-            fontWeight: "normal",
-            color: "rgba(0,0,0,0.5)",
+            fontWeight: 'normal',
+            color: 'rgba(0,0,0,0.5)'
           }}
         >
           Select some options and add some filters below to customize your
@@ -113,37 +114,37 @@ const BuildTrack = (props: any) => {
         justifyContent="center"
       >
         <Column>
-          {isEnabled("main") && (
+          {(Boolean(isEnabled('main'))) && (
             <MainOptions
               hasNext={booleanFilters.length > 0 || contentFilters.length > 0}
               data={dataFilters}
               onInputChange={(id, field, values) =>
-                updateFilter(id, field, values, "dataFilters")
+                updateFilter(id, field, values, 'dataFilters')
               }
-              onInputDelete={(id) => removeFilter(id, "dataFilters")}
-              onInputAdd={(input) => addFilter(input, "dataFilters")}
+              onInputDelete={(id) => removeFilter(id, 'dataFilters')}
+              onInputAdd={(input) => addFilter(input, 'dataFilters')}
             />
           )}
-          {isEnabled("boolean") && (
+          {(Boolean(isEnabled('boolean'))) && (
             <IsOptions
               hasNext={contentFilters.length > 0}
               data={booleanFilters}
               onInputChange={(id, field, values) =>
-                updateFilter(id, field, values, "booleanFilters")
+                updateFilter(id, field, values, 'booleanFilters')
               }
-              onInputDelete={(id) => removeFilter(id, "booleanFilters")}
-              onInputAdd={(input) => addFilter(input, "booleanFilters")}
+              onInputDelete={(id) => removeFilter(id, 'booleanFilters')}
+              onInputAdd={(input) => addFilter(input, 'booleanFilters')}
             />
           )}
-          {isEnabled("has") && (
+          {(Boolean(isEnabled('has'))) && (
             <HasOptions
               hasNext={false}
               data={contentFilters}
               onInputChange={(id, field, values) =>
-                updateFilter(id, field, values, "contentFilters")
+                updateFilter(id, field, values, 'contentFilters')
               }
-              onInputDelete={(id) => removeFilter(id, "contentFilters")}
-              onInputAdd={(input) => addFilter(input, "contentFilters")}
+              onInputDelete={(id) => removeFilter(id, 'contentFilters')}
+              onInputAdd={(input) => addFilter(input, 'contentFilters')}
             />
           )}
         </Column>
@@ -176,13 +177,12 @@ const BuildTrack = (props: any) => {
           leftIcon={<IoIosRocket size={18} />}
           marginTop={-2}
           disabled={isDisabledByRequired()}
-          onClick={() => handleFetch()}
         >
           LIFT OFF!
         </Button>
       </ModalFooter>
     </div>
-  );
-};
+  )
+}
 
-export default BuildTrack;
+export default BuildTrack

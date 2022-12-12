@@ -1,14 +1,19 @@
-import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
-import { BsTwitter, BsCheckLg } from "react-icons/bs";
-import { FaRegComment } from "react-icons/fa";
-import { BiAddToQueue } from "react-icons/bi";
-import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
-import { MdVerified } from "react-icons/md";
-import { ChakraProvider, Avatar, Button, Link } from "@chakra-ui/react";
-import Linkify from "linkify-react";
-import "linkify-plugin-hashtag";
-import "linkify-plugin-mention";
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/naming-convention */
+import React, { useState } from 'react'
+
+import Linkify from 'linkify-react'
+import 'linkify-plugin-hashtag'
+import 'linkify-plugin-mention'
+
+import { useMediaQuery } from 'react-responsive'
+import { BsTwitter, BsCheckLg } from 'react-icons/bs'
+import { FaRegComment } from 'react-icons/fa'
+import { BiAddToQueue } from 'react-icons/bi'
+import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai'
+import { MdVerified } from 'react-icons/md'
+import { ChakraProvider, Avatar, Button } from '@chakra-ui/react'
+
 import {
   Container,
   Row,
@@ -21,19 +26,19 @@ import {
   EngagementButton,
   EngagementNumber,
   MediaContainer,
-  Image,
-} from "./styles";
+  Image
+} from './styles'
 
-import { formatDate } from "../../utils/dateUtils";
-import { toTitleCase } from "../../utils/stringUtils";
+import { formatDate } from '../../utils/dateUtils'
+import { toTitleCase } from '../../utils/stringUtils'
 
-import { Tweet as TweetProps } from "../../store/Tracks";
+import { Tweet as TweetProps } from '../../store/Tracks'
 
 interface TweetCardProps {
-  onImageClick: (images: string[], index: number) => void;
+  onImageClick: (images: string[], index: number) => void
 }
 
-const TweetCard = ({
+const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
   id,
   author,
   text,
@@ -43,35 +48,35 @@ const TweetCard = ({
   images,
   videos,
   retweet,
-  onImageClick,
-}: TweetProps & TweetCardProps) => {
-  const [added, setAdded] = useState(false);
+  onImageClick
+}) => {
+  const [added, setAdded] = useState(false)
 
-  function redirectToProfile() {
-    window.open(`https://twitter.com/${author.username}`);
+  function redirectToProfile (): void {
+    window.open(`https://twitter.com/${author.username}`)
   }
 
-  function redirectToTweet(tweet_id: string | null) {
-    window.open(`https://twitter.com/${author.username}/status/${tweet_id}`);
+  function redirectToTweet (tweet_id: string | null): void {
+    window.open(`https://twitter.com/${author.username}/status/${tweet_id}`)
   }
 
-  function redirectToTweetPic(index: number) {
-    window.open(
-      `https://twitter.com/${author.username}/status/${id}/photo/${index + 1}`
-    );
-  }
+  // function redirectToTweetPic (index: number): void {
+  //   window.open(
+  //     `https://twitter.com/${author.username}/status/${id}/photo/${index + 1}`
+  //   )
+  // }
 
   const options = {
     formatHref: {
       hashtag: (href: string) =>
-        "https://twitter.com/hashtag/" + href.substr(1),
-      mention: (href: string) => "https://twitter.com/" + href.substr(1),
-    },
-  };
+        'https://twitter.com/hashtag/' + href.substr(1),
+      mention: (href: string) => 'https://twitter.com/' + href.substr(1)
+    }
+  }
 
   const isHd = useMediaQuery({
-    query: "(max-width: 1368px)",
-  });
+    query: '(max-width: 1368px)'
+  })
 
   return (
     <ChakraProvider>
@@ -85,7 +90,7 @@ const TweetCard = ({
                 className="avatar"
                 _hover={{
                   opacity: 0.5,
-                  cursor: "pointer",
+                  cursor: 'pointer'
                 }}
                 onClick={() => redirectToProfile()}
               />
@@ -108,16 +113,16 @@ const TweetCard = ({
             />
           </Row>
           <Column className="tweet-container">
-            {retweet.id && (
+            {Boolean(retweet.id) && (
               <Row
                 className="retweet-flag"
                 style={{
-                  paddingBottom: isHd ? ".2rem" : "0",
+                  paddingBottom: isHd ? '.2rem' : '0'
                 }}
               >
                 <AiOutlineRetweet
                   size={isHd ? 14 : 16}
-                  style={{ marginTop: isHd ? ".02rem" : "-.15rem" }}
+                  style={{ marginTop: isHd ? '.02rem' : '-.15rem' }}
                   className="retweet-flag-icon"
                 />
                 &nbsp;<span>Retweet</span>
@@ -126,19 +131,19 @@ const TweetCard = ({
             <Tweet
               key={id}
               style={{
-                marginTop: `${retweet.id && "-1rem"}`,
+                marginTop: `${Boolean(retweet.id) && '-1rem'}`
               }}
             >
-              {retweet.id && (
+              {Boolean(retweet.id) && (
                 <Avatar
-                  src={retweet.author_avatar || ""}
+                  src={retweet.author_avatar ?? ''}
                   name={author.name}
                   size="xs"
-                  marginTop={isHd ? "-.2rem" : "0"}
+                  marginTop={isHd ? '-.2rem' : '0'}
                 />
-              )}{" "}
-              <Linkify options={{ ...options, target: "_blank" }}>
-                {text.replace("RT", "")}
+              )}{' '}
+              <Linkify options={{ ...options, target: '_blank' }}>
+                {text.replace('RT', '')}
               </Linkify>
             </Tweet>
             {images.length > 0 && (
@@ -150,8 +155,9 @@ const TweetCard = ({
                         src={image}
                         count={images.length}
                         onClick={() => onImageClick(images, index)}
+                        key={index}
                       >
-                        {" "}
+                        {' '}
                         {images.length > 4 && index === 3 && (
                           <span className="has-more-indicator">
                             {images.length - 4}+
@@ -165,7 +171,7 @@ const TweetCard = ({
             {videos.length > 0 && (
               <MediaContainer>
                 {videos.map((video, index) => (
-                  <video src={video} controls={true} />
+                  <video src={video} controls={true} key={index} />
                 ))}
               </MediaContainer>
             )}
@@ -196,7 +202,7 @@ const TweetCard = ({
 
               <Button
                 colorScheme="teal"
-                variant={added ? "solid" : "outline"}
+                variant={added ? 'solid' : 'outline'}
                 leftIcon={
                   added ? <BsCheckLg size={10} /> : <BiAddToQueue size={15} />
                 }
@@ -204,14 +210,14 @@ const TweetCard = ({
                 className="add-button"
                 onClick={() => setAdded(!added)}
               >
-                {added ? "Added to playlist" : "Add to playlist"}
+                {added ? 'Added to playlist' : 'Add to playlist'}
               </Button>
             </EngagementButton>
           </Row>
         </Column>
       </Container>
     </ChakraProvider>
-  );
-};
+  )
+}
 
-export default TweetCard;
+export default TweetCard

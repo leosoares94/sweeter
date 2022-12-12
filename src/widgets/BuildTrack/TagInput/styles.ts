@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Row = styled.div`
   width: 100%;
@@ -49,11 +49,11 @@ export const Row = styled.div`
       }
     }
   }
-`;
+`
 
 export const Column = styled.div`
   width: 100%;
   height: max-content;
   display: flex;
   flex-direction: column;
-`;
+`

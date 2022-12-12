@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {
   Avatar,
   Badge,
@@ -8,11 +10,11 @@ import {
   MenuList,
   ModalBody,
   ModalFooter,
-  ModalHeader,
-} from "@chakra-ui/react";
+  ModalHeader
+} from '@chakra-ui/react'
 
-import { BsTwitter, BsThreeDotsVertical } from "react-icons/bs";
-import { AiOutlinePlus } from "react-icons/ai";
+import { BsTwitter, BsThreeDotsVertical } from 'react-icons/bs'
+import { AiOutlinePlus } from 'react-icons/ai'
 
 import {
   Container,
@@ -21,20 +23,20 @@ import {
   Title,
   Description,
   Wrapper,
-  DateInfo,
-} from "./styles";
+  DateInfo
+} from './styles'
 
-import { usePlaylists } from "../../store/Playlist";
+import { usePlaylists } from '../../store/Playlist'
 
-import { colors } from "../../utils/colorUtils";
-import { formatDate, formatHour } from "../../utils/dateUtils";
+import { colors } from '../../utils/colorUtils'
+import { formatDate, formatHour } from '../../utils/dateUtils'
 
-type mProps = {
-  onItemSelect?: () => void;
+interface mProps {
+  onItemSelect?: () => void
 }
 
-const Playlist = ({onItemSelect}: mProps) => {
-  const { playlists } = usePlaylists((state) => state);
+const Playlist: React.FC<mProps> = ({ onItemSelect }) => {
+  const { playlists } = usePlaylists((state) => state)
 
   return (
     <Wrapper>
@@ -64,16 +66,17 @@ const Playlist = ({onItemSelect}: mProps) => {
                     width="7.5rem"
                     height="4.5rem"
                     src={playlist.backgroundImage}
-                    children={<span className="item-number">{index + 1}</span>}
-                  />
+                  >
+                    <span className="item-number">{index + 1}</span>
+                  </Avatar>
                 </Column>
-                <Column style={{ width: "100%" }}>
+                <Column style={{ width: '100%' }}>
                   <Title>{playlist.name}&nbsp;&nbsp;</Title>
 
                   <Description>{playlist.description}</Description>
 
                   <DateInfo>
-                    {formatDate(new Date())} - {formatHour(new Date())}{" "}
+                    {formatDate(new Date())} - {formatHour(new Date())}{' '}
                     <Badge size="sm" fontSize={8} colorScheme="blackAlpha">
                       <Row>
                         <BsTwitter />
@@ -84,7 +87,7 @@ const Playlist = ({onItemSelect}: mProps) => {
                 </Column>
               </Row>
             </Column>
-            <Column className="options-button" >
+            <Column className="options-button">
               <Menu
                 placement="end"
                 size="xs"
@@ -97,12 +100,12 @@ const Playlist = ({onItemSelect}: mProps) => {
                   as={Button}
                   backgroundColor="transparent"
                   _hover={{
-                    backgroundColor: "#00000210",
+                    backgroundColor: '#00000210'
                   }}
                   transform="scale(.7)"
                   marginRight={-1.2}
                   _active={{
-                    backgroundColor: "#00000210",
+                    backgroundColor: '#00000210'
                   }}
                 >
                   <BsThreeDotsVertical size={17} />
@@ -129,10 +132,18 @@ const Playlist = ({onItemSelect}: mProps) => {
         ))}
       </ModalBody>
       <ModalFooter alignItems="center" paddingTop={2.5} justifyContent="center">
-      <Button size="sm" className="add-button" boxShadow="1px 2px 2px #ffddea"><Row><AiOutlinePlus size={14} /></Row> </Button>
-    </ModalFooter>
-    </Wrapper >
-  );
-};
+        <Button
+          size="sm"
+          className="add-button"
+          boxShadow="1px 2px 2px #ffddea"
+        >
+          <Row>
+            <AiOutlinePlus size={14} />
+          </Row>{' '}
+        </Button>
+      </ModalFooter>
+    </Wrapper>
+  )
+}
 
-export default Playlist;
+export default Playlist

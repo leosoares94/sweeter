@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: -10rem !important;
-`;
+`
 
 export const Container = styled.div`
   width: fit-content;
@@ -18,7 +18,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   border-radius: 0.5rem;
   z-index: 10000;
-`;
+`
 
 export const Row = styled.div`
   width: 100%;
@@ -41,7 +41,7 @@ export const Row = styled.div`
   input {
     height: 0.5rem;
   }
-`;
+`
 
 export const Column = styled.div`
   width: 100%;
@@ -56,24 +56,26 @@ export const Column = styled.div`
   ::-webkit-scrollbar {
     width: 3px;
     height: 5px;
-  }
+  }  
+`
 
-  
-`;
+interface IconContainerProps {
+  color: string
+}
 
-export const IconContainer = styled.div`
+export const IconContainer = styled.div<IconContainerProps>`
   width: 20px;
   height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props: any) => props.color};
+  background-color: ${({ color }) => color};
   padding: 0.1rem;
   border-radius: 0.3rem;
   color: #fff;
-`;
+`
 
 export const Title = styled.span`
   font-weight: 550;
   color: #272727f8;
-`;
+`

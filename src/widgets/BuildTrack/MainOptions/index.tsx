@@ -1,68 +1,69 @@
-import uuid from "react-uuid";
-import FadeIn from "react-fade-in";
+import React from 'react'
+import uuid from 'react-uuid'
+import FadeIn from 'react-fade-in'
 
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus } from 'react-icons/ai'
 
-import { Table } from "evergreen-ui";
-import { Button, Tooltip, useToast } from "@chakra-ui/react";
+import { Table } from 'evergreen-ui'
+import { Button, Tooltip, useToast } from '@chakra-ui/react'
 
-import { Row } from "./styles";
+import { Row } from './styles'
 
-import TagInput from "../TagInput";
+import TagInput from '../TagInput'
 
-import { Filter } from "../../../store/Builder";
+import { Filter } from '../../../store/Builder'
 
 export interface MainOptionProps {
-  data: Filter[];
-  hasNext: boolean;
+  data: Filter[]
+  hasNext: boolean
   onInputChange: (
     id: string,
     field: string,
     values: string[] | boolean | string
-  ) => void;
-  onInputDelete: (id: string) => void;
-  onInputAdd: (input: Filter) => void;
+  ) => void
+  onInputDelete: (id: string) => void
+  onInputAdd: (input: Filter) => void
 }
 
-const MainOptions = ({
+const MainOptions: React.FC<MainOptionProps> = ({
   data,
   hasNext,
   onInputChange,
   onInputDelete,
-  onInputAdd,
-}: MainOptionProps) => {
-  const MAX_SAME_FIELD_COUNT = 2;
+  onInputAdd
+}) => {
+  const MAX_SAME_FIELD_COUNT = 2
 
-  const toast = useToast();
+  const toast = useToast()
 
   const createField = (tagName: string): Filter => ({
     id: uuid(),
     tagName,
     values: [],
     includes: true,
-    condition: "and",
-  });
+    condition: 'and'
+  })
 
   const hasMaxCount = (tagName: string, data: Filter[]): boolean => {
-    let counter = 0;
+    let counter = 0
     data.forEach((item) => {
-      item.tagName === tagName && counter++;
-    });
+      item.tagName === tagName && counter++
+    })
 
-    return counter === MAX_SAME_FIELD_COUNT;
-  };
+    return counter === MAX_SAME_FIELD_COUNT
+  }
 
   const handleAddField = (type: string): void => {
     hasMaxCount(type, data)
       ? toast({
-          title: "Ação não permitida",
-          description: `Apenas ${MAX_SAME_FIELD_COUNT} campos deste tipo`,
-          status: "error",
-          duration: 2000,
-          isClosable: true,
-        })
-      : onInputAdd(createField(type));
-  };
+        title: 'Ação não permitida',
+        description: `Apenas ${MAX_SAME_FIELD_COUNT} campos deste tipo`,
+        status: 'error',
+        duration: 2000,
+        isClosable: true
+      })
+      : onInputAdd(createField(type))
+  }
 
   return (
     <FadeIn>
@@ -84,20 +85,20 @@ const MainOptions = ({
               Data Filters&nbsp;
               <span
                 style={{
-                  fontFamily: "arial",
-                  textTransform: "uppercase",
+                  fontFamily: 'arial',
+                  textTransform: 'uppercase',
                   fontSize: 12,
-                  fontWeight: "normal",
+                  fontWeight: 'normal'
                 }}
               >
                 - F
               </span>
               <span
                 style={{
-                  fontFamily: "arial",
-                  textTransform: "lowercase",
+                  fontFamily: 'arial',
+                  textTransform: 'lowercase',
                   fontSize: 12,
-                  fontWeight: "normal",
+                  fontWeight: 'normal'
                 }}
               >
                 iltrar tweets por:
@@ -117,7 +118,7 @@ const MainOptions = ({
                 borderRadius={50}
                 leftIcon={<AiOutlinePlus size={13} />}
                 iconSpacing={0.5}
-                onClick={() => handleAddField("hashtags")}
+                onClick={() => handleAddField('hashtags')}
               >
                 Hashtags
               </Button>
@@ -135,7 +136,7 @@ const MainOptions = ({
                 borderRadius={50}
                 leftIcon={<AiOutlinePlus size={13} />}
                 iconSpacing={0.5}
-                onClick={() => handleAddField("mentions")}
+                onClick={() => handleAddField('mentions')}
               >
                 Mentions
               </Button>
@@ -153,7 +154,7 @@ const MainOptions = ({
                 borderRadius={50}
                 leftIcon={<AiOutlinePlus size={13} />}
                 iconSpacing={0.5}
-                onClick={() => handleAddField("words")}
+                onClick={() => handleAddField('words')}
               >
                 Words
               </Button>
@@ -167,7 +168,7 @@ const MainOptions = ({
               borderRadius={50}
               leftIcon={<AiOutlinePlus size={13} />}
               iconSpacing={0.5}
-              onClick={() => handleAddField("from")}
+              onClick={() => handleAddField('from')}
             >
               From
             </Button>
@@ -180,7 +181,7 @@ const MainOptions = ({
               borderRadius={50}
               leftIcon={<AiOutlinePlus size={13} />}
               iconSpacing={0.5}
-              onClick={() => handleAddField("retweets")}
+              onClick={() => handleAddField('retweets')}
             >
               Retweets
             </Button>
@@ -195,7 +196,7 @@ const MainOptions = ({
                 type={item.tagName}
                 values={item.values!}
                 includes={item.includes}
-                condition={item.condition!}
+                condition={item.condition}
                 onChange={onInputChange}
                 onDelete={onInputDelete}
                 index={index}
@@ -206,7 +207,7 @@ const MainOptions = ({
         </Table>
       </Row>
     </FadeIn>
-  );
-};
+  )
+}
 
-export default MainOptions;
+export default MainOptions

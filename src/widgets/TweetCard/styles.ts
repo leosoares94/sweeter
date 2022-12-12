@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -33,7 +33,7 @@ export const Container = styled.div`
   @media (max-width: 1368px) {
     margin-top: 0.6rem;
   }
-`;
+`
 
 export const Row = styled.div`
   width: 100%;
@@ -52,7 +52,7 @@ export const Row = styled.div`
       height: 2.1rem;
     }
   }
-`;
+`
 
 export const Column = styled.div`
   width: 100%;
@@ -90,7 +90,7 @@ export const Column = styled.div`
     margin-left: 1rem;
     border-radius: 2rem;
   }
-`;
+`
 
 export const Name = styled.span`
   font-size: 1rem;
@@ -100,7 +100,7 @@ export const Name = styled.span`
   @media (max-width: 1368px) {
     font-size: 0.8rem;
   }
-`;
+`
 
 export const Username = styled.span`
   font-size: 0.9rem;
@@ -115,7 +115,7 @@ export const Username = styled.span`
   @media (max-width: 1368px) {
     font-size: 0.8rem;
   }
-`;
+`
 
 export const Tweet = styled.span`
   font-size: 0.96rem;
@@ -132,7 +132,7 @@ export const Tweet = styled.span`
   @media (max-width: 1368px) {
     font-size: 0.85rem;
   }
-`;
+`
 
 export const Time = styled.span`
   font-size: 0.92rem;
@@ -142,7 +142,7 @@ export const Time = styled.span`
   @media (max-width: 1368px) {
     font-size: 0.8rem;
   }
-`;
+`
 
 export const Source = styled.span`
   font-size: 0.92rem;
@@ -152,7 +152,7 @@ export const Source = styled.span`
   @media (max-width: 1368px) {
     font-size: 0.8rem;
   }
-`;
+`
 
 export const EngagementButton = styled.div`
   width: max-content;
@@ -163,14 +163,14 @@ export const EngagementButton = styled.div`
   align-items: center;
   margin-top: 0.8rem;
   color: #000000ab;
-`;
+`
 
 export const EngagementNumber = styled.span`
   font-size: 0.7rem;
   padding-left: 0.3rem;
   padding-top: 0.05rem;
   box-sizing: border-box;
-`;
+`
 
 export const MediaContainer = styled.div`
   width: 100%;
@@ -188,16 +188,16 @@ export const MediaContainer = styled.div`
     color: #fff;
     font-size: 0.9rem;
   }
-`;
+`
 
 interface ImageProps {
-  src: string;
-  count: number;
+  src: string
+  count: number
 }
 
 export const Image = styled.div<ImageProps>`
-  width: ${({ count }) => (count > 1 ? "49.5%" : "100%")};
-  height: ${({ count }) => (count > 1 ? "6rem" : "11rem")};
+  width: ${({ count }) => (count > 1 ? '49.5%' : '100%')};
+  height: ${({ count }) => (count > 1 ? '6rem' : '11rem')};
   background-image: url(${({ src }) => src});
   background-size: cover;
   background-position: center;
@@ -208,7 +208,7 @@ export const Image = styled.div<ImageProps>`
   padding-right: 0.5rem;
   ${({ count }) =>
     count === 1
-      ? `border-radius: 5px;`
+      ? 'border-radius: 5px;'
       : count > 1 && count < 3
       ? `
     &:first-child {
@@ -251,4 +251,4 @@ export const Image = styled.div<ImageProps>`
   &:hover {
     cursor: pointer;
   }
-`;
+`

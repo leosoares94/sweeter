@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Row = styled.div`
   width: 100%;
@@ -55,5 +55,4 @@ export const Row = styled.div`
       }
     }
   }
-`;
-
+`

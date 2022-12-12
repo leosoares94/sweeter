@@ -1,22 +1,22 @@
-import { Container, Logo, Row } from "./styles";
+import React from 'react'
+import { Container, Logo, Row } from './styles'
 
-import { CgAddR } from "react-icons/cg";
-import { BsFillPlayFill } from "react-icons/bs";
-import { CiSettings } from "react-icons/ci";
+import { CgAddR } from 'react-icons/cg'
+import { BsFillPlayFill } from 'react-icons/bs'
+import { CiSettings } from 'react-icons/ci'
 
-import { ChakraProvider, Button, Badge } from "@chakra-ui/react";
+import { ChakraProvider, Button, Badge } from '@chakra-ui/react'
 
 interface HeaderProps {
-  onNewTrackClick: () => void;
-  onPlayButtonClick: () => void;
+  onNewTrackClick: () => void
+  onPlayButtonClick: () => void
 }
 
-const Header = ({ onNewTrackClick, onPlayButtonClick }: HeaderProps) => {
+const Header: React.FC<HeaderProps> = ({ onNewTrackClick, onPlayButtonClick }) => {
   return (
     <ChakraProvider>
       <Container>
         <Row>
-          {/* <img src={LogoIcon} style={{width: '2rem', marginTop: '-.2rem'}}/> */}
           <Logo>
             <span>Sweeter</span>
           </Logo>
@@ -40,10 +40,10 @@ const Header = ({ onNewTrackClick, onPlayButtonClick }: HeaderProps) => {
             color="#fff"
             onClick={onNewTrackClick}
             sx={{
-              bgColor: "pink.400",
+              bgColor: 'pink.400',
               _hover: {
-                bgColor: "pink.500",
-              },
+                bgColor: 'pink.500'
+              }
             }}
             borderRadius={50}
           >
@@ -59,10 +59,10 @@ const Header = ({ onNewTrackClick, onPlayButtonClick }: HeaderProps) => {
             color="#fff"
             onClick={onPlayButtonClick}
             sx={{
-              bgColor: "pink.400",
+              bgColor: 'pink.400',
               _hover: {
-                bgColor: "pink.500",
-              },
+                bgColor: 'pink.500'
+              }
             }}
           >
             <BsFillPlayFill size={16} fontWeight={600} />
@@ -73,7 +73,7 @@ const Header = ({ onNewTrackClick, onPlayButtonClick }: HeaderProps) => {
         </Row>
       </Container>
     </ChakraProvider>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
