@@ -36,17 +36,17 @@ export const usePlaylists = create<PlaylistState>()(
     playlists: [
       {
         id: '123456789456',
-        name: 'Como usar o sweeter',
+        name: 'Tweets from Tesla i like',
         description:
-          'Passo a passo de como buscar, selecionar e exibir os seus tweets favoritos.',
+          "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
         textColor: 'white',
         backgroundImage:
-          'https://www.picmaker.com/assets/images/Twitterpost/twitter_post_ogimage.png',
+          'https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8',
         backgroundColor: '#ed64a6',
         animation: true,
         tweets: [
           {
-            id: '1595839733153817876',
+            id: '1595839733153816576',
             author: {
               id: '13298072',
               avatar:
@@ -55,7 +55,7 @@ export const usePlaylists = create<PlaylistState>()(
               username: 'Tesla',
               verified: true
             },
-            duration: 5,
+            duration: 5000,
             showAvatar: true,
             showMedia: true,
             showTime: true,
