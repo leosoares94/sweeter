@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: -10rem !important;
@@ -56,7 +56,7 @@ export const Column = styled.div`
   ::-webkit-scrollbar {
     width: 3px;
     height: 5px;
-  }  
+  }
 `
 
 interface IconContainerProps {
@@ -76,6 +76,8 @@ export const IconContainer = styled.div<IconContainerProps>`
 `
 
 export const Title = styled.span`
-  font-weight: 550;
-  color: #272727f8;
+  font-family: 'League Spartan' !important;
+  font-size: 1.05em;
+  font-weight: bolder !important;
+  color: #272727cc;
 `

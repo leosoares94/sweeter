@@ -12,7 +12,10 @@ interface HeaderProps {
   onPlayButtonClick: () => void
 }
 
-const Header: React.FC<HeaderProps> = ({ onNewTrackClick, onPlayButtonClick }) => {
+const Header: React.FC<HeaderProps> = ({
+  onNewTrackClick,
+  onPlayButtonClick,
+}) => {
   return (
     <ChakraProvider>
       <Container>
@@ -42,12 +45,12 @@ const Header: React.FC<HeaderProps> = ({ onNewTrackClick, onPlayButtonClick }) =
             sx={{
               bgColor: 'pink.400',
               _hover: {
-                bgColor: 'pink.500'
-              }
+                bgColor: 'pink.500',
+              },
             }}
             borderRadius={50}
           >
-            New Track
+            <span> New Track</span>
           </Button>
           &nbsp;&nbsp;
           <Button
@@ -61,8 +64,8 @@ const Header: React.FC<HeaderProps> = ({ onNewTrackClick, onPlayButtonClick }) =
             sx={{
               bgColor: 'pink.400',
               _hover: {
-                bgColor: 'pink.500'
-              }
+                bgColor: 'pink.500',
+              },
             }}
           >
             <BsFillPlayFill size={16} fontWeight={600} />

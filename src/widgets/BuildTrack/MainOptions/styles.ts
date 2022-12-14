@@ -19,7 +19,7 @@ export const Row = styled.div`
   flex-direction: row;
   border-radius: 0.6rem;
   box-shadow: 0px 2px 2px rgba(255, 137, 137, 0.105);
-  border: 1px solid #ff000027 ;
+  border: 1px solid #ff000027;
 
   .tags {
     font-size: 0.7rem;
@@ -37,10 +37,10 @@ export const Row = styled.div`
   .option-button {
     border-color: #c66b99;
     color: #b75988;
-
     &:hover {
       background-color: #f4d1e3;
     }
+    font-size: 0.75rem;
   }
 
   .field-container {

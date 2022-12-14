@@ -19,8 +19,8 @@ export const Row = styled.div`
   flex-direction: row;
   margin-top: 0.7rem;
   box-shadow: 0px 2px 2px rgba(137, 255, 224, 0.234);
-  border-radius: .6rem;
-  border: 1px solid #9d00ff27 ;
+  border-radius: 0.6rem;
+  border: 1px solid #9d00ff27;
   .tags {
     font-size: 0.7rem;
     background-color: #daf9ee;
@@ -37,7 +37,7 @@ export const Row = styled.div`
   .option-button {
     border-color: #9c99afd3;
     color: #322976d3;
-
+    font-size: 0.7rem !important;
     &:hover {
       background-color: #cfc9eee2;
     }

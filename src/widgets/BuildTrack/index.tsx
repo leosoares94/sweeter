@@ -5,14 +5,19 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button
+  Button,
+  Tabs,
+  Tab,
+  TabList,
+  TabPanels,
+  TabPanel,
 } from '@chakra-ui/react'
 
 import Select from 'react-select'
 
 import { IoIosRocket } from 'react-icons/io'
 
-import { Column, Row } from './styles'
+import { Column, Row, Title } from './styles'
 import MainOptions from './MainOptions'
 import IsOptions from './IsOptions'
 import HasOptions from './HasOptions'
@@ -31,14 +36,10 @@ const BuildTrack: React.FC = () => {
     addFilter,
     updateFilter,
     removeFilter,
-    resetBuilder
+    resetBuilder,
   } = useBuilder((state) => state)
 
-  const [enabledFilters] = useState<string[]>([
-    'main',
-    'boolean',
-    'has'
-  ])
+  const [enabledFilters] = useState<string[]>(['main', 'boolean', 'has'])
 
   const isEnabled = (filter: string): string | undefined =>
     enabledFilters.find((element: string) => element === filter)
@@ -46,12 +47,12 @@ const BuildTrack: React.FC = () => {
   const resultCountOptions = [
     { value: '10', label: 'Até 10 resultados' },
     { value: '20', label: 'Até 20 resultados' },
-    { value: '30', label: 'Até 30 resultados' }
+    { value: '30', label: 'Até 30 resultados' },
   ]
 
   const searchByOptions = [
     { value: 'recency', label: 'Filtrar por atualidade' },
-    { value: 'relevancy', label: 'Filtrar por relevância' }
+    { value: 'relevancy', label: 'Filtrar por relevância' },
   ]
 
   const isDisabledByRequired = (): boolean => {
@@ -87,34 +88,48 @@ const BuildTrack: React.FC = () => {
       className="wrapper"
       style={{
         paddingTop: '1rem',
-        paddingBottom: '1rem'
+        paddingBottom: '1rem',
       }}
     >
-      <ModalHeader fontSize={15} paddingBottom={1}>
-        Let&apos;s build your track!
+      <ModalHeader>
+        <Title> Let&apos;s build your track!</Title>
         <br />
         <span
           style={{
             fontSize: 13,
             fontWeight: 'normal',
-            color: 'rgba(0,0,0,0.5)'
+            color: 'rgba(0,0,0,0.5)',
           }}
         >
           Select some options and add some filters below to customize your
           results:
         </span>
+        <Tabs
+          size="xs"
+          variant="soft-rounded"
+          className="tabs"
+          colorScheme="pink"
+          fontSize={12}
+          paddingTop={2.5}
+        >
+          <TabList fontFamily="League Spartan">
+            <Tab padding=".2rem 1rem">Busca Personalizada</Tab>
+            <Tab padding=".2rem 1rem">Inserir Link</Tab>
+            <Tab padding=".2rem 1rem">Buscar Timeline</Tab>
+          </TabList>
+        </Tabs>
       </ModalHeader>
       <ModalCloseButton onClick={() => resetBuilder()} />
 
       <ModalBody
-        marginTop={0}
+        marginTop={-1}
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
       >
         <Column>
-          {(Boolean(isEnabled('main'))) && (
+          {Boolean(isEnabled('main')) && (
             <MainOptions
               hasNext={booleanFilters.length > 0 || contentFilters.length > 0}
               data={dataFilters}
@@ -125,7 +140,7 @@ const BuildTrack: React.FC = () => {
               onInputAdd={(input) => addFilter(input, 'dataFilters')}
             />
           )}
-          {(Boolean(isEnabled('boolean'))) && (
+          {Boolean(isEnabled('boolean')) && (
             <IsOptions
               hasNext={contentFilters.length > 0}
               data={booleanFilters}
@@ -136,7 +151,7 @@ const BuildTrack: React.FC = () => {
               onInputAdd={(input) => addFilter(input, 'booleanFilters')}
             />
           )}
-          {(Boolean(isEnabled('has'))) && (
+          {Boolean(isEnabled('has')) && (
             <HasOptions
               hasNext={false}
               data={contentFilters}
@@ -149,7 +164,7 @@ const BuildTrack: React.FC = () => {
           )}
         </Column>
       </ModalBody>
-      <ModalBody marginTop={0}>
+      {/* <ModalBody marginTop={0}>
         <Row>
           <Select
             options={resultCountOptions}
@@ -166,7 +181,7 @@ const BuildTrack: React.FC = () => {
             isClearable={false}
           />
         </Row>
-      </ModalBody>
+      </ModalBody> */}
       <ModalFooter justifyContent="center">
         <Button
           size="xs"
@@ -177,6 +192,7 @@ const BuildTrack: React.FC = () => {
           leftIcon={<IoIosRocket size={18} />}
           marginTop={-2}
           disabled={isDisabledByRequired()}
+          padding=" 1rem 0rem"
         >
           LIFT OFF!
         </Button>

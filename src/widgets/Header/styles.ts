@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -12,6 +12,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   padding: 0rem 2rem;
   box-shadow: 0px 3px 4px rgba(255, 137, 137, 0.108);
+  font-family: 'League Spartan' !important;
   z-index: 10;
 
   .add-button {
@@ -29,9 +30,7 @@ export const Container = styled.div`
       background-color: #ff4784 !important;
     }
   }
-
-
-`;
+`
 
 export const Row = styled.div`
   width: max-content;
@@ -41,8 +40,14 @@ export const Row = styled.div`
   justify-content: center;
   align-items: center;
 
+  button span:nth-child(2) {
+    padding-top: 0.1rem !important ;
+    font-size: 0.93rem;
+  }
+
   .menu-button {
     border: none;
+
     &:active {
       border: none;
     }
@@ -54,12 +59,12 @@ export const Row = styled.div`
       outline: none !important;
     }
   }
-`;
+`
 
 export const Logo = styled.div`
   width: max-content;
   height: max-content;
-  font-family: "Pacifico", cursive;
+  font-family: 'Pacifico', cursive;
   font-size: 1.5rem;
   color: #ed64a6;
-`;
+`
