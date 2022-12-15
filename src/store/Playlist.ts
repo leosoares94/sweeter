@@ -2,6 +2,10 @@ import create from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { Tweet } from './Tracks'
 
+import profilePic from '../assets/mock/sweeter_profile2.jpg'
+import poster1 from '../assets/mock/sweeter_poster_1.jpg'
+import poster2 from '../assets/mock/sweeter_poster_2.jpg'
+
 export interface Item {
   duration: number
   showMedia: boolean
@@ -35,9 +39,8 @@ export const usePlaylists = create<PlaylistState>()(
     playlists: [
       {
         id: '123456789456',
-        name: 'Tweets from Tesla i like',
-        description:
-          "Some Tweets i've selected from Tesla's Twitter timeline to display on business presentation.",
+        name: 'Welcome to Sweeter demo',
+        description: 'Some Tweets to demonstrate how sweeter works',
         textColor: 'white',
         backgroundImage:
           'https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8',
@@ -47,10 +50,9 @@ export const usePlaylists = create<PlaylistState>()(
             id: '1595148649163460609',
             author: {
               id: '13298072',
-              avatar:
-                'https://pbs.twimg.com/profile_images/1337607516008501250/6Ggc4S5n_normal.png',
-              name: 'Tesla',
-              username: 'Tesla',
+              avatar: profilePic,
+              name: 'Sweeter',
+              username: 'GetSweeter',
               verified: true,
             },
             duration: 5,
@@ -68,21 +70,14 @@ export const usePlaylists = create<PlaylistState>()(
               quotes: 0,
             },
             retweet: {
-              id: '1595114899595591681',
-              author_id: '1346535293449428992',
-              author_avatar:
-                'https://pbs.twimg.com/profile_images/1362134815844294661/vKTmG2CO_normal.jpg',
+              id: null,
+              author_id: null,
+              author_avatar: null,
               // eslint-disable-next-line @typescript-eslint/comma-dangle
-              verified: true,
+              verified: null,
             },
-            text: 'RT @TeslaCharging: 40k Superchargers around the world — and counting https://t.co/w6tShTkwPA',
-            images: [
-              'https://pbs.twimg.com/media/FiL5z62UcAE77b1.jpg',
-              'https://pbs.twimg.com/media/FiL5z7VUUAAqOQv.jpg',
-              'https://pbs.twimg.com/media/FiL5z68VsAAOzz_.jpg',
-              'https://pbs.twimg.com/media/FiL5z69UUAIYov5.jpg',
-              'https://img-cdn.inc.com/image/upload/w_1920,h_1080,c_fill/images/panoramic/GettyImages-1130678533_473619_xj1qdn.jpg',
-            ],
+            text: 'Bem-vindo à demo do Sweeter! \n\nEste software faz parte do meu portfólio pessoal. Você pode entrar em contato comigo através do meu LinkedIn linkedin.com/leosoares94 ou e-mail leo@getsweeter.com.',
+            images: [poster1],
             videos: [],
           },
           {

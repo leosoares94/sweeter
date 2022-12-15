@@ -45,13 +45,16 @@ export const Row = styled.div`
 
 export const Column = styled.div`
   width: 100%;
-  height: 20rem;
+  max-height: 20rem;
   display: flex;
   flex-direction: column;
   padding-right: 0.4rem;
-  padding-bottom: 0.8rem;
   overflow-y: scroll;
   box-sizing: border-box;
+
+  .filters-column {
+    height: 20rem;
+  }
 
   ::-webkit-scrollbar {
     width: 3px;

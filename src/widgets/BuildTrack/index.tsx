@@ -92,18 +92,19 @@ const BuildTrack: React.FC = () => {
       }}
     >
       <ModalHeader>
-        <Title> Let&apos;s build your track!</Title>
-        <br />
-        <span
-          style={{
-            fontSize: 13,
-            fontWeight: 'normal',
-            color: 'rgba(0,0,0,0.5)',
-          }}
-        >
-          Select some options and add some filters below to customize your
-          results:
-        </span>
+        <Column className="header-column">
+          <Title> Let&apos;s build your track!</Title>
+          <span
+            style={{
+              fontSize: 13,
+              fontWeight: 'normal',
+              color: 'rgba(0,0,0,0.5)',
+            }}
+          >
+            Select some options and add some filters below to customize your
+            results:
+          </span>
+        </Column>
         {/* <Tabs
           size="xs"
           variant="soft-rounded"
@@ -128,7 +129,7 @@ const BuildTrack: React.FC = () => {
         alignItems="center"
         justifyContent="center"
       >
-        <Column>
+        <Column className="filters-column">
           {Boolean(isEnabled('main')) && (
             <MainOptions
               hasNext={booleanFilters.length > 0 || contentFilters.length > 0}
@@ -194,7 +195,7 @@ const BuildTrack: React.FC = () => {
           disabled={isDisabledByRequired()}
           padding=" 1rem 0rem"
         >
-          LIFT OFF!
+          FINISH
         </Button>
       </ModalFooter>
     </div>
