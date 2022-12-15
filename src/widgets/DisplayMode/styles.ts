@@ -19,7 +19,7 @@ export const Container = styled.div<ContainerProps>`
 export const Logo = styled.div`
   width: max-content;
   height: max-content;
-  font-family: "Pacifico", cursive;
+  font-family: 'Pacifico', cursive;
   font-size: 1.5rem;
   color: #ffffffbe;
   position: absolute;
@@ -30,10 +30,10 @@ export const Logo = styled.div`
 
 export const Website = styled.div`
   color: #ffffffbe;
-  font-size: .9rem;
+  font-size: 0.9rem;
   position: absolute;
   bottom: 0;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   text-shadow: 1px 1px 1px #0000003e;
 `
 
@@ -56,6 +56,20 @@ export const Time = styled.div<TimeProps>`
   background-color: #ffffffc6;
   position: absolute;
   top: 0;
-  left:0 ;
+  left: 0;
   animation: ${progress} ${({ duration }) => `${duration!}s`} linear;
+  z-index: 2;
+`
+
+export const EditControls = styled.div`
+  width: 13rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  margin-left: 1rem;
+  left: 0;
+  z-index: 10000;
 `

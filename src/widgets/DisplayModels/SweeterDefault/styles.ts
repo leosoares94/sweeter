@@ -17,6 +17,7 @@ export const Container = styled(motion.div)<BubbleContainerProps>`
   box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151);
   opacity: ${({ containerOpacity }) => containerOpacity};
   transition: opacity 0.3s;
+  z-index: 200;
 
   .username {
     padding-left: 0.85rem;
@@ -26,7 +27,6 @@ export const Container = styled(motion.div)<BubbleContainerProps>`
     opacity: ${({ opacity }) => opacity};
     padding-top: 1rem;
     padding-bottom: 5.4rem;
-    z-index: 5000;
     transition: opacity ease 2s;
   }
 
