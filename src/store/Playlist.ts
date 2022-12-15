@@ -21,8 +21,14 @@ export interface Playlist {
   name: string
   description: string
   textColor: string
+  linkColor?: string
   backgroundImage?: string
-  backgroundColor?: string
+  backgroundColor: string
+  showEngagement?: boolean
+  showSource?: boolean
+  showDate?: boolean
+  showMedia?: boolean
+  animated?: boolean
   tweets: Item[] & Tweet[]
 }
 
@@ -44,7 +50,7 @@ export const usePlaylists = create<PlaylistState>()(
         textColor: 'white',
         backgroundImage:
           'https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8',
-        backgroundColor: '#ed64a6',
+        backgroundColor: '#646ded',
         tweets: [
           {
             id: '1595148649163460609',

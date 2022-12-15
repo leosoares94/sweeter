@@ -42,8 +42,9 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
                     as="span"
                     flex="1"
                     textAlign="left"
+                    fontSize=".9rem"
                     paddingTop=".25rem"
-                    paddingLeft={Boolean(icons) && ('.2rem' as any)}
+                    paddingLeft={Boolean(icons) && ('.4rem' as any)}
                   >
                     {title[index]}
                   </Box>

@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 
 interface ContainerProps {
-  background: string
+  backgroundColor: string
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -12,7 +12,7 @@ export const Container = styled.div<ContainerProps>`
   justify-content: center;
   align-items: center;
   position: fixed;
-  background: ${({ background }) => background};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   z-index: 10000000;
 `
 
@@ -62,7 +62,7 @@ export const Time = styled.div<TimeProps>`
 `
 
 export const EditControls = styled.div`
-  width: 13rem;
+  width: 14rem;
   height: 100vh;
   display: flex;
   flex-direction: column;

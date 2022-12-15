@@ -7,7 +7,7 @@ import { BsCircleFill } from 'react-icons/bs'
 import { Container, Logo, Time, Website, EditControls } from './styles'
 
 import SweeterDefault from '../DisplayModels/SweeterDefault'
-import { Playlist } from '../../store/Playlist'
+import { Playlist, usePlaylists } from '../../store/Playlist'
 import Accordion from '../Accordion'
 
 interface DisplayModeProps {
@@ -20,9 +20,8 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ background, playlist }) => {
   const [duration, setDuration] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  /* -- Playlist visual customization -- */
-
-  /* -- Playlist visual customization end -- */
+  const { playlists } = usePlaylists((state) => state)
+  const { backgroundColor } = playlists[0]
 
   const displayRef = useRef<HTMLDivElement>(null)
 
@@ -56,7 +55,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ background, playlist }) => {
   return (
     <Container
       ref={displayRef}
-      background="linear-gradient(to right, #00d2ff, #3a7bd5);"
+      backgroundColor={backgroundColor}
       tabIndex={0}
       onKeyDown={handleTweet}
     >
