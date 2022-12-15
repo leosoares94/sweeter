@@ -198,7 +198,7 @@ interface ImageProps {
 
 export const Image = styled.div<ImageProps>`
   width: ${({ count }) => (count > 1 ? '49.5%' : '100%')};
-  height: ${({ count }) => (count > 1 ? '6rem' : '11rem')};
+  height: ${({ count }) => (count > 1 ? '6rem' : '12rem')};
   background-image: url(${({ src }) => src});
   background-size: cover;
   background-position: center;

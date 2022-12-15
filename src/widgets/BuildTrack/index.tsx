@@ -13,7 +13,7 @@ import {
   TabPanel,
 } from '@chakra-ui/react'
 
-import Select from 'react-select'
+// import Select from 'react-select'
 
 import { IoIosRocket } from 'react-icons/io'
 
@@ -104,7 +104,7 @@ const BuildTrack: React.FC = () => {
           Select some options and add some filters below to customize your
           results:
         </span>
-        <Tabs
+        {/* <Tabs
           size="xs"
           variant="soft-rounded"
           className="tabs"
@@ -117,7 +117,7 @@ const BuildTrack: React.FC = () => {
             <Tab padding=".2rem 1rem">Inserir Link</Tab>
             <Tab padding=".2rem 1rem">Buscar Timeline</Tab>
           </TabList>
-        </Tabs>
+        </Tabs> */}
       </ModalHeader>
       <ModalCloseButton onClick={() => resetBuilder()} />
 

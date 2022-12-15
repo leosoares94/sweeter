@@ -45,7 +45,7 @@ export const Row = styled.div`
 
 export const Column = styled.div`
   width: 100%;
-  height: 19rem;
+  height: 20rem;
   display: flex;
   flex-direction: column;
   padding-right: 0.4rem;
@@ -77,7 +77,7 @@ export const IconContainer = styled.div<IconContainerProps>`
 
 export const Title = styled.span`
   font-family: 'League Spartan' !important;
-  font-size: 1.05em;
+  font-size: 0.95em;
   font-weight: bolder !important;
   color: #272727cc;
 `
