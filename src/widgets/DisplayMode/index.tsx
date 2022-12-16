@@ -3,6 +3,7 @@ import { BlockPicker } from 'react-color'
 
 import { IoColorPaletteOutline } from 'react-icons/io5'
 import { BsCircleFill } from 'react-icons/bs'
+import { AiOutlineEye } from 'react-icons/ai'
 
 import { Container, Logo, Time, Website, EditControls } from './styles'
 
@@ -81,6 +82,23 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
           >
             <BlockPicker triangle="hide" color={textColor} onChange={(color) => updateItem(playlist.id, { textColor: color.hex })} />
             <BlockPicker triangle="hide" color={backgroundColor} onChange={(color) => updateItem(playlist.id, { backgroundColor: color.hex })}/>
+            <BlockPicker triangle="hide" color={linkColor} onChange={(color) => updateItem(playlist.id, { linkColor: color.hex })}/>
+          </Accordion>
+        </Accordion>
+        <br />
+        <Accordion title={['Mostrar/Ocultar']} icons={[<AiOutlineEye key={1} />]}>
+          <Accordion
+            title={['Data', 'Mídia', 'Métricas', 'Dispositivo']}
+            icons={[
+              <BsCircleFill size={13} key={1} color={textColor} />,
+              <BsCircleFill size={12} key={2} color={backgroundColor} />,
+              <BsCircleFill size={12} key={3} color={linkColor} />,
+              <BsCircleFill size={12} key={3} color={linkColor} />
+            ]}
+          >
+            <BlockPicker triangle="hide" color={textColor} onChange={(color) => updateItem(playlist.id, { textColor: color.hex })} />
+            <BlockPicker triangle="hide" color={backgroundColor} onChange={(color) => updateItem(playlist.id, { backgroundColor: color.hex })}/>
+            <BlockPicker triangle="hide" color={linkColor} onChange={(color) => updateItem(playlist.id, { linkColor: color.hex })}/>
             <BlockPicker triangle="hide" color={linkColor} onChange={(color) => updateItem(playlist.id, { linkColor: color.hex })}/>
           </Accordion>
         </Accordion>
