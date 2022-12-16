@@ -74,7 +74,6 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
         <Accordion
           title={['Cores']}
           icons={[<IoColorPaletteOutline key={1} />]}
-          nested={true}
         >
           <Accordion
             title={['Texto', 'Fundo', 'Links']}
@@ -110,7 +109,6 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
         <Accordion
           title={['Mostrar/Ocultar']}
           icons={[<AiOutlineEye key={1} />]}
-          nested={false}
         >
           <Stack
             direction="column"
@@ -118,7 +116,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
             paddingLeft="1rem"
           >
             <Checkbox
-              size="sm"
+              size="md"
               colorScheme="pink"
               textColor="#000000a3"
               defaultChecked
@@ -126,7 +124,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
               Data
             </Checkbox>
             <Checkbox
-              size="sm"
+              size="md"
               colorScheme="pink"
               textColor="#000000a3"
               defaultChecked
@@ -134,7 +132,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
               Mídia
             </Checkbox>
             <Checkbox
-              size="sm"
+              size="md"
               colorScheme="pink"
               textColor="#000000a3"
               defaultChecked
@@ -142,7 +140,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
               Avatar
             </Checkbox>
             <Checkbox
-              size="sm"
+              size="md"
               colorScheme="pink"
               textColor="#000000a3"
               defaultChecked
@@ -150,7 +148,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
               Métricas
             </Checkbox>
             <Checkbox
-              size="sm"
+              size="md"
               colorScheme="pink"
               textColor="#000000a3"
               defaultChecked

@@ -14,15 +14,9 @@ interface AccordionProps {
   title: string[]
   children: React.ReactNode
   icons?: React.ReactNode[]
-  nested?: boolean
 }
 
-const Accordion: React.FC<AccordionProps> = ({
-  title,
-  children,
-  icons,
-  nested,
-}) => {
+const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
   return (
     <ChakraProvider>
       <Container
