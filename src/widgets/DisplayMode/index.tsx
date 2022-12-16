@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { BlockPicker } from 'react-color'
-
+import { Checkbox, Stack } from '@chakra-ui/react'
 import { IoColorPaletteOutline } from 'react-icons/io5'
 import { BsCircleFill } from 'react-icons/bs'
 import { AiOutlineEye } from 'react-icons/ai'
@@ -26,7 +26,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
 
   const displayRef = useRef<HTMLDivElement>(null)
 
-  function switchDisplayModels (modelName: string): JSX.Element | undefined {
+  function switchDisplayModels(modelName: string): JSX.Element | undefined {
     switch (modelName) {
       case 'sweeter-default':
         return (
@@ -34,7 +34,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
             data={{
               tweet: playlist.tweets[currentIndex],
               textColor: playlist.textColor,
-              linkColor: playlist.linkColor
+              linkColor: playlist.linkColor,
             }}
             onStartTimer={setDuration}
           />
@@ -49,8 +49,8 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
       ? setCurrentIndex(currentIndex - 1)
       : (event.code === 'ArrowRight' || event.code === 'Space') &&
         currentIndex < playlist.tweets.length - 1
-          ? setCurrentIndex(currentIndex + 1)
-          : false
+      ? setCurrentIndex(currentIndex + 1)
+      : false
   }
 
   useEffect(() => {
@@ -71,35 +71,93 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
         <span>Sweeter</span>
       </Logo>
       <EditControls>
-        <Accordion title={['Cores']} icons={[<IoColorPaletteOutline key={1} />]}>
+        <Accordion
+          title={['Cores']}
+          icons={[<IoColorPaletteOutline key={1} />]}
+          nested={true}
+        >
           <Accordion
             title={['Texto', 'Fundo', 'Links']}
             icons={[
               <BsCircleFill size={13} key={1} color={textColor} />,
               <BsCircleFill size={12} key={2} color={backgroundColor} />,
-              <BsCircleFill size={12} key={3} color={linkColor} />
+              <BsCircleFill size={12} key={3} color={linkColor} />,
             ]}
           >
-            <BlockPicker triangle="hide" color={textColor} onChange={(color) => updateItem(playlist.id, { textColor: color.hex })} />
-            <BlockPicker triangle="hide" color={backgroundColor} onChange={(color) => updateItem(playlist.id, { backgroundColor: color.hex })}/>
-            <BlockPicker triangle="hide" color={linkColor} onChange={(color) => updateItem(playlist.id, { linkColor: color.hex })}/>
+            <BlockPicker
+              triangle="hide"
+              color={textColor}
+              onChange={(color) =>
+                updateItem(playlist.id, { textColor: color.hex })
+              }
+            />
+            <BlockPicker
+              triangle="hide"
+              color={backgroundColor}
+              onChange={(color) =>
+                updateItem(playlist.id, { backgroundColor: color.hex })
+              }
+            />
+            <BlockPicker
+              triangle="hide"
+              color={linkColor}
+              onChange={(color) =>
+                updateItem(playlist.id, { linkColor: color.hex })
+              }
+            />
           </Accordion>
         </Accordion>
-        <Accordion title={['Mostrar/Ocultar']} icons={[<AiOutlineEye key={1} />]}>
-          <Accordion
-            title={['Data', 'Mídia', 'Métricas', 'Dispositivo']}
-            icons={[
-              <BsCircleFill size={13} key={1} color={textColor} />,
-              <BsCircleFill size={12} key={2} color={backgroundColor} />,
-              <BsCircleFill size={12} key={3} color={linkColor} />,
-              <BsCircleFill size={12} key={3} color={linkColor} />
-            ]}
+        <Accordion
+          title={['Mostrar/Ocultar']}
+          icons={[<AiOutlineEye key={1} />]}
+          nested={false}
+        >
+          <Stack
+            direction="column"
+            sx={{ fontFamily: 'League Spartan' }}
+            paddingLeft="1rem"
           >
-            <BlockPicker triangle="hide" color={textColor} onChange={(color) => updateItem(playlist.id, { textColor: color.hex })} />
-            <BlockPicker triangle="hide" color={backgroundColor} onChange={(color) => updateItem(playlist.id, { backgroundColor: color.hex })}/>
-            <BlockPicker triangle="hide" color={linkColor} onChange={(color) => updateItem(playlist.id, { linkColor: color.hex })}/>
-            <BlockPicker triangle="hide" color={linkColor} onChange={(color) => updateItem(playlist.id, { linkColor: color.hex })}/>
-          </Accordion>
+            <Checkbox
+              size="sm"
+              colorScheme="pink"
+              textColor="#000000a3"
+              defaultChecked
+            >
+              Data
+            </Checkbox>
+            <Checkbox
+              size="sm"
+              colorScheme="pink"
+              textColor="#000000a3"
+              defaultChecked
+            >
+              Mídia
+            </Checkbox>
+            <Checkbox
+              size="sm"
+              colorScheme="pink"
+              textColor="#000000a3"
+              defaultChecked
+            >
+              Avatar
+            </Checkbox>
+            <Checkbox
+              size="sm"
+              colorScheme="pink"
+              textColor="#000000a3"
+              defaultChecked
+            >
+              Métricas
+            </Checkbox>
+            <Checkbox
+              size="sm"
+              colorScheme="pink"
+              textColor="#000000a3"
+              defaultChecked
+            >
+              Dispositivo
+            </Checkbox>
+          </Stack>
         </Accordion>
       </EditControls>
       <Website>getsweeter.vercel.app</Website>

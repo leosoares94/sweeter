@@ -7,16 +7,22 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  ChakraProvider
+  ChakraProvider,
 } from '@chakra-ui/react'
 
 interface AccordionProps {
   title: string[]
   children: React.ReactNode
   icons?: React.ReactNode[]
+  nested?: boolean
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
+const Accordion: React.FC<AccordionProps> = ({
+  title,
+  children,
+  icons,
+  nested,
+}) => {
   return (
     <ChakraProvider>
       <Container
@@ -25,7 +31,8 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
         sx={{
           backgroundColor: '#ffffff',
           borderRadius: '.5rem',
-          marginTop: '.5rem'
+          marginTop: '.5rem',
+          boxShadow: '1px 3px 10px rgba(221, 117, 117, 0.151)',
         }}
       >
         {React.Children.map(children, (child, index) => {
@@ -34,7 +41,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
               <h2
                 style={{
                   fontFamily: 'League Spartan',
-                  color: '#363636b2'
+                  color: '#363636b2',
                 }}
               >
                 <AccordionButton border="none">
@@ -45,7 +52,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
                     textAlign="left"
                     fontSize=".9rem"
                     paddingTop=".25rem"
-                    paddingLeft={(icons != null) ? '.4rem' : '0rem'}
+                    paddingLeft={icons != null ? '.4rem' : '0rem'}
                   >
                     {title[index]}
                   </Box>
