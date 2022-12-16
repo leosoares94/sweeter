@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import styled, { keyframes } from 'styled-components'
 
 interface ContainerProps {
@@ -57,7 +58,7 @@ export const Time = styled.div<TimeProps>`
   position: absolute;
   top: 0;
   left: 0;
-  animation: ${progress} ${({ duration }) => `${duration!}s`} linear;
+  animation: ${progress} ${({ duration }) => `${duration}s`} linear;
   z-index: 2;
 `
 

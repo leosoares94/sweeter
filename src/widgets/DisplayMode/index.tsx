@@ -16,21 +16,25 @@ interface DisplayModeProps {
   editMode?: boolean
 }
 
-const DisplayMode: React.FC<DisplayModeProps> = ({ background, playlist }) => {
+const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
   const [duration, setDuration] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const { playlists } = usePlaylists((state) => state)
-  const { backgroundColor } = playlists[0]
+  const { updateItem } = usePlaylists((state) => state)
+  const { backgroundColor, textColor, linkColor } = playlist
 
   const displayRef = useRef<HTMLDivElement>(null)
 
-  function switchDisplayModels(modelName: string): JSX.Element | undefined {
+  function switchDisplayModels (modelName: string): JSX.Element | undefined {
     switch (modelName) {
       case 'sweeter-default':
         return (
           <SweeterDefault
-            data={playlist.tweets[currentIndex]}
+            data={{
+              tweet: playlist.tweets[currentIndex],
+              textColor: playlist.textColor,
+              linkColor: playlist.linkColor
+            }}
             onStartTimer={setDuration}
           />
         )
@@ -44,8 +48,8 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ background, playlist }) => {
       ? setCurrentIndex(currentIndex - 1)
       : (event.code === 'ArrowRight' || event.code === 'Space') &&
         currentIndex < playlist.tweets.length - 1
-      ? setCurrentIndex(currentIndex + 1)
-      : false
+          ? setCurrentIndex(currentIndex + 1)
+          : false
   }
 
   useEffect(() => {
@@ -66,18 +70,18 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ background, playlist }) => {
         <span>Sweeter</span>
       </Logo>
       <EditControls>
-        <Accordion title={['Cores']} icons={[<IoColorPaletteOutline />]}>
+        <Accordion title={['Cores']} icons={[<IoColorPaletteOutline key={1} />]}>
           <Accordion
             title={['Texto', 'Fundo', 'Links']}
             icons={[
-              <BsCircleFill size={12} />,
-              <BsCircleFill size={12} />,
-              <BsCircleFill size={12} />,
+              <BsCircleFill size={13} key={1} color={textColor} />,
+              <BsCircleFill size={12} key={2} color={backgroundColor} />,
+              <BsCircleFill size={12} key={3} color={linkColor} />
             ]}
           >
-            <BlockPicker triangle="hide" />
-            <BlockPicker triangle="hide" />
-            <BlockPicker triangle="hide" />
+            <BlockPicker triangle="hide" color={textColor} onChange={(color) => updateItem(playlist.id, { textColor: color.hex })} />
+            <BlockPicker triangle="hide" color={backgroundColor} onChange={(color) => updateItem(playlist.id, { backgroundColor: color.hex })}/>
+            <BlockPicker triangle="hide" color={linkColor} onChange={(color) => updateItem(playlist.id, { linkColor: color.hex })}/>
           </Accordion>
         </Accordion>
       </EditControls>

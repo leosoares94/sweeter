@@ -15,7 +15,8 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': 'off',
     'eslint-disable-next-line react/no-children-prop': 'off',
     '@typescript-eslint/no-invalid-void-type': 'off',
-    '@typescript-eslint/no-unused-expressions': 'off'
+    '@typescript-eslint/no-unused-expressions': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off'
   },
   settings: {
     react: {

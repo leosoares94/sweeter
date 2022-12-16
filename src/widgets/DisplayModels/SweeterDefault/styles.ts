@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-type BubbleContainerProps = {
+interface BubbleContainerProps {
   height?: string
   opacity: number
   containerOpacity: number
@@ -84,11 +84,17 @@ export const Name = styled.span`
   font-weight: 600;
 `
 
-export const Text = styled.span`
+interface TextProps {
+  color?: string
+  linkColor?: string
+}
+
+export const Text = styled.span<TextProps>`
   font-size: 1.2rem;
   white-space: pre-line;
+  color: ${({ color }) => color} !important;
   a {
-    color: #d45994;
+    color:  ${({ linkColor }) => linkColor} !important;;
     &:hover {
       text-decoration: underline;
     }
@@ -136,7 +142,7 @@ export const MediaContainer = styled.div`
   }
 `
 
-type ImageProps = {
+interface ImageProps {
   src: string
 }
 

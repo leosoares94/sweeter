@@ -31,12 +31,17 @@ import { Tweet } from '../../../store/Tracks'
 import { Item } from '../../../store/Playlist'
 
 interface BubbleProps {
-  data: Tweet & Item
+  data: {
+    tweet: Tweet & Item
+    textColor?: string
+    linkColor?: string
+  }
+
   onStartTimer: (duration: number) => void
 }
 
 const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
-  const [content, setContent] = useState<BubbleProps['data']>(data)
+  const [content, setContent] = useState<BubbleProps['data']['tweet']>(data.tweet)
   const [visible, setVisible] = useState<boolean>(true)
   const [contentOpacity, setBoxOpacity] = useState(0)
   const [containerOpacity, setContainerOpacity] = useState(0)
@@ -58,7 +63,7 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
     await delay(200)
     setStoppedTweetIcon(false)
     await delay(200)
-    onStartTimer(data.duration)
+    onStartTimer(data.tweet.duration)
   }
 
   const hide = (): void => {
@@ -72,14 +77,14 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
       hide()
       await delay(120)
       setVisible(false)
-      setContent(data)
+      setContent(data.tweet)
       onStartTimer(0)
       await delay(50)
       setVisible(true)
       await delay(50)
       void reveal()
     })()
-  }, [data])
+  }, [data.tweet])
 
   const options = {
     formatHref: {
@@ -133,7 +138,7 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
                 </Text>
               </Row>
             )}
-            <Text>
+            <Text color={data.textColor} linkColor={data.linkColor}>
               <Linkify options={{ ...options, target: '_blank' }}>
                 {(Boolean(content.retweet.id)) && (
                   <Avatar src={content.retweet.author_avatar ?? ''} size="sm" />
