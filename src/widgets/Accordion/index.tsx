@@ -24,7 +24,8 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
         width="100%"
         sx={{
           backgroundColor: '#ffffff',
-          borderRadius: '.5rem'
+          borderRadius: '.5rem',
+          marginTop: '.5rem'
         }}
       >
         {React.Children.map(children, (child, index) => {

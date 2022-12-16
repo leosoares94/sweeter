@@ -85,7 +85,6 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
             <BlockPicker triangle="hide" color={linkColor} onChange={(color) => updateItem(playlist.id, { linkColor: color.hex })}/>
           </Accordion>
         </Accordion>
-        <br />
         <Accordion title={['Mostrar/Ocultar']} icons={[<AiOutlineEye key={1} />]}>
           <Accordion
             title={['Data', 'Mídia', 'Métricas', 'Dispositivo']}
