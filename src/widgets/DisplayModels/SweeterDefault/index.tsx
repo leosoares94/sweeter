@@ -35,13 +35,16 @@ interface BubbleProps {
     tweet: Tweet & Item
     textColor?: string
     linkColor?: string
+    showDate?: boolean
   }
 
   onStartTimer: (duration: number) => void
 }
 
 const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
-  const [content, setContent] = useState<BubbleProps['data']['tweet']>(data.tweet)
+  const [content, setContent] = useState<BubbleProps['data']['tweet']>(
+    data.tweet
+  )
   const [visible, setVisible] = useState<boolean>(true)
   const [contentOpacity, setBoxOpacity] = useState(0)
   const [containerOpacity, setContainerOpacity] = useState(0)
@@ -86,6 +89,17 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
     })()
   }, [data.tweet])
 
+  useEffect(() => {
+    void (async (): Promise<void> => {
+      setVisible(false)
+      setContent(data.tweet)
+      onStartTimer(0)
+      setVisible(true)
+      await delay(50)
+      void reveal()
+    })()
+  }, [content.showMedia, content.showTime, content.showSource, content.showEngagement])
+
   const options = {
     formatHref: {
       hashtag: (href: string) =>
@@ -95,84 +109,101 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
   }
 
   return (
-
     <ChakraProvider>
-      {visible && <Container
-        opacity={contentOpacity}
-        containerOpacity={containerOpacity}
-        initial={{ height: '0rem' }}
-        animate={{ height: contentRef.current?.getBoundingClientRect().height }}
-        transition={{
-          type: 'spring',
-          stiffness: 260,
-          damping: 41
-        }}
-      >
-        <Column className="first-column" >
-          <Row className="bubble-header" >
-            <Avatar name={content.author.name} src={content.author.avatar} />
-            <Column className="username">
-              <Row>
-                <Name>{content.author.name}&nbsp;</Name>
-                <MdVerified size={18} color="#1d9af1" />
-              </Row>
-              <Username>@{content.author.username}</Username>
-            </Column>
-            <Lottie
-              options={defaultOptions}
-              height={60}
-              width={60}
-              isStopped={stoppedTweetIcon}
-            />
-          </Row>
-          <Column className="bubble-tweet" ref={contentRef}>
-            {(Boolean(content.retweet.id)) && (
-              <Row style={{ paddingBottom: '.2rem', opacity: 0.8 }}>
-                <AiOutlineRetweet
-                  className="retweet-flag-icon"
-                  style={{ marginTop: '-.1rem' }}
-                  size={19}
+      {visible && (
+        <Container
+          opacity={contentOpacity}
+          containerOpacity={containerOpacity}
+          initial={{ height: '0rem' }}
+          animate={{
+            height: contentRef.current?.getBoundingClientRect().height
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 260,
+            damping: 41
+          }}
+        >
+          <Column className="first-column">
+            <Row className="bubble-header">
+              {content.showAvatar && (
+                <Avatar
+                  name={content.author.name}
+                  src={content.author.avatar}
                 />
-                <Text style={{ fontSize: '1.1rem', paddingLeft: '.2rem' }}>
-                  Retweet
-                </Text>
+              )}
+              <Column className="username">
+                <Row>
+                  <Name>{content.author.name}&nbsp;</Name>
+                  <MdVerified size={18} color="#1d9af1" />
+                </Row>
+                <Username>@{content.author.username}</Username>
+              </Column>
+              <Lottie
+                options={defaultOptions}
+                height={60}
+                width={60}
+                isStopped={stoppedTweetIcon}
+              />
+            </Row>
+            <Column className="bubble-tweet" ref={contentRef} style={{ paddingBottom: content.showEngagement ? '5.4rem' : '3.4rem' }}>
+              {Boolean(content.retweet.id) && (
+                <Row style={{ paddingBottom: '.2rem', opacity: 0.8 }}>
+                  <AiOutlineRetweet
+                    className="retweet-flag-icon"
+                    style={{ marginTop: '-.1rem' }}
+                    size={19}
+                  />
+                  <Text style={{ fontSize: '1.1rem', paddingLeft: '.2rem' }}>
+                    Retweet
+                  </Text>
+                </Row>
+              )}
+              <Text color={data.textColor} linkColor={data.linkColor}>
+                <Linkify options={{ ...options, target: '_blank' }}>
+                  {Boolean(content.retweet.id) && (
+                    <Avatar
+                      src={content.retweet.author_avatar ?? ''}
+                      size="sm"
+                    />
+                  )}
+                  {content.text.replace('RT', '')}
+                </Linkify>
+              </Text>
+              <Time>
+                {/* {formatHour(new Date(content.created_at))} -{" "} */}
+                {content.showTime && formatDate(new Date(content.created_at))}
+                {content.showSource && <Source> - {content.source}</Source>}
+              </Time>
+            </Column>
+            {content.showEngagement && (
+              <Row className="engagement-container" style={{ position: content.showEngagement ? 'absolute' : 'fixed' }}>
+                <Engagement>
+                  <FaRegComment size={15} />
+                  <span>&nbsp;{content.metrics.replies}</span>
+                </Engagement>
+                <Engagement>
+                  <AiOutlineRetweet size={18} />
+                  <span>&nbsp;{content.metrics.retweets}</span>
+                </Engagement>
+                <Engagement>
+                  <AiOutlineHeart size={18} />
+                  <span>&nbsp;{content.metrics.likes}</span>
+                </Engagement>
               </Row>
             )}
-            <Text color={data.textColor} linkColor={data.linkColor}>
-              <Linkify options={{ ...options, target: '_blank' }}>
-                {(Boolean(content.retweet.id)) && (
-                  <Avatar src={content.retweet.author_avatar ?? ''} size="sm" />
-                )}
-                {content.text.replace('RT', '')}
-              </Linkify>
-            </Text>
-            <Time>
-              {/* {formatHour(new Date(content.created_at))} -{" "} */}
-              {formatDate(new Date(content.created_at))} -{' '}
-              <Source>{content.source}</Source>
-            </Time>
           </Column>
-          <Row className="engagement-container">
-            <Engagement>
-              <FaRegComment size={15} />
-              <span>&nbsp;{content.metrics.replies}</span>
-            </Engagement>
-            <Engagement>
-              <AiOutlineRetweet size={18} />
-              <span>&nbsp;{content.metrics.retweets}</span>
-            </Engagement>
-            <Engagement>
-              <AiOutlineHeart size={18} />
-              <span>&nbsp;{content.metrics.likes}</span>
-            </Engagement>
-          </Row>
-        </Column>
-        {content.images.length > 0 && (
-          <MediaContainer style={{ height: contentRef.current?.getBoundingClientRect().height }}>
-            <Image src={content.images[0]} />
-          </MediaContainer>
-        )}
-      </Container>}
+          {content.showMedia && content.images.length > 0 && (
+            <MediaContainer
+              style={{
+                height: contentRef.current?.getBoundingClientRect().height
+              }}
+            >
+              <Image src={content.images[0]} />
+            </MediaContainer>
+          )}
+        </Container>
+      )}
     </ChakraProvider>
   )
 }

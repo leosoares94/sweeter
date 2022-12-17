@@ -7,6 +7,7 @@ import poster1 from '../assets/mock/sweeter_poster_1.jpg'
 import poster2 from '../assets/mock/sweeter_poster_2.jpg'
 
 export interface Item {
+  id: string
   duration: number
   showMedia: boolean
   showTime: boolean
@@ -24,10 +25,6 @@ export interface Playlist {
   linkColor?: string
   backgroundImage?: string
   backgroundColor: string
-  showEngagement?: boolean
-  showSource?: boolean
-  showDate?: boolean
-  showMedia?: boolean
   animated?: boolean
   tweets: Item[] & Tweet[]
 }
@@ -65,7 +62,7 @@ export const usePlaylists = create<PlaylistState>()(
             duration: 5,
             showAvatar: true,
             showMedia: true,
-            showTime: true,
+            showTime: false,
             showSource: true,
             showEngagement: true,
             source: 'Twitter for Mac',

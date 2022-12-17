@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { BlockPicker } from 'react-color'
-import { Checkbox, Stack } from '@chakra-ui/react'
-import { IoColorPaletteOutline } from 'react-icons/io5'
-import { BsCircleFill } from 'react-icons/bs'
-import { AiOutlineEye } from 'react-icons/ai'
 
-import { Container, Logo, Time, Website, EditControls } from './styles'
+import { Container, Logo, Time, Website } from './styles'
 
 import SweeterDefault from '../DisplayModels/SweeterDefault'
-import { Playlist, usePlaylists } from '../../store/Playlist'
-import Accordion from '../Accordion'
+import { Playlist } from '../../store/Playlist'
+
+import delay from 'delay'
+import EditControls from '../EditControls'
 
 interface DisplayModeProps {
   playlist: Playlist
@@ -21,12 +18,11 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
   const [duration, setDuration] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const { updateItem } = usePlaylists((state) => state)
-  const { backgroundColor, textColor, linkColor } = playlist
+  const { backgroundColor } = playlist
 
   const displayRef = useRef<HTMLDivElement>(null)
 
-  function switchDisplayModels(modelName: string): JSX.Element | undefined {
+  function switchDisplayModels (modelName: string): JSX.Element | undefined {
     switch (modelName) {
       case 'sweeter-default':
         return (
@@ -34,12 +30,18 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
             data={{
               tweet: playlist.tweets[currentIndex],
               textColor: playlist.textColor,
-              linkColor: playlist.linkColor,
+              linkColor: playlist.linkColor
             }}
             onStartTimer={setDuration}
           />
         )
     }
+  }
+
+  function showEditControls (): JSX.Element | undefined {
+    return (
+      <EditControls playlist={playlist} tweet={playlist.tweets[currentIndex]} />
+    )
   }
 
   const handleTweet: React.KeyboardEventHandler<HTMLDivElement> | undefined = (
@@ -49,8 +51,8 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
       ? setCurrentIndex(currentIndex - 1)
       : (event.code === 'ArrowRight' || event.code === 'Space') &&
         currentIndex < playlist.tweets.length - 1
-      ? setCurrentIndex(currentIndex + 1)
-      : false
+          ? setCurrentIndex(currentIndex + 1)
+          : false
   }
 
   useEffect(() => {
@@ -70,94 +72,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
       <Logo>
         <span>Sweeter</span>
       </Logo>
-      <EditControls>
-        <Accordion
-          title={['Cores']}
-          icons={[<IoColorPaletteOutline key={1} />]}
-        >
-          <Accordion
-            title={['Texto', 'Fundo', 'Links']}
-            icons={[
-              <BsCircleFill size={13} key={1} color={textColor} />,
-              <BsCircleFill size={12} key={2} color={backgroundColor} />,
-              <BsCircleFill size={12} key={3} color={linkColor} />,
-            ]}
-          >
-            <BlockPicker
-              triangle="hide"
-              color={textColor}
-              onChange={(color) =>
-                updateItem(playlist.id, { textColor: color.hex })
-              }
-            />
-            <BlockPicker
-              triangle="hide"
-              color={backgroundColor}
-              onChange={(color) =>
-                updateItem(playlist.id, { backgroundColor: color.hex })
-              }
-            />
-            <BlockPicker
-              triangle="hide"
-              color={linkColor}
-              onChange={(color) =>
-                updateItem(playlist.id, { linkColor: color.hex })
-              }
-            />
-          </Accordion>
-        </Accordion>
-        <Accordion
-          title={['Mostrar/Ocultar']}
-          icons={[<AiOutlineEye key={1} />]}
-        >
-          <Stack
-            direction="column"
-            sx={{ fontFamily: 'League Spartan' }}
-            paddingLeft="1rem"
-          >
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              defaultChecked
-            >
-              Data
-            </Checkbox>
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              defaultChecked
-            >
-              Mídia
-            </Checkbox>
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              defaultChecked
-            >
-              Avatar
-            </Checkbox>
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              defaultChecked
-            >
-              Métricas
-            </Checkbox>
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              defaultChecked
-            >
-              Dispositivo
-            </Checkbox>
-          </Stack>
-        </Accordion>
-      </EditControls>
+      {showEditControls()}
       <Website>getsweeter.vercel.app</Website>
     </Container>
   )
