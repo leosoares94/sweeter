@@ -1,6 +1,15 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import styled, { keyframes } from 'styled-components'
 
+const fade = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
+
 interface ContainerProps {
   backgroundColor: string
 }
@@ -14,6 +23,7 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
   position: fixed;
   background-color: ${({ backgroundColor }) => backgroundColor};
+  animation: ${fade} .2s ease;
   z-index: 10000000;
 `
 

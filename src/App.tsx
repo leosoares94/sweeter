@@ -16,6 +16,7 @@ import DisplayMode from './widgets/DisplayMode'
 import { useBuilder } from './store/Builder'
 import { useTracks } from './store/Tracks'
 import { usePlaylists } from './store/Playlist'
+import delay from 'delay'
 
 const App: React.FC = () => {
   /* Store states */
@@ -23,7 +24,7 @@ const App: React.FC = () => {
   const { tracks } = useTracks((state) => state)
   const { playlists } = usePlaylists((state) => state)
 
-  const [displayMode, setDisplayMode] = useState(true) // Tweet Visualisation mode
+  const [displayMode, setDisplayMode] = useState(false) // Tweet Visualisation mode
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false)
   const [currentModalView, setCurrentModalView] = useState<ReactElement | null>(
@@ -79,7 +80,13 @@ const App: React.FC = () => {
   }
 
   const renderPlaylistModal = (): void => {
-    setCurrentModalView(<Playlist />)
+    setCurrentModalView(<Playlist onItemSelect={() => {
+      void (async () => {
+        setIsModalOpen(false)
+        await delay(220)
+        setDisplayMode(true)
+      })()
+    }} />)
     setIsModalOpen(true)
   }
 
@@ -105,9 +112,6 @@ const App: React.FC = () => {
       >
         {currentModalView}
       </Modal>
-      <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <Playlist onItemSelect={() => setDisplayMode(true)} />
-      </Drawer>
       <Container>
         {tracks.map((track) => (
           <Track key={track.id} tag={track.tweets[0].author.name}>

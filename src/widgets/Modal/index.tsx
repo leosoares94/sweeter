@@ -4,7 +4,7 @@ import {
   ChakraProvider,
   Modal as Container,
   ModalContent,
-  ModalOverlay,
+  ModalOverlay
 } from '@chakra-ui/react'
 
 import { useMediaQuery } from 'react-responsive'
@@ -17,7 +17,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
   const isHd = useMediaQuery({
-    query: '(max-width: 1368px)',
+    query: '(max-width: 1368px)'
   })
 
   return (
@@ -29,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
           minHeight="fit-content"
           sx={{
             position: 'fixed',
-            zoom: isHd ? '1' : '1.2',
+            zoom: isHd ? '1' : '1.2'
           }}
         >
           {children}
