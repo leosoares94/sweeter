@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   padding: 0rem 1.5rem;
   box-sizing: border-box;
   background-color: #f3aeae10;
-`;
+`
 
 export const Container = styled.div`
   width: 100%;
@@ -35,6 +35,6 @@ export const Container = styled.div`
     height: 1.5rem !important;
     font-size: 0.7rem;
   }
-`;
+`
 
-export const Title = styled.span``;
+export const Title = styled.span``

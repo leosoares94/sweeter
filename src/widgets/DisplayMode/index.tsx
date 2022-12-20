@@ -5,16 +5,20 @@ import { Container, Logo, Time, Website } from './styles'
 import SweeterDefault from '../DisplayModels/SweeterDefault'
 import { Playlist } from '../../store/Playlist'
 
-import delay from 'delay'
 import EditControls from '../EditControls'
 
 interface DisplayModeProps {
   playlist: Playlist
   background?: string
   editMode?: boolean
+  onLeave: () => void
 }
 
-const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
+const DisplayMode: React.FC<DisplayModeProps> = ({
+  playlist,
+  editMode,
+  onLeave,
+}) => {
   const [duration, setDuration] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -22,7 +26,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
 
   const displayRef = useRef<HTMLDivElement>(null)
 
-  function switchDisplayModels (modelName: string): JSX.Element | undefined {
+  function switchDisplayModels(modelName: string): JSX.Element | undefined {
     switch (modelName) {
       case 'sweeter-default':
         return (
@@ -30,7 +34,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
             data={{
               tweet: playlist.tweets[currentIndex],
               textColor: playlist.textColor,
-              linkColor: playlist.linkColor
+              linkColor: playlist.linkColor,
             }}
             onStartTimer={setDuration}
           />
@@ -38,7 +42,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
     }
   }
 
-  function showEditControls (): JSX.Element | undefined {
+  function showEditControls(): JSX.Element | undefined {
     return (
       <EditControls playlist={playlist} tweet={playlist.tweets[currentIndex]} />
     )
@@ -51,8 +55,10 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
       ? setCurrentIndex(currentIndex - 1)
       : (event.code === 'ArrowRight' || event.code === 'Space') &&
         currentIndex < playlist.tweets.length - 1
-          ? setCurrentIndex(currentIndex + 1)
-          : false
+      ? setCurrentIndex(currentIndex + 1)
+      : event.code === 'Escape'
+      ? onLeave()
+      : false
   }
 
   useEffect(() => {
@@ -72,7 +78,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({ playlist }) => {
       <Logo>
         <span>Sweeter</span>
       </Logo>
-      {showEditControls()}
+      {editMode && showEditControls()}
       <Website>getsweeter.vercel.app</Website>
     </Container>
   )

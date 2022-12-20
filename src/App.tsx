@@ -25,8 +25,8 @@ const App: React.FC = () => {
   const { playlists } = usePlaylists((state) => state)
 
   const [displayMode, setDisplayMode] = useState(false) // Tweet Visualisation mode
+  const [displayModeEditable, setDisplayModeEditable] = useState(false) // Tweet Visualisation editable mode
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false)
   const [currentModalView, setCurrentModalView] = useState<ReactElement | null>(
     null
   ) // Which component will be rendered inside modal
@@ -44,7 +44,7 @@ const App: React.FC = () => {
   const renderImageViewer: React.FC<ImageViewerProps> = ({
     src,
     currentIndex,
-    onClose
+    onClose,
   }) => {
     return (
       <ImageViewer
@@ -56,7 +56,7 @@ const App: React.FC = () => {
         backgroundStyle={{
           zIndex: 10000,
           backgroundColor: 'rgba(0, 0, 0,.85)',
-          position: 'fixed'
+          position: 'fixed',
         }}
       />
     )
@@ -80,19 +80,36 @@ const App: React.FC = () => {
   }
 
   const renderPlaylistModal = (): void => {
-    setCurrentModalView(<Playlist onItemSelect={() => {
-      void (async () => {
-        setIsModalOpen(false)
-        await delay(220)
-        setDisplayMode(true)
-      })()
-    }} />)
+    setCurrentModalView(
+      <Playlist
+        onItemSelect={() => {
+          void (async () => {
+            setIsModalOpen(false)
+            await delay(220)
+            setDisplayMode(true)
+          })()
+        }}
+        onItemEdit={() => handleEditPlaylist()}
+      />
+    )
     setIsModalOpen(true)
+  }
+
+  function handleEditPlaylist() {
+    setDisplayModeEditable(true)
+    setIsModalOpen(false)
+    setDisplayMode(true)
   }
 
   return (
     <Wrapper>
-      {displayMode && <DisplayMode playlist={playlists[0]} />}
+      {displayMode && (
+        <DisplayMode
+          editMode={displayModeEditable}
+          playlist={playlists[0]}
+          onLeave={() => setDisplayMode(false)}
+        />
+      )}
       <Header
         onNewTrackClick={() => renderBuildTrackModal()}
         onPlayButtonClick={() => renderPlaylistModal()}
@@ -101,7 +118,7 @@ const App: React.FC = () => {
         renderImageViewer({
           src: imagesForViewer,
           currentIndex: currentImage,
-          onClose: closeImageViewer
+          onClose: closeImageViewer,
         })}
       <Modal
         open={isModalOpen}

@@ -10,7 +10,7 @@ import {
   MenuList,
   ModalBody,
   ModalFooter,
-  ModalHeader
+  ModalHeader,
 } from '@chakra-ui/react'
 
 import { BsTwitter, BsThreeDotsVertical } from 'react-icons/bs'
@@ -23,7 +23,7 @@ import {
   Title,
   Description,
   Wrapper,
-  DateInfo
+  DateInfo,
 } from './styles'
 
 import { usePlaylists } from '../../store/Playlist'
@@ -33,9 +33,10 @@ import { formatDate, formatHour } from '../../utils/dateUtils'
 
 interface mProps {
   onItemSelect?: () => void
+  onItemEdit?: () => void
 }
 
-const Playlist: React.FC<mProps> = ({ onItemSelect }) => {
+const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
   const { playlists } = usePlaylists((state) => state)
 
   return (
@@ -51,11 +52,7 @@ const Playlist: React.FC<mProps> = ({ onItemSelect }) => {
         className="modal-body"
       >
         {playlists.map((playlist, index) => (
-          <Container
-            key={index}
-            containerColor={colors[index % colors.length]}
-            onClick={onItemSelect}
-          >
+          <Container key={index} containerColor={colors[index % colors.length]}>
             <Column>
               <Row>
                 <Column className="avatar-container">
@@ -70,11 +67,9 @@ const Playlist: React.FC<mProps> = ({ onItemSelect }) => {
                     <span className="item-number">{index + 1}</span>
                   </Avatar>
                 </Column>
-                <Column style={{ width: '100%' }}>
+                <Column style={{ width: '100%' }} onClick={onItemSelect}>
                   <Title>{playlist.name}&nbsp;&nbsp;</Title>
-
                   <Description>{playlist.description}</Description>
-
                   <DateInfo>
                     {formatDate(new Date())} - {formatHour(new Date())}{' '}
                     <Badge size="sm" fontSize={8} colorScheme="blackAlpha">
@@ -100,12 +95,12 @@ const Playlist: React.FC<mProps> = ({ onItemSelect }) => {
                   as={Button}
                   backgroundColor="transparent"
                   _hover={{
-                    backgroundColor: '#00000210'
+                    backgroundColor: '#00000210',
                   }}
                   transform="scale(.7)"
                   marginRight={-1.2}
                   _active={{
-                    backgroundColor: '#00000210'
+                    backgroundColor: '#00000210',
                   }}
                 >
                   <BsThreeDotsVertical size={17} />
@@ -116,7 +111,11 @@ const Playlist: React.FC<mProps> = ({ onItemSelect }) => {
                   fontSize={16.2}
                   zIndex={10000}
                 >
-                  <MenuItem className="menu-item" fontSize={13}>
+                  <MenuItem
+                    className="menu-item"
+                    fontSize={13}
+                    onClick={onItemEdit}
+                  >
                     Edit
                   </MenuItem>
                   <MenuItem className="menu-item" fontSize={13}>

@@ -14,7 +14,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({
   onNewTrackClick,
-  onPlayButtonClick,
+  onPlayButtonClick
 }) => {
   return (
     <ChakraProvider>
@@ -45,8 +45,8 @@ const Header: React.FC<HeaderProps> = ({
             sx={{
               bgColor: 'pink.400',
               _hover: {
-                bgColor: 'pink.500',
-              },
+                bgColor: 'pink.500'
+              }
             }}
             borderRadius={50}
           >
@@ -64,8 +64,8 @@ const Header: React.FC<HeaderProps> = ({
             sx={{
               bgColor: 'pink.400',
               _hover: {
-                bgColor: 'pink.500',
-              },
+                bgColor: 'pink.500'
+              }
             }}
           >
             <BsFillPlayFill size={16} fontWeight={600} />

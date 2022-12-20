@@ -94,7 +94,7 @@ export const Text = styled.span<TextProps>`
   white-space: pre-line;
   color: ${({ color }) => color} !important;
   a {
-    color:  ${({ linkColor }) => linkColor} !important;;
+    color: ${({ linkColor }) => linkColor} !important;
     &:hover {
       text-decoration: underline;
     }

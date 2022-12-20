@@ -62,7 +62,7 @@ export const usePlaylists = create<PlaylistState>()(
             duration: 5,
             showAvatar: true,
             showMedia: true,
-            showTime: false,
+            showTime: true,
             showSource: true,
             showEngagement: true,
             source: 'Twitter for Mac',

@@ -10,7 +10,7 @@ import {
   Tab,
   TabList,
   TabPanels,
-  TabPanel,
+  TabPanel
 } from '@chakra-ui/react'
 
 // import Select from 'react-select'
@@ -36,7 +36,7 @@ const BuildTrack: React.FC = () => {
     addFilter,
     updateFilter,
     removeFilter,
-    resetBuilder,
+    resetBuilder
   } = useBuilder((state) => state)
 
   const [enabledFilters] = useState<string[]>(['main', 'boolean', 'has'])
@@ -47,12 +47,12 @@ const BuildTrack: React.FC = () => {
   const resultCountOptions = [
     { value: '10', label: 'Até 10 resultados' },
     { value: '20', label: 'Até 20 resultados' },
-    { value: '30', label: 'Até 30 resultados' },
+    { value: '30', label: 'Até 30 resultados' }
   ]
 
   const searchByOptions = [
     { value: 'recency', label: 'Filtrar por atualidade' },
-    { value: 'relevancy', label: 'Filtrar por relevância' },
+    { value: 'relevancy', label: 'Filtrar por relevância' }
   ]
 
   const isDisabledByRequired = (): boolean => {
@@ -88,7 +88,7 @@ const BuildTrack: React.FC = () => {
       className="wrapper"
       style={{
         paddingTop: '1rem',
-        paddingBottom: '1rem',
+        paddingBottom: '1rem'
       }}
     >
       <ModalHeader>
@@ -98,7 +98,7 @@ const BuildTrack: React.FC = () => {
             style={{
               fontSize: 13,
               fontWeight: 'normal',
-              color: 'rgba(0,0,0,0.5)',
+              color: 'rgba(0,0,0,0.5)'
             }}
           >
             Select some options and add some filters below to customize your

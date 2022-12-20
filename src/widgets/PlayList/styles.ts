@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   height: 27rem;
@@ -39,14 +39,14 @@ export const Wrapper = styled.div`
       background-color: #ff4784 !important;
     }
   }
-`;
+`
 
-type ContainerProps = {
+interface ContainerProps {
   containerColor?: {
-    primary: string;
-    secondary: string;
-  };
-};
+    primary: string
+    secondary: string
+  }
+}
 
 export const Container = styled.div<ContainerProps>`
   width: 100%;
@@ -82,7 +82,7 @@ export const Container = styled.div<ContainerProps>`
     justify-content: flex-start;
     background-color: none;
   }
-`;
+`
 
 export const Row = styled.div`
   width: 100%;
@@ -106,7 +106,7 @@ export const Row = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 0.2rem;
   }
-`;
+`
 
 export const Column = styled.div`
   width: fit-content;
@@ -121,39 +121,39 @@ export const Column = styled.div`
   .title-container {
     padding-left: 0;
   }
-`;
+`
 
 export const Title = styled.span`
   font-weight: 600;
   font-size: 0.75rem;
 
   color: #00000090;
-`;
+`
 
 export const Description = styled.span`
   font-weight: 500;
   font-size: 0.75rem;
   color: #0000008c;
-`;
+`
 
 export const Divider = styled.div`
   width: 100%;
   height: 1px;
   background-color: #00000092;
-`;
+`
 
-type ImagePreviewProps = {
-  src: string;
-};
+interface ImagePreviewProps {
+  src: string
+}
 
 export const ImagePreview = styled.div<ImagePreviewProps>`
   width: 3rem;
   height: 2rem;
   background-image: ${(props) => `url(${props.src})`};
   background-size: cover;
-`;
+`
 
 export const DateInfo = styled.span`
   font-size: 0.6rem;
   color: #00000093;
-`;
+`

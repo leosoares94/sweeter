@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 interface RowProps {
-  includes?: boolean;
+  includes?: boolean
 }
 
 export const Row = styled.div<RowProps>`
@@ -70,7 +70,7 @@ export const Row = styled.div<RowProps>`
     border-radius: 1.5rem;
     outline: solid 1px #00000022;
   }
-`;
+`
 
 export const Column = styled.div`
   width: 100%;
@@ -89,4 +89,4 @@ export const Column = styled.div`
       background-color: rgba(0, 0, 0, 0.063);
     }
   }
-`;
+`

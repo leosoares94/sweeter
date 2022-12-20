@@ -1,7 +1,7 @@
-import RequestConfig from "../RequestConfig";
+import RequestConfig from '../RequestConfig'
 
 interface IRecentTweetsRepository {
-    fetch(config: RequestConfig): Promise<any>;
+  fetch: (config: RequestConfig) => Promise<any>
 }
 
-export default IRecentTweetsRepository;
+export default IRecentTweetsRepository

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
     #ffffff1f 2px,
     #ffffff28 11px
   );
-`;
+`
 
 export const Container = styled.div`
   width: 100%;
@@ -25,4 +25,4 @@ export const Container = styled.div`
   @media (max-width: 1368px) {
     padding-top: 2.5rem;
   }
-`;
+`

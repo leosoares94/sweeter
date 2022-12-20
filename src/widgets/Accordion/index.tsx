@@ -7,7 +7,7 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  ChakraProvider,
+  ChakraProvider
 } from '@chakra-ui/react'
 
 interface AccordionProps {
@@ -26,7 +26,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
           backgroundColor: '#ffffff',
           borderRadius: '.5rem',
           marginTop: '.5rem',
-          boxShadow: '1px 3px 10px rgba(221, 117, 117, 0.151)',
+          boxShadow: '1px 3px 10px rgba(221, 117, 117, 0.151)'
         }}
       >
         {React.Children.map(children, (child, index) => {
@@ -35,10 +35,13 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
               <h2
                 style={{
                   fontFamily: 'League Spartan',
-                  color: '#363636b2',
+                  color: '#363636b2'
                 }}
               >
-                <AccordionButton border="none">
+                <AccordionButton
+                  border="none"
+                  _focus={{ borderColor: '#ed64a6' }}
+                >
                   {Boolean(icons) && icons?.[index]}
                   <Box
                     as="span"
