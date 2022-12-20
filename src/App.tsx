@@ -101,13 +101,18 @@ const App: React.FC = () => {
     setDisplayMode(true)
   }
 
+  function handleLeavePlaylist() {
+    setDisplayMode(false)
+    displayModeEditable && setDisplayModeEditable(false)
+  }
+
   return (
     <Wrapper>
       {displayMode && (
         <DisplayMode
           editMode={displayModeEditable}
           playlist={playlists[0]}
-          onLeave={() => setDisplayMode(false)}
+          onLeave={() => handleLeavePlaylist()}
         />
       )}
       <Header
