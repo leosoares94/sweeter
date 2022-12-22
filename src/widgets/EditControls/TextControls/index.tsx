@@ -26,9 +26,12 @@ const TextControls: React.FC<TextControlsProps> = ({ color, playlist_id }) => {
     setPickerColor(color)
   }
 
-  function handleColorPickerChangeComplete(color: string): void {
+  function handleColorPickerChangeComplete(
+    color: string,
+    stateKey: string
+  ): void {
     setPickerActive(false)
-    updateItem(playlist_id, { textColor: color })
+    updateItem(playlist_id, { [stateKey]: color })
   }
 
   return (
@@ -58,6 +61,7 @@ const TextControls: React.FC<TextControlsProps> = ({ color, playlist_id }) => {
           <ColorPicker
             className="tweet-color"
             color={pickerActive ? pickerColor : color}
+            stateReference="textColor"
             onChange={handleColorPickerChange}
             onChangeComplete={handleColorPickerChangeComplete}
           />

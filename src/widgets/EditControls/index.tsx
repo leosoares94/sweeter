@@ -12,6 +12,7 @@ import { IoColorPaletteOutline } from 'react-icons/io5'
 import { BsCircleFill } from 'react-icons/bs'
 import { AiOutlineEye } from 'react-icons/ai'
 import TextControls from './TextControls'
+import ColorPicker from './ColorPicker'
 
 interface EditControlsProps {
   playlist: Playlist
@@ -50,22 +51,15 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
             <Accordion
               title={['Cor']}
               icons={[
-                <BsCircleFill size={13} key={1} color={backgroundColor} />,
+                <BsCircleFill size={15} key={1} color={backgroundColor} />,
               ]}
             >
-              <ChromePicker
+              <ColorPicker
                 className="tweet-color"
                 color={pickerActive ? pickerColor : backgroundColor}
-                onChange={({ rgb }) =>
-                  handleColorPickerChange(
-                    `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`
-                  )
-                }
-                onChangeComplete={({ rgb }) =>
-                  handleColorPickerChangeComplete(
-                    `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`
-                  )
-                }
+                stateReference="backgroundColor"
+                onChange={handleColorPickerChange}
+                onChangeComplete={handleColorPickerChangeComplete}
               />
             </Accordion>
           </Accordion>

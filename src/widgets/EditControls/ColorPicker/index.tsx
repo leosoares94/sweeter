@@ -5,15 +5,17 @@ import { Menu, MenuButton, MenuItem, MenuList, Button } from '@chakra-ui/react'
 interface ColorPickerProps {
   enableAlpha?: boolean
   className?: string
+  stateReference: string
   color: string
   onChange: (color: string) => void
-  onChangeComplete: (color: string) => void
+  onChangeComplete: (color: string, stateKey: string) => void
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({
   color,
   enableAlpha,
   className,
+  stateReference,
   onChange,
   onChangeComplete,
 }) => {
@@ -45,7 +47,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
             onChange(`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`)
           }
           onChangeComplete={({ rgb }) =>
-            onChangeComplete(`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`)
+            onChangeComplete(
+              `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`,
+              stateReference
+            )
           }
           disableAlpha={!enableAlpha}
         />

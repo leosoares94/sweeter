@@ -16,6 +16,10 @@ export const Wrapper = styled.div`
   .tweet-color {
     width: 100% !important;
     box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151) !important;
+
+    @media (max-width: 1366px) {
+      zoom: 1.25;
+    }
   }
 
   @media (max-width: 1366px) {
