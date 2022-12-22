@@ -36,6 +36,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
               textColor: playlist.textColor,
               linkColor: playlist.linkColor,
             }}
+            editMode={editMode}
             onStartTimer={setDuration}
           />
         )

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Item, Playlist, usePlaylists } from '../../store/Playlist'
 import { Tweet } from '../../store/Tracks'
 import Accordion from '../Accordion'
 
-import { Container } from './styles'
+import { Wrapper, Container } from './styles'
 
 import { BlockPicker } from 'react-color'
 import { Checkbox, Stack } from '@chakra-ui/react'
@@ -34,115 +34,116 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
 
   return (
     <>
-      <Container>
-        <TextControls />
-        <Accordion
-          title={['Fundo']}
-          icons={[<IoColorPaletteOutline key={1} />]}
-        >
+      <Wrapper>
+        <Container>
+          <TextControls />
           <Accordion
-            title={['Cor']}
-            defaultOpen={true}
-            icons={[<BsCircleFill size={13} key={1} color={textColor} />]}
+            title={['Fundo']}
+            icons={[<IoColorPaletteOutline key={1} />]}
           >
-            <BlockPicker
-              triangle="hide"
-              color={textColor}
-              onChange={(color) =>
-                updateItem(playlist.id, { textColor: color.hex })
-              }
-            />
+            <Accordion
+              title={['Cor']}
+              icons={[<BsCircleFill size={13} key={1} color={textColor} />]}
+            >
+              <BlockPicker
+                triangle="hide"
+                color={textColor}
+                onChange={(color) =>
+                  updateItem(playlist.id, { textColor: color.hex })
+                }
+              />
+            </Accordion>
           </Accordion>
-        </Accordion>
 
-        <Accordion
-          title={['Mostrar/Ocultar']}
-          icons={[<AiOutlineEye key={1} />]}
-        >
-          <Stack
-            direction="column"
-            sx={{ fontFamily: 'League Spartan' }}
-            paddingLeft="1rem"
+          <Accordion
+            title={['Mostrar/Ocultar']}
+            icons={[<AiOutlineEye key={1} />]}
           >
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              isChecked={showTime}
-              onChange={(e) => {
-                const updated = [
-                  ...playlist.tweets,
-                  (tweet.showTime = e.target.checked),
-                ]
-                return updateItem(playlist.id, { tweets: updated })
-              }}
+            <Stack
+              direction="column"
+              sx={{ fontFamily: 'League Spartan' }}
+              paddingLeft="1rem"
             >
-              Data
-            </Checkbox>
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              isChecked={showMedia}
-              onChange={(e) => {
-                const updated = [
-                  ...playlist.tweets,
-                  (tweet.showMedia = e.target.checked),
-                ]
-                return updateItem(playlist.id, { tweets: updated })
-              }}
-              disabled={images.length === 0 && videos.length === 0}
-            >
-              Mídia
-            </Checkbox>
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              isChecked={showAvatar}
-              onChange={(e) => {
-                const updated = [
-                  ...playlist.tweets,
-                  (tweet.showAvatar = e.target.checked),
-                ]
-                return updateItem(playlist.id, { tweets: updated })
-              }}
-            >
-              Avatar
-            </Checkbox>
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              isChecked={showEngagement}
-              onChange={(e) => {
-                const updated = [
-                  ...playlist.tweets,
-                  (tweet.showEngagement = e.target.checked),
-                ]
-                return updateItem(playlist.id, { tweets: updated })
-              }}
-            >
-              Métricas
-            </Checkbox>
-            <Checkbox
-              size="md"
-              colorScheme="pink"
-              textColor="#000000a3"
-              isChecked={tweet.showSource}
-              onChange={(e) => {
-                const updated = [
-                  ...playlist.tweets,
-                  (tweet.showSource = e.target.checked),
-                ]
-                return updateItem(playlist.id, { tweets: updated })
-              }}
-            >
-              Dispositivo
-            </Checkbox>
-          </Stack>
-        </Accordion>
-      </Container>
+              <Checkbox
+                size="md"
+                colorScheme="pink"
+                textColor="#000000a3"
+                isChecked={showTime}
+                onChange={(e) => {
+                  const updated = [
+                    ...playlist.tweets,
+                    (tweet.showTime = e.target.checked),
+                  ]
+                  return updateItem(playlist.id, { tweets: updated })
+                }}
+              >
+                Data
+              </Checkbox>
+              <Checkbox
+                size="md"
+                colorScheme="pink"
+                textColor="#000000a3"
+                isChecked={showMedia}
+                onChange={(e) => {
+                  const updated = [
+                    ...playlist.tweets,
+                    (tweet.showMedia = e.target.checked),
+                  ]
+                  return updateItem(playlist.id, { tweets: updated })
+                }}
+                disabled={images.length === 0 && videos.length === 0}
+              >
+                Mídia
+              </Checkbox>
+              <Checkbox
+                size="md"
+                colorScheme="pink"
+                textColor="#000000a3"
+                isChecked={showAvatar}
+                onChange={(e) => {
+                  const updated = [
+                    ...playlist.tweets,
+                    (tweet.showAvatar = e.target.checked),
+                  ]
+                  return updateItem(playlist.id, { tweets: updated })
+                }}
+              >
+                Avatar
+              </Checkbox>
+              <Checkbox
+                size="md"
+                colorScheme="pink"
+                textColor="#000000a3"
+                isChecked={showEngagement}
+                onChange={(e) => {
+                  const updated = [
+                    ...playlist.tweets,
+                    (tweet.showEngagement = e.target.checked),
+                  ]
+                  return updateItem(playlist.id, { tweets: updated })
+                }}
+              >
+                Métricas
+              </Checkbox>
+              <Checkbox
+                size="md"
+                colorScheme="pink"
+                textColor="#000000a3"
+                isChecked={tweet.showSource}
+                onChange={(e) => {
+                  const updated = [
+                    ...playlist.tweets,
+                    (tweet.showSource = e.target.checked),
+                  ]
+                  return updateItem(playlist.id, { tweets: updated })
+                }}
+              >
+                Dispositivo
+              </Checkbox>
+            </Stack>
+          </Accordion>
+        </Container>
+      </Wrapper>
     </>
   )
 }

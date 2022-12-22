@@ -17,7 +17,7 @@ import {
   Engagement,
   Source,
   MediaContainer,
-  Image
+  Image,
 } from './styles'
 import { Avatar, ChakraProvider } from '@chakra-ui/react'
 import { MdVerified } from 'react-icons/md'
@@ -37,11 +37,15 @@ interface BubbleProps {
     linkColor?: string
     showDate?: boolean
   }
-
+  editMode?: boolean
   onStartTimer: (duration: number) => void
 }
 
-const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
+const SweeterDefault: React.FC<BubbleProps> = ({
+  data,
+  editMode,
+  onStartTimer,
+}) => {
   const [content, setContent] = useState<BubbleProps['data']['tweet']>(
     data.tweet
   )
@@ -56,8 +60,8 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
     loop: false,
     animationData,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   }
 
   const reveal = async (): Promise<void> => {
@@ -98,14 +102,19 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
       await delay(50)
       void reveal()
     })()
-  }, [content.showMedia, content.showTime, content.showSource, content.showEngagement])
+  }, [
+    content.showMedia,
+    content.showTime,
+    content.showSource,
+    content.showEngagement,
+  ])
 
   const options = {
     formatHref: {
       hashtag: (href: string) =>
         'https://twitter.com/hashtag/' + href.substr(1),
-      mention: (href: string) => 'https://twitter.com/' + href.substr(1)
-    }
+      mention: (href: string) => 'https://twitter.com/' + href.substr(1),
+    },
   }
 
   return (
@@ -116,13 +125,14 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
           containerOpacity={containerOpacity}
           initial={{ height: '0rem' }}
           animate={{
-            height: contentRef.current?.getBoundingClientRect().height
+            height: contentRef.current?.getBoundingClientRect().height,
           }}
           transition={{
             type: 'spring',
             stiffness: 260,
-            damping: 41
+            damping: 41,
           }}
+          editMode={Boolean(editMode)}
         >
           <Column className="first-column">
             <Row className="bubble-header">
@@ -146,7 +156,13 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
                 isStopped={stoppedTweetIcon}
               />
             </Row>
-            <Column className="bubble-tweet" ref={contentRef} style={{ paddingBottom: content.showEngagement ? '5.4rem' : '3.4rem' }}>
+            <Column
+              className="bubble-tweet"
+              ref={contentRef}
+              style={{
+                paddingBottom: content.showEngagement ? '5.4rem' : '3.4rem',
+              }}
+            >
               {Boolean(content.retweet.id) && (
                 <Row style={{ paddingBottom: '.2rem', opacity: 0.8 }}>
                   <AiOutlineRetweet
@@ -177,7 +193,12 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
               </Time>
             </Column>
             {content.showEngagement && (
-              <Row className="engagement-container" style={{ position: content.showEngagement ? 'absolute' : 'fixed' }}>
+              <Row
+                className="engagement-container"
+                style={{
+                  position: content.showEngagement ? 'absolute' : 'fixed',
+                }}
+              >
                 <Engagement>
                   <FaRegComment size={15} />
                   <span>&nbsp;{content.metrics.replies}</span>
@@ -196,7 +217,7 @@ const SweeterDefault: React.FC<BubbleProps> = ({ data, onStartTimer }) => {
           {content.showMedia && content.images.length > 0 && (
             <MediaContainer
               style={{
-                height: contentRef.current?.getBoundingClientRect().height
+                height: contentRef.current?.getBoundingClientRect().height,
               }}
             >
               <Image src={content.images[0]} />

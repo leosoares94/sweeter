@@ -14,19 +14,12 @@ interface AccordionProps {
   title: string[]
   children: React.ReactNode
   icons?: React.ReactNode[]
-  defaultOpen?: boolean
 }
 
-const Accordion: React.FC<AccordionProps> = ({
-  title,
-  children,
-  icons,
-  defaultOpen,
-}) => {
+const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
   return (
     <ChakraProvider>
       <Container
-        defaultIndex={defaultOpen ? 0 : undefined}
         allowToggle={true}
         width="100%"
         sx={{

@@ -1,11 +1,14 @@
 import React from 'react'
+
 import { MdOutlineTextFormat, MdShortText } from 'react-icons/md'
 import { BsCardText, BsLink } from 'react-icons/bs'
 import Accordion from '../../Accordion'
+import { Row, Column } from '../styles'
 
-import { BlockPicker } from 'react-color'
+import { ChromePicker } from 'react-color'
+import FontFamilyMenu from './FontFamilyMenu'
 
-const TextControls: React.FC = () => {
+const TextControls: React.FC = (_) => {
   return (
     <Accordion
       title={['Tweet']}
@@ -25,9 +28,18 @@ const TextControls: React.FC = () => {
           <BsLink size={18} key={3} />,
         ]}
       >
-        <BlockPicker triangle="hide" />
-        <BlockPicker triangle="hide" />
-        <BlockPicker triangle="hide" />
+        <Column>
+          <Row className="font-family">
+            <FontFamilyMenu />
+          </Row>
+          <ChromePicker className="tweet-color" />
+        </Column>
+        <Column>
+          <ChromePicker className="tweet-color" />
+        </Column>
+        <Column>
+          <ChromePicker className="tweet-color" />
+        </Column>
       </Accordion>
     </Accordion>
   )

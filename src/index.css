@@ -154,3 +154,7 @@ button:hover {
 .chakra-tabs__tablist > button:hover {
   border-color: transparent !important;
 }
+
+.rc-editable-input-5 {
+  border: none !important;
+}

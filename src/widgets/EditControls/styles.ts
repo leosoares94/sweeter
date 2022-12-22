@@ -1,21 +1,69 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  width: 14rem;
-  height: 100vh;
+export const Wrapper = styled.div`
+  width: fit-content;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   position: fixed;
   margin-left: 1rem;
+  padding-right: 0.4rem;
   left: 0;
   z-index: 10000;
-
+  overflow-y: scroll;
   @media (max-width: 1366px) {
     span {
-      font-size: 1.2rem !important;
+      font-size: 1rem !important;
     }
-    zoom: 0.7;
+  }
+`
+export const Row = styled.div`
+  width: 100%;
+  height: 1.2rem;
+  display: flex;
+
+  @media (max-width: 1366px) {
+    .menu-list button {
+      font-size: 1rem !important;
+    }
+  }
+`
+
+export const Container = styled.div`
+  width: 16rem;
+
+  @media (max-width: 1366px) {
+    zoom: 0.8;
+  }
+`
+
+export const Column = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .font-family {
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    padding-bottom: 0.5rem !important;
+
+    button {
+      font-family: 'League Spartan';
+      font-size: 0.8rem;
+
+      overflow: hidden;
+      color: #00000089;
+      border: none !important;
+      &:hover {
+        background-color: #ffc0cb6a;
+      }
+    }
+  }
+
+  .tweet-color {
+    width: 100% !important;
+    box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151) !important;
   }
 `

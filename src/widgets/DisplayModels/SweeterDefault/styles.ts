@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+
 interface BubbleContainerProps {
   height?: string
   opacity: number
   containerOpacity: number
+  editMode: boolean
 }
 
 export const Container = styled(motion.div)<BubbleContainerProps>`
@@ -13,6 +15,7 @@ export const Container = styled(motion.div)<BubbleContainerProps>`
   background-color: #fff;
   border-radius: 1.2rem;
   transform: scale(1.2);
+
   overflow: hidden;
   box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151);
   opacity: ${({ containerOpacity }) => containerOpacity};
@@ -52,11 +55,11 @@ export const Container = styled(motion.div)<BubbleContainerProps>`
   }
 
   @media (max-width: 1366px) {
-    zoom: 0.9;
+    zoom: ${({ editMode }) => (editMode ? '80%' : '0.9')} !important;
   }
 
   @media (min-width: 1920px) {
-    zoom: 1.2;
+    zoom: ${({ editMode }) => (editMode ? '100%' : '1.2')} !important;
   }
 `
 
