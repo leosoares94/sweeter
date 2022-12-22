@@ -48,20 +48,13 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
             title={['Fundo']}
             icons={[<IoColorPaletteOutline key={1} />]}
           >
-            <Accordion
-              title={['Cor']}
-              icons={[
-                <BsCircleFill size={15} key={1} color={backgroundColor} />,
-              ]}
-            >
-              <ColorPicker
-                className="tweet-color"
-                color={pickerActive ? pickerColor : backgroundColor}
-                stateReference="backgroundColor"
-                onChange={handleColorPickerChange}
-                onChangeComplete={handleColorPickerChangeComplete}
-              />
-            </Accordion>
+            <ColorPicker
+              className="tweet-color"
+              color={pickerActive ? pickerColor : backgroundColor}
+              stateReference="backgroundColor"
+              onChange={handleColorPickerChange}
+              onChangeComplete={handleColorPickerChangeComplete}
+            />
           </Accordion>
 
           <Accordion

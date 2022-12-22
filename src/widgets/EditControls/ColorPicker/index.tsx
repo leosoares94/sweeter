@@ -38,6 +38,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         className="menu-list"
         boxShadow="0px 3px 10px rgba(43, 0, 0, 0.123)"
         fontSize={16.2}
+        userSelect="none"
       >
         <ChromePicker
           styles={{ default: { body: { maxWidth: '14rem' } } }}
