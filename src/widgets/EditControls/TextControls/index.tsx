@@ -46,7 +46,7 @@ const TextControls: React.FC<TextControlsProps> = ({ color, playlist_id }) => {
       ]}
     >
       <Accordion
-        title={['Texto', 'Usuário', 'Links']}
+        title={['Texto', 'Links']}
         icons={[
           <BsCardText size={16} style={{ marginTop: '.2rem' }} key={1} />,
           <MdShortText size={18} key={2} />,
@@ -67,10 +67,13 @@ const TextControls: React.FC<TextControlsProps> = ({ color, playlist_id }) => {
           />
         </Column>
         <Column>
-          <ChromePicker className="tweet-color" />
-        </Column>
-        <Column>
-          <ChromePicker className="tweet-color" />
+          <ColorPicker
+            className="tweet-color"
+            color={pickerActive ? pickerColor : color}
+            stateReference="linkColor"
+            onChange={handleColorPickerChange}
+            onChangeComplete={handleColorPickerChangeComplete}
+          />
         </Column>
       </Accordion>
     </Accordion>
