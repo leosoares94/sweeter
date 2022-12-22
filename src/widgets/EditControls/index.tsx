@@ -6,7 +6,7 @@ import Accordion from '../Accordion'
 
 import { Wrapper, Container } from './styles'
 
-import { BlockPicker } from 'react-color'
+import { BlockPicker, ChromePicker } from 'react-color'
 import { Checkbox, Stack } from '@chakra-ui/react'
 import { IoColorPaletteOutline } from 'react-icons/io5'
 import { BsCircleFill } from 'react-icons/bs'
@@ -20,36 +20,51 @@ interface EditControlsProps {
 
 const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
   const { textColor, backgroundColor, linkColor } = playlist
-  const {
-    showTime,
-    showAvatar,
-    showMedia,
-    showSource,
-    showEngagement,
-    images,
-    videos,
-  } = tweet
+  const { showTime, showAvatar, showMedia, showEngagement, images, videos } =
+    tweet
 
   const { updateItem } = usePlaylists((state) => state)
+
+  const [pickerColor, setPickerColor] = useState('')
+  const [pickerActive, setPickerActive] = useState(false)
+
+  function handleColorPickerChange(color: string): void {
+    setPickerActive(true)
+    setPickerColor(color)
+  }
+
+  function handleColorPickerChangeComplete(color: string): void {
+    setPickerActive(false)
+    updateItem(playlist.id, { backgroundColor: color })
+  }
 
   return (
     <>
       <Wrapper>
         <Container>
-          <TextControls />
+          <TextControls color={textColor} playlist_id={playlist.id} />
           <Accordion
             title={['Fundo']}
             icons={[<IoColorPaletteOutline key={1} />]}
           >
             <Accordion
               title={['Cor']}
-              icons={[<BsCircleFill size={13} key={1} color={textColor} />]}
+              icons={[
+                <BsCircleFill size={13} key={1} color={backgroundColor} />,
+              ]}
             >
-              <BlockPicker
-                triangle="hide"
-                color={textColor}
-                onChange={(color) =>
-                  updateItem(playlist.id, { textColor: color.hex })
+              <ChromePicker
+                className="tweet-color"
+                color={pickerActive ? pickerColor : backgroundColor}
+                onChange={({ rgb }) =>
+                  handleColorPickerChange(
+                    `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`
+                  )
+                }
+                onChangeComplete={({ rgb }) =>
+                  handleColorPickerChangeComplete(
+                    `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`
+                  )
                 }
               />
             </Accordion>

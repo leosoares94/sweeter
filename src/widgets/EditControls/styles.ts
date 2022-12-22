@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  width: fit-content;
+  width: max-content;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,12 @@ export const Wrapper = styled.div`
   left: 0;
   z-index: 10000;
   overflow-y: scroll;
+
+  .tweet-color {
+    width: 100% !important;
+    box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151) !important;
+  }
+
   @media (max-width: 1366px) {
     span {
       font-size: 1rem !important;
@@ -39,6 +45,7 @@ export const Container = styled.div`
 `
 
 export const Column = styled.div`
+  min-height: rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -65,5 +72,9 @@ export const Column = styled.div`
   .tweet-color {
     width: 100% !important;
     box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151) !important;
+
+    @media (max-width: 1366px) {
+      zoom: 1.25;
+    }
   }
 `

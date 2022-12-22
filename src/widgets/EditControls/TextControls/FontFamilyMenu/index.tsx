@@ -3,9 +3,14 @@ import { Menu, MenuButton, MenuItem, MenuList, Button } from '@chakra-ui/react'
 
 const FontFamilyMenu: React.FC = () => {
   return (
-    <Menu placement="end" preventOverflow={true} closeOnBlur strategy="fixed">
+    <Menu
+      placement="end"
+      preventOverflow={true}
+      closeOnBlur
+      strategy="fixed"
+      size="md"
+    >
       <MenuButton
-        border="none"
         as={Button}
         backgroundColor="transparent"
         _hover={{
@@ -17,10 +22,13 @@ const FontFamilyMenu: React.FC = () => {
         }}
         sx={{
           width: '100%',
+          marginTop: '1rem',
+          padding: 0,
         }}
       >
         League Spartan
       </MenuButton>
+      <br />
       <MenuList
         className="menu-list"
         bgColor="#fff"

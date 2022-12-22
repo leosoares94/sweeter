@@ -56,7 +56,9 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, icons }) => {
                   <AccordionIcon />
                 </AccordionButton>
               </h2>
-              <AccordionPanel pb={4}>{child}</AccordionPanel>
+              <AccordionPanel pb={4} height="fit-content">
+                {child}
+              </AccordionPanel>
             </AccordionItem>
           )
         })}

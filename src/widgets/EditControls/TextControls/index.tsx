@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { MdOutlineTextFormat, MdShortText } from 'react-icons/md'
 import { BsCardText, BsLink } from 'react-icons/bs'
@@ -7,8 +7,30 @@ import { Row, Column } from '../styles'
 
 import { ChromePicker } from 'react-color'
 import FontFamilyMenu from './FontFamilyMenu'
+import ColorPicker from '../ColorPicker'
+import { usePlaylists } from '../../../store/Playlist'
 
-const TextControls: React.FC = (_) => {
+interface TextControlsProps {
+  color: string
+  playlist_id: string
+}
+
+const TextControls: React.FC<TextControlsProps> = ({ color, playlist_id }) => {
+  const { updateItem } = usePlaylists((state) => state)
+
+  const [pickerColor, setPickerColor] = useState('')
+  const [pickerActive, setPickerActive] = useState(false)
+
+  function handleColorPickerChange(color: string): void {
+    setPickerActive(true)
+    setPickerColor(color)
+  }
+
+  function handleColorPickerChangeComplete(color: string): void {
+    setPickerActive(false)
+    updateItem(playlist_id, { textColor: color })
+  }
+
   return (
     <Accordion
       title={['Tweet']}
@@ -32,7 +54,13 @@ const TextControls: React.FC = (_) => {
           <Row className="font-family">
             <FontFamilyMenu />
           </Row>
-          <ChromePicker className="tweet-color" />
+          <br />
+          <ColorPicker
+            className="tweet-color"
+            color={pickerActive ? pickerColor : color}
+            onChange={handleColorPickerChange}
+            onChangeComplete={handleColorPickerChangeComplete}
+          />
         </Column>
         <Column>
           <ChromePicker className="tweet-color" />
