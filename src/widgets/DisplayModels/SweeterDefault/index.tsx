@@ -131,8 +131,8 @@ const SweeterDefault: React.FC<BubbleProps> = ({
           }}
           transition={{
             type: 'spring',
-            stiffness: 260,
-            damping: 41,
+            stiffness: 250,
+            damping: 35,
           }}
           editMode={Boolean(editMode)}
         >

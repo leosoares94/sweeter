@@ -10,6 +10,8 @@ const FontFamilyMenu: React.FC<FontFamilyMenuProps> = ({
   currentFont,
   onFontSelect,
 }) => {
+  const AVAILABLE_FONTS = ['Sans-serif', 'Lobster', 'Satisfy']
+
   return (
     <Menu
       placement="end"
@@ -45,27 +47,15 @@ const FontFamilyMenu: React.FC<FontFamilyMenuProps> = ({
         fontSize={16.2}
         zIndex={10000}
       >
-        <MenuItem
-          className="menu-item"
-          fontSize={13}
-          onClick={() => onFontSelect(' sans-serif')}
-        >
-          Default
-        </MenuItem>
-        <MenuItem
-          className="menu-item"
-          fontSize={13}
-          onClick={() => onFontSelect('Lobster')}
-        >
-          Lobster
-        </MenuItem>
-        <MenuItem
-          className="menu-item"
-          fontSize={13}
-          onClick={() => onFontSelect('Satisfy')}
-        >
-          Satisfy
-        </MenuItem>
+        {AVAILABLE_FONTS.map((font) => (
+          <MenuItem
+            className="menu-item"
+            fontSize={13}
+            onClick={() => onFontSelect(font)}
+          >
+            {font === 'Sans-serif' ? 'Default' : font}
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   )
