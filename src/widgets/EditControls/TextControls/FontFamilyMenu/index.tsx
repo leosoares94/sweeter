@@ -14,17 +14,18 @@ const FontFamilyMenu: React.FC = () => {
         as={Button}
         backgroundColor="transparent"
         _hover={{
-          backgroundColor: '#00000210',
+          backgroundColor: '#00000210'
         }}
         marginRight={-1.2}
         _active={{
-          backgroundColor: '#00000210',
+          backgroundColor: '#00000210'
         }}
         sx={{
           width: '100%',
           marginTop: '1rem',
-          padding: 0,
+          padding: 0
         }}
+        outline= '1px solid #e754545c'
       >
         League Spartan
       </MenuButton>
