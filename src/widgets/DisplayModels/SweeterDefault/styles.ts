@@ -15,7 +15,6 @@ export const Container = styled(motion.div)<BubbleContainerProps>`
   background-color: #fff;
   border-radius: 1.2rem;
   transform: scale(1.2);
-
   overflow: hidden;
   box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151);
   opacity: ${({ containerOpacity }) => containerOpacity};
@@ -90,12 +89,14 @@ export const Name = styled.span`
 interface TextProps {
   color?: string
   linkColor?: string
+  fontFamily?: string
 }
 
 export const Text = styled.span<TextProps>`
   font-size: 1.2rem;
   white-space: pre-line;
   color: ${({ color }) => color} !important;
+  ${({ fontFamily }) => fontFamily && `font-family: ${fontFamily};`}
   a {
     color: ${({ linkColor }) => linkColor} !important;
     &:hover {

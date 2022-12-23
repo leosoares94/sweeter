@@ -12,29 +12,56 @@ import { usePlaylists } from '../../../store/Playlist'
 import { Button, Stack } from '@chakra-ui/react'
 
 interface TextControlsProps {
+  linkColor: string
   color: string
   playlistId: string
+  fontFamily: string
 }
 
-const TextControls: React.FC<TextControlsProps> = ({ color, playlistId }) => {
+const TextControls: React.FC<TextControlsProps> = ({
+  color,
+  linkColor,
+  playlistId,
+  fontFamily,
+}) => {
   const { updateItem } = usePlaylists((state) => state)
 
   const [pickerColor, setPickerColor] = useState('')
   const [pickerActive, setPickerActive] = useState(false)
 
-  const TWEET_PALETTE = ['#150485', '#590995', '#C62A88', '#03C4A1', '#453C67', '#000000']
+  const TWEET_PALETTE = [
+    '#150485',
+    '#590995',
+    '#C62A88',
+    '#03C4A1',
+    '#453C67',
+    '#000000',
+  ]
 
-  function handleColorPickerChange (color: string): void {
+  const LINK_PALETTE = [
+    '#9900F0',
+    '#4700D8',
+    '#120078',
+    '#9D0191',
+    '#FD3A69',
+    '#FECD1A',
+  ]
+
+  function handleColorPickerChange(color: string): void {
     setPickerActive(true)
     setPickerColor(color)
   }
 
-  function handleColorPickerChangeComplete (
+  function handleColorPickerChangeComplete(
     color: string,
     stateKey: string
   ): void {
     setPickerActive(false)
     updateItem(playlistId, { [stateKey]: color })
+  }
+
+  function handleFontFamilyChange(font: string) {
+    updateItem(playlistId, { fontFamily: font })
   }
 
   return (
@@ -45,7 +72,7 @@ const TextControls: React.FC<TextControlsProps> = ({ color, playlistId }) => {
           key={1}
           size={17}
           style={{ marginTop: '.3rem' }}
-        />
+        />,
       ]}
     >
       <Accordion
@@ -53,12 +80,15 @@ const TextControls: React.FC<TextControlsProps> = ({ color, playlistId }) => {
         icons={[
           <BsCardText size={16} style={{ marginTop: '.2rem' }} key={1} />,
           <MdShortText size={18} key={2} />,
-          <BsLink size={18} key={3} />
+          <BsLink size={18} key={3} />,
         ]}
       >
         <Column>
           <Row className="font-family">
-            <FontFamilyMenu />
+            <FontFamilyMenu
+              currentFont={fontFamily}
+              onFontSelect={handleFontFamilyChange}
+            />
           </Row>
 
           <ColorPicker
@@ -68,18 +98,37 @@ const TextControls: React.FC<TextControlsProps> = ({ color, playlistId }) => {
             onChange={handleColorPickerChange}
             onChangeComplete={handleColorPickerChangeComplete}
           />
-          <Stack className='color-palette' direction="row" marginTop={2}>
-            {TWEET_PALETTE.map((c) => <Button key={c} size="xs" backgroundColor={c} onClick={() => updateItem(playlistId, { textColor: c })} />)}
+          <Stack className="color-palette" direction="row" marginTop={2}>
+            {TWEET_PALETTE.map((c) => (
+              <Button
+                className="color-button"
+                key={c}
+                size="xs"
+                backgroundColor={c}
+                onClick={() => updateItem(playlistId, { textColor: c })}
+              />
+            ))}
           </Stack>
         </Column>
         <Column>
           <ColorPicker
             className="tweet-color"
-            color={pickerActive ? pickerColor : color}
+            color={pickerActive ? pickerColor : linkColor}
             stateReference="linkColor"
             onChange={handleColorPickerChange}
             onChangeComplete={handleColorPickerChangeComplete}
           />
+          <Stack className="color-palette" direction="row" marginTop={2}>
+            {LINK_PALETTE.map((c) => (
+              <Button
+                className="color-button"
+                key={c}
+                size="xs"
+                backgroundColor={c}
+                onClick={() => updateItem(playlistId, { linkColor: c })}
+              />
+            ))}
+          </Stack>
         </Column>
       </Accordion>
     </Accordion>

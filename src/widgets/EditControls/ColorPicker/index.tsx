@@ -18,7 +18,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   className,
   stateReference,
   onChange,
-  onChangeComplete
+  onChangeComplete,
 }) => {
   return (
     <Menu placement="end" preventOverflow={true} closeOnBlur strategy="fixed">
@@ -29,10 +29,11 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         marginRight={-1.2}
         sx={{
           height: '1.5rem',
-          width: '100%'
+          width: '100%',
+          borderRadius: '.5rem',
         }}
         _active={{
-          backgroundColor: color
+          backgroundColor: color,
         }}
       ></MenuButton>
       <MenuList

@@ -35,6 +35,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
               tweet: playlist.tweets[currentIndex],
               textColor: playlist.textColor,
               linkColor: playlist.linkColor,
+              fontFamily: playlist.fontFamily,
             }}
             editMode={editMode}
             onStartTimer={setDuration}

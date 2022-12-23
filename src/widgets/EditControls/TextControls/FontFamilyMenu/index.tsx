@@ -1,7 +1,15 @@
 import React from 'react'
 import { Menu, MenuButton, MenuItem, MenuList, Button } from '@chakra-ui/react'
 
-const FontFamilyMenu: React.FC = () => {
+interface FontFamilyMenuProps {
+  currentFont: string
+  onFontSelect: (fontName: string) => void
+}
+
+const FontFamilyMenu: React.FC<FontFamilyMenuProps> = ({
+  currentFont,
+  onFontSelect,
+}) => {
   return (
     <Menu
       placement="end"
@@ -14,20 +22,20 @@ const FontFamilyMenu: React.FC = () => {
         as={Button}
         backgroundColor="transparent"
         _hover={{
-          backgroundColor: '#00000210'
+          backgroundColor: '#00000210',
         }}
         marginRight={-1.2}
         _active={{
-          backgroundColor: '#00000210'
+          backgroundColor: '#00000210',
         }}
         sx={{
           width: '100%',
           marginTop: '1rem',
-          padding: 0
+          padding: 0,
         }}
-        outline= '1px solid #e754545c'
+        outline="1px solid #e754545c"
       >
-        League Spartan
+        {currentFont}
       </MenuButton>
       <br />
       <MenuList
@@ -37,14 +45,26 @@ const FontFamilyMenu: React.FC = () => {
         fontSize={16.2}
         zIndex={10000}
       >
-        <MenuItem className="menu-item" fontSize={13}>
-          League Spartan
+        <MenuItem
+          className="menu-item"
+          fontSize={13}
+          onClick={() => onFontSelect(' sans-serif')}
+        >
+          Default
         </MenuItem>
-        <MenuItem className="menu-item" fontSize={13}>
-          Chivo Mono
+        <MenuItem
+          className="menu-item"
+          fontSize={13}
+          onClick={() => onFontSelect('Lobster')}
+        >
+          Lobster
         </MenuItem>
-        <MenuItem className="menu-item" fontSize={13}>
-          Unbounded
+        <MenuItem
+          className="menu-item"
+          fontSize={13}
+          onClick={() => onFontSelect('Satisfy')}
+        >
+          Satisfy
         </MenuItem>
       </MenuList>
     </Menu>

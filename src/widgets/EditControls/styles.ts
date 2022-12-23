@@ -73,6 +73,10 @@ export const Column = styled.div`
     }
   }
 
+  .color-button {
+    border-radius: 0.5rem !important;
+  }
+
   .tweet-color {
     width: 100% !important;
     box-shadow: 0px 3px 10px rgba(221, 117, 117, 0.151) !important;

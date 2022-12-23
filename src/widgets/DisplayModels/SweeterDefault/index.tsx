@@ -36,6 +36,7 @@ interface BubbleProps {
     textColor?: string
     linkColor?: string
     showDate?: boolean
+    fontFamily?: string
   }
   editMode?: boolean
   onStartTimer: (duration: number) => void
@@ -107,6 +108,7 @@ const SweeterDefault: React.FC<BubbleProps> = ({
     content.showTime,
     content.showSource,
     content.showEngagement,
+    data.fontFamily,
   ])
 
   const options = {
@@ -175,7 +177,11 @@ const SweeterDefault: React.FC<BubbleProps> = ({
                   </Text>
                 </Row>
               )}
-              <Text color={data.textColor} linkColor={data.linkColor}>
+              <Text
+                color={data.textColor}
+                linkColor={data.linkColor}
+                fontFamily={data.fontFamily}
+              >
                 <Linkify options={{ ...options, target: '_blank' }}>
                   {Boolean(content.retweet.id) && (
                     <Avatar
