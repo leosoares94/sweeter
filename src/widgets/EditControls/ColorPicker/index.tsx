@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React from 'react'
 import { ChromePicker } from 'react-color'
-import { Menu, MenuButton, MenuItem, MenuList, Button } from '@chakra-ui/react'
+import { Menu, MenuButton, MenuList, Button } from '@chakra-ui/react'
 
 interface ColorPickerProps {
   enableAlpha?: boolean
@@ -17,7 +18,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   className,
   stateReference,
   onChange,
-  onChangeComplete,
+  onChangeComplete
 }) => {
   return (
     <Menu placement="end" preventOverflow={true} closeOnBlur strategy="fixed">
@@ -28,10 +29,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         marginRight={-1.2}
         sx={{
           height: '1.5rem',
-          width: '100%',
+          width: '100%'
         }}
         _active={{
-          backgroundColor: color,
+          backgroundColor: color
         }}
       ></MenuButton>
       <MenuList
@@ -53,7 +54,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
               stateReference
             )
           }
-          disableAlpha={!enableAlpha}
+          disableAlpha={!(enableAlpha ?? false)}
         />
       </MenuList>
     </Menu>
