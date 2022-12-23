@@ -17,6 +17,7 @@ import { useBuilder } from './store/Builder'
 import { useTracks } from './store/Tracks'
 import { usePlaylists } from './store/Playlist'
 import delay from 'delay'
+import NoTracksScreen from './widgets/NoTracksScreen'
 
 const App: React.FC = () => {
   /* Store states */
@@ -135,7 +136,7 @@ const App: React.FC = () => {
         {currentModalView}
       </Modal>
       <Container>
-        {tracks.map((track) => (
+        {/* {tracks.map((track) => (
           <Track key={track.id} tag={track.tweets[0].author.name}>
             {track.tweets.map((tweet) => (
               <TweetCard
@@ -147,7 +148,8 @@ const App: React.FC = () => {
               />
             ))}
           </Track>
-        ))}
+        ))} */}
+        <NoTracksScreen />
       </Container>
     </Wrapper>
   )
