@@ -17,7 +17,7 @@ import {
   Engagement,
   Source,
   MediaContainer,
-  Image,
+  Image
 } from './styles'
 import { Avatar, ChakraProvider } from '@chakra-ui/react'
 import { MdVerified } from 'react-icons/md'
@@ -37,6 +37,7 @@ interface BubbleProps {
     linkColor?: string
     showDate?: boolean
     fontFamily?: string
+    fontWeight?: string
   }
   editMode?: boolean
   onStartTimer: (duration: number) => void
@@ -45,7 +46,7 @@ interface BubbleProps {
 const SweeterDefault: React.FC<BubbleProps> = ({
   data,
   editMode,
-  onStartTimer,
+  onStartTimer
 }) => {
   const [content, setContent] = useState<BubbleProps['data']['tweet']>(
     data.tweet
@@ -61,8 +62,8 @@ const SweeterDefault: React.FC<BubbleProps> = ({
     loop: false,
     animationData,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
+      preserveAspectRatio: 'xMidYMid slice'
+    }
   }
 
   const reveal = async (): Promise<void> => {
@@ -108,15 +109,15 @@ const SweeterDefault: React.FC<BubbleProps> = ({
     content.showTime,
     content.showSource,
     content.showEngagement,
-    data.fontFamily,
+    data.fontFamily
   ])
 
   const options = {
     formatHref: {
       hashtag: (href: string) =>
         'https://twitter.com/hashtag/' + href.substr(1),
-      mention: (href: string) => 'https://twitter.com/' + href.substr(1),
-    },
+      mention: (href: string) => 'https://twitter.com/' + href.substr(1)
+    }
   }
 
   return (
@@ -127,12 +128,12 @@ const SweeterDefault: React.FC<BubbleProps> = ({
           containerOpacity={containerOpacity}
           initial={{ height: '0rem' }}
           animate={{
-            height: contentRef.current?.getBoundingClientRect().height,
+            height: contentRef.current?.getBoundingClientRect().height
           }}
           transition={{
             type: 'spring',
             stiffness: 250,
-            damping: 35,
+            damping: 35
           }}
           editMode={Boolean(editMode)}
         >
@@ -162,7 +163,7 @@ const SweeterDefault: React.FC<BubbleProps> = ({
               className="bubble-tweet"
               ref={contentRef}
               style={{
-                paddingBottom: content.showEngagement ? '5.4rem' : '3.4rem',
+                paddingBottom: content.showEngagement ? '5.4rem' : '3.4rem'
               }}
             >
               {Boolean(content.retweet.id) && (
@@ -172,7 +173,7 @@ const SweeterDefault: React.FC<BubbleProps> = ({
                     style={{ marginTop: '-.1rem' }}
                     size={19}
                   />
-                  <Text style={{ fontSize: '1.1rem', paddingLeft: '.2rem' }}>
+                  <Text style={{ fontSize: '1.1rem', paddingLeft: '.2rem' }} fontWeight={data.fontWeight}>
                     Retweet
                   </Text>
                 </Row>
@@ -181,6 +182,7 @@ const SweeterDefault: React.FC<BubbleProps> = ({
                 color={data.textColor}
                 linkColor={data.linkColor}
                 fontFamily={data.fontFamily}
+                fontWeight={data.fontWeight}
               >
                 <Linkify options={{ ...options, target: '_blank' }}>
                   {Boolean(content.retweet.id) && (
@@ -202,7 +204,7 @@ const SweeterDefault: React.FC<BubbleProps> = ({
               <Row
                 className="engagement-container"
                 style={{
-                  position: content.showEngagement ? 'absolute' : 'fixed',
+                  position: content.showEngagement ? 'absolute' : 'fixed'
                 }}
               >
                 <Engagement>
@@ -223,7 +225,7 @@ const SweeterDefault: React.FC<BubbleProps> = ({
           {content.showMedia && content.images.length > 0 && (
             <MediaContainer
               style={{
-                height: contentRef.current?.getBoundingClientRect().height,
+                height: contentRef.current?.getBoundingClientRect().height
               }}
             >
               <Image src={content.images[0]} />

@@ -10,7 +10,7 @@ import {
   MenuList,
   ModalBody,
   ModalFooter,
-  ModalHeader,
+  ModalHeader
 } from '@chakra-ui/react'
 
 import { BsTwitter, BsThreeDotsVertical } from 'react-icons/bs'
@@ -23,7 +23,7 @@ import {
   Title,
   Description,
   Wrapper,
-  DateInfo,
+  DateInfo
 } from './styles'
 
 import { usePlaylists } from '../../store/Playlist'
@@ -95,12 +95,12 @@ const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
                   as={Button}
                   backgroundColor="transparent"
                   _hover={{
-                    backgroundColor: '#00000210',
+                    backgroundColor: '#00000210'
                   }}
                   transform="scale(.7)"
                   marginRight={-1.2}
                   _active={{
-                    backgroundColor: '#00000210',
+                    backgroundColor: '#00000210'
                   }}
                 >
                   <BsThreeDotsVertical size={17} />

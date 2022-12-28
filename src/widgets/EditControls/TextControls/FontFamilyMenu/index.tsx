@@ -8,7 +8,7 @@ interface FontFamilyMenuProps {
 
 const FontFamilyMenu: React.FC<FontFamilyMenuProps> = ({
   currentFont,
-  onFontSelect,
+  onFontSelect
 }) => {
   const AVAILABLE_FONTS = ['Sans-serif', 'Lobster', 'Satisfy']
 
@@ -18,24 +18,24 @@ const FontFamilyMenu: React.FC<FontFamilyMenuProps> = ({
       preventOverflow={true}
       closeOnBlur
       strategy="fixed"
-      size="md"
+      size="sm"
     >
       <MenuButton
         as={Button}
-        backgroundColor="transparent"
+        backgroundColor="#ffc0cb4d"
         _hover={{
-          backgroundColor: '#00000210',
+          backgroundColor: '#00000210'
         }}
         marginRight={-1.2}
         _active={{
-          backgroundColor: '#00000210',
+          backgroundColor: '#00000210'
         }}
         sx={{
           width: '100%',
-          marginTop: '1rem',
-          padding: 0,
+          marginTop: '.5rem',
+          paddingBottom: '-15rem'
         }}
-        outline="1px solid #e754545c"
+        size="sm"
       >
         {currentFont}
       </MenuButton>
@@ -49,6 +49,7 @@ const FontFamilyMenu: React.FC<FontFamilyMenuProps> = ({
       >
         {AVAILABLE_FONTS.map((font) => (
           <MenuItem
+            key={font}
             className="menu-item"
             fontSize={13}
             onClick={() => onFontSelect(font)}

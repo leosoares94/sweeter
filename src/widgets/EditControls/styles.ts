@@ -30,7 +30,6 @@ export const Wrapper = styled.div`
 `
 export const Row = styled.div`
   width: 100%;
-
   display: flex;
 
   @media (max-width: 1366px) {
@@ -49,24 +48,31 @@ export const Container = styled.div`
 `
 
 export const Column = styled.div`
-  min-height: rem;
   width: 100%;
   display: flex;
   flex-direction: column;
+
   .font-family {
     justify-content: center;
     align-items: center;
-
     cursor: pointer;
-    padding-bottom: 0.5rem !important;
 
     button {
       font-family: 'League Spartan';
       font-size: 0.8rem;
-
       overflow: hidden;
       color: #00000089;
       border: none !important;
+      &:hover {
+        background-color: #ffc0cb6a;
+      }
+    }
+  }
+
+  .font-style {
+    button {
+      background-color: #ffc0cb56;
+
       &:hover {
         background-color: #ffc0cb6a;
       }

@@ -17,7 +17,7 @@ interface DisplayModeProps {
 const DisplayMode: React.FC<DisplayModeProps> = ({
   playlist,
   editMode,
-  onLeave,
+  onLeave
 }) => {
   const [duration, setDuration] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -26,7 +26,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
 
   const displayRef = useRef<HTMLDivElement>(null)
 
-  function switchDisplayModels(modelName: string): JSX.Element | undefined {
+  function switchDisplayModels (modelName: string): JSX.Element | undefined {
     switch (modelName) {
       case 'sweeter-default':
         return (
@@ -36,6 +36,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
               textColor: playlist.textColor,
               linkColor: playlist.linkColor,
               fontFamily: playlist.fontFamily,
+              fontWeight: playlist.fontWeight
             }}
             editMode={editMode}
             onStartTimer={setDuration}
@@ -44,7 +45,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
     }
   }
 
-  function showEditControls(): JSX.Element | undefined {
+  function showEditControls (): JSX.Element | undefined {
     return (
       <EditControls playlist={playlist} tweet={playlist.tweets[currentIndex]} />
     )
@@ -57,10 +58,10 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
       ? setCurrentIndex(currentIndex - 1)
       : (event.code === 'ArrowRight' || event.code === 'Space') &&
         currentIndex < playlist.tweets.length - 1
-      ? setCurrentIndex(currentIndex + 1)
-      : event.code === 'Escape'
-      ? onLeave()
-      : false
+          ? setCurrentIndex(currentIndex + 1)
+          : event.code === 'Escape'
+            ? onLeave()
+            : false
   }
 
   useEffect(() => {
@@ -68,21 +69,25 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
   }, [])
 
   return (
-    <Container
-      ref={displayRef}
-      backgroundColor={backgroundColor}
-      tabIndex={0}
-      onKeyDown={handleTweet}
-    >
-      {duration > 0 && <Time duration={duration} />}
-      {switchDisplayModels('sweeter-default')}
-      {/* <BlockPicker /> */}
-      <Logo>
-        <span>Sweeter</span>
-      </Logo>
-      {editMode && showEditControls()}
-      <Website>getsweeter.vercel.app</Website>
-    </Container>
+    <>
+
+      <Container
+        ref={displayRef}
+        backgroundColor={backgroundColor}
+        tabIndex={0}
+        onKeyDown={handleTweet}
+      >
+        {duration > 0 && <Time duration={duration} />}
+        {switchDisplayModels('sweeter-default')}
+        {/* <BlockPicker /> */}
+        <Logo>
+          <span>Sweeter</span>
+        </Logo>
+
+        <Website>getsweeter.vercel.app</Website>
+        {(editMode ?? false) && showEditControls()}
+      </Container>
+    </>
   )
 }
 

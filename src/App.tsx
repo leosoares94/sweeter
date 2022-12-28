@@ -8,7 +8,6 @@ import Track from './widgets/Track'
 import TweetCard from './widgets/TweetCard'
 import Header from './widgets/Header'
 import BuildTrack from './widgets/BuildTrack'
-import Drawer from './widgets/Drawer'
 import Playlist from './widgets/PlayList'
 import Modal from './widgets/Modal'
 import DisplayMode from './widgets/DisplayMode'
@@ -17,7 +16,6 @@ import { useBuilder } from './store/Builder'
 import { useTracks } from './store/Tracks'
 import { usePlaylists } from './store/Playlist'
 import delay from 'delay'
-import NoTracksScreen from './widgets/NoTracksScreen'
 
 const App: React.FC = () => {
   /* Store states */
@@ -45,7 +43,7 @@ const App: React.FC = () => {
   const renderImageViewer: React.FC<ImageViewerProps> = ({
     src,
     currentIndex,
-    onClose,
+    onClose
   }) => {
     return (
       <ImageViewer
@@ -57,7 +55,7 @@ const App: React.FC = () => {
         backgroundStyle={{
           zIndex: 10000,
           backgroundColor: 'rgba(0, 0, 0,.85)',
-          position: 'fixed',
+          position: 'fixed'
         }}
       />
     )
@@ -86,7 +84,7 @@ const App: React.FC = () => {
         onItemSelect={() => {
           void (async () => {
             setIsModalOpen(false)
-            await delay(220)
+
             setDisplayMode(true)
           })()
         }}
@@ -96,13 +94,13 @@ const App: React.FC = () => {
     setIsModalOpen(true)
   }
 
-  function handleEditPlaylist() {
+  function handleEditPlaylist (): void {
     setDisplayModeEditable(true)
     setIsModalOpen(false)
     setDisplayMode(true)
   }
 
-  function handleLeavePlaylist() {
+  function handleLeavePlaylist (): void {
     setDisplayMode(false)
     displayModeEditable && setDisplayModeEditable(false)
   }
@@ -124,7 +122,7 @@ const App: React.FC = () => {
         renderImageViewer({
           src: imagesForViewer,
           currentIndex: currentImage,
-          onClose: closeImageViewer,
+          onClose: closeImageViewer
         })}
       <Modal
         open={isModalOpen}
@@ -136,7 +134,7 @@ const App: React.FC = () => {
         {currentModalView}
       </Modal>
       <Container>
-        {/* {tracks.map((track) => (
+        {tracks.map((track) => (
           <Track key={track.id} tag={track.tweets[0].author.name}>
             {track.tweets.map((tweet) => (
               <TweetCard
@@ -148,8 +146,8 @@ const App: React.FC = () => {
               />
             ))}
           </Track>
-        ))} */}
-        <NoTracksScreen />
+        ))}
+        {/* <NoTracksScreen /> */}
       </Container>
     </Wrapper>
   )

@@ -90,13 +90,15 @@ interface TextProps {
   color?: string
   linkColor?: string
   fontFamily?: string
+  fontWeight?: string
 }
 
 export const Text = styled.span<TextProps>`
   font-size: 1.2rem;
   white-space: pre-line;
   color: ${({ color }) => color} !important;
-  ${({ fontFamily }) => fontFamily && `font-family: ${fontFamily};`}
+  ${({ fontFamily }) => (Boolean(fontFamily)) && `font-family: ${fontFamily!};`}
+  ${({ fontWeight }) => (Boolean(fontWeight)) && `font-weight: ${fontWeight!};`}
   a {
     color: ${({ linkColor }) => linkColor} !important;
     &:hover {
