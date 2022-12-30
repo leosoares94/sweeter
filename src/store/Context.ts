@@ -4,10 +4,12 @@ import { mountStoreDevtool } from 'simple-zustand-devtools'
 
 export interface Context {
   currentTheme: string
+  editMode: boolean
 }
 
 export const useAppContext = create<Context>()(
   devtools((set) => ({
-    currentTheme: 'dark'
+    currentTheme: 'dark',
+    editMode: false
   }))
 )

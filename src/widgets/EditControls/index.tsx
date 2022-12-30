@@ -11,6 +11,7 @@ import { IoColorPaletteOutline } from 'react-icons/io5'
 import { AiOutlineEye } from 'react-icons/ai'
 import TextControls from './TextControls'
 import ColorPicker from './ColorPicker'
+import ImageControls from './ImageControls'
 
 interface EditControlsProps {
   playlist: Playlist
@@ -47,6 +48,10 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
     updateItem(playlist.id, { backgroundColor: color })
   }
 
+  function handleBackgroundImageChange (image: string | ArrayBuffer | null): void {
+    updateItem(playlist.id, { backgroundImage: image })
+  }
+
   return (
     <>
       <Wrapper tabIndex={10}>
@@ -62,6 +67,7 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
             icons={[<IoColorPaletteOutline key={1} />]}
           >
             <Column>
+              <ImageControls onChange={(image) => handleBackgroundImageChange(image)} playlist={playlist}/>
               <ColorPicker
                 className="tweet-color"
                 color={pickerActive ? pickerColor : backgroundColor}

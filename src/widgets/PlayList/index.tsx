@@ -41,7 +41,7 @@ const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
 
   return (
     <Wrapper>
-      <ModalHeader paddingBottom={1}>
+      <ModalHeader paddingBottom={1} zIndex={9000000000}>
         <Title className="modal-title">Your Playlists </Title>
         <Description> - Select some playlist to display or edit.</Description>
       </ModalHeader>

@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { Container, Logo, Time, Website } from './styles'
+import { BackgroundColor, BackgroundImage, Container, Logo, Time, Website } from './styles'
 
 import SweeterDefault from '../DisplayModels/SweeterDefault'
 import { Playlist } from '../../store/Playlist'
 
 import EditControls from '../EditControls'
+import Modal from '../Modal'
+import { ModalBody } from '@chakra-ui/react'
 
 interface DisplayModeProps {
   playlist: Playlist
@@ -69,25 +71,23 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
   }, [])
 
   return (
-    <>
-
-      <Container
-        ref={displayRef}
-        backgroundColor={backgroundColor}
-        tabIndex={0}
-        onKeyDown={handleTweet}
-      >
-        {duration > 0 && <Time duration={duration} />}
-        {switchDisplayModels('sweeter-default')}
-        {/* <BlockPicker /> */}
-        <Logo>
-          <span>Sweeter</span>
-        </Logo>
-
-        <Website>getsweeter.vercel.app</Website>
-        {(editMode ?? false) && showEditControls()}
-      </Container>
-    </>
+    <Container
+      ref={displayRef}
+      tabIndex={0}
+      onKeyDown={handleTweet}
+    >
+      {duration > 0 && <Time duration={duration} />}
+      {switchDisplayModels('sweeter-default')}
+      {/* <BlockPicker /> */}
+      <Logo>
+        <span>Sweeter</span>
+      </Logo>
+      <Website>getsweeter.vercel.app</Website>
+      {(editMode ?? false) && showEditControls()}
+      <BackgroundImage
+        backgroundImage={playlist.backgroundImage} />
+      <BackgroundColor backgroundColor={backgroundColor} />
+    </Container>
   )
 }
 

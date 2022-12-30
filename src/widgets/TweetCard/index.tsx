@@ -98,7 +98,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
                 <Row>
                   <Name>{author.name}</Name>
                   &nbsp;
-                  {author.verified && <MdVerified size={15} color="#1d9af1" />}
+                  {(author.verified === true) && <MdVerified size={15} color="#1d9af1" />}
                 </Row>
                 <Username onClick={() => redirectToProfile()}>
                   @{author.username}

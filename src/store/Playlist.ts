@@ -54,8 +54,7 @@ export const usePlaylists = create<PlaylistState>()(
         textColor: '#000000',
         textDecoration: 'none',
         linkColor: '#e0739c',
-        backgroundImage:
-          'https://images0.persgroep.net/rcs/KRngGsCdesyWDPz7K_vXURfFCDY/diocontent/223895344/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8',
+        backgroundImage: null,
         backgroundColor: '#646ded',
         tweets: [
           {

@@ -15,7 +15,6 @@ import DisplayMode from './widgets/DisplayMode'
 import { useBuilder } from './store/Builder'
 import { useTracks } from './store/Tracks'
 import { usePlaylists } from './store/Playlist'
-import delay from 'delay'
 
 const App: React.FC = () => {
   /* Store states */

@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({
             }}
             borderRadius={50}
           >
-            <span> New Track</span>
+            <span>New</span>
           </Button>
           &nbsp;&nbsp;
           <Button

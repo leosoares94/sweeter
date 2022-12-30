@@ -19,7 +19,7 @@ export const Container = styled.div`
     font-size: 0.9rem !important;
     margin-top: 0.8rem;
     color: #000000bd;
-    z-index: 1000;
+    z-index: 10;
 
     @media (max-width: 1368px) {
       font-size: 0.8rem !important;

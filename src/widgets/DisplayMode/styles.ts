@@ -10,11 +10,7 @@ const fade = keyframes`
   }
 `
 
-interface ContainerProps {
-  backgroundColor: string
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -22,9 +18,34 @@ export const Container = styled.div<ContainerProps>`
   justify-content: center;
   align-items: center;
   position: fixed;
+  animation: ${fade} 0.2s ease;
+  z-index: 11;
+`
+interface BackgroundImageProps {
+  backgroundImage: string | undefined
+}
+
+export const BackgroundImage = styled.div<BackgroundImageProps>`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-size: cover;
+  ${({ backgroundImage }) =>
+    Boolean(backgroundImage) && `background-image: url(${backgroundImage});`}
+opacity: .7;
+    z-index:1 ;
+`
+
+interface BackgroundColorProps {
+  backgroundColor: string
+}
+
+export const BackgroundColor = styled.div<BackgroundColorProps>`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-size: cover;
   background-color: ${({ backgroundColor }) => backgroundColor};
-  animation: ${fade} .2s ease;
-  z-index: 10000000;
 `
 
 export const Logo = styled.div`
@@ -37,6 +58,7 @@ export const Logo = styled.div`
   bottom: 0;
   padding-bottom: 1.7rem;
   text-shadow: 1px 1px 1px #0000003e;
+  z-index:2;
 `
 
 export const Website = styled.div`
@@ -46,6 +68,7 @@ export const Website = styled.div`
   bottom: 0;
   padding-bottom: 0.5rem;
   text-shadow: 1px 1px 1px #0000003e;
+  z-index:2 ;
 `
 
 const progress = keyframes`

@@ -160,3 +160,19 @@ button:hover {
 .rc-editable-input-5 {
   border: none !important;
 }
+
+
+/*Drag n drop uploader*/
+
+.fhCyWB {
+  color: #ED64A6 !important;
+  border-color: #ED64A6 !important;
+} 
+
+.fhCyWB svg {
+  transform: scale(.6) !important;
+}
+
+.fhCyWB svg path{
+  fill: #ED64A6 !important;
+}
