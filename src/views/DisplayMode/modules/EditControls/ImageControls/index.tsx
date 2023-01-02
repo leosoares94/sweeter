@@ -88,7 +88,7 @@ const ImageControls: React.FC<ImageControlsProps> = ({
           )}
           {playlist.backgroundImage ? '' : 'Sem imagem'}
         </Button>
-        <Slider aria-label='slider-ex-2' defaultValue={30} isDisabled={!playlist.backgroundImage}>
+        <Slider aria-label='slider-ex-2' defaultValue={100} isDisabled={!playlist.backgroundImage}>
           <SliderTrack bg='pink'>
             <SliderFilledTrack bg='pink' />
           </SliderTrack>

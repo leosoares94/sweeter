@@ -27,7 +27,7 @@ export interface Playlist {
   textAlign?: string
   textDecoration?: string
   linkColor: string
-  backgroundImage?: string
+  backgroundImage?: string | null
   backgroundColor: string
   animated?: boolean
   tweets: Item[] & Tweet[]
