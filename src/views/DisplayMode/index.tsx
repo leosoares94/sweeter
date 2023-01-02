@@ -83,7 +83,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
       <Website>getsweeter.vercel.app</Website>
       {(editMode ?? false) && showEditControls()}
       <BackgroundImage
-        backgroundImage={playlist.backgroundImage} />
+        backgroundImage={playlist.backgroundImage ?? ''} />
       <BackgroundColor backgroundColor={backgroundColor} />
     </Container>
   )
