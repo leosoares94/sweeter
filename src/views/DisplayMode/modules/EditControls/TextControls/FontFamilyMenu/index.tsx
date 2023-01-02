@@ -22,6 +22,7 @@ const FontFamilyMenu: React.FC<FontFamilyMenuProps> = ({
     >
       <MenuButton
         as={Button}
+        fontFamily={`${currentFont} !important`}
         backgroundColor="#ffc0cb4d"
         _hover={{
           backgroundColor: '#00000210'
@@ -52,6 +53,7 @@ const FontFamilyMenu: React.FC<FontFamilyMenuProps> = ({
             key={font}
             className="menu-item"
             fontSize={13}
+            fontFamily={`${font} !important`}
             onClick={() => onFontSelect(font)}
           >
             {font === 'Sans-serif' ? 'Default' : font}

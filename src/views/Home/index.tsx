@@ -114,10 +114,10 @@ const Home: React.FC = () => {
           onLeave={() => handleLeavePlaylist()}
         />
       )}
-      <Header
+    {!displayMode && <Header
         onNewTrackClick={() => renderBuildTrackModal()}
         onPlayButtonClick={() => renderPlaylistModal()}
-      />
+      />}
       {isViewerOpen &&
         renderImageViewer({
           src: imagesForViewer,

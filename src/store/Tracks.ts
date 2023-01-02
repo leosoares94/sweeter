@@ -68,7 +68,7 @@ export const useTracks = create<TracksState>()(
               id: '13298072',
               avatar: profilePic,
               name: 'Sweeter',
-              username: 'GetSweeter',
+              username: 'GetSweeterApp',
               verified: true
             },
             source: 'Twitter Web App',
@@ -95,7 +95,7 @@ export const useTracks = create<TracksState>()(
               id: '13298072',
               avatar: profilePic,
               name: 'Sweeter',
-              username: 'GetSweeter',
+              username: 'GetSweeterApp',
               verified: true
             },
             source: 'Twitter Web App',

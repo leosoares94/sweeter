@@ -66,7 +66,7 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
 
   useEffect(() => {
     displayRef.current?.focus()
-  }, [])
+  })
 
   return (
     <Container

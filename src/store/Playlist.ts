@@ -63,7 +63,7 @@ export const usePlaylists = create<PlaylistState>()(
               id: '13298072',
               avatar: profilePic,
               name: 'Sweeter',
-              username: 'GetSweeter',
+              username: 'GetSweeterApp',
               verified: true
             },
             duration: 5,
