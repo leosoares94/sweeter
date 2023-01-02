@@ -62,7 +62,7 @@ const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
                     borderRadius={4}
                     width="7.5rem"
                     height="4.5rem"
-                    src={playlist.backgroundImage}
+                    src={playlist.backgroundImage ?? ''}
                   >
                     <span className="item-number">{index + 1}</span>
                   </Avatar>
