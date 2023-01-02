@@ -1,12 +1,15 @@
 import React from 'react'
+
 import { useMediaQuery } from 'react-responsive'
+
 import { MdOutlineRefresh } from 'react-icons/md'
 import { BsThreeDotsVertical } from 'react-icons/bs'
+
 import { Container, Wrapper, Title } from './styles'
 
 import { Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react'
 
-import Badge from '../Badge'
+import Badge from '@widgets/Badge'
 
 interface TrackHeaderProps {
   tag: string

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useEffect, useRef, useState } from 'react'
 import Lottie from 'react-lottie'
 import Linkify from 'linkify-react'
@@ -22,13 +23,13 @@ import {
 import { Avatar, ChakraProvider } from '@chakra-ui/react'
 import { MdVerified } from 'react-icons/md'
 
-import animationData from '../../../assets/animations/twitter/sweeter_bubble_icon.json'
-import { formatDate } from '../../../utils/dateUtils'
+import animationData from '@assets/animations/twitter/sweeter_bubble_icon.json'
+import { formatDate } from '@utils/dateUtils'
 import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai'
 import { FaRegComment } from 'react-icons/fa'
 
-import { Tweet } from '../../../store/Tracks'
-import { Item } from '../../../store/Playlist'
+import { Tweet } from '@store/Tracks'
+import { Item } from '@store/Playlist'
 
 interface BubbleProps {
   data: {

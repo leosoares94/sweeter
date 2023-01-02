@@ -1,19 +1,20 @@
 import React from 'react'
 import uuid from 'react-uuid'
-import FadeIn from 'react-fade-in'
-
-import { AiOutlinePlus } from 'react-icons/ai'
-
+import { MdOutlineVerified } from 'react-icons/md'
+import { AiOutlineRetweet } from 'react-icons/ai'
+import { RiChatQuoteLine } from 'react-icons/ri'
+import { BsReply } from 'react-icons/bs'
+import { SiAdblock } from 'react-icons/si'
 import { Table } from 'evergreen-ui'
-import { Button, Tooltip, useToast } from '@chakra-ui/react'
+import { Button, CloseButton, useToast } from '@chakra-ui/react'
 
 import { Row } from './styles'
 
-import TagInput from '../TagInput'
+import FadeIn from 'react-fade-in'
+import BooleanInput from '../BooleanInput'
+import { Filter } from '../../../../../store/Builder'
 
-import { Filter } from '../../../store/Builder'
-
-export interface MainOptionProps {
+export interface IsOptionProps {
   data: Filter[]
   hasNext: boolean
   onInputChange: (
@@ -25,18 +26,18 @@ export interface MainOptionProps {
   onInputAdd: (input: Filter) => void
 }
 
-const MainOptions: React.FC<MainOptionProps> = ({
+const IsOptions: React.FC<IsOptionProps> = ({
   data,
-  hasNext,
   onInputChange,
+  onInputAdd,
   onInputDelete,
-  onInputAdd
+  hasNext
 }) => {
-  const MAX_SAME_FIELD_COUNT = 2
+  const MAX_SAME_FIELD_COUNT = 1
 
   const toast = useToast()
 
-  const createField = (tagName: string): Filter => ({
+  const newField = (tagName: string): Filter => ({
     id: uuid(),
     tagName,
     values: [],
@@ -57,12 +58,12 @@ const MainOptions: React.FC<MainOptionProps> = ({
     hasMaxCount(type, data)
       ? toast({
         title: 'Ação não permitida',
-        description: `Apenas ${MAX_SAME_FIELD_COUNT} campos deste tipo`,
+        description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
         status: 'error',
         duration: 2000,
         isClosable: true
       })
-      : onInputAdd(createField(type))
+      : onInputAdd(newField(type))
   }
 
   return (
@@ -71,18 +72,18 @@ const MainOptions: React.FC<MainOptionProps> = ({
         <Table
           width="100%"
           padding=".5rem"
-          backgroundColor="#ffd4e4c9"
+          backgroundColor="#e8e4ffd3"
           borderRadius={9}
         >
           <Table.Head
             marginBottom={5}
             paddingTop={3}
             borderBottom="none"
-            height="1.5rem"
+            height="1.8rem"
             backgroundColor="#ff6bb500"
           >
             <Table.TextHeaderCell fontSize=".7rem">
-              Data Filters&nbsp;
+              IS / ISN&apos;T&nbsp;
               <span
                 style={{
                   fontFamily: 'arial',
@@ -91,7 +92,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
                   fontWeight: 'normal'
                 }}
               >
-                - F
+                - B
               </span>
               <span
                 style={{
@@ -101,76 +102,23 @@ const MainOptions: React.FC<MainOptionProps> = ({
                   fontWeight: 'normal'
                 }}
               >
-                iltrar tweets por:
+                uscar tweets que sejam (ou não):
               </span>
             </Table.TextHeaderCell>
           </Table.Head>
-          <Table.Body width="100%" paddingLeft={10} paddingBottom={0.4}>
-            <Tooltip
-              label="Incluir ou bloquear hashtags na busca"
-              aria-label="A tooltip"
-            >
-              <Button
-                size="xs"
-                className="option-button"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<AiOutlinePlus size={13} />}
-                iconSpacing={0.5}
-                onClick={() => handleAddField('hashtags')}
-              >
-                Hashtags
-              </Button>
-            </Tooltip>
-            &nbsp;
-            <Tooltip
-              label="Incluir ou bloquear menções na busca"
-              aria-label="A tooltip"
-            >
-              <Button
-                size="xs"
-                className="option-button"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<AiOutlinePlus size={13} />}
-                iconSpacing={0.5}
-                onClick={() => handleAddField('mentions')}
-              >
-                Mentions
-              </Button>
-            </Tooltip>
-            &nbsp;
-            <Tooltip
-              label="Incluir ou bloquear palavras-chave na busca"
-              aria-label="A tooltip"
-            >
-              <Button
-                size="xs"
-                className="option-button"
-                variant="outline"
-                colorScheme="pink"
-                borderRadius={50}
-                leftIcon={<AiOutlinePlus size={13} />}
-                iconSpacing={0.5}
-                onClick={() => handleAddField('words')}
-              >
-                Words
-              </Button>
-            </Tooltip>
-            &nbsp;
+
+          <Table.Body width="100%" paddingLeft={10}>
             <Button
               size="xs"
               className="option-button"
               variant="outline"
               colorScheme="pink"
               borderRadius={50}
-              leftIcon={<AiOutlinePlus size={13} />}
+              leftIcon={<AiOutlineRetweet size={15} />}
               iconSpacing={0.5}
-              onClick={() => handleAddField('from')}
+              onClick={() => handleAddField('retweet')}
             >
-              From
+              Retweet
             </Button>
             &nbsp;
             <Button
@@ -179,28 +127,66 @@ const MainOptions: React.FC<MainOptionProps> = ({
               variant="outline"
               colorScheme="pink"
               borderRadius={50}
-              leftIcon={<AiOutlinePlus size={13} />}
+              leftIcon={<BsReply size={15} />}
               iconSpacing={0.5}
-              onClick={() => handleAddField('retweets')}
+              onClick={() => handleAddField('reply')}
             >
-              Retweets
+              Reply
             </Button>
             &nbsp;
+            <Button
+              size="xs"
+              className="option-button"
+              variant="outline"
+              colorScheme="pink"
+              borderRadius={50}
+              leftIcon={<RiChatQuoteLine size={14} />}
+              iconSpacing={0.5}
+              onClick={() => handleAddField('quote')}
+            >
+              Quote
+            </Button>
+            &nbsp;
+            <Button
+              size="xs"
+              className="option-button"
+              variant="outline"
+              colorScheme="pink"
+              borderRadius={50}
+              leftIcon={<MdOutlineVerified size={16} />}
+              iconSpacing={0.5}
+              onClick={() => handleAddField('verified')}
+            >
+              Verified
+            </Button>
+            &nbsp;
+            <Button
+              size="xs"
+              className="option-button"
+              variant="outline"
+              colorScheme="pink"
+              borderRadius={50}
+              leftIcon={<SiAdblock size={14} />}
+              iconSpacing={0.5}
+              onClick={() => handleAddField('nullcast')}
+            >
+              Nullcast
+            </Button>
           </Table.Body>
           <Table.Body width="100%" marginTop={10} overflowY="hidden">
             {data.map((item: Filter, index, array) => (
-              <TagInput
+              <BooleanInput
                 hasNext={hasNext}
+                inputName="is/isnt"
                 key={item.id}
                 id={item.id}
                 type={item.tagName}
-                values={item.values!}
-                includes={item.includes}
                 condition={item.condition}
-                onChange={onInputChange}
                 onDelete={onInputDelete}
                 index={index}
                 optionsLength={array.length}
+                includes={item.includes}
+                onChange={onInputChange}
               />
             ))}
           </Table.Body>
@@ -210,4 +196,4 @@ const MainOptions: React.FC<MainOptionProps> = ({
   )
 }
 
-export default MainOptions
+export default IsOptions

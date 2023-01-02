@@ -6,23 +6,19 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  Tabs,
-  Tab,
-  TabList,
-  TabPanels,
-  TabPanel
+  Badge
 } from '@chakra-ui/react'
 
 // import Select from 'react-select'
 
 import { IoIosRocket } from 'react-icons/io'
 
-import { Column, Row, Title } from './styles'
+import { Column, Title } from './styles'
 import MainOptions from './MainOptions'
 import IsOptions from './IsOptions'
 import HasOptions from './HasOptions'
 
-import { useBuilder } from '../../store/Builder'
+import { useBuilder } from '@store/Builder'
 
 // import { convertBuilderToQueryString2 } from '../../utils/builderToQueryString'
 // import RecentTweetsRepository from '../../api/modules/SearchTweets/RecentSearch/repository/implementation/RecentTweetsRepository'
@@ -93,7 +89,15 @@ const BuildTrack: React.FC = () => {
     >
       <ModalHeader>
         <Column className="header-column">
-          <Title> Let&apos;s build your track!</Title>
+          <Title> Let&apos;s build your track! <Badge
+            size="xs"
+            fontSize={10}
+            colorScheme="green"
+            marginTop={-1}
+            paddingTop={0.5}
+          >
+            Beta
+          </Badge></Title>
           <span
             style={{
               fontSize: 13,

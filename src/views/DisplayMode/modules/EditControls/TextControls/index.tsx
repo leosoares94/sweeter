@@ -1,13 +1,23 @@
 import React, { useState } from 'react'
 
-import { MdOutlineTextFormat, MdShortText, MdFormatItalic, MdFormatBold, MdFormatUnderlined, MdFormatAlignCenter, MdFormatAlignLeft, MdFormatAlignRight } from 'react-icons/md'
+import {
+  MdOutlineTextFormat,
+  MdShortText,
+  MdFormatItalic,
+  MdFormatBold,
+  MdFormatUnderlined,
+  MdFormatAlignCenter,
+  MdFormatAlignLeft,
+  MdFormatAlignRight
+} from 'react-icons/md'
+
 import { BsCardText, BsLink } from 'react-icons/bs'
-import Accordion from '../../Accordion'
+import Accordion from '@widgets/Accordion'
 import { Row, Column } from '../styles'
 
 import FontFamilyMenu from './FontFamilyMenu'
 import ColorPicker from '../ColorPicker'
-import { usePlaylists } from '../../../store/Playlist'
+import { usePlaylists } from '@store/Playlist'
 
 import { Button, Stack } from '@chakra-ui/react'
 
@@ -94,8 +104,17 @@ const TextControls: React.FC<TextControlsProps> = ({
               onFontSelect={handleFontFamilyChange}
             />
           </Row>
-          <Stack className="font-style" direction="row" marginTop={2} paddingBottom={3}>
-            <Button size="xs" sx={{ padding: 0, width: '100%' }} onClick={() => handleFontWeightChange()}>
+          <Stack
+            className="font-style"
+            direction="row"
+            marginTop={2}
+            paddingBottom={3}
+          >
+            <Button
+              size="xs"
+              sx={{ padding: 0, width: '100%' }}
+              onClick={() => handleFontWeightChange()}
+            >
               <MdFormatBold size={13} />
             </Button>
             <Button size="xs" sx={{ padding: 0, width: '100%' }}>

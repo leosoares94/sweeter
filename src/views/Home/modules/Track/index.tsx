@@ -1,6 +1,6 @@
 import React from 'react'
-import TrackFooter from '../TrackFooter'
-import TrackHeader from '../TrackHeader'
+import TrackFooter from './TrackFooter'
+import TrackHeader from './TrackHeader'
 import { Container, Wrapper } from './styles'
 
 interface TrackProps {

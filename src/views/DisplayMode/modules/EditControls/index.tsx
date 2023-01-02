@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
+import { Checkbox, Stack, Button } from '@chakra-ui/react'
 
-import { Item, Playlist, usePlaylists } from '../../store/Playlist'
-import { Tweet } from '../../store/Tracks'
-import Accordion from '../Accordion'
+import { IoColorPaletteOutline } from 'react-icons/io5'
+import { AiOutlineEye } from 'react-icons/ai'
+
+import { Item, Playlist, usePlaylists } from '@store/Playlist'
+import { Tweet } from '@store/Tracks'
+import Accordion from '@widgets/Accordion'
 
 import { Wrapper, Container, Column } from './styles'
 
-import { Checkbox, Stack, Button } from '@chakra-ui/react'
-import { IoColorPaletteOutline } from 'react-icons/io5'
-import { AiOutlineEye } from 'react-icons/ai'
 import TextControls from './TextControls'
 import ColorPicker from './ColorPicker'
 import ImageControls from './ImageControls'

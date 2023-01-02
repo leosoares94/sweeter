@@ -11,7 +11,7 @@ import { Button, useToast } from '@chakra-ui/react'
 import { Row } from './styles'
 
 import FadeIn from 'react-fade-in'
-import { Filter } from '../../../store/Builder'
+import { Filter } from '../../../../../store/Builder'
 import BooleanInput from '../BooleanInput'
 
 export interface HasOptionProps {

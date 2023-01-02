@@ -44,6 +44,7 @@ export const Row = styled.div<RowProps>`
     padding: 0.1rem;
     border-radius: 0.5rem;
     font-size: 0.2rem;
+
     button {
       border: none;
       border-radius: 0.3rem;

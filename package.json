@@ -60,6 +60,7 @@
     "unsplash-react": "^0.3.0",
     "uuid": "^9.0.0",
     "vite-plugin-eslint": "^1.8.1",
+    "vite-tsconfig-paths": "^4.0.3",
     "zustand": "^4.1.4"
   },
   "devDependencies": {

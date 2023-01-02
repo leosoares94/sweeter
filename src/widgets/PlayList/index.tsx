@@ -26,10 +26,10 @@ import {
   DateInfo
 } from './styles'
 
-import { usePlaylists } from '../../store/Playlist'
+import { usePlaylists } from '@store/Playlist'
 
-import { colors } from '../../utils/colorUtils'
-import { formatDate, formatHour } from '../../utils/dateUtils'
+import { colors } from '@utils/colorUtils'
+import { formatDate, formatHour } from '@utils/dateUtils'
 
 interface mProps {
   onItemSelect?: () => void

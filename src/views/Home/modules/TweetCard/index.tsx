@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/naming-convention */
 import React, { useState } from 'react'
@@ -7,11 +12,13 @@ import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
 import { useMediaQuery } from 'react-responsive'
+
 import { BsTwitter, BsCheckLg } from 'react-icons/bs'
 import { FaRegComment } from 'react-icons/fa'
 import { BiAddToQueue } from 'react-icons/bi'
 import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai'
 import { MdVerified } from 'react-icons/md'
+
 import { ChakraProvider, Avatar, Button } from '@chakra-ui/react'
 
 import {
@@ -29,10 +36,10 @@ import {
   Image
 } from './styles'
 
-import { formatDate } from '../../utils/dateUtils'
-import { toTitleCase } from '../../utils/stringUtils'
+import { formatDate } from '@utils/dateUtils'
+import { toTitleCase } from '@utils/stringUtils'
 
-import { Tweet as TweetProps } from '../../store/Tracks'
+import { Tweet as TweetProps } from '@store/Tracks'
 
 interface TweetCardProps {
   onImageClick: (images: string[], index: number) => void

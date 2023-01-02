@@ -12,7 +12,7 @@ import {
   Stack
 } from '@chakra-ui/react'
 
-import Modal from '../../Modal'
+import Modal from '@widgets/Modal'
 
 interface ImageControlsProps {
   playlist: any

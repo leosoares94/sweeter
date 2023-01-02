@@ -2,12 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { BackgroundColor, BackgroundImage, Container, Logo, Time, Website } from './styles'
 
-import SweeterDefault from '../DisplayModels/SweeterDefault'
+import SweeterDefault from './modules/DisplayModels/SweeterDefault'
 import { Playlist } from '../../store/Playlist'
 
-import EditControls from '../EditControls'
-import Modal from '../Modal'
-import { ModalBody } from '@chakra-ui/react'
+import EditControls from './modules/EditControls'
 
 interface DisplayModeProps {
   playlist: Playlist
