@@ -147,7 +147,6 @@ const Home: React.FC = () => {
             ))}
           </Track>
         ))}
-        {/* <NoTracksScreen /> */}
       </Container>
     </Wrapper>
   )

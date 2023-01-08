@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({
             marginTop={1}
             paddingTop={1}
           >
-            Em desenvolvimento
+            Alfa
           </Badge>
           &nbsp;&nbsp;
         </Row>

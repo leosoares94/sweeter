@@ -45,9 +45,10 @@ const TrackHeader: React.FC<TrackHeaderProps> = ({ tag }) => {
             fontSize={isHd ? 13 : 16}
             zIndex={10000}
           >
-            <MenuItem className="menu-item">Edit query</MenuItem>
-            <MenuItem className="menu-item">Add to playlist</MenuItem>
-            <MenuItem className="menu-item">Remove</MenuItem>
+            <MenuItem className="menu-item">Track width</MenuItem>
+            <MenuItem className="menu-item">Add all to playlist</MenuItem>
+            <MenuItem className="menu-item">Delete Track</MenuItem>
+
           </MenuList>
         </Menu>
       </Container>
