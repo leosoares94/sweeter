@@ -96,7 +96,7 @@ const BuildTrack: React.FC = () => {
             marginTop={-1}
             paddingTop={0.5}
           >
-            Beta
+            V1
           </Badge></Title>
           <span
             style={{
@@ -194,7 +194,7 @@ const BuildTrack: React.FC = () => {
           variant="solid"
           colorScheme="pink"
           borderRadius={50}
-          leftIcon={<IoIosRocket size={18} />}
+          //leftIcon={<IoIosRocket size={18} />}
           marginTop={-2}
           disabled={isDisabledByRequired()}
           padding=" 1rem 0rem"

@@ -60,7 +60,7 @@ const TagInput: React.FC<TagInputProps> = ({ id, index, optionsLength, type, val
     <FadeIn>
       <Column>
         <Row className="field-container">
-          <Tooltip label={includes ? 'Incluir' : 'Excluir'} aria-label='A tooltip'>
+          <Tooltip label={includes ? 'Mudar para excluir' : 'Mudar para incluir'} aria-label='A tooltip'>
             <Button
               size="xs"
               variant="ghost"

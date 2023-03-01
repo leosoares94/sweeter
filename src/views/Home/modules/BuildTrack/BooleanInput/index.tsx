@@ -49,10 +49,7 @@ const BooleanInput: React.FC<BooleanInputProps> = ({
             padding: '.5rem'
           }}
         >
-          <Tooltip
-            label={includes ? 'Incluir' : 'Excluir'}
-            aria-label="A tooltip"
-          >
+       <Tooltip label={includes ? 'Mudar para excluir' : 'Mudar para incluir'} aria-label='A tooltip'>
             <Button
               size="xs"
               variant="ghost"
