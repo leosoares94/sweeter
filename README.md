@@ -5,3 +5,11 @@ Este é um protótipo de aplicativo web que desenvolvi utilizando as tecnologias
 
 [LinkedIn](https://www.linkedin.com/in/leosoares94/)\
 [Instagram](https://instagram.com/leosoares94)
+
+## Especificações técnicas:
+### Front-end:
+- Iniciado com [Vite](https://vitejs.dev/)
+- Alguns componentes: [Chakra UI](https://chakra-ui.com/)
+- Gerenciamento de estado: [Zustand](https://github.com/pmndrs/zustand)
+- Estilo: [Styled Components](https://styled-components.com/)
+- Linting: [ESLint](https://eslint.org/)
