@@ -53,7 +53,7 @@ export const Container = styled(motion.div)<BubbleContainerProps>`
     box-sizing: border-box;
   }
 
-  @media (max-width: 1366px) {
+  @media (min-width: 1366px) {
     zoom: ${({ editMode }) => (editMode ? '80%' : '0.9')} !important;
   }
 

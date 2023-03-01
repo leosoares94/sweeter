@@ -1,32 +1,42 @@
-import React, { useEffect, useRef, useState } from 'react'
-
-import { BackgroundColor, BackgroundImage, Container, Logo, Time, Website } from './styles'
-
-import SweeterDefault from './modules/DisplayModels/SweeterDefault'
-import { Playlist } from '../../store/Playlist'
-
-import EditControls from './modules/EditControls'
+import React, { useEffect, useRef, useState } from 'react';
+import { BackgroundColor, BackgroundImage, Container, Logo, Time, Website } from './styles';
+import SweeterDefault from './modules/DisplayModels/SweeterDefault';
+import EditControls from './modules/EditControls';
+import { Playlist } from '../../store/Playlist';
 
 interface DisplayModeProps {
-  playlist: Playlist
-  background?: string
-  editMode?: boolean
-  onLeave: () => void
+  playlist: Playlist;
+  background?: string;
+  editMode?: boolean;
+  onLeave: () => void;
 }
 
 const DisplayMode: React.FC<DisplayModeProps> = ({
   playlist,
   editMode,
-  onLeave
+  onLeave,
 }) => {
-  const [duration, setDuration] = useState(0)
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [duration, setDuration] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const displayRef = useRef<HTMLDivElement>(null);
 
-  const { backgroundColor } = playlist
+  useEffect(() => {
+    displayRef.current?.focus();
+  }, []);
 
-  const displayRef = useRef<HTMLDivElement>(null)
+  const handleTweet: React.KeyboardEventHandler<HTMLDivElement> | undefined = (event) => {
+    if (event.code === 'ArrowLeft' && currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else if ((event.code === 'ArrowRight' || event.code === 'Space') && currentIndex < playlist.tweets.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else if (event.code === 'Escape') {
+      onLeave();
+    } else {
+      return false;
+    }
+  };
 
-  function switchDisplayModels (modelName: string): JSX.Element | undefined {
+  function switchDisplayModels(modelName: string): JSX.Element | undefined {
     switch (modelName) {
       case 'sweeter-default':
         return (
@@ -36,57 +46,32 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
               textColor: playlist.textColor,
               linkColor: playlist.linkColor,
               fontFamily: playlist.fontFamily,
-              fontWeight: playlist.fontWeight
+              fontWeight: playlist.fontWeight,
             }}
             editMode={editMode}
             onStartTimer={setDuration}
           />
-        )
+        );
     }
   }
 
-  function showEditControls (): JSX.Element | undefined {
-    return (
-      <EditControls playlist={playlist} tweet={playlist.tweets[currentIndex]} />
-    )
+  function showEditControls(): JSX.Element | undefined {
+    return editMode ? <EditControls playlist={playlist} tweet={playlist.tweets[currentIndex]} /> : undefined;
   }
-
-  const handleTweet: React.KeyboardEventHandler<HTMLDivElement> | undefined = (
-    event
-  ) => {
-    return event.code === 'ArrowLeft' && currentIndex > 0
-      ? setCurrentIndex(currentIndex - 1)
-      : (event.code === 'ArrowRight' || event.code === 'Space') &&
-        currentIndex < playlist.tweets.length - 1
-          ? setCurrentIndex(currentIndex + 1)
-          : event.code === 'Escape'
-            ? onLeave()
-            : false
-  }
-
-  useEffect(() => {
-    displayRef.current?.focus()
-  })
 
   return (
-    <Container
-      ref={displayRef}
-      tabIndex={0}
-      onKeyDown={handleTweet}
-    >
+    <Container ref={displayRef} tabIndex={0} onKeyDown={handleTweet}>
       {duration > 0 && <Time duration={duration} />}
       {switchDisplayModels('sweeter-default')}
-      {/* <BlockPicker /> */}
       <Logo>
         <span>Sweeter</span>
       </Logo>
       <Website>getsweeter.vercel.app</Website>
-      {(editMode ?? false) && showEditControls()}
-      <BackgroundImage
-        backgroundImage={playlist.backgroundImage ?? ''} />
-      <BackgroundColor backgroundColor={backgroundColor} />
+      {showEditControls()}
+      <BackgroundImage backgroundOpacity={playlist.backgroundOpacity} backgroundImage={playlist.backgroundImage ?? ''} />
+      <BackgroundColor backgroundColor={playlist.backgroundColor} />
     </Container>
-  )
-}
+  );
+};
 
-export default DisplayMode
+export default DisplayMode;

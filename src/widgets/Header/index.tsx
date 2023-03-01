@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({
             marginTop={1}
             paddingTop={1}
           >
-            Alfa
+            Work In Progress
           </Badge>
           &nbsp;&nbsp;
         </Row>
@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({
             }}
             borderRadius={50}
           >
-            <span>New</span>
+            <span>New Track</span>
           </Button>
           &nbsp;&nbsp;
           <Button

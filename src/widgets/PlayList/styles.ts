@@ -81,6 +81,10 @@ export const Container = styled.div<ContainerProps>`
     font-size: 2rem;
     justify-content: flex-start;
     background-color: none;
+
+    .menu-item {
+      font-weight: normal;
+    }
   }
 `
 

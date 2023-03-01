@@ -29,6 +29,7 @@ export interface Playlist {
   linkColor: string
   backgroundImage?: string | null
   backgroundColor: string
+  backgroundOpacity?: number
   animated?: boolean
   tweets: Item[] & Tweet[]
 }

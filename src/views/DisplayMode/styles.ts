@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import styled, { keyframes } from 'styled-components'
 
+// Animations
 const fade = keyframes`
   from {
     opacity: 0;
@@ -10,6 +10,16 @@ const fade = keyframes`
   }
 `
 
+const progress = keyframes`
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+`
+
+// Styled Components
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -21,26 +31,21 @@ export const Container = styled.div`
   animation: ${fade} 0.2s ease;
   z-index: 11;
 `
-interface BackgroundImageProps {
-  backgroundImage: string | undefined
-}
 
-export const BackgroundImage = styled.div<BackgroundImageProps>`
+export const BackgroundImage = styled.div<{
+  backgroundImage: string | undefined
+  backgroundOpacity: number | undefined
+}>`
   width: 100%;
   height: 100vh;
   position: fixed;
   background-size: cover;
-  ${({ backgroundImage }) =>
-    Boolean(backgroundImage) && `background-image: url(${backgroundImage});`}
-opacity: .7;
-    z-index:1 ;
+  opacity: ${({ backgroundOpacity }) => Boolean(backgroundOpacity) && `${backgroundOpacity}%`};
+  ${({ backgroundImage }) => Boolean(backgroundImage) && `background-image: url(${backgroundImage});`}
+  z-index: 1;
 `
 
-interface BackgroundColorProps {
-  backgroundColor: string
-}
-
-export const BackgroundColor = styled.div<BackgroundColorProps>`
+export const BackgroundColor = styled.div<{ backgroundColor: string }>`
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -58,7 +63,7 @@ export const Logo = styled.div`
   bottom: 0;
   padding-bottom: 1.7rem;
   text-shadow: 1px 1px 1px #0000003e;
-  z-index:2;
+  z-index: 2;
 `
 
 export const Website = styled.div`
@@ -68,23 +73,10 @@ export const Website = styled.div`
   bottom: 0;
   padding-bottom: 0.5rem;
   text-shadow: 1px 1px 1px #0000003e;
-  z-index:2 ;
+  z-index: 2;
 `
 
-const progress = keyframes`
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-`
-
-interface TimeProps {
-  duration?: number
-}
-
-export const Time = styled.div<TimeProps>`
+export const Time = styled.div<{ duration?: number }>`
   width: 100%;
   height: 0.2rem;
   background-color: #ffffffc6;
@@ -95,6 +87,7 @@ export const Time = styled.div<TimeProps>`
   z-index: 2;
 `
 
+// Example for commented-out code
 // export const EditControls = styled.div`
 //   width: 14rem;
 //   height: 100vh;
@@ -113,4 +106,4 @@ export const Time = styled.div<TimeProps>`
 //     }
 //     zoom: 0.7;
 //   }
-// `
+// ```

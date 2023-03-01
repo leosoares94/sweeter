@@ -79,6 +79,7 @@ button:hover {
   background-color: #ff478480;
   border-radius: 10px;
   border: none;
+  cursor: pointer !important;
 }
 
 .chakra-modal__body {

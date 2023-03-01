@@ -113,15 +113,15 @@ const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
                 >
                   <MenuItem
                     className="menu-item"
-                    fontSize={13}
+                    fontSize={12}
                     onClick={onItemEdit}
                   >
                     Edit
                   </MenuItem>
-                  <MenuItem className="menu-item" fontSize={13}>
+                  <MenuItem className="menu-item" fontSize={12}>
                     Delete
                   </MenuItem>
-                  <MenuItem className="menu-item" fontSize={13}>
+                  <MenuItem className="menu-item" fontSize={12}>
                     Clone
                   </MenuItem>
                 </MenuList>

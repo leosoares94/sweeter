@@ -60,7 +60,11 @@ const MainOptions: React.FC<MainOptionProps> = ({
         description: `Apenas ${MAX_SAME_FIELD_COUNT} campos deste tipo`,
         status: 'error',
         duration: 2000,
-        isClosable: true
+        isClosable: true,
+        size: 'xs',
+        containerStyle: {
+          fontSize: 14
+        },
       })
       : onInputAdd(createField(type))
   }

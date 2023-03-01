@@ -36,23 +36,28 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
     '#F1F7B5',
     '#A8D1D1',
     '#9EA1D4',
-    '#453C67'
+    '#453C67',
   ]
 
-  function handleColorPickerChange (color: string): void {
+  function handleColorPickerChange(color: string): void {
     setPickerActive(true)
     setPickerColor(color)
   }
 
-  function handleColorPickerChangeComplete (color: string): void {
+  function handleColorPickerChangeComplete(color: string): void {
     setPickerActive(false)
     updateItem(playlist.id, { backgroundColor: color })
   }
 
-  function handleBackgroundImageChange (image: string | ArrayBuffer | null): void {
+  function handleBackgroundImageChange(
+    image: string | ArrayBuffer | null
+  ): void {
     updateItem(playlist.id, { backgroundImage: image })
   }
 
+  function handleBackgroundOpacityChange(opacity: number) {
+    updateItem(playlist.id, { backgroundOpacity: opacity })
+  }
   return (
     <>
       <Wrapper tabIndex={10}>
@@ -68,7 +73,13 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
             icons={[<IoColorPaletteOutline key={1} />]}
           >
             <Column>
-              <ImageControls onChange={(image) => handleBackgroundImageChange(image)} playlist={playlist}/>
+              <ImageControls
+                playlist={playlist}
+                onChange={(image) => handleBackgroundImageChange(image)}
+                onImageOpacityChange={(opacity: number) =>
+                  handleBackgroundOpacityChange(opacity)
+                }
+              />
               <ColorPicker
                 className="tweet-color"
                 color={pickerActive ? pickerColor : backgroundColor}
@@ -109,7 +120,7 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
                 onChange={(e) => {
                   const updated = [
                     ...playlist.tweets,
-                    (tweet.showTime = e.target.checked)
+                    (tweet.showTime = e.target.checked),
                   ]
                   return updateItem(playlist.id, { tweets: updated })
                 }}
@@ -124,7 +135,7 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
                 onChange={(e) => {
                   const updated = [
                     ...playlist.tweets,
-                    (tweet.showMedia = e.target.checked)
+                    (tweet.showMedia = e.target.checked),
                   ]
                   return updateItem(playlist.id, { tweets: updated })
                 }}
@@ -140,7 +151,7 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
                 onChange={(e) => {
                   const updated = [
                     ...playlist.tweets,
-                    (tweet.showAvatar = e.target.checked)
+                    (tweet.showAvatar = e.target.checked),
                   ]
                   return updateItem(playlist.id, { tweets: updated })
                 }}
@@ -155,7 +166,7 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
                 onChange={(e) => {
                   const updated = [
                     ...playlist.tweets,
-                    (tweet.showEngagement = e.target.checked)
+                    (tweet.showEngagement = e.target.checked),
                   ]
                   return updateItem(playlist.id, { tweets: updated })
                 }}
@@ -170,7 +181,7 @@ const EditControls: React.FC<EditControlsProps> = ({ tweet, playlist }) => {
                 onChange={(e) => {
                   const updated = [
                     ...playlist.tweets,
-                    (tweet.showSource = e.target.checked)
+                    (tweet.showSource = e.target.checked),
                   ]
                   return updateItem(playlist.id, { tweets: updated })
                 }}

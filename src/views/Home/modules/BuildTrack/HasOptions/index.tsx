@@ -61,7 +61,11 @@ const HasOptions: React.FC<HasOptionProps> = ({
         description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
         status: 'error',
         duration: 2000,
-        isClosable: true
+        isClosable: true,
+        size: 'sm',
+        containerStyle: {
+          fontSize: 14
+        },
       })
       : onInputAdd(newField(type))
   }

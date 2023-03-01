@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
     @media (max-width: 1366px) {
       zoom: 1.25;
     }
+
   }
 
   @media (max-width: 1366px) {
@@ -42,7 +43,7 @@ export const Row = styled.div`
 export const Container = styled.div`
   width: 16rem;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1366px) or (max-width: 1440px) {
     zoom: 0.8;
   }
 `

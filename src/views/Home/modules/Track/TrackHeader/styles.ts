@@ -43,6 +43,7 @@ export const Container = styled.div`
     border: none;
     border-radius: 0;
     background-color: #fff;
+    font-weight: normal;
 
     z-index: 80000;
     &:hover {

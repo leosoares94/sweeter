@@ -6,19 +6,31 @@ import React from 'react'
 import Compressor from 'compressorjs'
 import { FileUploader } from 'react-drag-drop-files'
 
-import { Button, ModalBody, Stack, CloseButton, Box, Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/react'
+import {
+  Button,
+  ModalBody,
+  Stack,
+  CloseButton,
+  Box,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+} from '@chakra-ui/react'
 
 import Modal from '@widgets/Modal'
-import { MdGraphicEq, MdOpacity } from 'react-icons/md'
+import { MdOpacity } from 'react-icons/md'
 
 interface ImageControlsProps {
   playlist: any
   onChange: (image: string | ArrayBuffer | null) => void
+  onImageOpacityChange?: (opacity: number) => void
 }
 
 const ImageControls: React.FC<ImageControlsProps> = ({
+  playlist,
   onChange,
-  playlist
+  onImageOpacityChange,
 }) => {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false)
 
@@ -27,16 +39,17 @@ const ImageControls: React.FC<ImageControlsProps> = ({
   const handleChange = (file: React.SetStateAction<null>): void => {
     new Compressor(file as unknown as File | Blob, {
       quality: 0.7,
-      success (result) {
+      success(result) {
         const reader = new FileReader()
         reader.readAsDataURL(result as unknown as Blob)
         reader.onload = () => {
           onChange(reader.result)
         }
+        setModalOpen(false)
       },
-      error (err) {
+      error(err) {
         console.log(err.message)
-      }
+      },
     })
   }
 
@@ -88,12 +101,17 @@ const ImageControls: React.FC<ImageControlsProps> = ({
           )}
           {playlist.backgroundImage ? '' : 'Sem imagem'}
         </Button>
-        <Slider aria-label='slider-ex-2' defaultValue={100} isDisabled={!playlist.backgroundImage}>
-          <SliderTrack bg='pink'>
-            <SliderFilledTrack bg='pink' />
+        <Slider
+          aria-label="slider-ex-2"
+          defaultValue={100}
+          isDisabled={!playlist.backgroundImage}
+          onChange={onImageOpacityChange}
+        >
+          <SliderTrack bg="pink">
+            <SliderFilledTrack bg="pink" />
           </SliderTrack>
           <SliderThumb boxSize={6}>
-            <Box color='#ed64a6' as={MdOpacity} />
+            <Box color="#ed64a6" as={MdOpacity} />
           </SliderThumb>
         </Slider>
       </Stack>

@@ -1,51 +1,45 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState } from 'react';
 
-import ImageViewer from 'react-simple-image-viewer'
+import ImageViewer from 'react-simple-image-viewer';
 
-import { Container, Wrapper } from './styles'
+import { Container, Wrapper } from './styles';
 
-import Track from './modules/Track'
-import TweetCard from './modules/TweetCard'
+import Track from './modules/Track';
+import TweetCard from './modules/TweetCard';
 
-import DisplayMode from '@/views/DisplayMode'
-import BuildTrack from '@views/Home/modules/BuildTrack'
+import DisplayMode from '@/views/DisplayMode';
+import BuildTrack from '@views/Home/modules/BuildTrack';
 
-import Header from '@widgets/Header'
-import Playlist from '@widgets/PlayList'
-import Modal from '@widgets/Modal'
+import Header from '@widgets/Header';
+import Playlist from '@widgets/PlayList';
+import Modal from '@widgets/Modal';
 
-import { useBuilder } from '@store/Builder'
-import { useTracks } from '@store/Tracks'
-import { usePlaylists } from '@store/Playlist'
+import { useBuilder } from '@store/Builder';
+import { useTracks } from '@store/Tracks';
+import { usePlaylists } from '@store/Playlist';
+
+interface ImageViewerProps {
+  src: string[];
+  currentIndex: number;
+  onClose: () => void;
+}
 
 const Home: React.FC = () => {
   /* Store states */
-  const { resetBuilder } = useBuilder((state) => state)
-  const { tracks } = useTracks((state) => state)
-  const { playlists } = usePlaylists((state) => state)
+  const { resetBuilder } = useBuilder((state) => state);
+  const { tracks } = useTracks((state) => state);
+  const { playlists } = usePlaylists((state) => state);
 
-  const [displayMode, setDisplayMode] = useState(false) // Tweet Visualisation mode
-  const [displayModeEditable, setDisplayModeEditable] = useState(false) // Tweet Visualisation editable mode
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const [currentModalView, setCurrentModalView] = useState<ReactElement | null>(
-    null
-  ) // Which component will be rendered inside modal
+  const [displayMode, setDisplayMode] = useState<boolean>(false); // Tweet Visualization mode
+  const [displayModeEditable, setDisplayModeEditable] = useState<boolean>(false); // Tweet Visualization editable mode
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [currentModalView, setCurrentModalView] = useState<ReactElement | null>(null); // Which component will be rendered inside modal
 
-  const [isViewerOpen, setIsViewerOpen] = useState<boolean>(false)
-  const [imagesForViewer, setImagesForViewer] = useState<string[]>([])
-  const [currentImage, setCurrentImage] = useState<number>(0)
+  const [isViewerOpen, setIsViewerOpen] = useState<boolean>(false);
+  const [imagesForViewer, setImagesForViewer] = useState<string[]>([]);
+  const [currentImage, setCurrentImage] = useState<number>(0);
 
-  interface ImageViewerProps {
-    src: string[]
-    currentIndex: number
-    onClose: () => void
-  }
-
-  const renderImageViewer: React.FC<ImageViewerProps> = ({
-    src,
-    currentIndex,
-    onClose
-  }) => {
+  const renderImageViewer: React.FC<ImageViewerProps> = ({ src, currentIndex, onClose }) => {
     return (
       <ImageViewer
         src={src}
@@ -56,54 +50,54 @@ const Home: React.FC = () => {
         backgroundStyle={{
           zIndex: 10000,
           backgroundColor: 'rgba(0, 0, 0,.85)',
-          position: 'fixed'
+          position: 'fixed',
         }}
       />
-    )
-  }
+    );
+  };
 
   const openImageViewer = (images: string[], index: number): void => {
-    setImagesForViewer(images)
-    setCurrentImage(index)
-    setIsViewerOpen(true)
-  }
+    setImagesForViewer(images);
+    setCurrentImage(index);
+    setIsViewerOpen(true);
+  };
 
   const closeImageViewer = (): void => {
-    setCurrentImage(0)
-    setIsViewerOpen(false)
-    setImagesForViewer([])
-  }
+    setCurrentImage(0);
+    setIsViewerOpen(false);
+    setImagesForViewer([]);
+  };
 
   const renderBuildTrackModal = (): void => {
-    setCurrentModalView(<BuildTrack />)
-    setIsModalOpen(true)
-  }
+    setCurrentModalView(<BuildTrack />);
+    setIsModalOpen(true);
+  };
 
   const renderPlaylistModal = (): void => {
     setCurrentModalView(
       <Playlist
         onItemSelect={() => {
           void (() => {
-            setIsModalOpen(false)
-            setDisplayMode(true)
-          })()
+            setIsModalOpen(false);
+            setDisplayMode(true);
+          })();
         }}
         onItemEdit={() => handleEditPlaylist()}
       />
-    )
-    setIsModalOpen(true)
-  }
+    );
+    setIsModalOpen(true);
+  };
 
-  function handleEditPlaylist (): void {
-    setDisplayModeEditable(true)
-    setIsModalOpen(false)
-    setDisplayMode(true)
-  }
+  const handleEditPlaylist = (): void => {
+    setDisplayModeEditable(true);
+    setIsModalOpen(false);
+    setDisplayMode(true);
+  };
 
-  function handleLeavePlaylist (): void {
-    setDisplayMode(false)
-    displayModeEditable && setDisplayModeEditable(false)
-  }
+  const handleLeavePlaylist = (): void => {
+    setDisplayMode(false);
+    displayModeEditable && setDisplayModeEditable(false);
+  };
 
   return (
     <Wrapper>
@@ -114,10 +108,11 @@ const Home: React.FC = () => {
           onLeave={() => handleLeavePlaylist()}
         />
       )}
-    {!displayMode && <Header
-        onNewTrackClick={() => renderBuildTrackModal()}
+      {!displayMode && (
+        <Header
+          onNewTrackClick={() => renderBuildTrackModal()}
         onPlayButtonClick={() => renderPlaylistModal()}
-      />}
+      />)}
       {isViewerOpen &&
         renderImageViewer({
           src: imagesForViewer,
