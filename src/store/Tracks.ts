@@ -54,6 +54,7 @@ interface TracksState {
   // updateTrack: (data: Track) => void;
   // removeTrack: (id: string) => void;
   // resetTracks: () => void;
+  reloadTracks?: (tracks: Track[]) => void;
 }
 
 export const useTracks = create<TracksState>()(
@@ -565,11 +566,17 @@ export const useTracks = create<TracksState>()(
         next: null
       }
     ],
+    reloadTracks: (tracks: Track[]) => {
+      set((state) => ({
+        ...state,
+        tracks,
+      }));
+    },
     addTrack: (data) => {
       set((state) => ({
         ...state,
         tracks: [data, ...state.tracks]
       }))
-    }
+    },
   }))
 )

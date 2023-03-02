@@ -11,8 +11,6 @@ import {
 
 // import Select from 'react-select'
 
-import { IoIosRocket } from 'react-icons/io'
-
 import { Column, Title } from './styles'
 import MainOptions from './MainOptions'
 import IsOptions from './IsOptions'
