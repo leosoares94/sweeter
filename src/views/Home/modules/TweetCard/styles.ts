@@ -1,14 +1,19 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+interface ContainerProps {
+  backgroundColor?: string
+  textColor?: string
+}
+
+export const Container = styled.div<ContainerProps>`
   width: 100%;
   height: max-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #000;
-  background-color: #fff;
+  color: ${({textColor}) => textColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   padding: 1.5rem;
   box-sizing: border-box;
   border-radius: 0.3rem;
@@ -18,7 +23,7 @@ export const Container = styled.div`
   .retweet-flag {
     font-size: 0.9rem !important;
     margin-top: 0.8rem;
-    color: #000000bd;
+    color: ${({textColor}) => textColor};
     z-index: 10;
 
     @media (max-width: 1368px) {
@@ -34,15 +39,19 @@ export const Container = styled.div`
     margin-top: 0.6rem;
   }
 `
+interface RowProps {
+  backgroundColor?: string
+  textColor?: string
+}
 
-export const Row = styled.div`
+export const Row = styled.div<RowProps>`
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   box-sizing: border-box;
-
+  color: ${({textColor}) => textColor};
   .avatar {
     width: 2.5rem;
     height: 2.5rem;
@@ -155,6 +164,8 @@ export const Source = styled.span`
   }
 `
 
+
+
 export const EngagementButton = styled.div`
   width: max-content;
   height: max-content;
@@ -163,7 +174,7 @@ export const EngagementButton = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 0.8rem;
-  color: #000000ab;
+
 `
 
 export const EngagementNumber = styled.span`

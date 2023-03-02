@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import ImageViewer from 'react-simple-image-viewer'
@@ -18,6 +18,7 @@ import Modal from '@widgets/Modal'
 import { useBuilder } from '@store/Builder'
 import { useTracks } from '@store/Tracks'
 import { usePlaylists } from '@store/Playlist'
+import { AppTheme, ThemeAttributes } from '@/utils/appTheme'
 
 interface ImageViewerProps {
   src: string[]
@@ -25,7 +26,11 @@ interface ImageViewerProps {
   onClose: () => void
 }
 
-const Home: React.FC = () => {
+interface HomeProps {
+  theme: ThemeAttributes
+}
+
+const Home: React.FC<HomeProps> = ({theme}) => {
   /* Store states */
   const { resetBuilder } = useBuilder((state) => state)
   const { tracks, reloadTracks } = useTracks((state) => state)
@@ -136,7 +141,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper background={theme.bodyBackground}>
       {displayMode && (
         <DisplayMode
           editMode={displayModeEditable}
@@ -148,6 +153,7 @@ const Home: React.FC = () => {
         <Header
           onNewTrackClick={() => renderBuildTrackModal()}
           onPlayButtonClick={() => renderPlaylistModal()}
+          theme={theme}
         />
       )}
       {isViewerOpen &&
@@ -166,7 +172,7 @@ const Home: React.FC = () => {
         {currentModalView}
       </Modal>
       <Container>
-        <DragDropContext onDragEnd={onDragEnd}>
+        <DragDropContext onDragEnd={onDragEnd} >
           <Droppable droppableId="droppable" direction="horizontal">
             {(provided, snapshot) => (
               <div
@@ -190,7 +196,7 @@ const Home: React.FC = () => {
                           provided.draggableProps.style
                         )}
                       >
-                        <Track key={track.id} tag={track.tweets[0].author.name}>
+                        <Track key={track.id} tag={track.tweets[0].author.name} headerBackground={theme.trackHeaderBackgroundColor} textColor={theme.trackHeaderTextColor}>
                           {track.tweets.map((tweet) => (
                             <TweetCard
                               key={tweet.id}
@@ -201,6 +207,8 @@ const Home: React.FC = () => {
                               ) => {
                                 openImageViewer(images, index)
                               }}
+                              backgroundColor={theme.cardBackground}
+                              textColor={theme.cardTextColor}
                             />
                           ))}
                         </Track>

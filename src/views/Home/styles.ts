@@ -1,17 +1,16 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
+interface WrapperProps {
+  background?: string
+}
+
+
+export const Wrapper = styled.div<WrapperProps>`
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
-  background: repeating-linear-gradient(
-    -45deg,
-    #ffb7dd1b,
-    #ffb7dd20 2px,
-    #ffffff1f 2px,
-    #ffffff28 11px
-  );
+
+  background: ${({background}) => background}
 `
 
 export const Container = styled.div`
@@ -21,7 +20,7 @@ export const Container = styled.div`
   padding-top: 3rem;
   opacity: 1 !important;
   overflow-x: scroll;
-
+  overflow-y: hidden !important;
   @media (max-width: 1368px) {
     padding-top: 2.5rem;
   }

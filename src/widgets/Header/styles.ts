@@ -1,13 +1,17 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+interface ContainerProps {
+  backgroundColor?: string
+}
+
+export const Container = styled.div<ContainerProps>`
   width: 100%;
   height: 3rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: ${({backgroundColor}) => backgroundColor};
   position: fixed;
   box-sizing: border-box;
   padding: 0rem 2rem;

@@ -7,18 +7,32 @@ import { CiSettings } from 'react-icons/ci'
 
 import { ChakraProvider, Button, Badge } from '@chakra-ui/react'
 
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from '@chakra-ui/react'
+import { ThemeAttributes } from '@/utils/appTheme'
+
 interface HeaderProps {
   onNewTrackClick: () => void
   onPlayButtonClick: () => void
+  theme?: ThemeAttributes
 }
 
 const Header: React.FC<HeaderProps> = ({
   onNewTrackClick,
-  onPlayButtonClick
+  onPlayButtonClick,
+  theme
 }) => {
   return (
     <ChakraProvider>
-      <Container>
+      <Container backgroundColor={theme?.headerBackground}>
         <Row>
           <Logo>
             <span>Sweeter</span>
@@ -45,8 +59,8 @@ const Header: React.FC<HeaderProps> = ({
             sx={{
               bgColor: 'pink.400',
               _hover: {
-                bgColor: 'pink.500'
-              }
+                bgColor: 'pink.500',
+              },
             }}
             borderRadius={50}
           >
@@ -64,15 +78,23 @@ const Header: React.FC<HeaderProps> = ({
             sx={{
               bgColor: 'pink.400',
               _hover: {
-                bgColor: 'pink.500'
-              }
+                bgColor: 'pink.500',
+              },
             }}
           >
             <BsFillPlayFill size={16} fontWeight={600} />
             {/* Play */}
           </Button>
           &nbsp;&nbsp;
-          <CiSettings size={28} color="#0000008f" />
+          <Menu>
+            <MenuButton>
+              <CiSettings size={28} color="#0000008f" />
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Settings</MenuItem>
+              <MenuItem>Logout</MenuItem>
+            </MenuList>
+          </Menu>
         </Row>
       </Container>
     </ChakraProvider>

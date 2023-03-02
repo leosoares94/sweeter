@@ -461,7 +461,7 @@ export const useTracks = create<TracksState>()(
             author: {
               id: '895261812370939907',
               avatar:
-                'https://pbs.twimg.com/profile_images/1583481125040754692/Zp6wsJUv_normal.jpg',
+                'https://pbs.twimg.com/profile_images/1604919192683249671/Ur7_4kCk_400x400.jpg',
               name: 'Prime Video Brasil',
               username: 'PrimeVideoBR',
               verified: true
@@ -492,7 +492,7 @@ export const useTracks = create<TracksState>()(
             author: {
               id: '895261812370939907',
               avatar:
-                'https://pbs.twimg.com/profile_images/1583481125040754692/Zp6wsJUv_normal.jpg',
+                'https://pbs.twimg.com/profile_images/1604919192683249671/Ur7_4kCk_400x400.jpg',
               name: 'Prime Video Brasil',
               username: 'PrimeVideoBR',
               verified: true
@@ -523,7 +523,7 @@ export const useTracks = create<TracksState>()(
             author: {
               id: '895261812370939907',
               avatar:
-                'https://pbs.twimg.com/profile_images/1583481125040754692/Zp6wsJUv_normal.jpg',
+                'https://pbs.twimg.com/profile_images/1604919192683249671/Ur7_4kCk_400x400.jpg',
               name: 'Prime Video Brasil',
               username: 'PrimeVideoBR',
               verified: true

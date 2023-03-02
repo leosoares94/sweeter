@@ -43,6 +43,8 @@ import { Tweet as TweetProps } from '@store/Tracks'
 
 interface TweetCardProps {
   onImageClick: (images: string[], index: number) => void
+  backgroundColor?: string
+  textColor?: string
 }
 
 const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
@@ -55,7 +57,9 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
   images,
   videos,
   retweet,
-  onImageClick
+  onImageClick,
+  backgroundColor,
+  textColor
 }) => {
   const [added, setAdded] = useState(false)
 
@@ -87,7 +91,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
 
   return (
     <ChakraProvider>
-      <Container>
+      <Container backgroundColor={backgroundColor} textColor={textColor}>
         <Column>
           <Row className="user-info">
             <Row>
@@ -107,7 +111,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
                   &nbsp;
                   {(author.verified === true) && <MdVerified size={15} color="#1d9af1" />}
                 </Row>
-                <Username onClick={() => redirectToProfile()}>
+                <Username onClick={() => redirectToProfile()} style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>
                   @{author.username}
                 </Username>
               </Column>
@@ -138,7 +142,8 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
             <Tweet
               key={id}
               style={{
-                marginTop: `${Boolean(retweet.id) && '-1rem'}`
+                marginTop: `${Boolean(retweet.id) && '-1rem'}`,
+                color: textColor
               }}
             >
               {Boolean(retweet.id) && (
@@ -183,27 +188,27 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
               </MediaContainer>
             )}
           </Column>
-          <Row>
-            <Time>{toTitleCase(formatDate(new Date(created_at)))}</Time>
+          <Row >
+            <Time style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>{toTitleCase(formatDate(new Date(created_at)))}</Time>
             <Source>&nbsp;· {source}</Source>
           </Row>
 
           <Row className="engagement">
-            <EngagementButton>
-              <FaRegComment size={15} />
-              <EngagementNumber>
+            <EngagementButton >
+              <FaRegComment size={15} color={textColor} />
+              <EngagementNumber style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>
                 {metrics.replies.toLocaleString()}
               </EngagementNumber>
             </EngagementButton>
-            <EngagementButton>
-              <AiOutlineRetweet size={18} />
-              <EngagementNumber>
+            <EngagementButton >
+              <AiOutlineRetweet size={18} color={textColor}/>
+              <EngagementNumber style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>
                 {metrics.retweets.toLocaleString()}
               </EngagementNumber>
             </EngagementButton>
             <EngagementButton>
-              <AiOutlineHeart size={18} />
-              <EngagementNumber>
+              <AiOutlineHeart size={18} color={textColor} />
+              <EngagementNumber style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>
                 {metrics.likes.toLocaleString()}
               </EngagementNumber>
 

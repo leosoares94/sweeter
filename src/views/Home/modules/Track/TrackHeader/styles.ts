@@ -42,7 +42,6 @@ export const Container = styled.div`
     padding: 0.3rem 0.8rem;
     border: none;
     border-radius: 0;
-    background-color: #fff;
     font-weight: normal;
 
     z-index: 80000;
