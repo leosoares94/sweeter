@@ -5,14 +5,14 @@ export const colors = [
   },
   {
     primary: '#e8e4ffd3',
-    secondary: '#e7e3fec2',
+    secondary: '#d072ffc5',
   },
   {
     primary: '#c7f2ffbb',
-    secondary: '#cfebf3c7',
+    secondary: '#68e7cbc5',
   },
   {
     primary: '#ffedccd5',
-    secondary: '#fff0d5bb',
+    secondary: '#ffcc55c5',
   },
 ]
