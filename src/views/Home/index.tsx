@@ -154,6 +154,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
         <Header
           onNewTrackClick={() => renderBuildTrackModal()}
           onPlayButtonClick={() => renderPlaylistModal()}
+          onSettingsClick={() => {}}
           theme={theme}
         />
       )}

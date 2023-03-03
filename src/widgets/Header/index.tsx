@@ -13,12 +13,14 @@ import { ThemeAttributes } from '@/utils/appTheme'
 interface HeaderProps {
   onNewTrackClick: () => void
   onPlayButtonClick: () => void
+  onSettingsClick: () => void
   theme?: ThemeAttributes
 }
 
 const Header: React.FC<HeaderProps> = ({
   onNewTrackClick,
   onPlayButtonClick,
+  onSettingsClick,
   theme,
 }) => {
   return (
