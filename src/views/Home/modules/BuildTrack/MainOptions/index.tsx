@@ -12,6 +12,7 @@ import { Row } from './styles'
 import TagInput from '../TagInput'
 
 import { Filter } from '../../../../../store/Builder'
+import { ThemeAttributes } from '@/utils/appTheme'
 
 export interface MainOptionProps {
   data: Filter[]
@@ -23,6 +24,7 @@ export interface MainOptionProps {
   ) => void
   onInputDelete: (id: string) => void
   onInputAdd: (input: Filter) => void
+  theme: ThemeAttributes
 }
 
 const MainOptions: React.FC<MainOptionProps> = ({
@@ -30,7 +32,8 @@ const MainOptions: React.FC<MainOptionProps> = ({
   hasNext,
   onInputChange,
   onInputDelete,
-  onInputAdd
+  onInputAdd,
+  theme
 }) => {
   const MAX_SAME_FIELD_COUNT = 2
 
@@ -71,11 +74,11 @@ const MainOptions: React.FC<MainOptionProps> = ({
 
   return (
     <FadeIn>
-      <Row>
+      <Row theme={theme}>
         <Table
           width="100%"
           padding=".5rem"
-          backgroundColor="#ffd4e4c9"
+          backgroundColor={theme.type === "light" ? "#ffd4e4c9" : "#ff5593c5"}
           borderRadius={9}
         >
           <Table.Head
@@ -84,6 +87,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
             borderBottom="none"
             height="1.5rem"
             backgroundColor="#ff6bb500"
+            color={theme.trackHeaderTextColor}
           >
             <Table.TextHeaderCell fontSize=".7rem">
               Data Filters&nbsp;
@@ -109,7 +113,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
               </span>
             </Table.TextHeaderCell>
           </Table.Head>
-          <Table.Body width="100%" paddingLeft={10} paddingBottom={0.4}>
+          <Table.Body width="100%" paddingLeft={10} paddingBottom={0.4} >
             <Tooltip
               label="Incluir ou bloquear hashtags na busca"
               aria-label="A tooltip"
@@ -123,6 +127,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
                 leftIcon={<AiOutlinePlus size={13} />}
                 iconSpacing={0.5}
                 onClick={() => handleAddField('hashtags')}
+      
               >
                 Hashtags
               </Button>
@@ -205,6 +210,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
                 onDelete={onInputDelete}
                 index={index}
                 optionsLength={array.length}
+                theme={theme}
               />
             ))}
           </Table.Body>

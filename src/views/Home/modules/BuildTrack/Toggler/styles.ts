@@ -9,7 +9,7 @@ export const Row = styled.div`
   flex-direction: row;
   font-size: .6rem;
   font-weight: bold;
-  color: #00000060;
+  color: ${({theme}) => theme.type === "light" ? '#00000060' : "#fff"};
 
   .tags {
     font-size: 0.7rem;

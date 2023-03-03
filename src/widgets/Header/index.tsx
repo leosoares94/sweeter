@@ -11,11 +11,7 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
+  MenuItem
 } from '@chakra-ui/react'
 import { ThemeAttributes } from '@/utils/appTheme'
 
@@ -88,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({
           &nbsp;&nbsp;
           <Menu>
             <MenuButton>
-              <CiSettings size={28} color="#0000008f" />
+              <CiSettings size={28} color={theme?.cardTextColor} />
             </MenuButton>
             <MenuList>
               <MenuItem>Settings</MenuItem>

@@ -17,12 +17,17 @@ import IsOptions from './IsOptions'
 import HasOptions from './HasOptions'
 
 import { useBuilder } from '@store/Builder'
+import { ThemeAttributes } from '@/utils/appTheme'
 
 // import { convertBuilderToQueryString2 } from '../../utils/builderToQueryString'
 // import RecentTweetsRepository from '../../api/modules/SearchTweets/RecentSearch/repository/implementation/RecentTweetsRepository'
 // import RequestConfig from '../../api/modules/SearchTweets/RecentSearch/RequestConfig'
 
-const BuildTrack: React.FC = () => {
+interface BuildTrackProps {
+  theme: ThemeAttributes
+}
+
+const BuildTrack: React.FC<BuildTrackProps> = ({theme}) => {
   const {
     dataFilters,
     booleanFilters,
@@ -82,12 +87,13 @@ const BuildTrack: React.FC = () => {
       className="wrapper"
       style={{
         paddingTop: '1rem',
-        paddingBottom: '1rem'
+        paddingBottom: '1rem',
+        color: theme.cardTextColor
       }}
     >
       <ModalHeader>
-        <Column className="header-column">
-          <Title> Let&apos;s build your track! <Badge
+        <Column className="header-column" style={{color: theme.cardTextColor}}>
+          <Title style={{color: theme.cardTextColor}}> Let&apos;s build your track! <Badge
             size="xs"
             fontSize={10}
             colorScheme="green"
@@ -100,7 +106,7 @@ const BuildTrack: React.FC = () => {
             style={{
               fontSize: 13,
               fontWeight: 'normal',
-              color: 'rgba(0,0,0,0.5)'
+              color: theme.cardTextColor
             }}
           >
             Select some options and add some filters below to customize your
@@ -141,6 +147,7 @@ const BuildTrack: React.FC = () => {
               }
               onInputDelete={(id) => removeFilter(id, 'dataFilters')}
               onInputAdd={(input) => addFilter(input, 'dataFilters')}
+              theme={theme}
             />
           )}
           {Boolean(isEnabled('boolean')) && (

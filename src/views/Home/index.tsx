@@ -81,7 +81,7 @@ const Home: React.FC<HomeProps> = ({theme}) => {
   }
 
   const renderBuildTrackModal = (): void => {
-    setCurrentModalView(<BuildTrack />)
+    setCurrentModalView(<BuildTrack theme={theme}/>)
     setIsModalOpen(true)
   }
 
@@ -168,6 +168,7 @@ const Home: React.FC<HomeProps> = ({theme}) => {
           setIsModalOpen(false)
           resetBuilder()
         }}
+        backgroundColor={theme.cardBackground}
       >
         {currentModalView}
       </Modal>

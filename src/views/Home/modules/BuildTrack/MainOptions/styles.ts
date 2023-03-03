@@ -1,16 +1,21 @@
+import { ThemeAttributes } from '@/utils/appTheme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
   height: max-content;
-  background-color: #fff;
+  background-color: #000;
   padding: 2rem;
   box-sizing: border-box;
   border-radius: 0.5rem;
   z-index: 10000;
 `
 
-export const Row = styled.div`
+interface RowProps {
+  theme?: ThemeAttributes
+}
+
+export const Row = styled.div<RowProps>`
   width: 100%;
   height: max-content;
   display: flex;
@@ -35,18 +40,20 @@ export const Row = styled.div`
   }
 
   .option-button {
-    border-color: #c66b99;
-    color: #b75988;
+    border-color:${({theme}) => theme.type === "light" ? "#c66b99" : "#fff" };
+    color: ${({theme}) => theme.type === "light" ? "#b75988" : "#fff" };
     &:hover {
       background-color: #f4d1e3;
     }
     font-size: 0.75rem;
+    
   }
 
   .field-container {
     padding: 0.5rem;
     border-radius: 0.5rem;
     background-color: #ff5a5a14;
+    border: none !important;
   }
 
   .or-and-btn {
@@ -69,4 +76,5 @@ export const Column = styled.div`
   height: max-content;
   display: flex;
   flex-direction: column;
+  border: none !important;
 `

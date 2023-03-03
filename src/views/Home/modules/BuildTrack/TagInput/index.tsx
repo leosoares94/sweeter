@@ -7,6 +7,7 @@ import { TagInput as Input } from 'evergreen-ui'
 import Toggler from '../Toggler'
 
 import FadeIn from 'react-fade-in'
+import { ThemeAttributes } from '@/utils/appTheme'
 
 interface TagInputProps {
   id: string
@@ -17,11 +18,12 @@ interface TagInputProps {
   includes: boolean
   condition: string
   hasNext: boolean
+  theme: ThemeAttributes
   onChange: (id: string, field: string, values: string[] | boolean | string) => void
   onDelete: (id: string) => void
 }
 
-const TagInput: React.FC<TagInputProps> = ({ id, index, optionsLength, type, values, condition, includes, hasNext, onChange, onDelete }) => {
+const TagInput: React.FC<TagInputProps> = ({ id, index, optionsLength, type, values, condition, includes, hasNext, theme, onChange, onDelete }) => {
   const switchPrefix = (type: string): string => {
     switch (type) {
       case 'hashtags':
@@ -108,7 +110,7 @@ const TagInput: React.FC<TagInputProps> = ({ id, index, optionsLength, type, val
             />
           </Tooltip>
         </Row>
-        {index !== (optionsLength - 1) && <Toggler condition={condition} />}
+        {index !== (optionsLength - 1) && <Toggler condition={condition} theme={theme} />}
       </Column>
     </FadeIn>
   )
