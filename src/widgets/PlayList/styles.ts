@@ -1,3 +1,4 @@
+import { ThemeAttributes } from '@/utils/appTheme'
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
@@ -46,6 +47,7 @@ interface ContainerProps {
     primary: string
     secondary: string
   }
+  theme: ThemeAttributes
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -57,7 +59,10 @@ export const Container = styled.div<ContainerProps>`
   padding: 0.6rem 0.5rem;
   border-radius: 0.3rem;
   margin-top: 0.5rem;
-  background-color: ${({ containerColor }) => containerColor!.primary};
+  background-color: ${({ containerColor, theme }) =>
+    theme.type === 'light'
+      ? containerColor!.primary
+      : containerColor!.secondary};
 
   cursor: pointer;
 
@@ -84,6 +89,10 @@ export const Container = styled.div<ContainerProps>`
 
     .menu-item {
       font-weight: normal;
+
+      &:hover {
+        background-color: #e12c6b1b;
+      }
     }
   }
 `
@@ -130,14 +139,11 @@ export const Column = styled.div`
 export const Title = styled.span`
   font-weight: 600;
   font-size: 0.75rem;
-
-  color: #00000090;
 `
 
 export const Description = styled.span`
   font-weight: 500;
   font-size: 0.75rem;
-  color: #0000008c;
 `
 
 export const Divider = styled.div`

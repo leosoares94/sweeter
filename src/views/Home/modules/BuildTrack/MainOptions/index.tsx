@@ -33,7 +33,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
   onInputChange,
   onInputDelete,
   onInputAdd,
-  theme
+  theme,
 }) => {
   const MAX_SAME_FIELD_COUNT = 2
 
@@ -44,7 +44,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
     tagName,
     values: [],
     includes: true,
-    condition: 'and'
+    condition: 'and',
   })
 
   const hasMaxCount = (tagName: string, data: Filter[]): boolean => {
@@ -59,16 +59,16 @@ const MainOptions: React.FC<MainOptionProps> = ({
   const handleAddField = (type: string): void => {
     hasMaxCount(type, data)
       ? toast({
-        title: 'Ação não permitida',
-        description: `Apenas ${MAX_SAME_FIELD_COUNT} campos deste tipo`,
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-        size: 'xs',
-        containerStyle: {
-          fontSize: 14
-        },
-      })
+          title: 'Ação não permitida',
+          description: `Apenas ${MAX_SAME_FIELD_COUNT} campos deste tipo`,
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+          size: 'xs',
+          containerStyle: {
+            fontSize: 14,
+          },
+        })
       : onInputAdd(createField(type))
   }
 
@@ -78,7 +78,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
         <Table
           width="100%"
           padding=".5rem"
-          backgroundColor={theme.type === "light" ? "#ffd4e4c9" : "#ff5593c5"}
+          backgroundColor={theme.type === 'light' ? '#ffd4e4c9' : '#ff5593c5'}
           borderRadius={9}
         >
           <Table.Head
@@ -96,7 +96,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
                   fontFamily: 'arial',
                   textTransform: 'uppercase',
                   fontSize: 12,
-                  fontWeight: 'normal'
+                  fontWeight: 'normal',
                 }}
               >
                 - F
@@ -106,14 +106,14 @@ const MainOptions: React.FC<MainOptionProps> = ({
                   fontFamily: 'arial',
                   textTransform: 'lowercase',
                   fontSize: 12,
-                  fontWeight: 'normal'
+                  fontWeight: 'normal',
                 }}
               >
                 iltrar tweets por:
               </span>
             </Table.TextHeaderCell>
           </Table.Head>
-          <Table.Body width="100%" paddingLeft={10} paddingBottom={0.4} >
+          <Table.Body width="100%" paddingLeft={10} paddingBottom={0.4}>
             <Tooltip
               label="Incluir ou bloquear hashtags na busca"
               aria-label="A tooltip"
@@ -127,7 +127,6 @@ const MainOptions: React.FC<MainOptionProps> = ({
                 leftIcon={<AiOutlinePlus size={13} />}
                 iconSpacing={0.5}
                 onClick={() => handleAddField('hashtags')}
-      
               >
                 Hashtags
               </Button>

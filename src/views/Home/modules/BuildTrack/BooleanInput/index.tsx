@@ -5,9 +5,10 @@ import { Tooltip, Button } from '@chakra-ui/react'
 import {
   AiOutlineDislike,
   AiOutlineLike,
-  AiOutlineMinusCircle
+  AiOutlineMinusCircle,
 } from 'react-icons/ai'
 import Toggler from '../Toggler'
+import { ThemeAttributes } from '@/utils/appTheme'
 
 interface BooleanInputProps {
   id: string
@@ -18,6 +19,7 @@ interface BooleanInputProps {
   includes: boolean
   condition: string
   hasNext: boolean
+  theme?: ThemeAttributes
   onChange: (
     id: string,
     field: string,
@@ -35,8 +37,9 @@ const BooleanInput: React.FC<BooleanInputProps> = ({
   condition,
   includes,
   hasNext,
+  theme,
   onChange,
-  onDelete
+  onDelete,
 }) => {
   return (
     <FadeIn>
@@ -46,10 +49,13 @@ const BooleanInput: React.FC<BooleanInputProps> = ({
           style={{
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
             borderRadius: '.6rem',
-            padding: '.5rem'
+            padding: '.5rem',
           }}
         >
-       <Tooltip label={includes ? 'Mudar para excluir' : 'Mudar para incluir'} aria-label='A tooltip'>
+          <Tooltip
+            label={includes ? 'Mudar para excluir' : 'Mudar para incluir'}
+            aria-label="A tooltip"
+          >
             <Button
               size="xs"
               variant="ghost"
@@ -57,13 +63,16 @@ const BooleanInput: React.FC<BooleanInputProps> = ({
               borderRadius={100}
               iconSpacing={0}
               leftIcon={
-                includes
-                  ? (
-                  <AiOutlineLike size={16} color="#4D9A86" />
-                    )
-                  : (
+                includes ? (
+                  <AiOutlineLike
+                    size={16}
+                    color={
+                      theme && theme!.type === 'light' ? '#4D9A86' : '#4cffcf'
+                    }
+                  />
+                ) : (
                   <AiOutlineDislike size={16} color="red" />
-                    )
+                )
               }
               onClick={() => onChange(id, 'includes', !includes)}
             />
@@ -83,10 +92,9 @@ const BooleanInput: React.FC<BooleanInputProps> = ({
             <Button
               size="xs"
               variant="ghost"
-              colorScheme="pink"
               borderRadius={100}
               iconSpacing={0}
-              leftIcon={<AiOutlineMinusCircle size={15} />}
+              leftIcon={<AiOutlineMinusCircle size={15} color="#0000007b" />}
               onClick={() => onDelete(id)}
             />
           </Tooltip>

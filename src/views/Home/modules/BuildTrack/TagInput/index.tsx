@@ -2,7 +2,11 @@ import React from 'react'
 import { Row, Column } from './styles'
 
 import { Tooltip, Button } from '@chakra-ui/react'
-import { AiOutlineDislike, AiOutlineLike, AiOutlineMinusCircle } from 'react-icons/ai'
+import {
+  AiOutlineDislike,
+  AiOutlineLike,
+  AiOutlineMinusCircle,
+} from 'react-icons/ai'
 import { TagInput as Input } from 'evergreen-ui'
 import Toggler from '../Toggler'
 
@@ -19,11 +23,27 @@ interface TagInputProps {
   condition: string
   hasNext: boolean
   theme: ThemeAttributes
-  onChange: (id: string, field: string, values: string[] | boolean | string) => void
+  onChange: (
+    id: string,
+    field: string,
+    values: string[] | boolean | string
+  ) => void
   onDelete: (id: string) => void
 }
 
-const TagInput: React.FC<TagInputProps> = ({ id, index, optionsLength, type, values, condition, includes, hasNext, theme, onChange, onDelete }) => {
+const TagInput: React.FC<TagInputProps> = ({
+  id,
+  index,
+  optionsLength,
+  type,
+  values,
+  condition,
+  includes,
+  hasNext,
+  theme,
+  onChange,
+  onDelete,
+}) => {
   const switchPrefix = (type: string): string => {
     switch (type) {
       case 'hashtags':
@@ -62,31 +82,43 @@ const TagInput: React.FC<TagInputProps> = ({ id, index, optionsLength, type, val
     <FadeIn>
       <Column>
         <Row className="field-container">
-          <Tooltip label={includes ? 'Mudar para excluir' : 'Mudar para incluir'} aria-label='A tooltip'>
+          <Tooltip
+            label={includes ? 'Mudar para excluir' : 'Mudar para incluir'}
+            aria-label="A tooltip"
+          >
             <Button
               size="xs"
               variant="ghost"
               colorScheme="pink"
               borderRadius={100}
               iconSpacing={0}
-              leftIcon={includes ? <AiOutlineLike size={16} color="#4D9A86" /> : <AiOutlineDislike size={16} color="red" />}
+              leftIcon={
+                includes ? (
+                  <AiOutlineLike
+                    size={16}
+                    color={theme.type === 'light' ? '#4D9A86' : '#4cffcf'}
+                  />
+                ) : (
+                  <AiOutlineDislike
+                    size={16}
+                    color={theme.type === 'light' ? 'red' : '#910000'}
+                  />
+                )
+              }
               onClick={() => onChange(id, 'includes', !includes)}
             />
           </Tooltip>
-
           &nbsp;
           <Input
             paddingLeft={10}
             inputProps={{
               placeholder: switchInputPlaceholder(type),
               paddingLeft: -7,
-              className: 'tag-input'
+              className: 'tag-input',
             }}
-
             tagProps={{
               backgroundColor: 'rgb(249,218,218)',
-              marginLeft: '-.2rem'
-
+              marginLeft: '-.2rem',
             }}
             width="100%"
             addOnBlur
@@ -94,23 +126,29 @@ const TagInput: React.FC<TagInputProps> = ({ id, index, optionsLength, type, val
             borderColor="#ff478453"
             borderRadius={16}
             onChange={(items) => {
-              const strings = items.map((value: string) => (!value.includes(switchPrefix(type)) ? `${switchPrefix(type)}${value}` : value))
+              const strings = items.map((value: string) =>
+                !value.includes(switchPrefix(type))
+                  ? `${switchPrefix(type)}${value}`
+                  : value
+              )
               items.length <= 6 && onChange(id, 'values', strings)
             }}
           />
-          <Tooltip label="Remover este campo" aria-label='A tooltip'>
+          <Tooltip label="Remover este campo" aria-label="A tooltip">
             <Button
               size="xs"
               variant="ghost"
               colorScheme="pink"
               borderRadius={100}
               iconSpacing={0}
-              leftIcon={<AiOutlineMinusCircle size={15} />}
+              leftIcon={<AiOutlineMinusCircle size={15} color="#00000078" />}
               onClick={() => onDelete(id)}
             />
           </Tooltip>
         </Row>
-        {index !== (optionsLength - 1) && <Toggler condition={condition} theme={theme} />}
+        {index !== optionsLength - 1 && (
+          <Toggler condition={condition} theme={theme} />
+        )}
       </Column>
     </FadeIn>
   )

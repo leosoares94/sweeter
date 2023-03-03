@@ -1,3 +1,4 @@
+import { ThemeAttributes } from '@/utils/appTheme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -10,7 +11,11 @@ export const Container = styled.div`
   z-index: 10000;
 `
 
-export const Row = styled.div`
+interface RowProps {
+  theme?: ThemeAttributes
+}
+
+export const Row = styled.div<RowProps>`
   width: 100%;
   height: max-content;
   display: flex;
@@ -35,8 +40,9 @@ export const Row = styled.div`
   }
 
   .option-button {
-    border-color: #9c99afd3;
-    color: #322976d3;
+    border-color: ${({ theme }) =>
+      theme.type === 'light' ? '#9c99afd3' : '#fff'};
+    color: ${({ theme }) => (theme.type === 'light' ? '#322976d3' : '#fff')};
     font-size: 0.7rem !important;
     &:hover {
       background-color: #cfc9eee2;

@@ -4,7 +4,7 @@ export const Wrapper = styled.div``
 
 export const Container = styled.div`
   width: 28rem;
-  height: calc(100vh - 9.5rem);
+  height: calc(100vh - 8.5rem);
   padding: 0rem 1.3rem;
   overflow-y: scroll;
   box-sizing: border-box;
@@ -14,7 +14,6 @@ export const Container = styled.div`
   @media (max-width: 1368px) {
     width: 26rem;
     height: calc(100vh - 7.2rem);
-    padding-bottom: 0.7rem;
   }
 
   * {

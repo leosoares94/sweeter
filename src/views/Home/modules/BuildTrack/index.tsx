@@ -6,7 +6,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  Badge
+  Badge,
 } from '@chakra-ui/react'
 
 // import Select from 'react-select'
@@ -27,7 +27,7 @@ interface BuildTrackProps {
   theme: ThemeAttributes
 }
 
-const BuildTrack: React.FC<BuildTrackProps> = ({theme}) => {
+const BuildTrack: React.FC<BuildTrackProps> = ({ theme }) => {
   const {
     dataFilters,
     booleanFilters,
@@ -35,7 +35,7 @@ const BuildTrack: React.FC<BuildTrackProps> = ({theme}) => {
     addFilter,
     updateFilter,
     removeFilter,
-    resetBuilder
+    resetBuilder,
   } = useBuilder((state) => state)
 
   const [enabledFilters] = useState<string[]>(['main', 'boolean', 'has'])
@@ -46,12 +46,12 @@ const BuildTrack: React.FC<BuildTrackProps> = ({theme}) => {
   const resultCountOptions = [
     { value: '10', label: 'Até 10 resultados' },
     { value: '20', label: 'Até 20 resultados' },
-    { value: '30', label: 'Até 30 resultados' }
+    { value: '30', label: 'Até 30 resultados' },
   ]
 
   const searchByOptions = [
     { value: 'recency', label: 'Filtrar por atualidade' },
-    { value: 'relevancy', label: 'Filtrar por relevância' }
+    { value: 'relevancy', label: 'Filtrar por relevância' },
   ]
 
   const isDisabledByRequired = (): boolean => {
@@ -88,25 +88,32 @@ const BuildTrack: React.FC<BuildTrackProps> = ({theme}) => {
       style={{
         paddingTop: '1rem',
         paddingBottom: '1rem',
-        color: theme.cardTextColor
+        color: theme.cardTextColor,
       }}
     >
       <ModalHeader>
-        <Column className="header-column" style={{color: theme.cardTextColor}}>
-          <Title style={{color: theme.cardTextColor}}> Let&apos;s build your track! <Badge
-            size="xs"
-            fontSize={10}
-            colorScheme="green"
-            marginTop={-1}
-            paddingTop={0.5}
-          >
-            V1
-          </Badge></Title>
+        <Column
+          className="header-column"
+          style={{ color: theme.cardTextColor }}
+        >
+          <Title style={{ color: theme.cardTextColor }}>
+            {' '}
+            Let&apos;s build your track!{' '}
+            <Badge
+              size="xs"
+              fontSize={10}
+              colorScheme="green"
+              marginTop={-1}
+              paddingTop={0.5}
+            >
+              V1
+            </Badge>
+          </Title>
           <span
             style={{
               fontSize: 13,
               fontWeight: 'normal',
-              color: theme.cardTextColor
+              color: theme.cardTextColor,
             }}
           >
             Select some options and add some filters below to customize your
@@ -159,6 +166,7 @@ const BuildTrack: React.FC<BuildTrackProps> = ({theme}) => {
               }
               onInputDelete={(id) => removeFilter(id, 'booleanFilters')}
               onInputAdd={(input) => addFilter(input, 'booleanFilters')}
+              theme={theme}
             />
           )}
           {Boolean(isEnabled('has')) && (
@@ -170,6 +178,7 @@ const BuildTrack: React.FC<BuildTrackProps> = ({theme}) => {
               }
               onInputDelete={(id) => removeFilter(id, 'contentFilters')}
               onInputAdd={(input) => addFilter(input, 'contentFilters')}
+              theme={theme}
             />
           )}
         </Column>

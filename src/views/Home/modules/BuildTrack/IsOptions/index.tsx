@@ -6,13 +6,14 @@ import { RiChatQuoteLine } from 'react-icons/ri'
 import { BsReply } from 'react-icons/bs'
 import { SiAdblock } from 'react-icons/si'
 import { Table } from 'evergreen-ui'
-import { Button, CloseButton, useToast } from '@chakra-ui/react'
+import { Button, useToast } from '@chakra-ui/react'
 
 import { Row } from './styles'
 
 import FadeIn from 'react-fade-in'
 import BooleanInput from '../BooleanInput'
 import { Filter } from '../../../../../store/Builder'
+import { ThemeAttributes } from '@/utils/appTheme'
 
 export interface IsOptionProps {
   data: Filter[]
@@ -24,6 +25,7 @@ export interface IsOptionProps {
   ) => void
   onInputDelete: (id: string) => void
   onInputAdd: (input: Filter) => void
+  theme?: ThemeAttributes
 }
 
 const IsOptions: React.FC<IsOptionProps> = ({
@@ -31,7 +33,8 @@ const IsOptions: React.FC<IsOptionProps> = ({
   onInputChange,
   onInputAdd,
   onInputDelete,
-  hasNext
+  hasNext,
+  theme,
 }) => {
   const MAX_SAME_FIELD_COUNT = 1
 
@@ -42,7 +45,7 @@ const IsOptions: React.FC<IsOptionProps> = ({
     tagName,
     values: [],
     includes: true,
-    condition: 'and'
+    condition: 'and',
   })
 
   const hasMaxCount = (tagName: string, data: Filter[]): boolean => {
@@ -57,25 +60,25 @@ const IsOptions: React.FC<IsOptionProps> = ({
   const handleAddField = (type: string): void => {
     hasMaxCount(type, data)
       ? toast({
-        title: 'Ação não permitida',
-        description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-        containerStyle: {
-          fontSize: 14
-        },
-      })
+          title: 'Ação não permitida',
+          description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+          containerStyle: {
+            fontSize: 14,
+          },
+        })
       : onInputAdd(newField(type))
   }
 
   return (
     <FadeIn>
-      <Row>
+      <Row theme={theme}>
         <Table
           width="100%"
           padding=".5rem"
-          backgroundColor="#e8e4ffd3"
+          backgroundColor={theme!.type === 'light' ? '#e8e4ffd3' : '#d072ffc5'}
           borderRadius={9}
         >
           <Table.Head
@@ -84,6 +87,7 @@ const IsOptions: React.FC<IsOptionProps> = ({
             borderBottom="none"
             height="1.8rem"
             backgroundColor="#ff6bb500"
+            color={theme!.trackHeaderTextColor}
           >
             <Table.TextHeaderCell fontSize=".7rem">
               IS / ISN&apos;T&nbsp;
@@ -92,7 +96,7 @@ const IsOptions: React.FC<IsOptionProps> = ({
                   fontFamily: 'arial',
                   textTransform: 'uppercase',
                   fontSize: 12,
-                  fontWeight: 'normal'
+                  fontWeight: 'normal',
                 }}
               >
                 - B
@@ -102,7 +106,7 @@ const IsOptions: React.FC<IsOptionProps> = ({
                   fontFamily: 'arial',
                   textTransform: 'lowercase',
                   fontSize: 12,
-                  fontWeight: 'normal'
+                  fontWeight: 'normal',
                 }}
               >
                 uscar tweets que sejam (ou não):

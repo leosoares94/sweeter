@@ -10,6 +10,6 @@ export interface Context {
 export const useAppContext = create<Context>()(
   devtools((set) => ({
     currentTheme: 'dark',
-    editMode: false
+    editMode: false,
   }))
 )

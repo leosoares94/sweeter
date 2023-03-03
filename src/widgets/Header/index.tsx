@@ -7,12 +7,7 @@ import { CiSettings } from 'react-icons/ci'
 
 import { ChakraProvider, Button, Badge } from '@chakra-ui/react'
 
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem
-} from '@chakra-ui/react'
+import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
 import { ThemeAttributes } from '@/utils/appTheme'
 
 interface HeaderProps {
@@ -24,7 +19,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({
   onNewTrackClick,
   onPlayButtonClick,
-  theme
+  theme,
 }) => {
   return (
     <ChakraProvider>
@@ -86,9 +81,23 @@ const Header: React.FC<HeaderProps> = ({
             <MenuButton>
               <CiSettings size={28} color={theme?.cardTextColor} />
             </MenuButton>
-            <MenuList>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Logout</MenuItem>
+            <MenuList bgColor={theme?.cardBackground} border="none">
+              <MenuItem
+                backgroundColor={theme?.cardBackground}
+                color={theme?.cardTextColor}
+                border="none"
+                _hover={{ backgroundColor: '#e12c6b1b' }}
+              >
+                Settings
+              </MenuItem>
+              <MenuItem
+                backgroundColor={theme?.cardBackground}
+                color={theme?.cardTextColor}
+                border="none"
+                _hover={{ backgroundColor: '#e12c6b1b' }}
+              >
+                Logout
+              </MenuItem>
             </MenuList>
           </Menu>
         </Row>

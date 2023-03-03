@@ -4,13 +4,11 @@ interface WrapperProps {
   background?: string
 }
 
-
 export const Wrapper = styled.div<WrapperProps>`
   width: 100vw;
   display: flex;
   flex-direction: column;
-
-  background: ${({background}) => background}
+  background: ${({ background }) => background};
 `
 
 export const Container = styled.div`
@@ -21,6 +19,7 @@ export const Container = styled.div`
   opacity: 1 !important;
   overflow-x: scroll;
   overflow-y: hidden !important;
+
   @media (max-width: 1368px) {
     padding-top: 2.5rem;
   }

@@ -13,6 +13,7 @@ import { Row } from './styles'
 import FadeIn from 'react-fade-in'
 import { Filter } from '../../../../../store/Builder'
 import BooleanInput from '../BooleanInput'
+import { ThemeAttributes } from '@/utils/appTheme'
 
 export interface HasOptionProps {
   data: Filter[]
@@ -24,6 +25,7 @@ export interface HasOptionProps {
   ) => void
   onInputDelete: (id: string) => void
   onInputAdd: (input: Filter) => void
+  theme?: ThemeAttributes
 }
 
 const HasOptions: React.FC<HasOptionProps> = ({
@@ -31,7 +33,8 @@ const HasOptions: React.FC<HasOptionProps> = ({
   onInputChange,
   onInputAdd,
   onInputDelete,
-  hasNext
+  hasNext,
+  theme,
 }) => {
   const MAX_SAME_FIELD_COUNT = 1
 
@@ -42,7 +45,7 @@ const HasOptions: React.FC<HasOptionProps> = ({
     tagName,
     values: [],
     includes: true,
-    condition: 'and'
+    condition: 'and',
   })
 
   const hasMaxCount = (tagName: string, data: Filter[]): boolean => {
@@ -57,26 +60,26 @@ const HasOptions: React.FC<HasOptionProps> = ({
   const handleAddField = (type: string): void => {
     hasMaxCount(type, data)
       ? toast({
-        title: 'Ação não permitida',
-        description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-        size: 'sm',
-        containerStyle: {
-          fontSize: 14
-        },
-      })
+          title: 'Ação não permitida',
+          description: `Apenas ${MAX_SAME_FIELD_COUNT} opções deste tipo`,
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+          size: 'sm',
+          containerStyle: {
+            fontSize: 14,
+          },
+        })
       : onInputAdd(newField(type))
   }
 
   return (
     <FadeIn>
-      <Row>
+      <Row theme={theme}>
         <Table
           width="100%"
           padding=".5rem"
-          backgroundColor="#c7f2ffbb"
+          backgroundColor={theme!.type === 'light' ? '#c7f2ffbb' : '#68e7cbc5'}
           borderRadius={9}
         >
           <Table.Head
@@ -85,6 +88,7 @@ const HasOptions: React.FC<HasOptionProps> = ({
             borderBottom="none"
             height="1.8rem"
             backgroundColor="#ff6bb500"
+            color={theme!.trackHeaderTextColor}
           >
             <Table.TextHeaderCell fontSize=".7rem">
               HAS / HASN&apos;T&nbsp;
@@ -93,7 +97,7 @@ const HasOptions: React.FC<HasOptionProps> = ({
                   fontFamily: 'arial',
                   textTransform: 'uppercase',
                   fontSize: 12,
-                  fontWeight: 'normal'
+                  fontWeight: 'normal',
                 }}
               >
                 - B
@@ -103,7 +107,7 @@ const HasOptions: React.FC<HasOptionProps> = ({
                   fontFamily: 'arial',
                   textTransform: 'lowercase',
                   fontSize: 12,
-                  fontWeight: 'normal'
+                  fontWeight: 'normal',
                 }}
               >
                 uscar tweets que tenham (ou não):
@@ -191,6 +195,7 @@ const HasOptions: React.FC<HasOptionProps> = ({
                 optionsLength={array.length}
                 includes={item.includes}
                 onChange={onInputChange}
+                theme={theme}
               />
             ))}
           </Table.Body>

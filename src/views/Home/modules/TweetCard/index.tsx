@@ -19,7 +19,7 @@ import { BiAddToQueue } from 'react-icons/bi'
 import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai'
 import { MdVerified } from 'react-icons/md'
 
-import { ChakraProvider, Avatar, Button } from '@chakra-ui/react'
+import { ChakraProvider, Avatar, Button, theme } from '@chakra-ui/react'
 
 import {
   Container,
@@ -33,7 +33,7 @@ import {
   EngagementButton,
   EngagementNumber,
   MediaContainer,
-  Image
+  Image,
 } from './styles'
 
 import { formatDate } from '@utils/dateUtils'
@@ -59,15 +59,15 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
   retweet,
   onImageClick,
   backgroundColor,
-  textColor
+  textColor,
 }) => {
   const [added, setAdded] = useState(false)
 
-  function redirectToProfile (): void {
+  function redirectToProfile(): void {
     window.open(`https://twitter.com/${author.username}`)
   }
 
-  function redirectToTweet (tweet_id: string | null): void {
+  function redirectToTweet(tweet_id: string | null): void {
     window.open(`https://twitter.com/${author.username}/status/${tweet_id}`)
   }
 
@@ -81,12 +81,12 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
     formatHref: {
       hashtag: (href: string) =>
         'https://twitter.com/hashtag/' + href.substr(1),
-      mention: (href: string) => 'https://twitter.com/' + href.substr(1)
-    }
+      mention: (href: string) => 'https://twitter.com/' + href.substr(1),
+    },
   }
 
   const isHd = useMediaQuery({
-    query: '(max-width: 1368px)'
+    query: '(max-width: 1368px)',
   })
 
   return (
@@ -101,7 +101,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
                 className="avatar"
                 _hover={{
                   opacity: 0.5,
-                  cursor: 'pointer'
+                  cursor: 'pointer',
                 }}
                 onClick={() => redirectToProfile()}
               />
@@ -109,9 +109,16 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
                 <Row>
                   <Name>{author.name}</Name>
                   &nbsp;
-                  {(author.verified === true) && <MdVerified size={15} color="#1d9af1" />}
+                  {author.verified === true && (
+                    <MdVerified size={15} color="#1d9af1" />
+                  )}
                 </Row>
-                <Username onClick={() => redirectToProfile()} style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>
+                <Username
+                  onClick={() => redirectToProfile()}
+                  style={{
+                    color: textColor === '#fff' ? '#bbbbbb' : textColor,
+                  }}
+                >
                   @{author.username}
                 </Username>
               </Column>
@@ -128,7 +135,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
               <Row
                 className="retweet-flag"
                 style={{
-                  paddingBottom: isHd ? '.2rem' : '0'
+                  paddingBottom: isHd ? '.2rem' : '0',
                 }}
               >
                 <AiOutlineRetweet
@@ -143,7 +150,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
               key={id}
               style={{
                 marginTop: `${Boolean(retweet.id) && '-1rem'}`,
-                color: textColor
+                color: textColor,
               }}
             >
               {Boolean(retweet.id) && (
@@ -188,32 +195,42 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
               </MediaContainer>
             )}
           </Column>
-          <Row >
-            <Time style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>{toTitleCase(formatDate(new Date(created_at)))}</Time>
+          <Row>
+            <Time
+              style={{ color: textColor === '#fff' ? '#bbbbbb' : textColor }}
+            >
+              {toTitleCase(formatDate(new Date(created_at)))}
+            </Time>
             <Source>&nbsp;· {source}</Source>
           </Row>
 
           <Row className="engagement">
-            <EngagementButton >
+            <EngagementButton>
               <FaRegComment size={15} color={textColor} />
-              <EngagementNumber style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>
+              <EngagementNumber
+                style={{ color: textColor === '#fff' ? '#bbbbbb' : textColor }}
+              >
                 {metrics.replies.toLocaleString()}
               </EngagementNumber>
             </EngagementButton>
-            <EngagementButton >
-              <AiOutlineRetweet size={18} color={textColor}/>
-              <EngagementNumber style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>
+            <EngagementButton>
+              <AiOutlineRetweet size={18} color={textColor} />
+              <EngagementNumber
+                style={{ color: textColor === '#fff' ? '#bbbbbb' : textColor }}
+              >
                 {metrics.retweets.toLocaleString()}
               </EngagementNumber>
             </EngagementButton>
             <EngagementButton>
               <AiOutlineHeart size={18} color={textColor} />
-              <EngagementNumber style={{color: textColor === "#fff"? "#bbbbbb" : textColor}}>
+              <EngagementNumber
+                style={{ color: textColor === '#fff' ? '#bbbbbb' : textColor }}
+              >
                 {metrics.likes.toLocaleString()}
               </EngagementNumber>
 
               <Button
-                colorScheme="teal"
+                colorScheme={textColor === '#fff' ? 'green' : 'teal'}
                 variant={added ? 'solid' : 'outline'}
                 leftIcon={
                   added ? <BsCheckLg size={10} /> : <BiAddToQueue size={15} />

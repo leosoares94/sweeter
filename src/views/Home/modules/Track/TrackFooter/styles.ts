@@ -23,6 +23,7 @@ export const Container = styled.div`
   font-weight: 600;
   padding: 0rem 1rem;
   background-color: #fff;
+
   .refresh-button {
     cursor: pointer;
   }

@@ -10,7 +10,8 @@ import {
   MenuList,
   ModalBody,
   ModalFooter,
-  ModalHeader
+  ModalHeader,
+  theme,
 } from '@chakra-ui/react'
 
 import { BsTwitter, BsThreeDotsVertical } from 'react-icons/bs'
@@ -23,25 +24,31 @@ import {
   Title,
   Description,
   Wrapper,
-  DateInfo
+  DateInfo,
 } from './styles'
 
 import { usePlaylists } from '@store/Playlist'
 
 import { colors } from '@utils/colorUtils'
 import { formatDate, formatHour } from '@utils/dateUtils'
+import { ThemeAttributes } from '@/utils/appTheme'
 
 interface mProps {
   onItemSelect?: () => void
   onItemEdit?: () => void
+  theme?: ThemeAttributes
 }
 
-const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
+const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit, theme }) => {
   const { playlists } = usePlaylists((state) => state)
 
   return (
     <Wrapper>
-      <ModalHeader paddingBottom={1} zIndex={9000000000}>
+      <ModalHeader
+        paddingBottom={1}
+        zIndex={9000000000}
+        style={{ color: theme?.cardTextColor }}
+      >
         <Title className="modal-title">Your Playlists </Title>
         <Description> - Select some playlist to display or edit.</Description>
       </ModalHeader>
@@ -52,7 +59,11 @@ const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
         className="modal-body"
       >
         {playlists.map((playlist, index) => (
-          <Container key={index} containerColor={colors[index % colors.length]}>
+          <Container
+            key={index}
+            containerColor={colors[index % colors.length]}
+            theme={theme}
+          >
             <Column>
               <Row>
                 <Column className="avatar-container">
@@ -67,10 +78,13 @@ const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
                     <span className="item-number">{index + 1}</span>
                   </Avatar>
                 </Column>
-                <Column style={{ width: '100%' }} onClick={onItemSelect}>
+                <Column
+                  style={{ width: '100%', color: theme?.cardTextColor }}
+                  onClick={onItemSelect}
+                >
                   <Title>{playlist.name}&nbsp;&nbsp;</Title>
                   <Description>{playlist.description}</Description>
-                  <DateInfo>
+                  <DateInfo style={{ color: theme?.cardTextColor }}>
                     {formatDate(new Date())} - {formatHour(new Date())}{' '}
                     <Badge size="sm" fontSize={8} colorScheme="blackAlpha">
                       <Row>
@@ -95,33 +109,46 @@ const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
                   as={Button}
                   backgroundColor="transparent"
                   _hover={{
-                    backgroundColor: '#00000210'
+                    backgroundColor: '#00000210',
                   }}
                   transform="scale(.7)"
                   marginRight={-1.2}
                   _active={{
-                    backgroundColor: '#00000210'
+                    backgroundColor: '#00000210',
                   }}
                 >
-                  <BsThreeDotsVertical size={17} />
+                  <BsThreeDotsVertical size={17} color={theme?.cardTextColor} />
                 </MenuButton>
                 <MenuList
-                  bgColor="#fff"
+                  bgColor={theme?.cardBackground}
                   boxShadow="0px 3px 10px rgba(43, 0, 0, 0.123)"
                   fontSize={16.2}
                   zIndex={10000}
+                  border="none"
                 >
                   <MenuItem
                     className="menu-item"
                     fontSize={12}
                     onClick={onItemEdit}
+                    backgroundColor={theme?.cardBackground}
+                    color={theme?.cardTextColor}
                   >
                     Edit
                   </MenuItem>
-                  <MenuItem className="menu-item" fontSize={12}>
+                  <MenuItem
+                    className="menu-item"
+                    fontSize={12}
+                    backgroundColor={theme?.cardBackground}
+                    color={theme?.cardTextColor}
+                  >
                     Delete
                   </MenuItem>
-                  <MenuItem className="menu-item" fontSize={12}>
+                  <MenuItem
+                    className="menu-item"
+                    fontSize={12}
+                    backgroundColor={theme?.cardBackground}
+                    color={theme?.cardTextColor}
+                  >
                     Clone
                   </MenuItem>
                 </MenuList>
@@ -131,11 +158,7 @@ const Playlist: React.FC<mProps> = ({ onItemSelect, onItemEdit }) => {
         ))}
       </ModalBody>
       <ModalFooter alignItems="center" paddingTop={2.5} justifyContent="center">
-        <Button
-          size="sm"
-          className="add-button"
-          boxShadow="1px 2px 2px #ffddea"
-        >
+        <Button size="sm" className="add-button">
           <Row>
             <AiOutlinePlus size={14} />
           </Row>{' '}
