@@ -17,12 +17,6 @@ export const Container = styled.div`
     padding-bottom: 0.7rem;
   }
 
-  @media (max-width: 1440px) {
-    width: 26rem;
-    height: calc(100vh - 8.7rem);
-    padding-bottom: 0.7rem;
-  }
-
   * {
     scrollbar-width: thin;
     scrollbar-color: #ffb8bf23 !important;
