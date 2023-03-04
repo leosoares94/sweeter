@@ -19,6 +19,7 @@ import { useBuilder } from '@store/Builder'
 import { useTracks } from '@store/Tracks'
 import { usePlaylists } from '@store/Playlist'
 import { ThemeAttributes } from '@/utils/appTheme'
+import Settings from './modules/Settings'
 
 interface ImageViewerProps {
   src: string[]
@@ -112,6 +113,13 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
     displayModeEditable && setDisplayModeEditable(false)
   }
 
+  const renderSettingsModal = (): void => {
+    setCurrentModalView(
+      <Settings theme={theme}/>
+    )
+    setIsModalOpen(true)
+  }
+
   //Dnd functions
   function onDragEnd(result: any) {
     // dropped outside the list
@@ -154,7 +162,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
         <Header
           onNewTrackClick={() => renderBuildTrackModal()}
           onPlayButtonClick={() => renderPlaylistModal()}
-          onSettingsClick={() => {}}
+          onSettingsClick={() => renderSettingsModal()}
           theme={theme}
         />
       )}

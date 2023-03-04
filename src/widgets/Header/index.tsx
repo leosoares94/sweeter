@@ -89,6 +89,7 @@ const Header: React.FC<HeaderProps> = ({
                 color={theme?.cardTextColor}
                 border="none"
                 _hover={{ backgroundColor: '#e12c6b1b' }}
+                onClick={onSettingsClick}
               >
                 Settings
               </MenuItem>
