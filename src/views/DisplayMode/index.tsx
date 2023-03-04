@@ -1,14 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { BackgroundColor, BackgroundImage, Container, Logo, Time, Website } from './styles';
-import SweeterDefault from './modules/DisplayModels/SweeterDefault';
-import EditControls from './modules/EditControls';
-import { Playlist } from '../../store/Playlist';
+import React, { useEffect, useRef, useState } from 'react'
+import {
+  BackgroundColor,
+  BackgroundImage,
+  Container,
+  Logo,
+  Time,
+  Website,
+} from './styles'
+import SweeterDefault from './modules/DisplayModels/SweeterDefault'
+import EditControls from './modules/EditControls'
+import { Playlist } from '../../store/Playlist'
+import delay from 'delay'
+import { Kbd, useToast } from '@chakra-ui/react'
 
 interface DisplayModeProps {
-  playlist: Playlist;
-  background?: string;
-  editMode?: boolean;
-  onLeave: () => void;
+  playlist: Playlist
+  background?: string
+  editMode?: boolean
+  onLeave: () => void
 }
 
 const DisplayMode: React.FC<DisplayModeProps> = ({
@@ -16,25 +25,51 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
   editMode,
   onLeave,
 }) => {
-  const [duration, setDuration] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const displayRef = useRef<HTMLDivElement>(null);
+  const [duration, setDuration] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const displayRef = useRef<HTMLDivElement>(null)
+
+  const toast = useToast()
 
   useEffect(() => {
-    displayRef.current?.focus();
-  }, []);
+    void (async (): Promise<void> => {
+      await delay(200)
+      displayRef.current?.focus()
+     !editMode && toast({
+        description: (
+          <>Use&nbsp;
+            <Kbd color="#000">Space</Kbd> or <Kbd color="#000">{`🠄`}</Kbd>&nbsp;
+            <Kbd color="#000">{`🠆`}</Kbd>&nbsp;
+            to navigate
+          </>
+        ),
+        status: 'info',
+        duration: 3000,
+        isClosable: true,
+        size: 'sm',
+        containerStyle: {
+          fontSize: 14,
+        },
+      })
+    })()
+  }, [])
 
-  const handleTweet: React.KeyboardEventHandler<HTMLDivElement> | undefined = (event) => {
+  const handleTweet: React.KeyboardEventHandler<HTMLDivElement> | undefined = (
+    event
+  ) => {
     if (event.code === 'ArrowLeft' && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    } else if ((event.code === 'ArrowRight' || event.code === 'Space') && currentIndex < playlist.tweets.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+      setCurrentIndex(currentIndex - 1)
+    } else if (
+      (event.code === 'ArrowRight' || event.code === 'Space') &&
+      currentIndex < playlist.tweets.length - 1
+    ) {
+      setCurrentIndex(currentIndex + 1)
     } else if (event.code === 'Escape') {
-      onLeave();
+      onLeave()
     } else {
-      return false;
+      return false
     }
-  };
+  }
 
   function switchDisplayModels(modelName: string): JSX.Element | undefined {
     switch (modelName) {
@@ -51,12 +86,14 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
             editMode={editMode}
             onStartTimer={setDuration}
           />
-        );
+        )
     }
   }
 
   function showEditControls(): JSX.Element | undefined {
-    return editMode ? <EditControls playlist={playlist} tweet={playlist.tweets[currentIndex]} /> : undefined;
+    return editMode ? (
+      <EditControls playlist={playlist} tweet={playlist.tweets[currentIndex]} />
+    ) : undefined
   }
 
   return (
@@ -68,10 +105,13 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
       </Logo>
       <Website>getsweeter.vercel.app</Website>
       {showEditControls()}
-      <BackgroundImage backgroundOpacity={playlist.backgroundOpacity} backgroundImage={playlist.backgroundImage ?? ''} />
+      <BackgroundImage
+        backgroundOpacity={playlist.backgroundOpacity}
+        backgroundImage={playlist.backgroundImage ?? ''}
+      />
       <BackgroundColor backgroundColor={playlist.backgroundColor} />
     </Container>
-  );
-};
+  )
+}
 
-export default DisplayMode;
+export default DisplayMode
