@@ -22,11 +22,11 @@ export const appTheme: AppTheme = {
     bodyBackground:
       'repeating-linear-gradient(-45deg, #ffb7dd1b, #ffb7dd20 2px, #ffffff1f 2px, #ffffff28 11px)',
     cardBackground: '#fff',
-    cardTextColor: '#000',
+    cardTextColor: '#000000d7',
     trackHeaderBackgroundColor: '#fff',
-    trackHeaderTextColor: '#000',
+    trackHeaderTextColor: '#000000d9',
     trackFooterBackgroundColor: '#fff',
-    trackFooterTextColor: '#000',
+    trackFooterTextColor: '#000000d4',
   },
   dark: {
     type: 'dark',
