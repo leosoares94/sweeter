@@ -25,7 +25,7 @@ export interface IsOptionProps {
   ) => void
   onInputDelete: (id: string) => void
   onInputAdd: (input: Filter) => void
-  theme?: ThemeAttributes
+  theme?: ThemeAttributes | null
 }
 
 const IsOptions: React.FC<IsOptionProps> = ({

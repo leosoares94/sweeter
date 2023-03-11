@@ -19,7 +19,7 @@ interface BooleanInputProps {
   includes: boolean
   condition: string
   hasNext: boolean
-  theme?: ThemeAttributes
+  theme?: ThemeAttributes | null
   onChange: (
     id: string,
     field: string,

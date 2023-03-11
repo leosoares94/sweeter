@@ -41,4 +41,3 @@ export const appTheme: AppTheme = {
     trackFooterTextColor: '#fff',
   },
 }
-

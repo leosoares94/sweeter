@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from 'react'
+import ThemeContext from '@/ThemeContext'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import ImageViewer from 'react-simple-image-viewer'
@@ -31,7 +32,7 @@ interface HomeProps {
   theme: ThemeAttributes
 }
 
-const Home: React.FC<HomeProps> = ({ theme }) => {
+const Home: React.FC = () => {
   /* Store states */
   const { resetBuilder } = useBuilder((state) => state)
   const { tracks, reloadTracks } = useTracks((state) => state)
@@ -82,7 +83,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
   }
 
   const renderBuildTrackModal = (): void => {
-    setCurrentModalView(<BuildTrack theme={theme} />)
+    setCurrentModalView(<BuildTrack  />)
     setIsModalOpen(true)
   }
 
@@ -96,7 +97,6 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
           })()
         }}
         onItemEdit={() => handleEditPlaylist()}
-        theme={theme}
       />
     )
     setIsModalOpen(true)
@@ -114,9 +114,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
   }
 
   const renderSettingsModal = (): void => {
-    setCurrentModalView(
-      <Settings theme={theme}/>
-    )
+    setCurrentModalView(<Settings />)
     setIsModalOpen(true)
   }
 
@@ -150,95 +148,100 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
   }
 
   return (
-    <Wrapper background={theme.bodyBackground}>
-      {displayMode && (
-        <DisplayMode
-          editMode={displayModeEditable}
-          playlist={playlists[0]}
-          onLeave={() => handleLeavePlaylist()}
-        />
-      )}
-      {!displayMode && (
-        <Header
-          onNewTrackClick={() => renderBuildTrackModal()}
-          onPlayButtonClick={() => renderPlaylistModal()}
-          onSettingsClick={() => renderSettingsModal()}
-          theme={theme}
-        />
-      )}
-      {isViewerOpen &&
-        renderImageViewer({
-          src: imagesForViewer,
-          currentIndex: currentImage,
-          onClose: closeImageViewer,
-        })}
-      <Modal
-        open={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false)
-          resetBuilder()
-        }}
-        backgroundColor={theme.cardBackground}
-      >
-        {currentModalView}
-      </Modal>
-      <Container>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="droppable" direction="horizontal">
-            {(provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={getListStyle()}
-                {...provided.droppableProps}
-                className="draggable-wrapper"
-              >
-                {tracks.map((track, index) => (
-                  <Draggable
-                    key={track.id}
-                    draggableId={track.id}
-                    index={index}
+    <ThemeContext.Consumer>
+      {(theme) => (
+        <Wrapper background={theme?.bodyBackground}>
+          {displayMode && (
+            <DisplayMode
+              editMode={displayModeEditable}
+              playlist={playlists[0]}
+              onLeave={() => handleLeavePlaylist()}
+            />
+          )}
+          {!displayMode && (
+            <Header
+              onNewTrackClick={() => renderBuildTrackModal()}
+              onPlayButtonClick={() => renderPlaylistModal()}
+              onSettingsClick={() => renderSettingsModal()}
+            />
+          )}
+          {isViewerOpen &&
+            renderImageViewer({
+              src: imagesForViewer,
+              currentIndex: currentImage,
+              onClose: closeImageViewer,
+            })}
+          <Modal
+            open={isModalOpen}
+            onClose={() => {
+              setIsModalOpen(false)
+              resetBuilder()
+            }}
+            backgroundColor={theme?.cardBackground}
+          >
+            {currentModalView}
+          </Modal>
+          <Container>
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Droppable droppableId="droppable" direction="horizontal">
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    style={getListStyle()}
+                    {...provided.droppableProps}
+                    className="draggable-wrapper"
                   >
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style
-                        )}
+                    {tracks.map((track, index) => (
+                      <Draggable
+                        key={track.id}
+                        draggableId={track.id}
+                        index={index}
                       >
-                        <Track
-                          key={track.id}
-                          tag={track.tweets[0].author.name}
-                          headerBackground={theme.trackHeaderBackgroundColor}
-                          textColor={theme.trackHeaderTextColor}
-                        >
-                          {track.tweets.map((tweet) => (
-                            <TweetCard
-                              key={tweet.id}
-                              {...tweet}
-                              onImageClick={(
-                                images: string[],
-                                index: number
-                              ) => {
-                                openImageViewer(images, index)
-                              }}
-                              backgroundColor={theme.cardBackground}
-                              textColor={theme.cardTextColor}
-                            />
-                          ))}
-                        </Track>
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </Container>
-    </Wrapper>
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style
+                            )}
+                          >
+                            <Track
+                              key={track.id}
+                              tag={track.tweets[0].author.name}
+                              headerBackground={
+                                theme?.trackHeaderBackgroundColor
+                              }
+                              textColor={theme?.trackHeaderTextColor}
+                            >
+                              {track.tweets.map((tweet) => (
+                                <TweetCard
+                                  key={tweet.id}
+                                  {...tweet}
+                                  onImageClick={(
+                                    images: string[],
+                                    index: number
+                                  ) => {
+                                    openImageViewer(images, index)
+                                  }}
+                                  backgroundColor={theme?.cardBackground}
+                                  textColor={theme?.cardTextColor}
+                                />
+                              ))}
+                            </Track>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
+          </Container>
+        </Wrapper>
+      )}
+    </ThemeContext.Consumer>
   )
 }
 

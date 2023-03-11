@@ -11,7 +11,7 @@ export const Container = styled.div`
   z-index: 10000;
 `
 interface RowProps {
-  theme?: ThemeAttributes
+  theme?: ThemeAttributes | null
 }
 
 export const Row = styled.div<RowProps>`

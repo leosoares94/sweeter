@@ -25,7 +25,7 @@ export interface HasOptionProps {
   ) => void
   onInputDelete: (id: string) => void
   onInputAdd: (input: Filter) => void
-  theme?: ThemeAttributes
+  theme?: ThemeAttributes | null
 }
 
 const HasOptions: React.FC<HasOptionProps> = ({

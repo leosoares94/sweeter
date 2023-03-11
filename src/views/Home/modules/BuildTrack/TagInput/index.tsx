@@ -22,7 +22,7 @@ interface TagInputProps {
   includes: boolean
   condition: string
   hasNext: boolean
-  theme: ThemeAttributes
+  theme: ThemeAttributes | null
   onChange: (
     id: string,
     field: string,
@@ -96,12 +96,12 @@ const TagInput: React.FC<TagInputProps> = ({
                 includes ? (
                   <AiOutlineLike
                     size={16}
-                    color={theme.type === 'light' ? '#4D9A86' : '#4cffcf'}
+                    color={theme?.type === 'light' ? '#4D9A86' : '#4cffcf'}
                   />
                 ) : (
                   <AiOutlineDislike
                     size={16}
-                    color={theme.type === 'light' ? 'red' : '#910000'}
+                    color={theme?.type === 'light' ? 'red' : '#910000'}
                   />
                 )
               }

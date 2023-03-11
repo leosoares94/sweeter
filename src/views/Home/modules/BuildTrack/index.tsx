@@ -18,16 +18,13 @@ import HasOptions from './HasOptions'
 
 import { useBuilder } from '@store/Builder'
 import { ThemeAttributes } from '@/utils/appTheme'
+import ThemeContext from '@/ThemeContext'
 
 // import { convertBuilderToQueryString2 } from '../../utils/builderToQueryString'
 // import RecentTweetsRepository from '../../api/modules/SearchTweets/RecentSearch/repository/implementation/RecentTweetsRepository'
 // import RequestConfig from '../../api/modules/SearchTweets/RecentSearch/RequestConfig'
 
-interface BuildTrackProps {
-  theme: ThemeAttributes
-}
-
-const BuildTrack: React.FC<BuildTrackProps> = ({ theme }) => {
+const BuildTrack: React.FC = () => {
   const {
     dataFilters,
     booleanFilters,
@@ -83,140 +80,146 @@ const BuildTrack: React.FC<BuildTrackProps> = ({ theme }) => {
   // }
 
   return (
-    <div
-      className="wrapper"
-      style={{
-        paddingTop: '1rem',
-        paddingBottom: '1rem',
-        color: theme.cardTextColor,
-      }}
-    >
-      <ModalHeader>
-        <Column
-          className="header-column"
-          style={{ color: theme.cardTextColor }}
+    <ThemeContext.Consumer>
+      {(theme) => (
+        <div
+          className="wrapper"
+          style={{
+            paddingTop: '1rem',
+            paddingBottom: '1rem',
+            color: theme?.cardTextColor,
+          }}
         >
-          <Title style={{ color: theme.cardTextColor }}>
-            {' '}
-            Let&apos;s build your track!{' '}
-            <Badge
-              size="xs"
-              fontSize={10}
-              colorScheme="green"
-              marginTop={-1}
-              paddingTop={0.5}
+          <ModalHeader>
+            <Column
+              className="header-column"
+              style={{ color: theme?.cardTextColor }}
             >
-              V1
-            </Badge>
-          </Title>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 'normal',
-              color: theme.cardTextColor,
-            }}
-          >
-            Select some options and add some filters below to customize your
-            results:
-          </span>
-        </Column>
-        {/* <Tabs
-          size="xs"
-          variant="soft-rounded"
-          className="tabs"
-          colorScheme="pink"
-          fontSize={12}
-          paddingTop={2.5}
-        >
-          <TabList fontFamily="League Spartan">
-            <Tab padding=".2rem 1rem">Busca Personalizada</Tab>
-            <Tab padding=".2rem 1rem">Inserir Link</Tab>
-            <Tab padding=".2rem 1rem">Buscar Timeline</Tab>
-          </TabList>
-        </Tabs> */}
-      </ModalHeader>
-      <ModalCloseButton onClick={() => resetBuilder()} />
+              <Title style={{ color: theme?.cardTextColor }}>
+                {' '}
+                Let&apos;s build your track!{' '}
+                <Badge
+                  size="xs"
+                  fontSize={10}
+                  colorScheme="green"
+                  marginTop={-1}
+                  paddingTop={0.5}
+                >
+                  V1
+                </Badge>
+              </Title>
+              <span
+                style={{
+                  fontSize: 13,
+                  fontWeight: 'normal',
+                  color: theme?.cardTextColor,
+                }}
+              >
+                Select some options and add some filters below to customize your
+                results:
+              </span>
+            </Column>
+            {/* <Tabs
+           size="xs"
+           variant="soft-rounded"
+           className="tabs"
+           colorScheme="pink"
+           fontSize={12}
+           paddingTop={2.5}
+         >
+           <TabList fontFamily="League Spartan">
+             <Tab padding=".2rem 1rem">Busca Personalizada</Tab>
+             <Tab padding=".2rem 1rem">Inserir Link</Tab>
+             <Tab padding=".2rem 1rem">Buscar Timeline</Tab>
+           </TabList>
+         </Tabs> */}
+          </ModalHeader>
+          <ModalCloseButton onClick={() => resetBuilder()} />
 
-      <ModalBody
-        marginTop={-1}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Column className="filters-column">
-          {Boolean(isEnabled('main')) && (
-            <MainOptions
-              hasNext={booleanFilters.length > 0 || contentFilters.length > 0}
-              data={dataFilters}
-              onInputChange={(id, field, values) =>
-                updateFilter(id, field, values, 'dataFilters')
-              }
-              onInputDelete={(id) => removeFilter(id, 'dataFilters')}
-              onInputAdd={(input) => addFilter(input, 'dataFilters')}
-              theme={theme}
-            />
-          )}
-          {Boolean(isEnabled('boolean')) && (
-            <IsOptions
-              hasNext={contentFilters.length > 0}
-              data={booleanFilters}
-              onInputChange={(id, field, values) =>
-                updateFilter(id, field, values, 'booleanFilters')
-              }
-              onInputDelete={(id) => removeFilter(id, 'booleanFilters')}
-              onInputAdd={(input) => addFilter(input, 'booleanFilters')}
-              theme={theme}
-            />
-          )}
-          {Boolean(isEnabled('has')) && (
-            <HasOptions
-              hasNext={false}
-              data={contentFilters}
-              onInputChange={(id, field, values) =>
-                updateFilter(id, field, values, 'contentFilters')
-              }
-              onInputDelete={(id) => removeFilter(id, 'contentFilters')}
-              onInputAdd={(input) => addFilter(input, 'contentFilters')}
-              theme={theme}
-            />
-          )}
-        </Column>
-      </ModalBody>
-      {/* <ModalBody marginTop={0}>
-        <Row>
-          <Select
-            options={resultCountOptions}
-            defaultValue={resultCountOptions[0]}
-            pageSize={5}
-            className="select"
-            isClearable={false}
-          />
-          <Select
-            options={searchByOptions}
-            defaultValue={searchByOptions[0]}
-            pageSize={5}
-            className="select"
-            isClearable={false}
-          />
-        </Row>
-      </ModalBody> */}
-      <ModalFooter justifyContent="center">
-        <Button
-          size="xs"
-          width="100%"
-          variant="solid"
-          colorScheme="pink"
-          borderRadius={50}
-          //leftIcon={<IoIosRocket size={18} />}
-          marginTop={-2}
-          disabled={isDisabledByRequired()}
-          padding=" 1rem 0rem"
-        >
-          FINISH
-        </Button>
-      </ModalFooter>
-    </div>
+          <ModalBody
+            marginTop={-1}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Column className="filters-column">
+              {Boolean(isEnabled('main')) && (
+                <MainOptions
+                  hasNext={
+                    booleanFilters.length > 0 || contentFilters.length > 0
+                  }
+                  data={dataFilters}
+                  onInputChange={(id, field, values) =>
+                    updateFilter(id, field, values, 'dataFilters')
+                  }
+                  onInputDelete={(id) => removeFilter(id, 'dataFilters')}
+                  onInputAdd={(input) => addFilter(input, 'dataFilters')}
+                  theme={theme}
+                />
+              )}
+              {Boolean(isEnabled('boolean')) && (
+                <IsOptions
+                  hasNext={contentFilters.length > 0}
+                  data={booleanFilters}
+                  onInputChange={(id, field, values) =>
+                    updateFilter(id, field, values, 'booleanFilters')
+                  }
+                  onInputDelete={(id) => removeFilter(id, 'booleanFilters')}
+                  onInputAdd={(input) => addFilter(input, 'booleanFilters')}
+                  theme={theme}
+                />
+              )}
+              {Boolean(isEnabled('has')) && (
+                <HasOptions
+                  hasNext={false}
+                  data={contentFilters}
+                  onInputChange={(id, field, values) =>
+                    updateFilter(id, field, values, 'contentFilters')
+                  }
+                  onInputDelete={(id) => removeFilter(id, 'contentFilters')}
+                  onInputAdd={(input) => addFilter(input, 'contentFilters')}
+                  theme={theme}
+                />
+              )}
+            </Column>
+          </ModalBody>
+          {/* <ModalBody marginTop={0}>
+         <Row>
+           <Select
+             options={resultCountOptions}
+             defaultValue={resultCountOptions[0]}
+             pageSize={5}
+             className="select"
+             isClearable={false}
+           />
+           <Select
+             options={searchByOptions}
+             defaultValue={searchByOptions[0]}
+             pageSize={5}
+             className="select"
+             isClearable={false}
+           />
+         </Row>
+       </ModalBody> */}
+          <ModalFooter justifyContent="center">
+            <Button
+              size="xs"
+              width="100%"
+              variant="solid"
+              colorScheme="pink"
+              borderRadius={50}
+              //leftIcon={<IoIosRocket size={18} />}
+              marginTop={-2}
+              disabled={isDisabledByRequired()}
+              padding=" 1rem 0rem"
+            >
+              FINISH
+            </Button>
+          </ModalFooter>
+        </div>
+      )}
+    </ThemeContext.Consumer>
   )
 }
 

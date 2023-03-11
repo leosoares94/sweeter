@@ -47,8 +47,10 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
         duration: 3000,
         isClosable: true,
         size: 'sm',
+        position: 'top',
         containerStyle: {
           fontSize: 14,
+          boxShadow: 'none'
         },
       })
     })()

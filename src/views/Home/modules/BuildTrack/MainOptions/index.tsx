@@ -24,7 +24,7 @@ export interface MainOptionProps {
   ) => void
   onInputDelete: (id: string) => void
   onInputAdd: (input: Filter) => void
-  theme: ThemeAttributes
+  theme: ThemeAttributes | null
 }
 
 const MainOptions: React.FC<MainOptionProps> = ({
@@ -78,7 +78,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
         <Table
           width="100%"
           padding=".5rem"
-          backgroundColor={theme.type === 'light' ? '#ffd4e4c9' : '#ff5593c5'}
+          backgroundColor={theme?.type === 'light' ? '#ffd4e4c9' : '#ff5593c5'}
           borderRadius={9}
         >
           <Table.Head
@@ -87,7 +87,7 @@ const MainOptions: React.FC<MainOptionProps> = ({
             borderBottom="none"
             height="1.5rem"
             backgroundColor="#ff6bb500"
-            color={theme.trackHeaderTextColor}
+            color={theme?.trackHeaderTextColor}
           >
             <Table.TextHeaderCell fontSize=".7rem">
               Data Filters&nbsp;
