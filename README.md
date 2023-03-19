@@ -1,4 +1,4 @@
-![image](https://i.imgur.com/5nf6q08.jpg?raw=true)
+![image](https://i.imgur.com/Vy7HcAs.jpeg?raw=true)
 ## Projeto de integração da Twitter API com React & Node.js + Typescript
 
 Este é um protótipo de aplicativo web que desenvolvi utilizando as tecnologias ReactJS, Node.js e Typescript, com o objetivo de exibir minhas habilidades de desenvolvimento em meu portfólio. O foco do aplicativo é a integração com a Twitter API V2, permitindo que os usuários pesquisem, filtrem e exibam tweets de forma dinâmica. [Demonstração online](https://getsweeter.vercel.app/)
