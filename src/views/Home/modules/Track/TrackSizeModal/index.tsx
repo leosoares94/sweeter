@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react'
+import { Button, Stack } from '@chakra-ui/react'
 import { Container } from './styles'
 import { useTracks } from '@/store/Tracks'
 
@@ -15,18 +15,20 @@ const TrackSizeModal = (props: TrackSizeModalProps) => {
 
   return (
     <Container>
-      <Button size="sm" onClick={() => handleClick('small')}>
-        Small
-      </Button>
-      <Button size="sm" onClick={() => handleClick('medium')}>
-        Medium
-      </Button>
-      <Button size="sm" onClick={() => handleClick('large')}>
-        Large
-      </Button>
-      <Button size="sm" onClick={() => handleClick('highlight')}>
-        Highlight
-      </Button>
+      <Stack direction="row">
+        <Button size="sm" onClick={() => handleClick('small')}>
+          Narrow
+        </Button>
+        <Button size="sm" onClick={() => handleClick('medium')}>
+          Normal
+        </Button>
+        <Button size="sm" onClick={() => handleClick('large')}>
+          Wide
+        </Button>
+        <Button size="sm" onClick={() => handleClick('highlight')}>
+          Highlight
+        </Button>
+      </Stack>
     </Container>
   )
 }
