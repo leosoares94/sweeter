@@ -70,7 +70,8 @@ button:hover {
 /* Chrome, Edge, and Safari */
 ::-webkit-scrollbar {
   width: 5px;
-  height: 5px;
+  height: 10px;
+  cursor: pointer;
 }
 ::-webkit-scrollbar-track {
   background: rgba(241, 243, 245, 0) !important;
