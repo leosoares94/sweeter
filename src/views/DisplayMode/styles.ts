@@ -40,8 +40,10 @@ export const BackgroundImage = styled.div<{
   height: 100vh;
   position: fixed;
   background-size: cover;
-  opacity: ${({ backgroundOpacity }) => Boolean(backgroundOpacity) && `${backgroundOpacity}%`};
-  ${({ backgroundImage }) => Boolean(backgroundImage) && `background-image: url(${backgroundImage});`}
+  opacity: ${({ backgroundOpacity }) =>
+    Boolean(backgroundOpacity) && `${backgroundOpacity}%`};
+  ${({ backgroundImage }) =>
+    Boolean(backgroundImage) && `background-image: url(${backgroundImage});`}
   z-index: 1;
 `
 
@@ -83,7 +85,7 @@ export const Time = styled.div<{ duration?: number }>`
   position: absolute;
   top: 0;
   left: 0;
-  animation: ${progress} ${({ duration }) => `${duration}s`} linear;
+  animation: ${progress} ${({ duration }) => `${duration! * 1000}ms`} linear;
   z-index: 2;
 `
 

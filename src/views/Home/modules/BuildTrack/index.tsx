@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   ModalHeader,
@@ -19,6 +19,7 @@ import HasOptions from './HasOptions'
 import { useBuilder } from '@store/Builder'
 import { ThemeAttributes } from '@/utils/appTheme'
 import ThemeContext from '@/ThemeContext'
+import { convertBuilderToQueryString2 } from '@/utils/builderToQueryString'
 
 // import { convertBuilderToQueryString2 } from '../../utils/builderToQueryString'
 // import RecentTweetsRepository from '../../api/modules/SearchTweets/RecentSearch/repository/implementation/RecentTweetsRepository'
@@ -61,23 +62,29 @@ const BuildTrack: React.FC = () => {
     return isDataFiltersEmpty && isBooleanFiltersEmpty && isContentFiltersEmpty
   }
 
-  // async function handleFetch () {
-  //   const { VITE_BEARER_TOKEN } = import.meta.env
-  //   const string = convertBuilderToQueryString2({
-  //     dataFilters,
-  //     booleanFilters,
-  //     contentFilters
-  //   })
-  //   const config = new RequestConfig(
-  //     string,
-  //     'recency',
-  //     '10',
-  //     `Bearer ${VITE_BEARER_TOKEN}`
-  //   )
-  //   const repository = new RecentTweetsRepository()
+  function handleFetch() {
+    const { VITE_BEARER_TOKEN } = import.meta.env
+    const string = convertBuilderToQueryString2({
+      dataFilters,
+      booleanFilters,
+      contentFilters,
+    })
+    // const config = new RequestConfig(
+    //   string,
+    //   'recency',
+    //   '10',
+    //   `Bearer ${VITE_BEARER_TOKEN}`
+    // )
+    // const repository = new RecentTweetsRepository()
 
-  //   const response = await repository.fetch(config)
-  // }
+    // const response = await repository.fetch(config)
+
+    console.log(string)
+  }
+
+  useEffect(() => {
+    handleFetch()
+  }, [dataFilters, booleanFilters, contentFilters])
 
   return (
     <ThemeContext.Consumer>

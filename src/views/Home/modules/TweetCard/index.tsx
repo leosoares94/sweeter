@@ -45,6 +45,7 @@ interface TweetCardProps {
   onImageClick: (images: string[], index: number) => void
   backgroundColor?: string
   textColor?: string
+  trackSize?: string
 }
 
 const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
@@ -60,6 +61,7 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
   onImageClick,
   backgroundColor,
   textColor,
+  trackSize,
 }) => {
   const [added, setAdded] = useState(false)
 
@@ -91,7 +93,11 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
 
   return (
     <ChakraProvider>
-      <Container backgroundColor={backgroundColor} textColor={textColor}>
+      <Container
+        backgroundColor={backgroundColor}
+        textColor={textColor}
+        trackSize={trackSize}
+      >
         <Column>
           <Row className="user-info">
             <Row>
@@ -197,11 +203,18 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
           </Column>
           <Row>
             <Time
-              style={{ color: textColor === '#fff' ? '#bbbbbb' : textColor }}
+              style={{
+                color: textColor === '#fff' ? '#bbbbbb' : textColor,
+                fontSize: trackSize === 'small' ? '.75rem' : '0.92rem',
+              }}
             >
               {toTitleCase(formatDate(new Date(created_at)))}
             </Time>
-            <Source>&nbsp;· {source}</Source>
+            <Source
+              style={{ fontSize: trackSize === 'small' ? '.75rem' : '0.92rem' }}
+            >
+              &nbsp;· {source}
+            </Source>
           </Row>
 
           <Row className="engagement">
@@ -228,22 +241,42 @@ const TweetCard: React.FC<TweetProps & TweetCardProps> = ({
               >
                 {metrics.likes.toLocaleString()}
               </EngagementNumber>
-
-              <Button
-                colorScheme={textColor === '#fff' ? 'green' : 'teal'}
-                variant={added ? 'solid' : 'outline'}
-                leftIcon={
-                  added ? <BsCheckLg size={10} /> : <BiAddToQueue size={15} />
-                }
-                size="xs"
-                className="add-button"
-                onClick={() => setAdded(!added)}
-              >
-                {added ? 'Added to playlist' : 'Add to playlist'}
-              </Button>
+              {trackSize !== 'small' && (
+                <Button
+                  colorScheme={textColor === '#fff' ? 'green' : 'teal'}
+                  variant={added ? 'solid' : 'outline'}
+                  leftIcon={
+                    added ? <BsCheckLg size={10} /> : <BiAddToQueue size={15} />
+                  }
+                  size="xs"
+                  className="add-button"
+                  onClick={() => setAdded(!added)}
+                >
+                  {added ? 'Added to playlist' : 'Add to playlist'}
+                </Button>
+              )}
             </EngagementButton>
           </Row>
         </Column>
+        {trackSize === 'small' && (
+          <Row style={{ marginTop: '.7rem' }}>
+            <Button
+              colorScheme={textColor === '#fff' ? 'green' : 'teal'}
+              variant={added ? 'solid' : 'outline'}
+              leftIcon={
+                added ? <BsCheckLg size={10} /> : <BiAddToQueue size={15} />
+              }
+              size="xs"
+              className="add-button"
+              onClick={() => setAdded(!added)}
+              w="100%"
+              pb={1}
+              pt={0.5}
+            >
+              {added ? 'Added to playlist' : 'Add to playlist'}
+            </Button>
+          </Row>
+        )}
       </Container>
     </ChakraProvider>
   )

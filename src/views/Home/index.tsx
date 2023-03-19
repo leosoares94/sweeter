@@ -19,17 +19,13 @@ import Modal from '@widgets/Modal'
 import { useBuilder } from '@store/Builder'
 import { useTracks } from '@store/Tracks'
 import { usePlaylists } from '@store/Playlist'
-import { ThemeAttributes } from '@/utils/appTheme'
 import Settings from './modules/Settings'
+import { Button, ChakraProvider } from '@chakra-ui/react'
 
 interface ImageViewerProps {
   src: string[]
   currentIndex: number
   onClose: () => void
-}
-
-interface HomeProps {
-  theme: ThemeAttributes
 }
 
 const Home: React.FC = () => {
@@ -83,7 +79,7 @@ const Home: React.FC = () => {
   }
 
   const renderBuildTrackModal = (): void => {
-    setCurrentModalView(<BuildTrack  />)
+    setCurrentModalView(<BuildTrack />)
     setIsModalOpen(true)
   }
 
@@ -209,26 +205,42 @@ const Home: React.FC = () => {
                           >
                             <Track
                               key={track.id}
-                              tag={track.tweets[0].author.name}
+                              id={track.id}
+                              tag={track.tweets && track.tweets[0].author.name}
                               headerBackground={
                                 theme?.trackHeaderBackgroundColor
                               }
                               textColor={theme?.trackHeaderTextColor}
+                              size={track.size}
                             >
-                              {track.tweets.map((tweet) => (
-                                <TweetCard
-                                  key={tweet.id}
-                                  {...tweet}
-                                  onImageClick={(
-                                    images: string[],
-                                    index: number
-                                  ) => {
-                                    openImageViewer(images, index)
-                                  }}
-                                  backgroundColor={theme?.cardBackground}
-                                  textColor={theme?.cardTextColor}
-                                />
-                              ))}
+                              {track.tweets &&
+                                track.tweets.map((tweet, index) => (
+                                  <TweetCard
+                                    key={index}
+                                    {...tweet}
+                                    onImageClick={(
+                                      images: string[],
+                                      index: number
+                                    ) => {
+                                      openImageViewer(images, index)
+                                    }}
+                                    backgroundColor={theme?.cardBackground}
+                                    textColor={theme?.cardTextColor}
+                                    trackSize={track.size}
+                                  />
+                                ))}
+                              {track.size === 'highlight' && (
+                                <ChakraProvider>
+                                  <Button
+                                    colorScheme="pink"
+                                    variant="outline"
+                                    mt="1rem"
+                                    w="100%"
+                                  >
+                                    + Load more
+                                  </Button>
+                                </ChakraProvider>
+                              )}
                             </Track>
                           </div>
                         )}

@@ -3,7 +3,7 @@ import { devtools } from 'zustand/middleware'
 import { Tweet } from './Tracks'
 
 import profilePic from '../assets/mock/sweeter_profile2.jpg'
-import poster1 from '../assets/mock/sweeter_poster_1.jpg'
+import poster3 from '../assets/mock/sweeter_poster_3.jpg'
 
 export interface Item {
   id: string
@@ -65,9 +65,9 @@ export const usePlaylists = create<PlaylistState>()(
               avatar: profilePic,
               name: 'Sweeter',
               username: 'GetSweeterApp',
-              verified: true
+              verified: true,
             },
-            duration: 5,
+            duration: 3,
             showAvatar: true,
             showMedia: true,
             showTime: true,
@@ -79,7 +79,7 @@ export const usePlaylists = create<PlaylistState>()(
               retweets: 2915,
               replies: 0,
               likes: 0,
-              quotes: 0
+              quotes: 0,
             },
             retweet: {
               id: null,
@@ -89,8 +89,8 @@ export const usePlaylists = create<PlaylistState>()(
               verified: null,
             },
             text: 'Bem-vindo à demo do Sweeter! \n\nEste software faz parte do meu portfólio pessoal. Você pode entrar em contato comigo através do meu LinkedIn linkedin.com/leosoares94 ou e-mail leo@getsweeter.com.',
-            images: [poster1],
-            videos: []
+            images: [poster3],
+            videos: [],
           },
           {
             id: '1597370288005521408',
@@ -100,7 +100,7 @@ export const usePlaylists = create<PlaylistState>()(
                 'https://pbs.twimg.com/profile_images/1082744382585856001/rH_k3PtQ_normal.jpg',
               name: 'SpaceX',
               username: 'SpaceX',
-              verified: true
+              verified: true,
             },
             duration: 5,
             showAvatar: true,
@@ -114,17 +114,17 @@ export const usePlaylists = create<PlaylistState>()(
               retweets: 708,
               replies: 175,
               likes: 5070,
-              quotes: 219
+              quotes: 219,
             },
             retweet: {
               id: null,
               author_id: null,
               author_avatar: null,
-              verified: null
+              verified: null,
             },
             text: 'Targeting Wednesday, November 30 at 3:39 a.m. ET for Falcon 9’s launch of ispace’s HAKUTO-R Mission 1 – the first privately-led Japanese mission to land on the lunar surface → https://t.co/bJFjLCzWdK https://t.co/lETh1mvNfo',
             images: ['https://pbs.twimg.com/media/Fir_YQtVQAA9rYV.jpg '],
-            videos: []
+            videos: [],
           },
           {
             id: '1597678808898977792',
@@ -134,9 +134,9 @@ export const usePlaylists = create<PlaylistState>()(
                 'https://pbs.twimg.com/profile_images/1321163587679784960/0ZxKlEKB_normal.jpg',
               name: 'NASA',
               username: 'NASA',
-              verified: true
+              verified: true,
             },
-            duration: 5,
+            duration: 2,
             showAvatar: true,
             showMedia: true,
             showTime: true,
@@ -148,17 +148,17 @@ export const usePlaylists = create<PlaylistState>()(
               retweets: 972,
               replies: 150,
               likes: 5583,
-              quotes: 94
+              quotes: 94,
             },
             retweet: {
               id: null,
               author_id: null,
               author_avatar: null,
-              verified: null
+              verified: null,
             },
             text: 'Regulators, mount up! 🌟\n\nData from @ChandraXray and @SOFIAtelescope reveal a star cluster that regulates itself—allowing only a limited set of stars to grow before expelling most of the gas from the system. This process likely slows new star creation: https://t.co/T97kdYJlHk https://t.co/Xa5LyOPxdF',
             images: ['https://pbs.twimg.com/media/FiwYZ8dXwAELR1a.jpg'],
-            videos: []
+            videos: [],
           },
           {
             id: '1596882408313303041',
@@ -168,9 +168,9 @@ export const usePlaylists = create<PlaylistState>()(
                 'https://pbs.twimg.com/profile_images/1082744382585856001/rH_k3PtQ_normal.jpg',
               name: 'SpaceX',
               username: 'SpaceX',
-              verified: true
+              verified: true,
             },
-            duration: 5,
+            duration: 4,
             showAvatar: true,
             showMedia: true,
             showTime: true,
@@ -182,26 +182,26 @@ export const usePlaylists = create<PlaylistState>()(
               retweets: 533,
               replies: 0,
               likes: 0,
-              quotes: 0
+              quotes: 0,
             },
             retweet: {
               id: '1596850788693061632',
               author_id: '34743251',
               author_avatar:
                 'https://pbs.twimg.com/profile_images/1189945624583720960/k6MtoeIt_normal.jpg',
-              verified: true
+              verified: true,
             },
             text: "RT @Space_Station: The @SpaceX #Dragon cargo craft docked to the Harmony module's space-facing port at 7:39am ET today delivering new solar arrays, science experiments, and cargo replenishing the Exp 68 crew. https://t.co/QGRXaRgydv",
             images: [],
-            videos: []
-          }
-        ]
-      }
+            videos: [],
+          },
+        ],
+      },
     ],
     createPlaylist: (data) => {
       set((state) => ({
         ...state,
-        playlists: [...state.playlists, data]
+        playlists: [...state.playlists, data],
       }))
     },
     updateItem: (id, data) => {
@@ -209,8 +209,8 @@ export const usePlaylists = create<PlaylistState>()(
         ...state,
         playlists: state.playlists.map((playlist) =>
           playlist.id === id ? { ...playlist, ...data } : { ...playlist }
-        )
+        ),
       }))
-    }
+    },
   }))
 )

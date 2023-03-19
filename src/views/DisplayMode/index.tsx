@@ -25,8 +25,10 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
   editMode,
   onLeave,
 }) => {
-  const [duration, setDuration] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [duration, setDuration] = useState(
+    playlist.tweets[currentIndex].duration
+  )
   const displayRef = useRef<HTMLDivElement>(null)
 
   const toast = useToast()
@@ -34,25 +36,35 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
   useEffect(() => {
     void (async (): Promise<void> => {
       await delay(200)
+      await delay(duration * 1000)
+      currentIndex < playlist.tweets.length - 1 &&
+        setCurrentIndex(currentIndex + 1)
+    })()
+  }, [currentIndex])
+
+  useEffect(() => {
+    void (async (): Promise<void> => {
+      await delay(200)
       displayRef.current?.focus()
-     !editMode && toast({
-        description: (
-          <>Use&nbsp;
-            <Kbd color="#000">Space</Kbd> or <Kbd color="#000">{`🠄`}</Kbd>&nbsp;
-            <Kbd color="#000">{`🠆`}</Kbd>&nbsp;
-            to navigate
-          </>
-        ),
-        status: 'info',
-        duration: 3000,
-        isClosable: true,
-        size: 'sm',
-        position: 'top',
-        containerStyle: {
-          fontSize: 14,
-          boxShadow: 'none'
-        },
-      })
+      !editMode &&
+        toast({
+          description: (
+            <>
+              Use&nbsp;
+              <Kbd color="#000">Space</Kbd> or <Kbd color="#000">{`🠄`}</Kbd>
+              &nbsp;
+              <Kbd color="#000">{`🠆`}</Kbd>&nbsp; to navigate
+            </>
+          ),
+          status: 'info',
+          duration: 3000,
+          isClosable: true,
+          size: 'sm',
+          position: 'bottom',
+          containerStyle: {
+            fontSize: 14,
+          },
+        })
     })()
   }, [])
 

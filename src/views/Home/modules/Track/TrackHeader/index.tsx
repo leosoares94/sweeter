@@ -18,22 +18,29 @@ interface TrackHeaderProps {
   contentTags?: string[]
   background?: string
   textColor?: string
+  onTrackSizeClick?: () => void
 }
 
-const TrackHeader: React.FC<TrackHeaderProps> = ({ tag, background, textColor }) => {
+const TrackHeader: React.FC<TrackHeaderProps> = ({
+  tag,
+  background,
+  textColor,
+  onTrackSizeClick,
+}) => {
   const isHd = useMediaQuery({
-    query: '(max-width: 1368px)'
+    query: '(max-width: 1368px)',
   })
 
   return (
     <Wrapper>
-      <Container style={{backgroundColor: background, color: textColor  }}>
+      <Container style={{ backgroundColor: background, color: textColor }}>
         <MdOutlineRefresh size={isHd ? 14 : 18} className="refresh-button" />
         <Title>
           <Badge className="badge" type="mention" value={tag} />
           {/* <Badge type="hashtag" value="CopaDoMundo" />
           &nbsp;+ 2 */}
         </Title>
+
         <Menu placement="bottom">
           <MenuButton
             border="none"
@@ -46,7 +53,9 @@ const TrackHeader: React.FC<TrackHeaderProps> = ({ tag, background, textColor })
             fontSize={isHd ? 13 : 16}
             zIndex={10000}
           >
-            <MenuItem className="menu-item">Track width</MenuItem>
+            <MenuItem className="menu-item" onClick={onTrackSizeClick}>
+              Track size
+            </MenuItem>
             <MenuItem className="menu-item">Add all to playlist</MenuItem>
             <MenuItem className="menu-item">Delete Track</MenuItem>
           </MenuList>
