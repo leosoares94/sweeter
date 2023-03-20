@@ -7,6 +7,8 @@ import { HiArrowsPointingOut } from 'react-icons/hi2'
 
 interface TrackSizeModalProps {
   id: string
+  textColor: string | undefined
+  size: string | undefined
 }
 
 const TrackSizeModal = (props: TrackSizeModalProps) => {
@@ -17,31 +19,96 @@ const TrackSizeModal = (props: TrackSizeModalProps) => {
   }
 
   return (
-    <Container style={{ color: '#fff', fontSize: '.7rem' }}>
-      <Stack direction="row">
+    <Container style={{ color: props.textColor, fontSize: '.7rem' }}>
+      <Stack direction="row" gap={5}>
         <Stack alignItems="center">
-          <Button size="sm" onClick={() => handleClick('small')}>
-            <TbViewportNarrow />
+          <Button
+            size="sm"
+            onClick={() => handleClick('small')}
+            variant="outline"
+            style={{
+              border: `1px solid ${
+                props.size === 'small' ? '#ED64A6' : props.textColor
+              }`,
+            }}
+          >
+            <TbViewportNarrow
+              color={props.size === 'small' ? '#ED64A6' : props.textColor}
+            />
           </Button>
-          <span>Narrow</span>
+          <span
+            style={{
+              color: props.size === 'small' ? '#ED64A6' : props.textColor,
+            }}
+          >
+            Narrow
+          </span>
         </Stack>
         <Stack alignItems="center">
-          <Button size="sm" onClick={() => handleClick('medium')}>
-            <BsSquare />
+          <Button
+            size="sm"
+            onClick={() => handleClick('medium')}
+            style={{
+              border: `1px solid ${
+                props.size === 'medium' ? '#ED64A6' : props.textColor
+              }`,
+            }}
+          >
+            <BsSquare
+              color={props.size === 'medium' ? '#ED64A6' : props.textColor}
+            />
           </Button>
-          <span>Normal</span>
+          <span
+            style={{
+              color: props.size === 'medium' ? '#ED64A6' : props.textColor,
+            }}
+          >
+            Normal
+          </span>
         </Stack>
         <Stack alignItems="center">
-          <Button size="sm" onClick={() => handleClick('large')}>
-            <HiArrowsPointingOut />
+          <Button
+            size="sm"
+            onClick={() => handleClick('large')}
+            style={{
+              border: `1px solid ${
+                props.size === 'large' ? '#ED64A6' : props.textColor
+              }`,
+            }}
+          >
+            <HiArrowsPointingOut
+              color={props.size === 'large' ? '#ED64A6' : props.textColor}
+            />
           </Button>
-          <span>Wide</span>
+          <span
+            style={{
+              color: props.size === 'large' ? '#ED64A6' : props.textColor,
+            }}
+          >
+            Wide
+          </span>
         </Stack>
         <Stack alignItems="center">
-          <Button size="sm" onClick={() => handleClick('highlight')}>
-            <BsColumnsGap />
+          <Button
+            size="sm"
+            onClick={() => handleClick('highlight')}
+            style={{
+              border: `1px solid ${
+                props.size === 'highlight' ? '#ED64A6' : props.textColor
+              }`,
+            }}
+          >
+            <BsColumnsGap
+              color={props.size === 'highlight' ? '#ED64A6' : props.textColor}
+            />
           </Button>
-          <span>Highlight</span>
+          <span
+            style={{
+              color: props.size === 'highlight' ? '#ED64A6' : props.textColor,
+            }}
+          >
+            Highlight
+          </span>
         </Stack>
       </Stack>
     </Container>

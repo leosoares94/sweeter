@@ -26,7 +26,11 @@ const Track: React.FC<TrackProps> = (props) => {
         onClose={() => setIsModalOpen(false)}
         backgroundColor={props.headerBackground}
       >
-        <TrackSizeModal id={props.id} />
+        <TrackSizeModal
+          id={props.id}
+          textColor={props.textColor}
+          size={props.size}
+        />
       </Modal>
       <TrackHeader
         tag={props.tag}
