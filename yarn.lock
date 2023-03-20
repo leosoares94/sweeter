@@ -1627,6 +1627,13 @@
     hoist-non-react-statics "^3.3.0"
     redux "^4.0.0"
 
+"@types/react-responsive@^8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react-responsive/-/react-responsive-8.0.5.tgz#77769862d2a0711434feb972be08e3e6c334440a"
+  integrity sha512-k3gQJgI87oP5IrVZe//3LKJFnAeFaqqWmmtl5eoYL2H3HqFcIhUaE30kRK1CsW3DHdojZxcVj4ZNc2ClsEu2PA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-stack-grid@^0.7.3":
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@types/react-stack-grid/-/react-stack-grid-0.7.3.tgz#d98219de7cd03d16e1d1cc93d704b75bd75b390e"

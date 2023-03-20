@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { AppTheme, appTheme, ThemeAttributes } from './utils/appTheme'
+import { AppTheme, appTheme } from './utils/appTheme'
 import { useAppContext } from '@/store/Context'
 
 import Home from '@views/Home'

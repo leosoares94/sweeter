@@ -37,6 +37,8 @@ export const Container = styled.div<ContainerProps>`
   }
 
   @media (max-width: 1368px) {
+    width: ${({ trackSize }) =>
+      trackSize === 'highlight' ? '23.5rem' : '100%'};
     margin-top: 0.6rem;
   }
 `

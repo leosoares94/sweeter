@@ -31,7 +31,18 @@ export const Container = styled.div<TrackProps>`
   padding-bottom: 1rem;
 
   @media (max-width: 1368px) {
-    width: 26rem;
+    width: ${({ size }) => {
+      switch (size) {
+        case 'small':
+          return '22rem'
+        case 'medium':
+          return '26rem'
+        case 'large':
+          return '30rem'
+        default:
+          return 'max-content'
+      }
+    }};
     height: calc(100vh - 7.2rem);
   }
 
@@ -41,7 +52,7 @@ export const Container = styled.div<TrackProps>`
   }
   /* Chrome, Edge, and Safari */
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 7px;
   }
   ::-webkit-scrollbar-track {
     background: #ff478404 !important;
@@ -61,10 +72,6 @@ export const HighlightContainer = styled.div<TrackProps>`
   background-color: #f3aeae10;
   padding: 0rem 1.2rem;
   padding-bottom: 1rem;
-  @media (max-width: 1368px) {
-    width: 26rem;
-    height: calc(100vh - 7.2rem);
-  }
 
   * {
     scrollbar-width: thin;
@@ -72,7 +79,7 @@ export const HighlightContainer = styled.div<TrackProps>`
   }
   /* Chrome, Edge, and Safari */
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 7px;
   }
   ::-webkit-scrollbar-track {
     background: #ff478404 !important;
@@ -81,5 +88,10 @@ export const HighlightContainer = styled.div<TrackProps>`
     background-color: #ff478414;
     border-radius: 10px;
     border: none;
+  }
+
+  @media (max-width: 1368px) {
+    width: 51rem;
+    height: calc(100vh - 7.2rem);
   }
 `

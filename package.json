@@ -21,6 +21,7 @@
     "@types/react-datepicker": "^4.8.0",
     "@types/react-linkify": "^1.0.1",
     "@types/react-lottie": "^1.2.6",
+    "@types/react-responsive": "^8.0.5",
     "@types/react-stack-grid": "^0.7.3",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^8.3.4",

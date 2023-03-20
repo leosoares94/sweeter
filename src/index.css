@@ -163,20 +163,19 @@ button:hover {
   border: none !important;
 }
 
-
 /*Drag n drop uploader*/
 
 .fhCyWB {
-  color: #ED64A6 !important;
-  border-color: #ED64A6 !important;
-} 
-
-.fhCyWB svg {
-  transform: scale(.6) !important;
+  color: #ed64a6 !important;
+  border-color: #ed64a6 !important;
 }
 
-.fhCyWB svg path{
-  fill: #ED64A6 !important;
+.fhCyWB svg {
+  transform: scale(0.6) !important;
+}
+
+.fhCyWB svg path {
+  fill: #ed64a6 !important;
 }
 
 .ub-b-top_1px-solid-edeff5 {
