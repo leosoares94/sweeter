@@ -2,6 +2,7 @@ import create from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { Tweet } from './Tracks'
 
+import playlistThumb from '../assets/mock/playlist_thumb.jpeg'
 import profilePic from '../assets/mock/sweeter_profile2.jpg'
 import poster3 from '../assets/mock/sweeter_poster_3.jpg'
 

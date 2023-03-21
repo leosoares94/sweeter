@@ -33,14 +33,14 @@ const DisplayMode: React.FC<DisplayModeProps> = ({
 
   const toast = useToast()
 
-  useEffect(() => {
-    void (async (): Promise<void> => {
-      await delay(200)
-      await delay(duration * 1000)
-      currentIndex < playlist.tweets.length - 1 &&
-        setCurrentIndex(currentIndex + 1)
-    })()
-  }, [currentIndex])
+  // useEffect(() => {
+  //   void (async (): Promise<void> => {
+  //     await delay(200)
+  //     await delay(duration * 1000)
+  //     currentIndex < playlist.tweets.length - 1 &&
+  //       setCurrentIndex(currentIndex + 1)
+  //   })()
+  // }, [currentIndex])
 
   useEffect(() => {
     void (async (): Promise<void> => {
