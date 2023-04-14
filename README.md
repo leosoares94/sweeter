@@ -1,4 +1,7 @@
 ![image](https://i.imgur.com/Vy7HcAs.jpeg?raw=true)
+
+## Devido a mudanças na disponibilidade gratuita da API do twitter, apenas o front end ficará disponível.
+
 ## [WIP] Projeto de integração da Twitter API com React & Node.js + Typescript
 
 O foco do aplicativo é a integração com a Twitter API V2, permitindo que os usuários pesquisem, filtrem e exibam tweets de forma dinâmica. [Demo online](https://getsweeter.vercel.app/)
