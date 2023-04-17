@@ -10,12 +10,12 @@ export interface Context {
 
 export const useAppContext = create<Context>()(
   devtools((set) => ({
-    currentTheme: 'dark',
+    currentTheme: 'light',
     editMode: false,
     setCurrentTheme(theme) {
       set((state) => ({
         ...state,
-        currentTheme: theme
+        currentTheme: theme,
       }))
     },
   }))
