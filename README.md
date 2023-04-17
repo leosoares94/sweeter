@@ -1,6 +1,6 @@
 ![image](https://i.imgur.com/Vy7HcAs.jpeg?raw=true)
 
-## Devido a mudanças na disponibilidade gratuita da API do twitter, apenas o front end ficará disponível.
+## Projeto pausado, entenda: [Twitter desativa API gratuita e afeta aplicativos e desenvolvedores](https://olhardigital.com.br/2023/04/09/internet-e-redes-sociais/twitter-desativa-api-gratuita-e-afeta-aplicativos-e-desenvolvedores/)
 
 ## [WIP] Projeto de integração da Twitter API com React & Node.js + Typescript
 
