@@ -302,7 +302,7 @@ export const useTracks = create<TracksState>()(
           contentFilters: [],
         },
         next: null,
-        size: 'normal',
+        size: 'medium',
       },
       // {
       //   id: '741258936',
